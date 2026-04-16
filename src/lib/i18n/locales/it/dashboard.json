@@ -1,0 +1,14 @@
+{
+  "title": "Dashboard",
+  "stats": {
+    "totalPatients": "Total Patients",
+    "todaysAppointments": "Today's Appointments",
+    "openLabs": "Open Labs",
+    "openIncidents": "Open Incidents"
+  },
+  "recentPatients": "Recent Patients",
+  "todaysAppointments": "Today's Appointments",
+  "noPatients": "No patients yet.",
+  "addPatient": "Add a patient",
+  "noAppointments": "No appointments today."
+}

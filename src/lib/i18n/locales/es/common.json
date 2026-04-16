@@ -1,0 +1,60 @@
+{
+  "actions": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "loading": "Cargando...",
+    "saving": "Guardando...",
+    "noResults": "No se encontraron resultados.",
+    "download": "Descargar",
+    "export": "Exportar"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "deceased": "Fallecido",
+    "scheduled": "Programado",
+    "completed": "Completado",
+    "cancelled": "Cancelado",
+    "reported": "Reportado",
+    "resolved": "Resuelto",
+    "requested": "Solicitado",
+    "canceled": "Cancelado",
+    "draft": "Borrador",
+    "onHold": "En espera",
+    "stopped": "Detenido",
+    "unknown": "Desconocido",
+    "enteredInError": "Registrado por error"
+  },
+  "confirm": {
+    "deleteTitle": "¿Estás seguro?",
+    "deleteDescription": "Esta acción no se puede deshacer.",
+    "deleteButton": "Eliminar"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "patients": "Pacientes",
+    "appointments": "Citas",
+    "labs": "Laboratorios",
+    "medications": "Medicamentos",
+    "imaging": "Imágenes",
+    "incidents": "Incidentes",
+    "settings": "Ajustes"
+  },
+  "network": {
+    "offline": "Sin conexión",
+    "offlineDescription": "Los cambios se sincronizarán cuando te reconectes.",
+    "online": "De nuevo en línea",
+    "onlineDescription": "Sincronizando cambios pendientes..."
+  }
+}

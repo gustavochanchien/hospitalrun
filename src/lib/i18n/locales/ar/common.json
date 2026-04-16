@@ -1,0 +1,60 @@
+{
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "search": "بحث",
+    "filter": "تصفية",
+    "confirm": "تأكيد",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "loading": "جارٍ التحميل...",
+    "saving": "جارٍ الحفظ...",
+    "noResults": "لا توجد نتائج.",
+    "download": "تنزيل",
+    "export": "تصدير"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "deceased": "متوفى",
+    "scheduled": "مجدول",
+    "completed": "مكتمل",
+    "cancelled": "ملغى",
+    "reported": "تم الإبلاغ",
+    "resolved": "تم الحل",
+    "requested": "مطلوب",
+    "canceled": "ملغى",
+    "draft": "مسودة",
+    "onHold": "معلّق",
+    "stopped": "متوقف",
+    "unknown": "غير معروف",
+    "enteredInError": "أُدخل بالخطأ"
+  },
+  "confirm": {
+    "deleteTitle": "هل أنت متأكد؟",
+    "deleteDescription": "لا يمكن التراجع عن هذا الإجراء.",
+    "deleteButton": "حذف"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "patients": "المرضى",
+    "appointments": "المواعيد",
+    "labs": "المختبرات",
+    "medications": "الأدوية",
+    "imaging": "الأشعة",
+    "incidents": "الحوادث",
+    "settings": "الإعدادات"
+  },
+  "network": {
+    "offline": "أنت غير متصل",
+    "offlineDescription": "ستتم مزامنة التغييرات عند إعادة الاتصال.",
+    "online": "عاد الاتصال",
+    "onlineDescription": "جارٍ مزامنة التغييرات المعلقة..."
+  }
+}

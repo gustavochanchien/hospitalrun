@@ -1,0 +1,19 @@
+{
+  "title": "Labs",
+  "newLab": "New Lab",
+  "fields": {
+    "patient": "Patient",
+    "type": "Type",
+    "code": "Code",
+    "status": "Status",
+    "requestedBy": "Requested By",
+    "requestedAt": "Requested At",
+    "result": "Result",
+    "notes": "Notes"
+  },
+  "actions": {
+    "complete": "Complete",
+    "cancel": "Cancel Lab",
+    "saveResult": "Save Result"
+  }
+}

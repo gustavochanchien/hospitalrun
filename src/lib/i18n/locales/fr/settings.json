@@ -1,0 +1,19 @@
+{
+  "title": "Settings",
+  "organization": "Organization",
+  "orgName": "Organization Name",
+  "orgId": "Organization ID",
+  "teamMembers": "Team Members",
+  "noMembers": "No team members found.",
+  "roles": {
+    "admin": "Admin",
+    "doctor": "Doctor",
+    "nurse": "Nurse",
+    "user": "User"
+  },
+  "actions": {
+    "edit": "Edit",
+    "save": "Save",
+    "deactivate": "Deactivate"
+  }
+}

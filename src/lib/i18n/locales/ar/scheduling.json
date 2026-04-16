@@ -1,0 +1,29 @@
+{
+  "title": "Appointments",
+  "newAppointment": "New Appointment",
+  "editAppointment": "Edit Appointment",
+  "calendar": "Calendar",
+  "list": "List",
+  "fields": {
+    "patient": "Patient",
+    "type": "Type",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "location": "Location",
+    "status": "Status",
+    "notes": "Notes"
+  },
+  "types": {
+    "checkup": "Checkup",
+    "emergency": "Emergency",
+    "followUp": "Follow Up",
+    "routine": "Routine",
+    "walkIn": "Walk In"
+  },
+  "status": {
+    "scheduled": "Scheduled",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "noShow": "No Show"
+  }
+}
