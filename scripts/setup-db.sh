@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-# HospitalRun 3 — Database Setup Script
-# Sets up the Supabase database for a new deployment.
+# HospitalRun 3 — Database Setup Script (developer path)
+# Sets up the Supabase database for a new deployment using the Supabase CLI.
 # Usage: ./scripts/setup-db.sh [project-ref]
+#
+# NOTE: This script is for contributors who have the Supabase CLI installed
+# locally. Clinic IT deployers should use the browser-only path documented
+# in DEPLOY.md (paste supabase/deploy.sql into the Supabase SQL Editor) —
+# no CLI required.
 
 set -euo pipefail
 

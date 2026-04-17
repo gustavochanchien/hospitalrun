@@ -117,7 +117,11 @@ interface MemberContext {
 
 async function handleInvite(ctx: MemberContext): Promise<Response> {
   const { admin, email, role, adminUserId, adminOrgId, existingMemberId } = ctx
-  const redirectTo = `${Deno.env.get('SITE_URL') ?? 'http://localhost:5173'}/login`
+  const siteUrl = Deno.env.get('SITE_URL')
+  if (!siteUrl) {
+    return json({ error: 'site_url_not_configured' }, 500)
+  }
+  const redirectTo = `${siteUrl.replace(/\/$/, '')}/login`
   const { error: inviteErr } = await admin.auth.admin.inviteUserByEmail(email, {
     redirectTo,
     data: { org_id: adminOrgId, role, invited_org_id: adminOrgId, invited_role: role },

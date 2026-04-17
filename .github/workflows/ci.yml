@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:run
+
+      - name: Build
+        run: npm run build
+
+      - name: Regenerate deploy.sql
+        run: npm run build:deploy-sql
+
+      - name: Ensure deploy.sql is up to date with migrations
+        run: |
+          if ! git diff --exit-code supabase/deploy.sql; then
+            echo "::error::supabase/deploy.sql is stale. Run 'npm run build:deploy-sql' and commit the result."
+            exit 1
+          fi

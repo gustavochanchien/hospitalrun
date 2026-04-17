@@ -10,15 +10,25 @@ const LOCAL_STORAGE_KEY = 'hr_backend_config'
 let resolvedConfig: BackendConfig | null = null
 let clientInstance: SupabaseClient | null = null
 
+function isValidConfig(candidate: Partial<BackendConfig>): candidate is BackendConfig {
+  if (typeof candidate.url !== 'string' || typeof candidate.anonKey !== 'string') return false
+  const url = candidate.url
+  const httpsOk = url.startsWith('https://')
+  const devOk = url.startsWith('http://localhost') || url.startsWith('http://127.0.0.1')
+  if (!httpsOk && !devOk) return false
+  // Supabase anon keys are either legacy JWTs (start with `eyJ`) or the
+  // newer publishable-key format (`sb_publishable_...`).
+  return /^eyJ/.test(candidate.anonKey) || /^sb_publishable_/.test(candidate.anonKey)
+}
+
 function readLocalStorageConfig(): BackendConfig | null {
   if (typeof window === 'undefined') return null
   try {
     const raw = window.localStorage.getItem(LOCAL_STORAGE_KEY)
     if (!raw) return null
     const parsed = JSON.parse(raw) as Partial<BackendConfig>
-    if (typeof parsed.url === 'string' && typeof parsed.anonKey === 'string') {
-      return { url: parsed.url, anonKey: parsed.anonKey }
-    }
+    if (isValidConfig(parsed)) return { url: parsed.url, anonKey: parsed.anonKey }
+    window.localStorage.removeItem(LOCAL_STORAGE_KEY)
   } catch {
     // Corrupt entry — ignore and fall through.
   }
@@ -38,9 +48,7 @@ async function readRemoteConfig(): Promise<BackendConfig | null> {
     const res = await fetch('/config.json', { cache: 'no-store' })
     if (!res.ok) return null
     const data = (await res.json()) as Partial<BackendConfig>
-    if (typeof data.url === 'string' && typeof data.anonKey === 'string') {
-      return { url: data.url, anonKey: data.anonKey }
-    }
+    if (isValidConfig(data)) return { url: data.url, anonKey: data.anonKey }
   } catch {
     // No /config.json served — fine, fall through to other sources.
   }
@@ -101,6 +109,9 @@ export function getBackendConfig(): BackendConfig | null {
 }
 
 export function saveBackendConfig(config: BackendConfig): void {
+  if (!isValidConfig(config)) {
+    throw new Error('Invalid backend config: url must be https and anonKey must be a Supabase key')
+  }
   if (typeof window !== 'undefined') {
     window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(config))
   }

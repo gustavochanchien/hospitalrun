@@ -28,10 +28,12 @@ We're working to deliver an HIS that makes usability the #1 requirement, is buil
 | "I found a bug"                     | Open an issue on this repository                                                                |
 | "How is this different from v2?"    | See [Project Structure](#project-structure) and [Application Infrastructure](#application-infrastructure) |
 | "How do I run it locally?"          | [Quick Start](#quick-start)                                                                     |
+| "How do I deploy it for my clinic?" | [Deploy](#deploy)                                                                               |
 
 # Table of Contents
 
 - [About this fork](#%EF%B8%8F-about-this-fork)
+- [Deploy](#deploy)
 - [Quick Start](#quick-start)
 - [Scripts](#scripts)
 - [Contributing](#contributing)
@@ -42,6 +44,34 @@ We're working to deliver an HIS that makes usability the #1 requirement, is buil
 - [Security](#security)
 - [Behind HospitalRun](#behind-hospitalrun)
 - [License](#license)
+
+# Deploy
+
+**You don't need to install anything to deploy HospitalRun 3 for your clinic.** The full walkthrough — database, frontend, first admin account — is in [DEPLOY.md](DEPLOY.md) and takes about 15 minutes from a browser.
+
+The short version:
+
+1. Create a free project at [supabase.com](https://supabase.com).
+2. Open **SQL Editor**, paste [`supabase/deploy.sql`](supabase/deploy.sql), click Run.
+3. Open **Authentication → Hooks**, enable *Custom Access Token* → `public.custom_access_token_hook`.
+4. Copy your Project URL and anon key from **Settings → API**.
+5. Click one of the deploy buttons below (or run the Docker image):
+
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FHospitalRun%2Fhospitalrun-3&env=VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY&envDescription=Paste%20the%20Project%20URL%20and%20anon%20key%20from%20your%20Supabase%20project%20(Settings%20%E2%86%92%20API).&envLink=https%3A%2F%2Fgithub.com%2FHospitalRun%2Fhospitalrun-3%2Fblob%2Fmain%2FDEPLOY.md&project-name=hospitalrun&repository-name=hospitalrun)
+   [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https%3A%2F%2Fgithub.com%2FHospitalRun%2Fhospitalrun-3)
+
+   Or self-host behind your own reverse proxy:
+
+   ```bash
+   docker run -p 80:80 \
+     -e SUPABASE_URL=https://your-project.supabase.co \
+     -e SUPABASE_ANON_KEY=your-anon-key \
+     ghcr.io/hospitalrun/hospitalrun-3:latest
+   ```
+
+6. Open the deployed URL, sign up the first admin, then **disable public signups** in Supabase Auth settings.
+
+See [DEPLOY.md](DEPLOY.md) for screenshots, hardening recommendations, and the optional member-invite Edge Function.
 
 # Quick Start
 
@@ -69,7 +99,8 @@ VITE_SUPABASE_ANON_KEY=your-anon-key
 | `npm run test:run`  | Single Vitest run (CI)                         |
 | `npm run lint`      | ESLint check                                   |
 | `npm run lint:fix`  | ESLint with auto-fix                           |
-| `npm run setup:db`  | Bootstrap the local Supabase database          |
+| `npm run setup:db`  | Bootstrap the local Supabase database (developer path) |
+| `npm run build:deploy-sql` | Regenerate `supabase/deploy.sql` from migrations |
 
 # Contributing
 
