@@ -28,6 +28,7 @@ import { supabase } from '@/lib/supabase/client'
 import { ThemeCard } from './ThemeCard'
 import { TeamCard } from './TeamCard'
 import { SwitchServerCard } from './SwitchServerCard'
+import { HubCard } from './HubCard'
 import { seedFakeData } from '@/lib/demo/seed-org'
 import { SUPPORTED_LANGUAGES, type LanguageCode } from '@/lib/i18n'
 import { useLanguageStore } from './language.store'
@@ -53,6 +54,7 @@ export function SettingsPage() {
       <UserListCard profiles={profiles} isAdmin={isAdmin} />
       <TeamCard />
       <AccountDiagnosticsCard />
+      <HubCard />
       <SwitchServerCard />
       <SeedDataCard orgId={orgId} />
     </div>
@@ -442,6 +444,8 @@ function UserRow({
   isCurrentUser: boolean
 }) {
   const [newRole, setNewRole] = useState(profile.role)
+  const [disabled, setDisabled] = useState(false)
+  const [toggling, setToggling] = useState(false)
 
   async function handleRoleChange() {
     if (newRole === profile.role) return
@@ -456,6 +460,24 @@ function UserRow({
     }
   }
 
+  async function handleToggle(ban: boolean) {
+    setToggling(true)
+    try {
+      const { data, error } = await supabase.functions.invoke<{ ok?: boolean; error?: string }>(
+        'invite-member',
+        { body: { mode: ban ? 'disable' : 'enable', userId: profile.id } },
+      )
+      if (error || data?.error) {
+        toast.error(ban ? 'Failed to disable user' : 'Failed to re-enable user')
+      } else {
+        setDisabled(ban)
+        toast.success(ban ? `Disabled ${profile.fullName} — they can no longer sign in` : `Re-enabled ${profile.fullName}`)
+      }
+    } finally {
+      setToggling(false)
+    }
+  }
+
   const roleBadgeVariant =
     profile.role === 'admin'
       ? 'default'
@@ -464,7 +486,7 @@ function UserRow({
         : 'outline'
 
   return (
-    <TableRow>
+    <TableRow className={disabled ? 'opacity-50' : ''}>
       <TableCell>
         <div className="flex items-center gap-2">
           <span className="font-medium">{profile.fullName}</span>
@@ -473,12 +495,17 @@ function UserRow({
               You
             </Badge>
           )}
+          {disabled && (
+            <Badge variant="destructive" className="text-xs">
+              Disabled
+            </Badge>
+          )}
         </div>
       </TableCell>
       <TableCell>
         {isAdmin && !isCurrentUser ? (
           <div className="flex items-center gap-2">
-            <Select value={newRole} onValueChange={setNewRole}>
+            <Select value={newRole} onValueChange={setNewRole} disabled={disabled}>
               <SelectTrigger className="w-[130px]">
                 <SelectValue />
               </SelectTrigger>
@@ -489,7 +516,7 @@ function UserRow({
                 <SelectItem value="user">User</SelectItem>
               </SelectContent>
             </Select>
-            {newRole !== profile.role && (
+            {newRole !== profile.role && !disabled && (
               <Button size="sm" onClick={handleRoleChange}>
                 Save
               </Button>
@@ -501,23 +528,25 @@ function UserRow({
       </TableCell>
       <TableCell>
         {isAdmin && !isCurrentUser && (
-          <Button
-            size="sm"
-            variant="destructive"
-            onClick={async () => {
-              const { error } = await supabase
-                .from('profiles')
-                .update({ role: 'user' })
-                .eq('id', profile.id)
-              if (error) {
-                toast.error('Failed to deactivate user')
-              } else {
-                toast.success(`Deactivated ${profile.fullName}`)
-              }
-            }}
-          >
-            Deactivate
-          </Button>
+          disabled ? (
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={toggling}
+              onClick={() => void handleToggle(false)}
+            >
+              Re-enable
+            </Button>
+          ) : (
+            <Button
+              size="sm"
+              variant="destructive"
+              disabled={toggling}
+              onClick={() => void handleToggle(true)}
+            >
+              Disable
+            </Button>
+          )
         )}
       </TableCell>
     </TableRow>

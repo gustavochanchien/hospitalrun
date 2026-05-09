@@ -22,8 +22,14 @@ import {
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { supabase } from '@/lib/supabase/client'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { isDesktop, getIPC } from '@/lib/desktop/env'
 
 type Role = 'admin' | 'doctor' | 'nurse' | 'user'
 
@@ -52,6 +58,12 @@ export function TeamCard() {
   const orgId = useAuthStore((s) => s.orgId)
   const role = useAuthStore((s) => s.role)
   const isAdmin = role === 'admin'
+  const [isHubMode, setIsHubMode] = useState(false)
+
+  useEffect(() => {
+    if (!isDesktop()) return
+    void getIPC().getRunMode().then((m) => setIsHubMode(m === 'hub'))
+  }, [])
 
   const [invites, setInvites] = useState<PendingInvite[] | null>(null)
 
@@ -101,7 +113,22 @@ export function TeamCard() {
         <Tabs defaultValue="create">
           <TabsList>
             <TabsTrigger value="create">Create user</TabsTrigger>
-            <TabsTrigger value="invite">Invite by email</TabsTrigger>
+            {isHubMode ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span>
+                    <TabsTrigger value="invite" disabled>
+                      Invite by email
+                    </TabsTrigger>
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Requires SMTP — not available in offline hub mode. Use "Create user" instead.
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              <TabsTrigger value="invite">Invite by email</TabsTrigger>
+            )}
           </TabsList>
           <TabsContent value="create" className="pt-4">
             <CreateUserForm onCreated={refreshInvites} />

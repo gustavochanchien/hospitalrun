@@ -12,12 +12,14 @@ const corsHeaders = {
 type Role = 'admin' | 'doctor' | 'nurse' | 'user'
 
 interface RequestBody {
-  mode?: 'invite' | 'create'
-  email: string
-  role: Role
+  mode?: 'invite' | 'create' | 'disable' | 'enable'
+  email?: string
+  role?: Role
   // 'create' mode only:
   password?: string
   fullName?: string
+  // 'disable' / 'enable' mode only:
+  userId?: string
 }
 
 const VALID_ROLES: Role[] = ['admin', 'doctor', 'nurse', 'user']
@@ -60,6 +62,13 @@ Deno.serve(async (req) => {
 
     const body = (await req.json().catch(() => ({}))) as Partial<RequestBody>
     const mode = body.mode ?? 'invite'
+
+    if (mode === 'disable' || mode === 'enable') {
+      const targetUserId = (body.userId ?? '').trim()
+      if (!targetUserId) return json({ error: 'missing_user_id' }, 400)
+      return await handleToggle({ admin, targetUserId, ban: mode === 'disable', adminOrgId: profile.org_id })
+    }
+
     const email = (body.email ?? '').trim().toLowerCase()
     const role = body.role as Role | undefined
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -105,6 +114,33 @@ Deno.serve(async (req) => {
     return json({ error: 'server_error', detail: message }, 500)
   }
 })
+
+async function handleToggle({
+  admin,
+  targetUserId,
+  ban,
+  adminOrgId,
+}: {
+  admin: any
+  targetUserId: string
+  ban: boolean
+  adminOrgId: string
+}): Promise<Response> {
+  // Verify the target user belongs to the admin's org before acting.
+  const { data: targetProfile, error: profileErr } = await admin
+    .from('profiles')
+    .select('id, org_id')
+    .eq('id', targetUserId)
+    .maybeSingle()
+  if (profileErr || !targetProfile) return json({ error: 'user_not_found' }, 404)
+  if (targetProfile.org_id !== adminOrgId) return json({ error: 'forbidden' }, 403)
+
+  const { error } = await admin.auth.admin.updateUser(targetUserId, {
+    ban_duration: ban ? '876000h' : 'none',
+  })
+  if (error) return json({ error: 'toggle_failed', detail: error.message }, 500)
+  return json({ ok: true, mode: ban ? 'disable' : 'enable' }, 200)
+}
 
 interface MemberContext {
   admin: any
