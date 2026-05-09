@@ -41,6 +41,13 @@ vi.mock('@/lib/supabase/client', () => ({
   },
 }))
 
+const hubSignin = vi.fn()
+const hubCachePassword = vi.fn()
+vi.mock('@/lib/desktop/hub-auth', () => ({
+  hubSignin: (...args: unknown[]) => hubSignin(...args),
+  hubCachePassword: (...args: unknown[]) => hubCachePassword(...args),
+}))
+
 const { useAuthStore } = await import('./auth.store')
 
 function resetStore() {
@@ -84,10 +91,67 @@ describe('useAuthStore.signIn', () => {
     expect(signInWithPassword).toHaveBeenCalledWith({ email: 'a@b.com', password: 'pw123456' })
   })
 
-  it('returns error message on failure', async () => {
+  it('returns error message on failure when hub fallback also fails', async () => {
     signInWithPassword.mockResolvedValue({ error: { message: 'Invalid credentials' } })
+    hubSignin.mockResolvedValue(null)
     const result = await useAuthStore.getState().signIn('a@b.com', 'wrong')
     expect(result).toEqual({ error: 'Invalid credentials' })
+  })
+
+  it('falls back to hub when cloud signin fails and hub succeeds', async () => {
+    signInWithPassword.mockResolvedValue({ error: { message: 'fetch failed' } })
+    hubSignin.mockResolvedValue({
+      accessToken: 'hub-jwt-xyz',
+      issuer: 'hospitalrun-hub',
+      profile: {
+        userId: 'user-7',
+        email: 'a@b.com',
+        orgId: 'org-7',
+        role: 'doctor',
+      },
+    })
+    const result = await useAuthStore.getState().signIn('a@b.com', 'pw')
+    expect(result).toEqual({ error: null })
+    const state = useAuthStore.getState()
+    expect(state.issuer).toBe('hub')
+    expect(state.hubAccessToken).toBe('hub-jwt-xyz')
+    expect(state.orgId).toBe('org-7')
+    expect(state.role).toBe('doctor')
+    expect(state.user?.id).toBe('user-7')
+    expect(state.session?.access_token).toBe('hub-jwt-xyz')
+  })
+
+  it('best-effort caches the password on the hub after a successful cloud signin', async () => {
+    signInWithPassword.mockResolvedValue({
+      error: null,
+      data: {
+        session: { access_token: 'cloud-jwt' },
+      },
+    })
+    hubCachePassword.mockResolvedValue(true)
+    await useAuthStore.getState().signIn('alice@example.com', 's3cret')
+    expect(hubCachePassword).toHaveBeenCalledWith({
+      email: 'alice@example.com',
+      password: 's3cret',
+      accessToken: 'cloud-jwt',
+    })
+  })
+
+  it('getAccessToken returns the cloud session token when issuer=cloud', () => {
+    useAuthStore.setState({
+      issuer: 'cloud',
+      session: { access_token: 'cloud-token' } as Session,
+    })
+    expect(useAuthStore.getState().getAccessToken()).toBe('cloud-token')
+  })
+
+  it('getAccessToken returns the hub access token when issuer=hub', () => {
+    useAuthStore.setState({
+      issuer: 'hub',
+      hubAccessToken: 'hub-token',
+      session: { access_token: 'unused-cloud' } as Session,
+    })
+    expect(useAuthStore.getState().getAccessToken()).toBe('hub-token')
   })
 })
 

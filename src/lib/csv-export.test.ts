@@ -19,10 +19,10 @@ describe('exportCSV', () => {
     vi.spyOn(document.body, 'appendChild').mockImplementation((el) => el)
     vi.spyOn(document.body, 'removeChild').mockImplementation((el) => el)
 
-    vi.spyOn(document, 'createElement').mockImplementation((tag) => {
+    vi.spyOn(document, 'createElement').mockImplementation(((tag: string) => {
       const el = { tagName: tag.toUpperCase(), click: clickSpy, href: '', download: '' } as unknown as HTMLElement
       return el
-    })
+    }) as typeof document.createElement)
   })
 
   afterEach(() => {

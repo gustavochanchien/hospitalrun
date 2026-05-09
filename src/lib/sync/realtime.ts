@@ -1,12 +1,15 @@
 import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase/client'
-import { db } from '@/lib/db'
 import { fromSupabaseRow, supabaseTableName } from '@/lib/db/columns'
 import type { SyncableTable } from '@/lib/db/schema'
+import { applyInboundDelete, applyInboundRecord } from './apply-inbound'
+import type { SyncableRecord } from './lan-transport'
 
 const reverseLookup = Object.fromEntries(
   Object.entries(supabaseTableName).map(([dexie, sb]) => [sb, dexie as SyncableTable]),
 )
+
+const SYNCABLE_TABLE_NAMES = new Set<string>(Object.keys(supabaseTableName))
 
 /**
  * Subscribe to Supabase Realtime for all syncable tables.
@@ -20,7 +23,7 @@ export function subscribeToRealtime(): () => void {
       'postgres_changes',
       { event: '*', schema: 'public' },
       (payload: RealtimePostgresChangesPayload<Record<string, unknown>>) => {
-        handleChange(payload)
+        void handleSupabaseChange(payload)
       },
     )
     .subscribe()
@@ -30,7 +33,7 @@ export function subscribeToRealtime(): () => void {
   }
 }
 
-async function handleChange(
+async function handleSupabaseChange(
   payload: RealtimePostgresChangesPayload<Record<string, unknown>>,
 ): Promise<void> {
   const sbTableName = payload.table
@@ -40,20 +43,34 @@ async function handleChange(
   if (payload.eventType === 'DELETE') {
     const oldRecord = payload.old
     if (oldRecord && typeof oldRecord.id === 'string') {
-      await db.table(dexieTable).delete(oldRecord.id)
+      await applyInboundDelete(dexieTable, oldRecord.id)
     }
     return
   }
 
-  // INSERT or UPDATE
   const row = payload.new
   if (!row || typeof row.id !== 'string') return
 
   const record = {
     ...fromSupabaseRow(dexieTable, row),
-    _synced: true,
-    _deleted: !!(row.deleted_at),
+    _deleted: !!row.deleted_at,
   }
+  await applyInboundRecord(dexieTable, record)
+}
 
-  await db.table(dexieTable).put(record)
+/**
+ * Apply a record received from the LAN sync relay. Records carry their
+ * Dexie table name in `_table`; the table is validated against the
+ * known syncable set so a malicious peer can't poke unknown tables.
+ */
+export async function applyLanRecord(record: SyncableRecord): Promise<void> {
+  if (typeof record._table !== 'string' || !SYNCABLE_TABLE_NAMES.has(record._table)) {
+    return
+  }
+  const tableName = record._table as SyncableTable
+  if (record._deleted === true) {
+    await applyInboundDelete(tableName, record.id)
+    return
+  }
+  await applyInboundRecord(tableName, record)
 }

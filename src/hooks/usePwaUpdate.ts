@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { toast } from 'sonner'
+import { isDesktop } from '@/lib/desktop/env'
 
 async function hardReload() {
   try {
@@ -23,6 +24,7 @@ async function hardReload() {
 
 export function usePwaUpdate() {
   useEffect(() => {
+    if (isDesktop()) return
     if (!('serviceWorker' in navigator)) return
 
     navigator.serviceWorker.ready.then((registration) => {
