@@ -10,12 +10,15 @@ import { isDesktop, getIPC } from '@/lib/desktop/env'
 import { ModeChooser, type SetupMode } from './ModeChooser'
 import { CloudConnectForm } from './CloudConnectForm'
 import { HubSetupFlow } from './HubSetupFlow'
+import { FirstUserForm } from './FirstUserForm'
 
-type Screen = 'chooser' | 'solo' | 'hub' | 'cloud-only-web'
+type Screen = 'chooser' | 'solo' | 'hub' | 'cloud-only-web' | 'first-user'
 
 export function SetupPage() {
   const desktop = isDesktop()
   const [screen, setScreen] = useState<Screen>(desktop ? 'chooser' : 'cloud-only-web')
+  // Tracks where to go back to from the first-user screen.
+  const [cloudScreen, setCloudScreen] = useState<'solo' | 'cloud-only-web'>('cloud-only-web')
 
   function pickMode(mode: SetupMode) {
     setScreen(mode)
@@ -25,19 +28,20 @@ export function SetupPage() {
     setScreen('chooser')
   }
 
+  function goToFirstUser(from: 'solo' | 'cloud-only-web') {
+    setCloudScreen(from)
+    setScreen('first-user')
+  }
+
   async function handleSoloSaved() {
-    // In the desktop app, persist that this install is "solo" so we
-    // don't auto-start the hub on next launch. In the web build this
-    // call is a no-op because isDesktop() is false.
     if (desktop) {
       try {
         await getIPC().setRunMode('solo')
       } catch {
-        // Best-effort — failing here shouldn't block the user from
-        // entering the app.
+        // Best-effort — failing here shouldn't block the user.
       }
     }
-    window.location.assign('/')
+    goToFirstUser('solo')
   }
 
   return (
@@ -49,6 +53,7 @@ export function SetupPage() {
             {screen === 'solo' && 'Connect to Supabase'}
             {screen === 'hub' && 'Set up the clinic hub'}
             {screen === 'cloud-only-web' && 'Connect to your server'}
+            {screen === 'first-user' && 'Create your admin account'}
           </CardTitle>
           <CardDescription>
             {screen === 'chooser' && 'How would you like to run HospitalRun on this computer?'}
@@ -58,6 +63,8 @@ export function SetupPage() {
               'This computer will host HospitalRun for the clinic. We just need to connect it to a Supabase project once.'}
             {screen === 'cloud-only-web' &&
               'Enter the address of the HospitalRun server you want this device to use.'}
+            {screen === 'first-user' &&
+              "You're the first person to connect to this server. Set up your admin account to get started."}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -70,7 +77,12 @@ export function SetupPage() {
             />
           )}
           {screen === 'hub' && <HubSetupFlow onBack={back} />}
-          {screen === 'cloud-only-web' && <CloudConnectForm />}
+          {screen === 'cloud-only-web' && (
+            <CloudConnectForm onSaved={() => goToFirstUser('cloud-only-web')} />
+          )}
+          {screen === 'first-user' && (
+            <FirstUserForm onBack={() => setScreen(cloudScreen)} />
+          )}
         </CardContent>
       </Card>
     </div>
