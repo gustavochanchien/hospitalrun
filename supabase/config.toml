@@ -35,3 +35,10 @@ enable_signup = true
 enable_signup = true
 double_confirm_changes = true
 enable_confirmations = false
+
+# Auto-wires the org_id/role JWT claim hook on the local stack so signups
+# work end-to-end without a manual dashboard step. Cloud projects still
+# need this enabled under Auth → Hooks → Custom Access Token.
+[auth.hook.custom_access_token]
+enabled = true
+uri = "pg-functions://postgres/public/custom_access_token_hook"
