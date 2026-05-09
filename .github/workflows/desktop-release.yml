@@ -1,0 +1,73 @@
+name: Desktop release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            artifact: '*.dmg'
+          - os: windows-latest
+            artifact: '*.exe'
+          - os: ubuntu-latest
+            artifact: '*.AppImage'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Rebuild native modules for Electron (better-sqlite3)
+        run: npm run electron:rebuild
+
+      - name: Build SPA + Electron main
+        run: npm run electron:build:main && npm run build
+        env:
+          DESKTOP_BUILD: '1'
+
+      - name: Package
+        run: npx electron-builder --publish never
+        env:
+          # macOS signing — populate as repo secrets to enable. Without
+          # these, builds are still produced but ship unsigned and
+          # users must right-click → Open to bypass Gatekeeper.
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hospitalrun-${{ matrix.os }}
+          path: release/${{ matrix.artifact }}
+          if-no-files-found: error
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/*
+          generate_release_notes: true

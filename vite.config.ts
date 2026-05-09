@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const isDesktopBuild = process.env.DESKTOP_BUILD === '1'
+
 export default defineConfig({
   plugins: [
     react(),
@@ -12,6 +14,8 @@ export default defineConfig({
     TanStackRouterVite(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: isDesktopBuild ? false : 'auto',
+      selfDestroying: isDesktopBuild,
       workbox: {
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
@@ -49,5 +53,10 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+  },
+  server: {
+    host: isDesktopBuild ? '0.0.0.0' : 'localhost',
+    port: 5173,
+    strictPort: true,
   },
 })
