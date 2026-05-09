@@ -150,3 +150,103 @@ If you see an **"Upgrade required"** screen after signing in, it means the datab
 - **Never disable Row Level Security** on any table. Org isolation depends on it.
 - **Never commit `.env`** — only `.env.example` goes in git.
 - **Keep the Supabase project in a region with appropriate data-residency laws** for the patients whose data you'll store.
+
+---
+
+## Desktop app (Electron) — for clinics
+
+For rural clinics or any deployment where a single device hosts the app for the whole clinic, we ship a desktop installer that:
+
+- Wraps the SPA in a native window (Mac / Windows).
+- Hosts the SPA on the local network so tablets/laptops can connect from a browser without installing anything.
+- Falls back to a peer-to-peer LAN sync relay when the cloud is unreachable, so doctor and nurse devices stay in sync during internet outages.
+- Caches sign-in credentials on the hub for offline auth (must be online once for first-time setup).
+
+### Install
+
+1. Download the latest installer from the GitHub Releases page:
+   - macOS: `HospitalRun-<version>.dmg` (universal, signed with Apple Developer ID once available)
+   - Windows: `HospitalRun-Setup-<version>.exe` (NSIS; v1 ships unsigned — click through the SmartScreen warning the first time)
+   - Linux: `HospitalRun-<version>.AppImage`
+2. Open the installer and follow the prompts.
+
+### First-run setup
+
+On first launch the app shows a chooser:
+
+- **Just this computer** — like the web app: connects to a Supabase project, runs only on this machine.
+- **Run as a clinic hub** — this PC hosts HospitalRun for the clinic. Tablets and other laptops on the same wifi can use it via a browser.
+
+For a clinic, pick **Run as a clinic hub**. Steps:
+
+1. Connect to a Supabase project (create one at supabase.com, paste URL + anon key).
+2. The app starts a local server on port 5174 and announces itself as `hospitalrun.local` on the network.
+3. Note the LAN URL it shows you (e.g. `http://192.168.1.10:5174`). Bookmark it on each tablet.
+
+### Day-to-day usage
+
+- Tablets/laptops open the LAN URL in a browser. Auto-discovery via `hospitalrun.local` works on most networks; fall back to the IP if your router blocks mDNS.
+- Each device has its own offline-capable copy of the data (Dexie + service worker). Reads work without internet; writes queue and flush.
+- When the cloud is unreachable, devices sync to each other through the hub. When the cloud comes back, the hub flushes the queue.
+
+### Offline auth
+
+Users must sign in to cloud Supabase **at least once** to seed the hub's profile cache. After that, sign-in works even without internet — credentials are checked against the hub's cache.
+
+Air-gapped clinics (never any internet) are not supported in v1.
+
+### Backups (hub data)
+
+Open **Settings → Desktop hub → Backup hub data now** to copy the LAN sync log, cached profiles, and signing keys to a folder of your choice. Cloud Supabase remains the canonical store for patient records, so this is recovery insurance for the hub itself rather than a primary backup.
+
+To recover after hub data loss, open **Settings → Desktop hub → Restore from backup**, select the backup folder, and the hub will restart automatically with the restored state.
+
+Schedule weekly external backups (USB drive, network share) for any hub running real patient data.
+
+### Code signing (release manager)
+
+The v1 release pipeline packages signed macOS builds when these GitHub repo secrets are set:
+
+- `APPLE_ID` — Apple Developer email
+- `APPLE_PASSWORD` — app-specific password (NOT your Apple ID password)
+- `APPLE_TEAM_ID` — from developer.apple.com → Membership
+- `CSC_LINK` (optional) — base64 of a `.p12` cert if not using API signing
+- `CSC_KEY_PASSWORD` — password for the above
+
+Without these, the workflow still produces a `.dmg`, but it ships unsigned and Gatekeeper will block it on launch. Right-click → **Open** bypasses this for testing only.
+
+Windows EV cert support is parked for v1.1; for now Windows installers ship unsigned.
+
+### HTTPS on the LAN
+
+The desktop app currently serves over plain HTTP on port 5174. For production deployments with real patient data, add a TLS layer in front of the hub using one of these approaches:
+
+**Option A — Caddy (recommended, zero config)**
+
+Install [Caddy](https://caddyserver.com) on the hub machine. Create `Caddyfile`:
+
+```
+hospitalrun.example.internal {
+    reverse_proxy localhost:5174
+    tls internal
+}
+```
+
+Run `caddy run`. Caddy generates a self-signed cert from its own internal CA. Import the CA once on each tablet via the URL it prints.
+
+**Option B — nginx + mkcert**
+
+```bash
+mkcert -install && mkcert hospitalrun.local
+# Then configure nginx to proxy to localhost:5174 using the generated cert.
+```
+
+**Option C — Isolated network (acceptable for low-risk environments)**
+
+Run the clinic on a fully isolated wifi VLAN (no guest access, no internet bridge). Treat the LAN as you would internal file shares: physically secured, no external access. The app-level encryption (JWT auth, Supabase TLS for cloud sync) still applies.
+
+The HubCard in Settings will show an HTTP warning as a reminder when TLS is not detected.
+
+### Updating
+
+When a new release ships, the desktop app prompts on next launch ("Update ready — install and restart"). Updates download in the background; nothing applies without your click.

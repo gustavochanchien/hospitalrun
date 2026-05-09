@@ -147,7 +147,7 @@ hospitalrun-3/
 ├── scripts/                    # setup-db.sh and SQL helpers
 ├── supabase/
 │   ├── config.toml
-│   ├── migrations/             # 00001…00013 SQL — apply in order
+│   ├── migrations/             # 00001_initial_schema.sql (squashed)
 │   └── functions/invite-member # Edge Function (server-side only)
 └── src/
     ├── components/             # layout/, ui/ (shadcn), shared widgets
@@ -222,7 +222,7 @@ Snake_case ↔ camelCase mapping lives in `src/lib/db/columns.ts`.
 HospitalRun 3 handles medical records. All patient data is treated as sensitive.
 
 - Supabase **Row Level Security** enforces org-level isolation on every table.
-- A **custom JWT access-token hook** injects `org_id` and `role` claims (see migrations `00003` and `00008`).
+- A **custom JWT access-token hook** (`public.custom_access_token_hook`) injects `org_id` and `role` claims.
 - All routes that display patient data live under the `_auth` layout guard.
 - Form input is validated with **Zod** before any database write.
 - **No patient data is logged** — only user IDs and operation types.
