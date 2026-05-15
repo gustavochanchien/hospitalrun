@@ -200,6 +200,94 @@
         "type": "örn. CBC, BMP, Lipid Paneli",
         "code": "örn. 85025"
       }
+    },
+    "imaging": {
+      "title": "Görüntüleme",
+      "newAction": "Yeni görüntüleme",
+      "create": "Görüntüleme oluştur",
+      "noResults": "Görüntüleme isteği bulunamadı.",
+      "fields": {
+        "type": "Tür",
+        "code": "Kod",
+        "status": "Durum",
+        "requestedOn": "İstenen tarih",
+        "notes": "Notlar"
+      },
+      "placeholders": {
+        "type": "örn. Röntgen, BT, MR",
+        "code": "örn. 71046"
+      }
+    },
+    "notes": {
+      "title": "Notlar",
+      "newAction": "Yeni not",
+      "create": "Not oluştur",
+      "noResults": "Not bulunamadı.",
+      "fields": {
+        "content": "İçerik"
+      },
+      "placeholders": {
+        "content": "Klinik not girin..."
+      },
+      "authorPrefix": "Yazar: {{author}}"
+    },
+    "careGoals": {
+      "title": "Bakım hedefleri",
+      "newAction": "Yeni hedef",
+      "noResults": "Bakım hedefi kaydedilmedi.",
+      "fields": {
+        "descriptionRequired": "Açıklama *",
+        "achievementStatus": "Ulaşma durumu",
+        "priority": "Öncelik",
+        "status": "Durum",
+        "startDate": "Başlangıç tarihi",
+        "targetDate": "Hedef tarihi",
+        "notes": "Notlar"
+      },
+      "headers": {
+        "description": "Açıklama",
+        "status": "Durum",
+        "achievementStatus": "Ulaşma durumu",
+        "priority": "Öncelik",
+        "startDate": "Başlangıç tarihi",
+        "targetDate": "Hedef tarihi"
+      },
+      "placeholders": {
+        "priority": "Öncelik seçin",
+        "status": "Durum seçin"
+      },
+      "save": "Kaydet",
+      "cancel": "İptal"
+    },
+    "carePlans": {
+      "title": "Bakım planları",
+      "newAction": "Yeni plan",
+      "noResults": "Bakım planı kaydedilmedi.",
+      "fields": {
+        "titleRequired": "Başlık *",
+        "description": "Açıklama",
+        "diagnosis": "Bağlı tanı",
+        "status": "Durum",
+        "intent": "Niyet",
+        "startDate": "Başlangıç tarihi",
+        "endDate": "Bitiş tarihi",
+        "notes": "Notlar"
+      },
+      "headers": {
+        "title": "Başlık",
+        "status": "Durum",
+        "intent": "Niyet",
+        "diagnosis": "Tanı",
+        "startDate": "Başlangıç tarihi",
+        "endDate": "Bitiş tarihi"
+      },
+      "placeholders": {
+        "diagnosisNone": "Yok",
+        "intent": "Niyet seçin"
+      },
+      "none": "Yok",
+      "save": "Kaydet",
+      "cancel": "İptal"
     }
   }
 }

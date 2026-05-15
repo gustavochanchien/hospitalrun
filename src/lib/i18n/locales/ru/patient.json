@@ -202,6 +202,94 @@
         "type": "напр. ОАК, БАК, липидная панель",
         "code": "напр. 85025"
       }
+    },
+    "imaging": {
+      "title": "Визуализация",
+      "newAction": "Новый снимок",
+      "create": "Создать запрос",
+      "noResults": "Запросы на визуализацию не найдены.",
+      "fields": {
+        "type": "Тип",
+        "code": "Код",
+        "status": "Статус",
+        "requestedOn": "Запрошено",
+        "notes": "Заметки"
+      },
+      "placeholders": {
+        "type": "напр. Рентген, КТ, МРТ",
+        "code": "напр. 71046"
+      }
+    },
+    "notes": {
+      "title": "Заметки",
+      "newAction": "Новая заметка",
+      "create": "Создать заметку",
+      "noResults": "Заметки не найдены.",
+      "fields": {
+        "content": "Содержание"
+      },
+      "placeholders": {
+        "content": "Введите клиническую заметку..."
+      },
+      "authorPrefix": "Автор: {{author}}"
+    },
+    "careGoals": {
+      "title": "Цели лечения",
+      "newAction": "Новая цель",
+      "noResults": "Цели лечения не записаны.",
+      "fields": {
+        "descriptionRequired": "Описание *",
+        "achievementStatus": "Статус достижения",
+        "priority": "Приоритет",
+        "status": "Статус",
+        "startDate": "Дата начала",
+        "targetDate": "Целевая дата",
+        "notes": "Заметки"
+      },
+      "headers": {
+        "description": "Описание",
+        "status": "Статус",
+        "achievementStatus": "Статус достижения",
+        "priority": "Приоритет",
+        "startDate": "Дата начала",
+        "targetDate": "Целевая дата"
+      },
+      "placeholders": {
+        "priority": "Выберите приоритет",
+        "status": "Выберите статус"
+      },
+      "save": "Сохранить",
+      "cancel": "Отмена"
+    },
+    "carePlans": {
+      "title": "Планы лечения",
+      "newAction": "Новый план",
+      "noResults": "Планы лечения не записаны.",
+      "fields": {
+        "titleRequired": "Название *",
+        "description": "Описание",
+        "diagnosis": "Связанный диагноз",
+        "status": "Статус",
+        "intent": "Намерение",
+        "startDate": "Дата начала",
+        "endDate": "Дата окончания",
+        "notes": "Заметки"
+      },
+      "headers": {
+        "title": "Название",
+        "status": "Статус",
+        "intent": "Намерение",
+        "diagnosis": "Диагноз",
+        "startDate": "Дата начала",
+        "endDate": "Дата окончания"
+      },
+      "placeholders": {
+        "diagnosisNone": "Нет",
+        "intent": "Выберите намерение"
+      },
+      "none": "Нет",
+      "save": "Сохранить",
+      "cancel": "Отмена"
     }
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
@@ -56,6 +57,7 @@ interface PatientCareGoalsProps {
 }
 
 export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [description, setDescription] = useState('')
@@ -138,24 +140,24 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
   }
 
   if (careGoals === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Care Goals</h3>
+        <h3 className="text-lg font-semibold">{t('subFeatures.careGoals.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Care Goal</Button>
+            <Button size="sm">{t('subFeatures.careGoals.newAction')}</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>New Care Goal</DialogTitle>
+              <DialogTitle>{t('subFeatures.careGoals.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="cg-description">Description *</Label>
+                <Label htmlFor="cg-description">{t('subFeatures.careGoals.fields.descriptionRequired')}</Label>
                 <RichTextEditor
                   id="cg-description"
                   value={description}
@@ -163,7 +165,7 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cg-achievementStatus">Achievement Status</Label>
+                <Label htmlFor="cg-achievementStatus">{t('subFeatures.careGoals.fields.achievementStatus')}</Label>
                 <Select
                   value={achievementStatus}
                   onValueChange={(v) => setAchievementStatus(v as AchievementStatus)}
@@ -181,13 +183,13 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cg-priority">Priority</Label>
+                <Label htmlFor="cg-priority">{t('subFeatures.careGoals.fields.priority')}</Label>
                 <Select
                   value={priority}
                   onValueChange={(v) => setPriority(v as Priority)}
                 >
                   <SelectTrigger id="cg-priority">
-                    <SelectValue placeholder="Select priority" />
+                    <SelectValue placeholder={t('subFeatures.careGoals.placeholders.priority')} />
                   </SelectTrigger>
                   <SelectContent>
                     {PRIORITIES.map((p) => (
@@ -199,10 +201,10 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cg-status">Status</Label>
+                <Label htmlFor="cg-status">{t('subFeatures.careGoals.fields.status')}</Label>
                 <Select value={status} onValueChange={setStatus}>
                   <SelectTrigger id="cg-status">
-                    <SelectValue placeholder="Select status" />
+                    <SelectValue placeholder={t('subFeatures.careGoals.placeholders.status')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="proposed">proposed</SelectItem>
@@ -218,7 +220,7 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="cg-startDate">Start Date</Label>
+                  <Label htmlFor="cg-startDate">{t('subFeatures.careGoals.fields.startDate')}</Label>
                   <Input
                     id="cg-startDate"
                     type="date"
@@ -227,7 +229,7 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="cg-targetDate">Target Date</Label>
+                  <Label htmlFor="cg-targetDate">{t('subFeatures.careGoals.fields.targetDate')}</Label>
                   <Input
                     id="cg-targetDate"
                     type="date"
@@ -237,7 +239,7 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cg-notes">Notes</Label>
+                <Label htmlFor="cg-notes">{t('subFeatures.careGoals.fields.notes')}</Label>
                 <RichTextEditor
                   id="cg-notes"
                   value={notes}
@@ -246,9 +248,9 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
               </div>
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-                  Cancel
+                  {t('subFeatures.careGoals.cancel')}
                 </Button>
-                <Button type="submit">Save</Button>
+                <Button type="submit">{t('subFeatures.careGoals.save')}</Button>
               </div>
             </form>
           </DialogContent>
@@ -257,19 +259,19 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
 
       {careGoals.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No care goals recorded.
+          {t('subFeatures.careGoals.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Description</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Achievement Status</TableHead>
-                <TableHead>Priority</TableHead>
-                <TableHead>Start Date</TableHead>
-                <TableHead>Target Date</TableHead>
+                <TableHead>{t('subFeatures.careGoals.headers.description')}</TableHead>
+                <TableHead>{t('subFeatures.careGoals.headers.status')}</TableHead>
+                <TableHead>{t('subFeatures.careGoals.headers.achievementStatus')}</TableHead>
+                <TableHead>{t('subFeatures.careGoals.headers.priority')}</TableHead>
+                <TableHead>{t('subFeatures.careGoals.headers.startDate')}</TableHead>
+                <TableHead>{t('subFeatures.careGoals.headers.targetDate')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -281,7 +283,7 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                     {goal.status ? (
                       <Badge variant="secondary">{goal.status}</Badge>
                     ) : (
-                      '\u2014'
+                      '—'
                     )}
                   </TableCell>
                   <TableCell>
@@ -295,18 +297,18 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                         {goal.priority}
                       </Badge>
                     ) : (
-                      '\u2014'
+                      '—'
                     )}
                   </TableCell>
                   <TableCell>
                     {goal.startDate
                       ? format(parseISO(goal.startDate), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell>
                     {goal.targetDate
                       ? format(parseISO(goal.targetDate), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell>
                     <Button
@@ -314,7 +316,7 @@ export function PatientCareGoals({ patientId }: PatientCareGoalsProps) {
                       size="sm"
                       onClick={() => setPendingDeleteId(goal.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

@@ -200,6 +200,94 @@
         "type": "例: CBC、BMP、脂質パネル",
         "code": "例: 85025"
       }
+    },
+    "imaging": {
+      "title": "画像診断",
+      "newAction": "新規画像",
+      "create": "画像を作成",
+      "noResults": "画像依頼は見つかりませんでした。",
+      "fields": {
+        "type": "種類",
+        "code": "コード",
+        "status": "状態",
+        "requestedOn": "依頼日時",
+        "notes": "メモ"
+      },
+      "placeholders": {
+        "type": "例: X線、CT、MRI",
+        "code": "例: 71046"
+      }
+    },
+    "notes": {
+      "title": "メモ",
+      "newAction": "新規メモ",
+      "create": "メモを作成",
+      "noResults": "メモは見つかりませんでした。",
+      "fields": {
+        "content": "内容"
+      },
+      "placeholders": {
+        "content": "臨床メモを入力..."
+      },
+      "authorPrefix": "作成者: {{author}}"
+    },
+    "careGoals": {
+      "title": "ケア目標",
+      "newAction": "新規ケア目標",
+      "noResults": "ケア目標は登録されていません。",
+      "fields": {
+        "descriptionRequired": "説明 *",
+        "achievementStatus": "達成状態",
+        "priority": "優先度",
+        "status": "状態",
+        "startDate": "開始日",
+        "targetDate": "目標日",
+        "notes": "メモ"
+      },
+      "headers": {
+        "description": "説明",
+        "status": "状態",
+        "achievementStatus": "達成状態",
+        "priority": "優先度",
+        "startDate": "開始日",
+        "targetDate": "目標日"
+      },
+      "placeholders": {
+        "priority": "優先度を選択",
+        "status": "状態を選択"
+      },
+      "save": "保存",
+      "cancel": "キャンセル"
+    },
+    "carePlans": {
+      "title": "ケアプラン",
+      "newAction": "新規ケアプラン",
+      "noResults": "ケアプランは登録されていません。",
+      "fields": {
+        "titleRequired": "タイトル *",
+        "description": "説明",
+        "diagnosis": "関連診断",
+        "status": "状態",
+        "intent": "目的",
+        "startDate": "開始日",
+        "endDate": "終了日",
+        "notes": "メモ"
+      },
+      "headers": {
+        "title": "タイトル",
+        "status": "状態",
+        "intent": "目的",
+        "diagnosis": "診断",
+        "startDate": "開始日",
+        "endDate": "終了日"
+      },
+      "placeholders": {
+        "diagnosisNone": "なし",
+        "intent": "目的を選択"
+      },
+      "none": "なし",
+      "save": "保存",
+      "cancel": "キャンセル"
     }
   }
 }

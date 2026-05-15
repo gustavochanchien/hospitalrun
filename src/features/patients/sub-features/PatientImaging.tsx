@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Link } from '@tanstack/react-router'
 import { db } from '@/lib/db'
@@ -46,6 +47,7 @@ function statusVariant(status: string) {
 }
 
 export function PatientImaging({ patientId, visitId = null }: PatientImagingProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [type, setType] = useState('')
@@ -102,43 +104,43 @@ export function PatientImaging({ patientId, visitId = null }: PatientImagingProp
   }
 
   if (imagingRequests === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Imaging</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.imaging.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Imaging</Button>
+            <Button size="sm">{t('subFeatures.imaging.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Imaging</DialogTitle>
+              <DialogTitle>{t('subFeatures.imaging.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="img-type">Type</Label>
+                <Label htmlFor="img-type">{t('subFeatures.imaging.fields.type')}</Label>
                 <Input
                   id="img-type"
                   required
                   value={type}
                   onChange={(e) => setType(e.target.value)}
-                  placeholder="e.g. X-Ray, CT Scan, MRI"
+                  placeholder={t('subFeatures.imaging.placeholders.type')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="img-code">Code</Label>
+                <Label htmlFor="img-code">{t('subFeatures.imaging.fields.code')}</Label>
                 <Input
                   id="img-code"
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
-                  placeholder="e.g. 71046"
+                  placeholder={t('subFeatures.imaging.placeholders.code')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="img-notes">Notes</Label>
+                <Label htmlFor="img-notes">{t('subFeatures.imaging.fields.notes')}</Label>
                 <Textarea
                   id="img-notes"
                   value={notes}
@@ -146,7 +148,7 @@ export function PatientImaging({ patientId, visitId = null }: PatientImagingProp
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Imaging
+                {t('subFeatures.imaging.create')}
               </Button>
             </form>
           </DialogContent>
@@ -155,17 +157,17 @@ export function PatientImaging({ patientId, visitId = null }: PatientImagingProp
 
       {imagingRequests.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No imaging requests found.
+          {t('subFeatures.imaging.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Type</TableHead>
-                <TableHead>Code</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Requested On</TableHead>
+                <TableHead>{t('subFeatures.imaging.fields.type')}</TableHead>
+                <TableHead>{t('subFeatures.imaging.fields.code')}</TableHead>
+                <TableHead>{t('subFeatures.imaging.fields.status')}</TableHead>
+                <TableHead>{t('subFeatures.imaging.fields.requestedOn')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -182,7 +184,7 @@ export function PatientImaging({ patientId, visitId = null }: PatientImagingProp
                     </Link>
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {img.code ?? '\u2014'}
+                    {img.code ?? '—'}
                   </TableCell>
                   <TableCell>
                     <Badge variant={statusVariant(img.status)}>
@@ -198,7 +200,7 @@ export function PatientImaging({ patientId, visitId = null }: PatientImagingProp
                       size="sm"
                       onClick={() => setPendingDeleteId(img.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

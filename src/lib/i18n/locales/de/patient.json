@@ -200,6 +200,94 @@
         "type": "z. B. Blutbild, BMP, Lipidprofil",
         "code": "z. B. 85025"
       }
+    },
+    "imaging": {
+      "title": "Bildgebung",
+      "newAction": "Neue Bildgebung",
+      "create": "Bildgebung anlegen",
+      "noResults": "Keine Bildgebungsanfragen gefunden.",
+      "fields": {
+        "type": "Typ",
+        "code": "Code",
+        "status": "Status",
+        "requestedOn": "Angefordert am",
+        "notes": "Notizen"
+      },
+      "placeholders": {
+        "type": "z. B. Röntgen, CT, MRT",
+        "code": "z. B. 71046"
+      }
+    },
+    "notes": {
+      "title": "Notizen",
+      "newAction": "Neue Notiz",
+      "create": "Notiz anlegen",
+      "noResults": "Keine Notizen gefunden.",
+      "fields": {
+        "content": "Inhalt"
+      },
+      "placeholders": {
+        "content": "Klinische Notiz eingeben..."
+      },
+      "authorPrefix": "Autor: {{author}}"
+    },
+    "careGoals": {
+      "title": "Pflegeziele",
+      "newAction": "Neues Pflegeziel",
+      "noResults": "Keine Pflegeziele erfasst.",
+      "fields": {
+        "descriptionRequired": "Beschreibung *",
+        "achievementStatus": "Erreichungsstatus",
+        "priority": "Priorität",
+        "status": "Status",
+        "startDate": "Startdatum",
+        "targetDate": "Zieldatum",
+        "notes": "Notizen"
+      },
+      "headers": {
+        "description": "Beschreibung",
+        "status": "Status",
+        "achievementStatus": "Erreichungsstatus",
+        "priority": "Priorität",
+        "startDate": "Startdatum",
+        "targetDate": "Zieldatum"
+      },
+      "placeholders": {
+        "priority": "Priorität auswählen",
+        "status": "Status auswählen"
+      },
+      "save": "Speichern",
+      "cancel": "Abbrechen"
+    },
+    "carePlans": {
+      "title": "Pflegepläne",
+      "newAction": "Neuer Pflegeplan",
+      "noResults": "Keine Pflegepläne erfasst.",
+      "fields": {
+        "titleRequired": "Titel *",
+        "description": "Beschreibung",
+        "diagnosis": "Verknüpfte Diagnose",
+        "status": "Status",
+        "intent": "Absicht",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum",
+        "notes": "Notizen"
+      },
+      "headers": {
+        "title": "Titel",
+        "status": "Status",
+        "intent": "Absicht",
+        "diagnosis": "Diagnose",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum"
+      },
+      "placeholders": {
+        "diagnosisNone": "Keine",
+        "intent": "Absicht auswählen"
+      },
+      "none": "Keine",
+      "save": "Speichern",
+      "cancel": "Abbrechen"
     }
   }
 }

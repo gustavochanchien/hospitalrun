@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
@@ -30,6 +31,7 @@ export function PatientNotes({
   patientId,
   visitId = null,
 }: PatientNotesProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [content, setContent] = useState('')
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
@@ -70,7 +72,7 @@ export function PatientNotes({
   }
 
   if (notes === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   const sortedNotes = [...notes].sort(
@@ -80,27 +82,27 @@ export function PatientNotes({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Notes</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.notes.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Note</Button>
+            <Button size="sm">{t('subFeatures.notes.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Note</DialogTitle>
+              <DialogTitle>{t('subFeatures.notes.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="note-content">Content</Label>
+                <Label htmlFor="note-content">{t('subFeatures.notes.fields.content')}</Label>
                 <RichTextEditor
                   id="note-content"
                   value={content}
                   onChange={setContent}
-                  placeholder="Enter clinical note..."
+                  placeholder={t('subFeatures.notes.placeholders.content')}
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Note
+                {t('subFeatures.notes.create')}
               </Button>
             </form>
           </DialogContent>
@@ -109,7 +111,7 @@ export function PatientNotes({
 
       {sortedNotes.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No notes found.
+          {t('subFeatures.notes.noResults')}
         </p>
       ) : (
         <div className="space-y-3">
@@ -128,7 +130,7 @@ export function PatientNotes({
                       {format(parseISO(note.createdAt), 'MMM d, yyyy h:mm a')}
                     </span>
                     {note.authorId && (
-                      <span>Author: {note.authorId}</span>
+                      <span>{t('subFeatures.notes.authorPrefix', { author: note.authorId })}</span>
                     )}
                   </div>
                   <Button
@@ -136,7 +138,7 @@ export function PatientNotes({
                     size="sm"
                     onClick={() => setPendingDeleteId(note.id)}
                   >
-                    Delete
+                    {t('subFeatures.common.delete')}
                   </Button>
                 </div>
               </CardContent>

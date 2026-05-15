@@ -200,6 +200,94 @@
         "type": "مثال: CBC، BMP، تحليل الدهون",
         "code": "مثال: 85025"
       }
+    },
+    "imaging": {
+      "title": "الأشعة",
+      "newAction": "أشعة جديدة",
+      "create": "إنشاء طلب أشعة",
+      "noResults": "لم يتم العثور على طلبات أشعة.",
+      "fields": {
+        "type": "النوع",
+        "code": "الرمز",
+        "status": "الحالة",
+        "requestedOn": "تم الطلب في",
+        "notes": "ملاحظات"
+      },
+      "placeholders": {
+        "type": "مثال: أشعة سينية، أشعة مقطعية، رنين مغناطيسي",
+        "code": "مثال: 71046"
+      }
+    },
+    "notes": {
+      "title": "الملاحظات",
+      "newAction": "ملاحظة جديدة",
+      "create": "إنشاء ملاحظة",
+      "noResults": "لم يتم العثور على ملاحظات.",
+      "fields": {
+        "content": "المحتوى"
+      },
+      "placeholders": {
+        "content": "أدخل ملاحظة سريرية..."
+      },
+      "authorPrefix": "المؤلف: {{author}}"
+    },
+    "careGoals": {
+      "title": "أهداف الرعاية",
+      "newAction": "هدف رعاية جديد",
+      "noResults": "لا توجد أهداف رعاية مسجلة.",
+      "fields": {
+        "descriptionRequired": "الوصف *",
+        "achievementStatus": "حالة الإنجاز",
+        "priority": "الأولوية",
+        "status": "الحالة",
+        "startDate": "تاريخ البدء",
+        "targetDate": "التاريخ المستهدف",
+        "notes": "ملاحظات"
+      },
+      "headers": {
+        "description": "الوصف",
+        "status": "الحالة",
+        "achievementStatus": "حالة الإنجاز",
+        "priority": "الأولوية",
+        "startDate": "تاريخ البدء",
+        "targetDate": "التاريخ المستهدف"
+      },
+      "placeholders": {
+        "priority": "اختر الأولوية",
+        "status": "اختر الحالة"
+      },
+      "save": "حفظ",
+      "cancel": "إلغاء"
+    },
+    "carePlans": {
+      "title": "خطط الرعاية",
+      "newAction": "خطة رعاية جديدة",
+      "noResults": "لا توجد خطط رعاية مسجلة.",
+      "fields": {
+        "titleRequired": "العنوان *",
+        "description": "الوصف",
+        "diagnosis": "التشخيص المرتبط",
+        "status": "الحالة",
+        "intent": "الغرض",
+        "startDate": "تاريخ البدء",
+        "endDate": "تاريخ الانتهاء",
+        "notes": "ملاحظات"
+      },
+      "headers": {
+        "title": "العنوان",
+        "status": "الحالة",
+        "intent": "الغرض",
+        "diagnosis": "التشخيص",
+        "startDate": "تاريخ البدء",
+        "endDate": "تاريخ الانتهاء"
+      },
+      "placeholders": {
+        "diagnosisNone": "لا شيء",
+        "intent": "اختر الغرض"
+      },
+      "none": "لا شيء",
+      "save": "حفظ",
+      "cancel": "إلغاء"
     }
   }
 }

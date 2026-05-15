@@ -200,6 +200,94 @@
         "type": "ej. CBC, BMP, Panel lipídico",
         "code": "ej. 85025"
       }
+    },
+    "imaging": {
+      "title": "Imágenes",
+      "newAction": "Nueva imagen",
+      "create": "Crear imagen",
+      "noResults": "No se encontraron solicitudes de imagen.",
+      "fields": {
+        "type": "Tipo",
+        "code": "Código",
+        "status": "Estado",
+        "requestedOn": "Solicitado el",
+        "notes": "Notas"
+      },
+      "placeholders": {
+        "type": "ej. Radiografía, Tomografía, Resonancia",
+        "code": "ej. 71046"
+      }
+    },
+    "notes": {
+      "title": "Notas",
+      "newAction": "Nueva nota",
+      "create": "Crear nota",
+      "noResults": "No se encontraron notas.",
+      "fields": {
+        "content": "Contenido"
+      },
+      "placeholders": {
+        "content": "Introduce nota clínica..."
+      },
+      "authorPrefix": "Autor: {{author}}"
+    },
+    "careGoals": {
+      "title": "Objetivos de atención",
+      "newAction": "Nuevo objetivo",
+      "noResults": "Sin objetivos de atención registrados.",
+      "fields": {
+        "descriptionRequired": "Descripción *",
+        "achievementStatus": "Estado de logro",
+        "priority": "Prioridad",
+        "status": "Estado",
+        "startDate": "Fecha de inicio",
+        "targetDate": "Fecha objetivo",
+        "notes": "Notas"
+      },
+      "headers": {
+        "description": "Descripción",
+        "status": "Estado",
+        "achievementStatus": "Estado de logro",
+        "priority": "Prioridad",
+        "startDate": "Fecha de inicio",
+        "targetDate": "Fecha objetivo"
+      },
+      "placeholders": {
+        "priority": "Selecciona prioridad",
+        "status": "Selecciona estado"
+      },
+      "save": "Guardar",
+      "cancel": "Cancelar"
+    },
+    "carePlans": {
+      "title": "Planes de atención",
+      "newAction": "Nuevo plan",
+      "noResults": "Sin planes de atención registrados.",
+      "fields": {
+        "titleRequired": "Título *",
+        "description": "Descripción",
+        "diagnosis": "Diagnóstico vinculado",
+        "status": "Estado",
+        "intent": "Intención",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin",
+        "notes": "Notas"
+      },
+      "headers": {
+        "title": "Título",
+        "status": "Estado",
+        "intent": "Intención",
+        "diagnosis": "Diagnóstico",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin"
+      },
+      "placeholders": {
+        "diagnosisNone": "Ninguno",
+        "intent": "Selecciona intención"
+      },
+      "none": "Ninguno",
+      "save": "Guardar",
+      "cancel": "Cancelar"
     }
   }
 }

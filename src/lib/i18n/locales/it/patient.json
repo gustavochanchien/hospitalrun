@@ -200,6 +200,94 @@
         "type": "es. Emocromo, BMP, Profilo lipidico",
         "code": "es. 85025"
       }
+    },
+    "imaging": {
+      "title": "Diagnostica per immagini",
+      "newAction": "Nuova imaging",
+      "create": "Crea imaging",
+      "noResults": "Nessuna richiesta di imaging trovata.",
+      "fields": {
+        "type": "Tipo",
+        "code": "Codice",
+        "status": "Stato",
+        "requestedOn": "Richiesto il",
+        "notes": "Note"
+      },
+      "placeholders": {
+        "type": "es. Radiografia, TC, RM",
+        "code": "es. 71046"
+      }
+    },
+    "notes": {
+      "title": "Note",
+      "newAction": "Nuova nota",
+      "create": "Crea nota",
+      "noResults": "Nessuna nota trovata.",
+      "fields": {
+        "content": "Contenuto"
+      },
+      "placeholders": {
+        "content": "Inserisci nota clinica..."
+      },
+      "authorPrefix": "Autore: {{author}}"
+    },
+    "careGoals": {
+      "title": "Obiettivi di cura",
+      "newAction": "Nuovo obiettivo",
+      "noResults": "Nessun obiettivo di cura registrato.",
+      "fields": {
+        "descriptionRequired": "Descrizione *",
+        "achievementStatus": "Stato di raggiungimento",
+        "priority": "Priorità",
+        "status": "Stato",
+        "startDate": "Data inizio",
+        "targetDate": "Data obiettivo",
+        "notes": "Note"
+      },
+      "headers": {
+        "description": "Descrizione",
+        "status": "Stato",
+        "achievementStatus": "Stato di raggiungimento",
+        "priority": "Priorità",
+        "startDate": "Data inizio",
+        "targetDate": "Data obiettivo"
+      },
+      "placeholders": {
+        "priority": "Seleziona priorità",
+        "status": "Seleziona stato"
+      },
+      "save": "Salva",
+      "cancel": "Annulla"
+    },
+    "carePlans": {
+      "title": "Piani di cura",
+      "newAction": "Nuovo piano",
+      "noResults": "Nessun piano di cura registrato.",
+      "fields": {
+        "titleRequired": "Titolo *",
+        "description": "Descrizione",
+        "diagnosis": "Diagnosi collegata",
+        "status": "Stato",
+        "intent": "Intento",
+        "startDate": "Data inizio",
+        "endDate": "Data fine",
+        "notes": "Note"
+      },
+      "headers": {
+        "title": "Titolo",
+        "status": "Stato",
+        "intent": "Intento",
+        "diagnosis": "Diagnosi",
+        "startDate": "Data inizio",
+        "endDate": "Data fine"
+      },
+      "placeholders": {
+        "diagnosisNone": "Nessuna",
+        "intent": "Seleziona intento"
+      },
+      "none": "Nessuna",
+      "save": "Salva",
+      "cancel": "Annulla"
     }
   }
 }

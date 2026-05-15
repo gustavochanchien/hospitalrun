@@ -200,6 +200,94 @@
         "type": "e.g. CBC, BMP, Lipid Panel",
         "code": "e.g. 85025"
       }
+    },
+    "imaging": {
+      "title": "Imaging",
+      "newAction": "New Imaging",
+      "create": "Create Imaging",
+      "noResults": "No imaging requests found.",
+      "fields": {
+        "type": "Type",
+        "code": "Code",
+        "status": "Status",
+        "requestedOn": "Requested On",
+        "notes": "Notes"
+      },
+      "placeholders": {
+        "type": "e.g. X-Ray, CT Scan, MRI",
+        "code": "e.g. 71046"
+      }
+    },
+    "notes": {
+      "title": "Notes",
+      "newAction": "New Note",
+      "create": "Create Note",
+      "noResults": "No notes found.",
+      "fields": {
+        "content": "Content"
+      },
+      "placeholders": {
+        "content": "Enter clinical note..."
+      },
+      "authorPrefix": "Author: {{author}}"
+    },
+    "careGoals": {
+      "title": "Care Goals",
+      "newAction": "New Care Goal",
+      "noResults": "No care goals recorded.",
+      "fields": {
+        "descriptionRequired": "Description *",
+        "achievementStatus": "Achievement Status",
+        "priority": "Priority",
+        "status": "Status",
+        "startDate": "Start Date",
+        "targetDate": "Target Date",
+        "notes": "Notes"
+      },
+      "headers": {
+        "description": "Description",
+        "status": "Status",
+        "achievementStatus": "Achievement Status",
+        "priority": "Priority",
+        "startDate": "Start Date",
+        "targetDate": "Target Date"
+      },
+      "placeholders": {
+        "priority": "Select priority",
+        "status": "Select status"
+      },
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "carePlans": {
+      "title": "Care Plans",
+      "newAction": "New Care Plan",
+      "noResults": "No care plans recorded.",
+      "fields": {
+        "titleRequired": "Title *",
+        "description": "Description",
+        "diagnosis": "Linked Diagnosis",
+        "status": "Status",
+        "intent": "Intent",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "notes": "Notes"
+      },
+      "headers": {
+        "title": "Title",
+        "status": "Status",
+        "intent": "Intent",
+        "diagnosis": "Diagnosis",
+        "startDate": "Start Date",
+        "endDate": "End Date"
+      },
+      "placeholders": {
+        "diagnosisNone": "None",
+        "intent": "Select intent"
+      },
+      "none": "None",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   }
 }

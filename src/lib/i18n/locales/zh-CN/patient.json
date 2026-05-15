@@ -200,6 +200,94 @@
         "type": "例如：血常规、BMP、血脂全套",
         "code": "例如：85025"
       }
+    },
+    "imaging": {
+      "title": "影像",
+      "newAction": "新建影像",
+      "create": "创建影像",
+      "noResults": "未找到影像申请。",
+      "fields": {
+        "type": "类型",
+        "code": "编码",
+        "status": "状态",
+        "requestedOn": "申请时间",
+        "notes": "备注"
+      },
+      "placeholders": {
+        "type": "例如：X 光、CT、MRI",
+        "code": "例如：71046"
+      }
+    },
+    "notes": {
+      "title": "记录",
+      "newAction": "新建记录",
+      "create": "创建记录",
+      "noResults": "未找到记录。",
+      "fields": {
+        "content": "内容"
+      },
+      "placeholders": {
+        "content": "输入临床记录……"
+      },
+      "authorPrefix": "作者：{{author}}"
+    },
+    "careGoals": {
+      "title": "护理目标",
+      "newAction": "新建目标",
+      "noResults": "尚未记录护理目标。",
+      "fields": {
+        "descriptionRequired": "描述 *",
+        "achievementStatus": "达成状态",
+        "priority": "优先级",
+        "status": "状态",
+        "startDate": "开始日期",
+        "targetDate": "目标日期",
+        "notes": "备注"
+      },
+      "headers": {
+        "description": "描述",
+        "status": "状态",
+        "achievementStatus": "达成状态",
+        "priority": "优先级",
+        "startDate": "开始日期",
+        "targetDate": "目标日期"
+      },
+      "placeholders": {
+        "priority": "选择优先级",
+        "status": "选择状态"
+      },
+      "save": "保存",
+      "cancel": "取消"
+    },
+    "carePlans": {
+      "title": "护理计划",
+      "newAction": "新建计划",
+      "noResults": "尚未记录护理计划。",
+      "fields": {
+        "titleRequired": "标题 *",
+        "description": "描述",
+        "diagnosis": "关联诊断",
+        "status": "状态",
+        "intent": "目的",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "notes": "备注"
+      },
+      "headers": {
+        "title": "标题",
+        "status": "状态",
+        "intent": "目的",
+        "diagnosis": "诊断",
+        "startDate": "开始日期",
+        "endDate": "结束日期"
+      },
+      "placeholders": {
+        "diagnosisNone": "无",
+        "intent": "选择目的"
+      },
+      "none": "无",
+      "save": "保存",
+      "cancel": "取消"
     }
   }
 }

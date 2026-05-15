@@ -200,6 +200,94 @@
         "type": "mis. CBC, BMP, Panel lipid",
         "code": "mis. 85025"
       }
+    },
+    "imaging": {
+      "title": "Pencitraan",
+      "newAction": "Pencitraan baru",
+      "create": "Buat pencitraan",
+      "noResults": "Tidak ada permintaan pencitraan ditemukan.",
+      "fields": {
+        "type": "Tipe",
+        "code": "Kode",
+        "status": "Status",
+        "requestedOn": "Diminta pada",
+        "notes": "Catatan"
+      },
+      "placeholders": {
+        "type": "mis. Rontgen, CT Scan, MRI",
+        "code": "mis. 71046"
+      }
+    },
+    "notes": {
+      "title": "Catatan",
+      "newAction": "Catatan baru",
+      "create": "Buat catatan",
+      "noResults": "Tidak ada catatan ditemukan.",
+      "fields": {
+        "content": "Isi"
+      },
+      "placeholders": {
+        "content": "Masukkan catatan klinis..."
+      },
+      "authorPrefix": "Penulis: {{author}}"
+    },
+    "careGoals": {
+      "title": "Tujuan perawatan",
+      "newAction": "Tujuan baru",
+      "noResults": "Tidak ada tujuan perawatan tercatat.",
+      "fields": {
+        "descriptionRequired": "Deskripsi *",
+        "achievementStatus": "Status pencapaian",
+        "priority": "Prioritas",
+        "status": "Status",
+        "startDate": "Tanggal mulai",
+        "targetDate": "Tanggal target",
+        "notes": "Catatan"
+      },
+      "headers": {
+        "description": "Deskripsi",
+        "status": "Status",
+        "achievementStatus": "Status pencapaian",
+        "priority": "Prioritas",
+        "startDate": "Tanggal mulai",
+        "targetDate": "Tanggal target"
+      },
+      "placeholders": {
+        "priority": "Pilih prioritas",
+        "status": "Pilih status"
+      },
+      "save": "Simpan",
+      "cancel": "Batal"
+    },
+    "carePlans": {
+      "title": "Rencana perawatan",
+      "newAction": "Rencana baru",
+      "noResults": "Tidak ada rencana perawatan tercatat.",
+      "fields": {
+        "titleRequired": "Judul *",
+        "description": "Deskripsi",
+        "diagnosis": "Diagnosis terkait",
+        "status": "Status",
+        "intent": "Maksud",
+        "startDate": "Tanggal mulai",
+        "endDate": "Tanggal selesai",
+        "notes": "Catatan"
+      },
+      "headers": {
+        "title": "Judul",
+        "status": "Status",
+        "intent": "Maksud",
+        "diagnosis": "Diagnosis",
+        "startDate": "Tanggal mulai",
+        "endDate": "Tanggal selesai"
+      },
+      "placeholders": {
+        "diagnosisNone": "Tidak ada",
+        "intent": "Pilih maksud"
+      },
+      "none": "Tidak ada",
+      "save": "Simpan",
+      "cancel": "Batal"
     }
   }
 }

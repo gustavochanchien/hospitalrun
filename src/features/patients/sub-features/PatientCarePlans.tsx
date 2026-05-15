@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
@@ -51,6 +52,7 @@ interface PatientCarePlansProps {
 }
 
 export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [title, setTitle] = useState('')
@@ -137,24 +139,24 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
   }
 
   if (carePlans === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Care Plans</h3>
+        <h3 className="text-lg font-semibold">{t('subFeatures.carePlans.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Care Plan</Button>
+            <Button size="sm">{t('subFeatures.carePlans.newAction')}</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>New Care Plan</DialogTitle>
+              <DialogTitle>{t('subFeatures.carePlans.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="cp-title">Title *</Label>
+                <Label htmlFor="cp-title">{t('subFeatures.carePlans.fields.titleRequired')}</Label>
                 <Input
                   id="cp-title"
                   value={title}
@@ -163,7 +165,7 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cp-description">Description</Label>
+                <Label htmlFor="cp-description">{t('subFeatures.carePlans.fields.description')}</Label>
                 <RichTextEditor
                   id="cp-description"
                   value={description}
@@ -171,13 +173,13 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cp-diagnosis">Linked Diagnosis</Label>
+                <Label htmlFor="cp-diagnosis">{t('subFeatures.carePlans.fields.diagnosis')}</Label>
                 <Select value={diagnosisId} onValueChange={setDiagnosisId}>
                   <SelectTrigger id="cp-diagnosis">
-                    <SelectValue placeholder="None" />
+                    <SelectValue placeholder={t('subFeatures.carePlans.placeholders.diagnosisNone')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">None</SelectItem>
+                    <SelectItem value="">{t('subFeatures.carePlans.none')}</SelectItem>
                     {(diagnoses ?? []).map((d) => (
                       <SelectItem key={d.id} value={d.id}>
                         {d.description}
@@ -188,7 +190,7 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cp-status">Status</Label>
+                <Label htmlFor="cp-status">{t('subFeatures.carePlans.fields.status')}</Label>
                 <Select
                   value={status}
                   onValueChange={(v) => setStatus(v as CarePlanStatus)}
@@ -206,13 +208,13 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cp-intent">Intent</Label>
+                <Label htmlFor="cp-intent">{t('subFeatures.carePlans.fields.intent')}</Label>
                 <Select value={intent} onValueChange={setIntent}>
                   <SelectTrigger id="cp-intent">
-                    <SelectValue placeholder="Select intent" />
+                    <SelectValue placeholder={t('subFeatures.carePlans.placeholders.intent')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">None</SelectItem>
+                    <SelectItem value="">{t('subFeatures.carePlans.none')}</SelectItem>
                     <SelectItem value="proposal">proposal</SelectItem>
                     <SelectItem value="plan">plan</SelectItem>
                     <SelectItem value="order">order</SelectItem>
@@ -222,7 +224,7 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="cp-startDate">Start Date</Label>
+                  <Label htmlFor="cp-startDate">{t('subFeatures.carePlans.fields.startDate')}</Label>
                   <Input
                     id="cp-startDate"
                     type="date"
@@ -231,7 +233,7 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="cp-endDate">End Date</Label>
+                  <Label htmlFor="cp-endDate">{t('subFeatures.carePlans.fields.endDate')}</Label>
                   <Input
                     id="cp-endDate"
                     type="date"
@@ -241,7 +243,7 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cp-notes">Notes</Label>
+                <Label htmlFor="cp-notes">{t('subFeatures.carePlans.fields.notes')}</Label>
                 <RichTextEditor
                   id="cp-notes"
                   value={notes}
@@ -250,9 +252,9 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
               </div>
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-                  Cancel
+                  {t('subFeatures.carePlans.cancel')}
                 </Button>
-                <Button type="submit">Save</Button>
+                <Button type="submit">{t('subFeatures.carePlans.save')}</Button>
               </div>
             </form>
           </DialogContent>
@@ -261,19 +263,19 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
 
       {carePlans.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No care plans recorded.
+          {t('subFeatures.carePlans.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Intent</TableHead>
-                <TableHead>Diagnosis</TableHead>
-                <TableHead>Start Date</TableHead>
-                <TableHead>End Date</TableHead>
+                <TableHead>{t('subFeatures.carePlans.headers.title')}</TableHead>
+                <TableHead>{t('subFeatures.carePlans.headers.status')}</TableHead>
+                <TableHead>{t('subFeatures.carePlans.headers.intent')}</TableHead>
+                <TableHead>{t('subFeatures.carePlans.headers.diagnosis')}</TableHead>
+                <TableHead>{t('subFeatures.carePlans.headers.startDate')}</TableHead>
+                <TableHead>{t('subFeatures.carePlans.headers.endDate')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -291,20 +293,20 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {plan.intent ?? '\u2014'}
+                      {plan.intent ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {linkedDiagnosis ? linkedDiagnosis.description : '\u2014'}
+                      {linkedDiagnosis ? linkedDiagnosis.description : '—'}
                     </TableCell>
                     <TableCell>
                       {plan.startDate
                         ? format(parseISO(plan.startDate), 'MMM d, yyyy')
-                        : '\u2014'}
+                        : '—'}
                     </TableCell>
                     <TableCell>
                       {plan.endDate
                         ? format(parseISO(plan.endDate), 'MMM d, yyyy')
-                        : '\u2014'}
+                        : '—'}
                     </TableCell>
                     <TableCell>
                       <Button
@@ -312,7 +314,7 @@ export function PatientCarePlans({ patientId }: PatientCarePlansProps) {
                         size="sm"
                         onClick={() => setPendingDeleteId(plan.id)}
                       >
-                        Delete
+                        {t('subFeatures.common.delete')}
                       </Button>
                     </TableCell>
                   </TableRow>
