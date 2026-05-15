@@ -50,5 +50,55 @@
     "careGoals": "أهداف الرعاية",
     "carePlans": "خطط الرعاية",
     "history": "السجل"
+  },
+  "list": {
+    "statusPlaceholder": "الحالة",
+    "allStatuses": "كل الحالات",
+    "count_one": "{{count}} مريض",
+    "count_other": "{{count}} مرضى",
+    "noMatches": "لا يوجد مرضى يطابقون بحثك.",
+    "name": "الاسم",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{total}}"
+  },
+  "form": {
+    "personalInfo": "المعلومات الشخصية",
+    "contactInfo": "معلومات الاتصال",
+    "other": "أخرى",
+    "dobUnknown": "تاريخ الميلاد غير معروف",
+    "approxAgePlaceholder": "العمر التقريبي بالسنوات",
+    "selectSex": "اختر الجنس",
+    "selectBloodType": "اختر فصيلة الدم",
+    "saving": "جارٍ الحفظ...",
+    "givenNameRequired": "الاسم الأول *",
+    "familyNameRequired": "اسم العائلة *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "إلغاء"
+  },
+  "detail": {
+    "notFound": "لم يتم العثور على المريض.",
+    "backToPatients": "العودة إلى المرضى",
+    "mrnLabel": "السجل الطبي: {{mrn}}",
+    "dobLabel": "الميلاد: {{date}}",
+    "bloodTypeLabel": "فصيلة الدم: {{type}}",
+    "language": "اللغة",
+    "edit": "تعديل"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "deceased": "متوفّى"
+  },
+  "exportColumns": {
+    "filename": "المرضى",
+    "name": "الاسم",
+    "mrn": "رقم السجل الطبي",
+    "dob": "تاريخ الميلاد",
+    "sex": "الجنس",
+    "phone": "الهاتف",
+    "status": "الحالة"
   }
 }

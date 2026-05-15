@@ -50,5 +50,55 @@
     "careGoals": "Metas de cuidado",
     "carePlans": "Planos de cuidado",
     "history": "Histórico"
+  },
+  "list": {
+    "statusPlaceholder": "Status",
+    "allStatuses": "Todos os status",
+    "count_one": "{{count}} paciente",
+    "count_other": "{{count}} pacientes",
+    "noMatches": "Nenhum paciente corresponde à sua busca.",
+    "name": "Nome",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "pageOf": "Página {{current}} de {{total}}"
+  },
+  "form": {
+    "personalInfo": "Informações pessoais",
+    "contactInfo": "Informações de contato",
+    "other": "Outros",
+    "dobUnknown": "Data de nascimento desconhecida",
+    "approxAgePlaceholder": "Idade aproximada em anos",
+    "selectSex": "Selecionar sexo",
+    "selectBloodType": "Selecionar tipo sanguíneo",
+    "saving": "Salvando...",
+    "givenNameRequired": "Nome *",
+    "familyNameRequired": "Sobrenome *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Cancelar"
+  },
+  "detail": {
+    "notFound": "Paciente não encontrado.",
+    "backToPatients": "Voltar para pacientes",
+    "mrnLabel": "Prontuário: {{mrn}}",
+    "dobLabel": "DN: {{date}}",
+    "bloodTypeLabel": "Tipo sanguíneo: {{type}}",
+    "language": "Idioma",
+    "edit": "Editar"
+  },
+  "status": {
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "deceased": "Falecido"
+  },
+  "exportColumns": {
+    "filename": "Pacientes",
+    "name": "Nome",
+    "mrn": "Prontuário",
+    "dob": "Data de nascimento",
+    "sex": "Sexo",
+    "phone": "Telefone",
+    "status": "Status"
   }
 }

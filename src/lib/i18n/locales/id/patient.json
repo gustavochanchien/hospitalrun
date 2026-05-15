@@ -50,5 +50,55 @@
     "careGoals": "Tujuan perawatan",
     "carePlans": "Rencana perawatan",
     "history": "Riwayat"
+  },
+  "list": {
+    "statusPlaceholder": "Status",
+    "allStatuses": "Semua status",
+    "count_one": "{{count}} pasien",
+    "count_other": "{{count}} pasien",
+    "noMatches": "Tidak ada pasien yang cocok dengan pencarian Anda.",
+    "name": "Nama",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pageOf": "Halaman {{current}} dari {{total}}"
+  },
+  "form": {
+    "personalInfo": "Informasi pribadi",
+    "contactInfo": "Informasi kontak",
+    "other": "Lainnya",
+    "dobUnknown": "Tanggal lahir tidak diketahui",
+    "approxAgePlaceholder": "Perkiraan usia dalam tahun",
+    "selectSex": "Pilih jenis kelamin",
+    "selectBloodType": "Pilih golongan darah",
+    "saving": "Menyimpan...",
+    "givenNameRequired": "Nama depan *",
+    "familyNameRequired": "Nama belakang *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Batal"
+  },
+  "detail": {
+    "notFound": "Pasien tidak ditemukan.",
+    "backToPatients": "Kembali ke pasien",
+    "mrnLabel": "No. RM: {{mrn}}",
+    "dobLabel": "Tgl lahir: {{date}}",
+    "bloodTypeLabel": "Golongan darah: {{type}}",
+    "language": "Bahasa",
+    "edit": "Ubah"
+  },
+  "status": {
+    "active": "Aktif",
+    "inactive": "Tidak aktif",
+    "deceased": "Meninggal"
+  },
+  "exportColumns": {
+    "filename": "Pasien",
+    "name": "Nama",
+    "mrn": "No. rekam medis",
+    "dob": "Tanggal lahir",
+    "sex": "Jenis kelamin",
+    "phone": "Telepon",
+    "status": "Status"
   }
 }

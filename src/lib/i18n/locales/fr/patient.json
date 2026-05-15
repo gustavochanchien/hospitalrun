@@ -50,5 +50,55 @@
     "careGoals": "Objectifs de soins",
     "carePlans": "Plans de soins",
     "history": "Historique"
+  },
+  "list": {
+    "statusPlaceholder": "Statut",
+    "allStatuses": "Tous les statuts",
+    "count_one": "{{count}} patient",
+    "count_other": "{{count}} patients",
+    "noMatches": "Aucun patient ne correspond à votre recherche.",
+    "name": "Nom",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {{current}} sur {{total}}"
+  },
+  "form": {
+    "personalInfo": "Informations personnelles",
+    "contactInfo": "Coordonnées",
+    "other": "Autre",
+    "dobUnknown": "Date de naissance inconnue",
+    "approxAgePlaceholder": "Âge approximatif en années",
+    "selectSex": "Sélectionner le sexe",
+    "selectBloodType": "Sélectionner le groupe sanguin",
+    "saving": "Enregistrement...",
+    "givenNameRequired": "Prénom *",
+    "familyNameRequired": "Nom *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Annuler"
+  },
+  "detail": {
+    "notFound": "Patient introuvable.",
+    "backToPatients": "Retour aux patients",
+    "mrnLabel": "N° dossier : {{mrn}}",
+    "dobLabel": "DDN : {{date}}",
+    "bloodTypeLabel": "Groupe sanguin : {{type}}",
+    "language": "Langue",
+    "edit": "Modifier"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif",
+    "deceased": "Décédé"
+  },
+  "exportColumns": {
+    "filename": "Patients",
+    "name": "Nom",
+    "mrn": "N° de dossier",
+    "dob": "Date de naissance",
+    "sex": "Sexe",
+    "phone": "Téléphone",
+    "status": "Statut"
   }
 }

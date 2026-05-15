@@ -50,5 +50,57 @@
     "careGoals": "Цели лечения",
     "carePlans": "Планы лечения",
     "history": "История"
+  },
+  "list": {
+    "statusPlaceholder": "Статус",
+    "allStatuses": "Все статусы",
+    "count_one": "{{count}} пациент",
+    "count_few": "{{count}} пациента",
+    "count_many": "{{count}} пациентов",
+    "count_other": "{{count}} пациентов",
+    "noMatches": "Нет пациентов, соответствующих вашему поиску.",
+    "name": "Имя",
+    "previous": "Назад",
+    "next": "Далее",
+    "pageOf": "Страница {{current}} из {{total}}"
+  },
+  "form": {
+    "personalInfo": "Личная информация",
+    "contactInfo": "Контактная информация",
+    "other": "Другое",
+    "dobUnknown": "Дата рождения неизвестна",
+    "approxAgePlaceholder": "Приблизительный возраст в годах",
+    "selectSex": "Выберите пол",
+    "selectBloodType": "Выберите группу крови",
+    "saving": "Сохранение...",
+    "givenNameRequired": "Имя *",
+    "familyNameRequired": "Фамилия *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Отмена"
+  },
+  "detail": {
+    "notFound": "Пациент не найден.",
+    "backToPatients": "Назад к пациентам",
+    "mrnLabel": "Карта: {{mrn}}",
+    "dobLabel": "ДР: {{date}}",
+    "bloodTypeLabel": "Группа крови: {{type}}",
+    "language": "Язык",
+    "edit": "Редактировать"
+  },
+  "status": {
+    "active": "Активный",
+    "inactive": "Неактивный",
+    "deceased": "Умерший"
+  },
+  "exportColumns": {
+    "filename": "Пациенты",
+    "name": "Имя",
+    "mrn": "Номер карты",
+    "dob": "Дата рождения",
+    "sex": "Пол",
+    "phone": "Телефон",
+    "status": "Статус"
   }
 }

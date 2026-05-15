@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -28,6 +29,7 @@ import { ExportButton } from '@/components/export-button'
 const PAGE_SIZE = 20
 
 export function PatientListPage() {
+  const { t } = useTranslation('patient')
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [page, setPage] = useState(0)
@@ -73,7 +75,7 @@ export function PatientListPage() {
         <div className="relative flex-1 min-w-[200px] max-w-sm">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search by name or MRN..."
+            placeholder={t('searchPlaceholder')}
             value={search}
             onChange={(e) => {
               setSearch(e.target.value)
@@ -90,40 +92,40 @@ export function PatientListPage() {
           }}
         >
           <SelectTrigger className="w-[140px]">
-            <SelectValue placeholder="Status" />
+            <SelectValue placeholder={t('list.statusPlaceholder')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Statuses</SelectItem>
-            <SelectItem value="active">Active</SelectItem>
-            <SelectItem value="inactive">Inactive</SelectItem>
-            <SelectItem value="deceased">Deceased</SelectItem>
+            <SelectItem value="all">{t('list.allStatuses')}</SelectItem>
+            <SelectItem value="active">{t('status.active')}</SelectItem>
+            <SelectItem value="inactive">{t('status.inactive')}</SelectItem>
+            <SelectItem value="deceased">{t('status.deceased')}</SelectItem>
           </SelectContent>
         </Select>
         <p className="text-sm text-muted-foreground">
-          {filtered.length} patient{filtered.length !== 1 ? 's' : ''}
+          {t('list.count', { count: filtered.length })}
         </p>
         <ExportButton
-          filename="Patients"
+          filename={t('exportColumns.filename')}
           rows={filtered}
           columns={[
             {
-              header: 'Name',
+              header: t('exportColumns.name'),
               accessor: (p) =>
                 [p.prefix, p.givenName, p.familyName, p.suffix]
                   .filter(Boolean)
                   .join(' '),
             },
-            { header: 'MRN', accessor: (p) => p.mrn ?? '' },
+            { header: t('exportColumns.mrn'), accessor: (p) => p.mrn ?? '' },
             {
-              header: 'Date of Birth',
+              header: t('exportColumns.dob'),
               accessor: (p) =>
                 p.dateOfBirth
                   ? format(parseISO(p.dateOfBirth), 'yyyy-MM-dd')
                   : '',
             },
-            { header: 'Sex', accessor: (p) => p.sex ?? '' },
-            { header: 'Phone', accessor: (p) => p.phone ?? '' },
-            { header: 'Status', accessor: (p) => p.status },
+            { header: t('exportColumns.sex'), accessor: (p) => p.sex ?? '' },
+            { header: t('exportColumns.phone'), accessor: (p) => p.phone ?? '' },
+            { header: t('exportColumns.status'), accessor: (p) => p.status },
           ]}
         />
       </div>
@@ -133,12 +135,12 @@ export function PatientListPage() {
         <div className="flex flex-col items-center justify-center py-12">
           <p className="text-muted-foreground">
             {search || statusFilter !== 'all'
-              ? 'No patients match your search.'
-              : 'No patients yet.'}
+              ? t('list.noMatches')
+              : t('noPatients')}
           </p>
           {!search && statusFilter === 'all' && (
             <Button asChild className="mt-4">
-              <Link to="/patients/new">Add Your First Patient</Link>
+              <Link to="/patients/new">{t('addFirst')}</Link>
             </Button>
           )}
         </div>
@@ -148,12 +150,12 @@ export function PatientListPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>MRN</TableHead>
-                  <TableHead>Date of Birth</TableHead>
-                  <TableHead>Sex</TableHead>
-                  <TableHead>Phone</TableHead>
-                  <TableHead>Status</TableHead>
+                  <TableHead>{t('list.name')}</TableHead>
+                  <TableHead>{t('fields.mrn')}</TableHead>
+                  <TableHead>{t('fields.dateOfBirth')}</TableHead>
+                  <TableHead>{t('fields.sex')}</TableHead>
+                  <TableHead>{t('fields.phone')}</TableHead>
+                  <TableHead>{t('fields.status')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -171,18 +173,18 @@ export function PatientListPage() {
                       </Link>
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {patient.mrn ?? '\u2014'}
+                      {patient.mrn ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
                       {patient.dateOfBirth
                         ? format(parseISO(patient.dateOfBirth), 'MMM d, yyyy')
-                        : '\u2014'}
+                        : '—'}
                     </TableCell>
                     <TableCell className="capitalize text-muted-foreground">
-                      {patient.sex ?? '\u2014'}
+                      {patient.sex ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {patient.phone ?? '\u2014'}
+                      {patient.phone ?? '—'}
                     </TableCell>
                     <TableCell>
                       <StatusBadge status={patient.status} />
@@ -197,7 +199,7 @@ export function PatientListPage() {
           {totalPages > 1 && (
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
-                Page {page + 1} of {totalPages}
+                {t('list.pageOf', { current: page + 1, total: totalPages })}
               </p>
               <div className="flex gap-2">
                 <Button
@@ -206,7 +208,7 @@ export function PatientListPage() {
                   disabled={page === 0}
                   onClick={() => setPage((p) => p - 1)}
                 >
-                  Previous
+                  {t('list.previous')}
                 </Button>
                 <Button
                   variant="outline"
@@ -214,7 +216,7 @@ export function PatientListPage() {
                   disabled={page >= totalPages - 1}
                   onClick={() => setPage((p) => p + 1)}
                 >
-                  Next
+                  {t('list.next')}
                 </Button>
               </div>
             </div>
@@ -226,11 +228,16 @@ export function PatientListPage() {
 }
 
 function StatusBadge({ status }: { status: string }) {
+  const { t } = useTranslation('patient')
   const variant =
     status === 'active'
       ? 'default'
       : status === 'deceased'
         ? 'destructive'
         : 'secondary'
-  return <Badge variant={variant}>{status}</Badge>
+  const label =
+    status === 'active' || status === 'inactive' || status === 'deceased'
+      ? t(`status.${status}` as 'status.active' | 'status.inactive' | 'status.deceased')
+      : status
+  return <Badge variant={variant}>{label}</Badge>
 }

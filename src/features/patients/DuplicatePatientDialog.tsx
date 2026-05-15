@@ -1,5 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -27,6 +28,7 @@ export function DuplicatePatientDialog({
   familyName,
   onConfirm,
 }: DuplicatePatientDialogProps) {
+  const { t } = useTranslation('patient')
   const givenLower = givenName.toLowerCase()
   const familyLower = familyName.toLowerCase()
 
@@ -50,11 +52,9 @@ export function DuplicatePatientDialog({
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Possible Duplicate Patient</AlertDialogTitle>
+          <AlertDialogTitle>{t('duplicateTitle')}</AlertDialogTitle>
           <AlertDialogDescription>
-            We found {duplicates.length} existing patient
-            {duplicates.length > 1 ? 's' : ''} with a similar name. Do you
-            still want to create a new patient?
+            {t('duplicateDescription')}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="max-h-48 space-y-2 overflow-y-auto py-2">
@@ -70,15 +70,15 @@ export function DuplicatePatientDialog({
                 {p.givenName} {p.familyName}
               </span>
               {p.mrn && (
-                <span className="text-muted-foreground">MRN: {p.mrn}</span>
+                <span className="text-muted-foreground">{t('detail.mrnLabel', { mrn: p.mrn })}</span>
               )}
             </Link>
           ))}
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>{t('duplicate.cancel')}</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm}>
-            Create Anyway
+            {t('createAnyway')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

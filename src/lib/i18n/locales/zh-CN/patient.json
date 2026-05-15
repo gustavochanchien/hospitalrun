@@ -50,5 +50,55 @@
     "careGoals": "护理目标",
     "carePlans": "护理计划",
     "history": "历史"
+  },
+  "list": {
+    "statusPlaceholder": "状态",
+    "allStatuses": "所有状态",
+    "count_one": "{{count}} 位患者",
+    "count_other": "{{count}} 位患者",
+    "noMatches": "没有符合您搜索条件的患者。",
+    "name": "姓名",
+    "previous": "上一页",
+    "next": "下一页",
+    "pageOf": "第 {{current}} 页，共 {{total}} 页"
+  },
+  "form": {
+    "personalInfo": "个人信息",
+    "contactInfo": "联系信息",
+    "other": "其他",
+    "dobUnknown": "出生日期未知",
+    "approxAgePlaceholder": "大约年龄（岁）",
+    "selectSex": "选择性别",
+    "selectBloodType": "选择血型",
+    "saving": "保存中...",
+    "givenNameRequired": "名 *",
+    "familyNameRequired": "姓 *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "取消"
+  },
+  "detail": {
+    "notFound": "未找到患者。",
+    "backToPatients": "返回患者列表",
+    "mrnLabel": "病历号：{{mrn}}",
+    "dobLabel": "出生日期：{{date}}",
+    "bloodTypeLabel": "血型：{{type}}",
+    "language": "语言",
+    "edit": "编辑"
+  },
+  "status": {
+    "active": "活动",
+    "inactive": "停用",
+    "deceased": "已故"
+  },
+  "exportColumns": {
+    "filename": "患者",
+    "name": "姓名",
+    "mrn": "病历号",
+    "dob": "出生日期",
+    "sex": "性别",
+    "phone": "电话",
+    "status": "状态"
   }
 }

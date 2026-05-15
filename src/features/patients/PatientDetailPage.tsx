@@ -1,4 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -25,6 +26,7 @@ interface PatientDetailPageProps {
 }
 
 export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
+  const { t } = useTranslation('patient')
   const patient = useLiveQuery(() => db.patients.get(patientId), [patientId])
 
   if (patient === undefined) {
@@ -39,13 +41,18 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
   if (!patient || patient._deleted) {
     return (
       <div className="flex flex-col items-center justify-center p-12">
-        <p className="text-muted-foreground">Patient not found.</p>
+        <p className="text-muted-foreground">{t('detail.notFound')}</p>
         <Button asChild variant="outline" className="mt-4">
-          <Link to="/patients">Back to Patients</Link>
+          <Link to="/patients">{t('detail.backToPatients')}</Link>
         </Button>
       </div>
     )
   }
+
+  const statusKey =
+    patient.status === 'active' || patient.status === 'inactive' || patient.status === 'deceased'
+      ? (`status.${patient.status}` as 'status.active' | 'status.inactive' | 'status.deceased')
+      : null
 
   return (
     <div className="space-y-6 p-6">
@@ -59,17 +66,23 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
               {patient.suffix ? ` ${patient.suffix}` : ''}
             </CardTitle>
             <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
-              {patient.mrn && <span>MRN: {patient.mrn}</span>}
+              {patient.mrn && <span>{t('detail.mrnLabel', { mrn: patient.mrn })}</span>}
               {patient.sex && (
-                <span className="capitalize">{patient.sex}</span>
+                <span>
+                  {patient.sex === 'male' || patient.sex === 'female' || patient.sex === 'other' || patient.sex === 'unknown'
+                    ? t(`sex.${patient.sex}` as 'sex.male' | 'sex.female' | 'sex.other' | 'sex.unknown')
+                    : patient.sex}
+                </span>
               )}
               {patient.dateOfBirth && (
                 <span>
-                  DOB: {format(parseISO(patient.dateOfBirth), 'MMM d, yyyy')}
+                  {t('detail.dobLabel', {
+                    date: format(parseISO(patient.dateOfBirth), 'MMM d, yyyy'),
+                  })}
                 </span>
               )}
               {patient.bloodType && (
-                <span>Blood Type: {patient.bloodType}</span>
+                <span>{t('detail.bloodTypeLabel', { type: patient.bloodType })}</span>
               )}
             </div>
           </div>
@@ -83,7 +96,7 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
                     : 'secondary'
               }
             >
-              {patient.status}
+              {statusKey ? t(statusKey) : patient.status}
             </Badge>
             <Button variant="outline" size="sm" asChild>
               <Link
@@ -91,7 +104,7 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
                 params={{ patientId }}
                 search={{ edit: true }}
               >
-                Edit
+                {t('detail.edit')}
               </Link>
             </Button>
           </div>
@@ -99,24 +112,24 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
         <CardContent>
           <div className="grid gap-4 text-sm sm:grid-cols-3">
             <div>
-              <p className="font-medium text-muted-foreground">Phone</p>
-              <p>{patient.phone ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.phone')}</p>
+              <p>{patient.phone ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Email</p>
-              <p>{patient.email ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.email')}</p>
+              <p>{patient.email ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Occupation</p>
-              <p>{patient.occupation ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.occupation')}</p>
+              <p>{patient.occupation ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Language</p>
-              <p>{patient.preferredLanguage ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('detail.language')}</p>
+              <p>{patient.preferredLanguage ?? '—'}</p>
             </div>
             {patient.address && (
               <div className="sm:col-span-2">
-                <p className="font-medium text-muted-foreground">Address</p>
+                <p className="font-medium text-muted-foreground">{t('fields.address')}</p>
                 <p>
                   {[
                     patient.address.street,
@@ -125,7 +138,7 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
                     patient.address.zip,
                   ]
                     .filter(Boolean)
-                    .join(', ') || '\u2014'}
+                    .join(', ') || '—'}
                 </p>
               </div>
             )}
@@ -136,18 +149,18 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
       {/* Sub-feature Tabs */}
       <Tabs defaultValue="appointments">
         <TabsList className="flex flex-wrap h-auto gap-1">
-          <TabsTrigger value="appointments">Appointments</TabsTrigger>
-          <TabsTrigger value="diagnoses">Diagnoses</TabsTrigger>
-          <TabsTrigger value="allergies">Allergies</TabsTrigger>
-          <TabsTrigger value="medications">Medications</TabsTrigger>
-          <TabsTrigger value="labs">Labs</TabsTrigger>
-          <TabsTrigger value="imaging">Imaging</TabsTrigger>
-          <TabsTrigger value="notes">Notes</TabsTrigger>
-          <TabsTrigger value="visits">Visits</TabsTrigger>
-          <TabsTrigger value="related">Related Persons</TabsTrigger>
-          <TabsTrigger value="goals">Care Goals</TabsTrigger>
-          <TabsTrigger value="plans">Care Plans</TabsTrigger>
-          <TabsTrigger value="history">History</TabsTrigger>
+          <TabsTrigger value="appointments">{t('tabs.appointments')}</TabsTrigger>
+          <TabsTrigger value="diagnoses">{t('tabs.diagnoses')}</TabsTrigger>
+          <TabsTrigger value="allergies">{t('tabs.allergies')}</TabsTrigger>
+          <TabsTrigger value="medications">{t('tabs.medications')}</TabsTrigger>
+          <TabsTrigger value="labs">{t('tabs.labs')}</TabsTrigger>
+          <TabsTrigger value="imaging">{t('tabs.imaging')}</TabsTrigger>
+          <TabsTrigger value="notes">{t('tabs.notes')}</TabsTrigger>
+          <TabsTrigger value="visits">{t('tabs.visits')}</TabsTrigger>
+          <TabsTrigger value="related">{t('tabs.relatedPersons')}</TabsTrigger>
+          <TabsTrigger value="goals">{t('tabs.careGoals')}</TabsTrigger>
+          <TabsTrigger value="plans">{t('tabs.carePlans')}</TabsTrigger>
+          <TabsTrigger value="history">{t('tabs.history')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="appointments">

@@ -50,5 +50,55 @@
     "careGoals": "Pflegeziele",
     "carePlans": "Pflegepläne",
     "history": "Verlauf"
+  },
+  "list": {
+    "statusPlaceholder": "Status",
+    "allStatuses": "Alle Status",
+    "count_one": "{{count}} Patient",
+    "count_other": "{{count}} Patienten",
+    "noMatches": "Keine Patienten entsprechen deiner Suche.",
+    "name": "Name",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {{current}} von {{total}}"
+  },
+  "form": {
+    "personalInfo": "Persönliche Informationen",
+    "contactInfo": "Kontaktinformationen",
+    "other": "Sonstiges",
+    "dobUnknown": "Geburtsdatum unbekannt",
+    "approxAgePlaceholder": "Ungefähres Alter in Jahren",
+    "selectSex": "Geschlecht auswählen",
+    "selectBloodType": "Blutgruppe auswählen",
+    "saving": "Wird gespeichert...",
+    "givenNameRequired": "Vorname *",
+    "familyNameRequired": "Nachname *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Abbrechen"
+  },
+  "detail": {
+    "notFound": "Patient nicht gefunden.",
+    "backToPatients": "Zurück zu Patienten",
+    "mrnLabel": "Aktennr.: {{mrn}}",
+    "dobLabel": "Geb.: {{date}}",
+    "bloodTypeLabel": "Blutgruppe: {{type}}",
+    "language": "Sprache",
+    "edit": "Bearbeiten"
+  },
+  "status": {
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "deceased": "Verstorben"
+  },
+  "exportColumns": {
+    "filename": "Patienten",
+    "name": "Name",
+    "mrn": "Aktennummer",
+    "dob": "Geburtsdatum",
+    "sex": "Geschlecht",
+    "phone": "Telefon",
+    "status": "Status"
   }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 import { subYears } from 'date-fns'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -23,6 +24,7 @@ interface PatientFormProps {
 }
 
 export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormProps) {
+  const { t } = useTranslation('patient')
   const {
     register,
     handleSubmit,
@@ -74,14 +76,14 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl space-y-6">
       {/* Name Fields */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Personal Information</h3>
+        <h3 className="text-lg font-semibold">{t('form.personalInfo')}</h3>
         <div className="grid gap-4 sm:grid-cols-4">
           <div className="space-y-2">
-            <Label htmlFor="prefix">Prefix</Label>
+            <Label htmlFor="prefix">{t('fields.prefix')}</Label>
             <Input id="prefix" placeholder="Mr." {...register('prefix')} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="givenName">First Name *</Label>
+            <Label htmlFor="givenName">{t('form.givenNameRequired')}</Label>
             <Input
               id="givenName"
               placeholder="John"
@@ -94,7 +96,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="familyName">Last Name *</Label>
+            <Label htmlFor="familyName">{t('form.familyNameRequired')}</Label>
             <Input
               id="familyName"
               placeholder="Doe"
@@ -107,21 +109,21 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="suffix">Suffix</Label>
+            <Label htmlFor="suffix">{t('fields.suffix')}</Label>
             <Input id="suffix" placeholder="Jr." {...register('suffix')} />
           </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="space-y-2">
-            <Label htmlFor="dateOfBirth">Date of Birth</Label>
+            <Label htmlFor="dateOfBirth">{t('fields.dateOfBirth')}</Label>
             {isApproxDob ? (
               <Input
                 id="approxAge"
                 type="number"
                 min="0"
                 max="150"
-                placeholder="Approximate age in years"
+                placeholder={t('form.approxAgePlaceholder')}
                 value={approxAge}
                 onChange={(e) => handleApproxAgeChange(e.target.value)}
               />
@@ -141,12 +143,12 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
                 }
               />
               <Label htmlFor="unknown-dob" className="text-sm font-normal text-muted-foreground cursor-pointer">
-                Date of birth unknown
+                {t('form.dobUnknown')}
               </Label>
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="sex">Sex</Label>
+            <Label htmlFor="sex">{t('fields.sex')}</Label>
             <Select
               value={sex ?? ''}
               onValueChange={(v) =>
@@ -158,18 +160,18 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
               }
             >
               <SelectTrigger id="sex">
-                <SelectValue placeholder="Select sex" />
+                <SelectValue placeholder={t('form.selectSex')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="male">Male</SelectItem>
-                <SelectItem value="female">Female</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-                <SelectItem value="unknown">Unknown</SelectItem>
+                <SelectItem value="male">{t('sex.male')}</SelectItem>
+                <SelectItem value="female">{t('sex.female')}</SelectItem>
+                <SelectItem value="other">{t('sex.other')}</SelectItem>
+                <SelectItem value="unknown">{t('sex.unknown')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="bloodType">Blood Type</Label>
+            <Label htmlFor="bloodType">{t('fields.bloodType')}</Label>
             <Select
               value={bloodType ?? ''}
               onValueChange={(v) =>
@@ -181,12 +183,12 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
               }
             >
               <SelectTrigger id="bloodType">
-                <SelectValue placeholder="Select blood type" />
+                <SelectValue placeholder={t('form.selectBloodType')} />
               </SelectTrigger>
               <SelectContent>
                 {BLOOD_TYPES.map((bt) => (
                   <SelectItem key={bt} value={bt}>
-                    {bt === 'unknown' ? 'Unknown' : bt}
+                    {bt === 'unknown' ? t('sex.unknown') : bt}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -197,19 +199,19 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
 
       {/* Contact Fields */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Contact Information</h3>
+        <h3 className="text-lg font-semibold">{t('form.contactInfo')}</h3>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone">{t('fields.phone')}</Label>
             <Input
               id="phone"
               type="tel"
-              placeholder="(555) 123-4567"
+              placeholder={t('form.phonePlaceholder')}
               {...register('phone')}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t('fields.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -225,7 +227,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="address.street">Street Address</Label>
+            <Label htmlFor="address.street">{t('fields.street')}</Label>
             <Input
               id="address.street"
               placeholder="123 Main St"
@@ -233,7 +235,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="address.city">City</Label>
+            <Label htmlFor="address.city">{t('fields.city')}</Label>
             <Input
               id="address.city"
               placeholder="Anytown"
@@ -243,7 +245,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="address.state">State</Label>
+            <Label htmlFor="address.state">{t('fields.state')}</Label>
             <Input
               id="address.state"
               placeholder="CA"
@@ -251,7 +253,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="address.zip">Zip Code</Label>
+            <Label htmlFor="address.zip">{t('fields.zip')}</Label>
             <Input
               id="address.zip"
               placeholder="12345"
@@ -263,10 +265,10 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
 
       {/* Other Fields */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Other</h3>
+        <h3 className="text-lg font-semibold">{t('form.other')}</h3>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="occupation">Occupation</Label>
+            <Label htmlFor="occupation">{t('fields.occupation')}</Label>
             <Input
               id="occupation"
               placeholder="Engineer"
@@ -274,7 +276,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="preferredLanguage">Preferred Language</Label>
+            <Label htmlFor="preferredLanguage">{t('fields.preferredLanguage')}</Label>
             <Input
               id="preferredLanguage"
               placeholder="English"
@@ -286,10 +288,10 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
 
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting
-          ? 'Saving...'
+          ? t('form.saving')
           : patient
-            ? 'Update Patient'
-            : 'Create Patient'}
+            ? t('updatePatient')
+            : t('createPatient')}
       </Button>
     </form>
   )

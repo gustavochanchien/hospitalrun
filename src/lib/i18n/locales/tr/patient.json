@@ -50,5 +50,55 @@
     "careGoals": "Bakım hedefleri",
     "carePlans": "Bakım planları",
     "history": "Geçmiş"
+  },
+  "list": {
+    "statusPlaceholder": "Durum",
+    "allStatuses": "Tüm durumlar",
+    "count_one": "{{count}} hasta",
+    "count_other": "{{count}} hasta",
+    "noMatches": "Aramanızla eşleşen hasta yok.",
+    "name": "Ad",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "Sayfa {{current}} / {{total}}"
+  },
+  "form": {
+    "personalInfo": "Kişisel bilgiler",
+    "contactInfo": "İletişim bilgileri",
+    "other": "Diğer",
+    "dobUnknown": "Doğum tarihi bilinmiyor",
+    "approxAgePlaceholder": "Yaklaşık yaş (yıl)",
+    "selectSex": "Cinsiyet seçin",
+    "selectBloodType": "Kan grubu seçin",
+    "saving": "Kaydediliyor...",
+    "givenNameRequired": "Ad *",
+    "familyNameRequired": "Soyad *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "İptal"
+  },
+  "detail": {
+    "notFound": "Hasta bulunamadı.",
+    "backToPatients": "Hastalara dön",
+    "mrnLabel": "Dosya no: {{mrn}}",
+    "dobLabel": "DT: {{date}}",
+    "bloodTypeLabel": "Kan grubu: {{type}}",
+    "language": "Dil",
+    "edit": "Düzenle"
+  },
+  "status": {
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "deceased": "Vefat etmiş"
+  },
+  "exportColumns": {
+    "filename": "Hastalar",
+    "name": "Ad",
+    "mrn": "Dosya no",
+    "dob": "Doğum tarihi",
+    "sex": "Cinsiyet",
+    "phone": "Telefon",
+    "status": "Durum"
   }
 }

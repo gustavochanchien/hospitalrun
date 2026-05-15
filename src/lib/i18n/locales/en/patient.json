@@ -50,5 +50,55 @@
     "careGoals": "Care Goals",
     "carePlans": "Care Plans",
     "history": "History"
+  },
+  "list": {
+    "statusPlaceholder": "Status",
+    "allStatuses": "All Statuses",
+    "count_one": "{{count}} patient",
+    "count_other": "{{count}} patients",
+    "noMatches": "No patients match your search.",
+    "name": "Name",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{current}} of {{total}}"
+  },
+  "form": {
+    "personalInfo": "Personal Information",
+    "contactInfo": "Contact Information",
+    "other": "Other",
+    "dobUnknown": "Date of birth unknown",
+    "approxAgePlaceholder": "Approximate age in years",
+    "selectSex": "Select sex",
+    "selectBloodType": "Select blood type",
+    "saving": "Saving...",
+    "givenNameRequired": "First Name *",
+    "familyNameRequired": "Last Name *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Cancel"
+  },
+  "detail": {
+    "notFound": "Patient not found.",
+    "backToPatients": "Back to Patients",
+    "mrnLabel": "MRN: {{mrn}}",
+    "dobLabel": "DOB: {{date}}",
+    "bloodTypeLabel": "Blood Type: {{type}}",
+    "language": "Language",
+    "edit": "Edit"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "deceased": "Deceased"
+  },
+  "exportColumns": {
+    "filename": "Patients",
+    "name": "Name",
+    "mrn": "MRN",
+    "dob": "Date of Birth",
+    "sex": "Sex",
+    "phone": "Phone",
+    "status": "Status"
   }
 }

@@ -50,5 +50,55 @@
     "careGoals": "Objetivos de atención",
     "carePlans": "Planes de atención",
     "history": "Historial"
+  },
+  "list": {
+    "statusPlaceholder": "Estado",
+    "allStatuses": "Todos los estados",
+    "count_one": "{{count}} paciente",
+    "count_other": "{{count}} pacientes",
+    "noMatches": "Ningún paciente coincide con tu búsqueda.",
+    "name": "Nombre",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pageOf": "Página {{current}} de {{total}}"
+  },
+  "form": {
+    "personalInfo": "Información personal",
+    "contactInfo": "Información de contacto",
+    "other": "Otro",
+    "dobUnknown": "Fecha de nacimiento desconocida",
+    "approxAgePlaceholder": "Edad aproximada en años",
+    "selectSex": "Selecciona sexo",
+    "selectBloodType": "Selecciona grupo sanguíneo",
+    "saving": "Guardando...",
+    "givenNameRequired": "Nombre *",
+    "familyNameRequired": "Apellido *",
+    "phonePlaceholder": "(555) 123-4567"
+  },
+  "duplicate": {
+    "cancel": "Cancelar"
+  },
+  "detail": {
+    "notFound": "Paciente no encontrado.",
+    "backToPatients": "Volver a Pacientes",
+    "mrnLabel": "NHC: {{mrn}}",
+    "dobLabel": "FdN: {{date}}",
+    "bloodTypeLabel": "Grupo sanguíneo: {{type}}",
+    "language": "Idioma",
+    "edit": "Editar"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "deceased": "Fallecido"
+  },
+  "exportColumns": {
+    "filename": "Pacientes",
+    "name": "Nombre",
+    "mrn": "NHC",
+    "dob": "Fecha de nacimiento",
+    "sex": "Sexo",
+    "phone": "Teléfono",
+    "status": "Estado"
   }
 }
