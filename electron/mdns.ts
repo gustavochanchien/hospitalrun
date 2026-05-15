@@ -4,6 +4,8 @@ import { Bonjour, type Service } from 'bonjour-service'
 let bonjour: Bonjour | null = null
 let advertised: Service | null = null
 
+export const MDNS_HOSTNAME = 'hospitalrun.local'
+
 export interface MdnsHandle {
   hostname: string
   port: number
@@ -15,18 +17,18 @@ export interface MdnsHandle {
  * also fall back to the host's IP address in `getLanFallbackUrl`.
  */
 export function startMdns(port: number): MdnsHandle {
-  if (advertised) return { hostname: 'hospitalrun.local', port }
+  if (advertised) return { hostname: MDNS_HOSTNAME, port }
 
   bonjour ??= new Bonjour()
   advertised = bonjour.publish({
     name: 'HospitalRun',
     type: 'http',
     port,
-    host: 'hospitalrun.local',
+    host: MDNS_HOSTNAME,
     txt: { app: 'hospitalrun', version: process.env.npm_package_version ?? 'dev' },
   })
 
-  return { hostname: 'hospitalrun.local', port }
+  return { hostname: MDNS_HOSTNAME, port }
 }
 
 export function stopMdns(): void {

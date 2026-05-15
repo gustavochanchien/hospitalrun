@@ -20,6 +20,8 @@ function installFakeIPC() {
     runBackup: async () => null,
     getBackupStatus: async () => ({ lastBackupAt: null, lastDestination: null, lastError: null }),
     restoreBackup: async () => null,
+    onUpdateDownloaded: () => () => {},
+    installUpdate: async () => {},
   }
   window.hospitalrunIPC = fake
 }

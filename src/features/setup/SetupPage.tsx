@@ -78,7 +78,10 @@ export function SetupPage() {
           )}
           {screen === 'hub' && <HubSetupFlow onBack={back} />}
           {screen === 'cloud-only-web' && (
-            <CloudConnectForm onSaved={() => goToFirstUser('cloud-only-web')} />
+            <CloudConnectForm
+              showFindHub
+              onSaved={() => goToFirstUser('cloud-only-web')}
+            />
           )}
           {screen === 'first-user' && (
             <FirstUserForm onBack={() => setScreen(cloudScreen)} />

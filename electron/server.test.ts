@@ -24,12 +24,16 @@ const fixturesDir = path.resolve(
   'test-fixtures',
 )
 
-function makeRouter(cfg: { url: string; anonKey: string } | null = null) {
+function makeRouter(
+  cfg: { url: string; anonKey: string } | null = null,
+  lan?: { url: string; hostname: string },
+) {
   setBackendConfigForLan(cfg)
   return createHubRouter({
     staticRoot: fixturesDir,
     getBackendConfig: () => getCachedBackendConfig(),
     appInfo: { name: 'HospitalRun', version: '0.0.0-test' },
+    getLanInfo: lan ? () => lan : undefined,
   })
 }
 
@@ -61,6 +65,34 @@ describe('createHubRouter', () => {
     expect(res.status).toBe(200)
     const body = (await res.json()) as { ok: boolean; app: string; version: string }
     expect(body).toEqual({ ok: true, app: 'HospitalRun', version: '0.0.0-test' })
+  })
+
+  it('returns LAN addressing from /_discover when provided', async () => {
+    const router = makeRouter(null, {
+      url: 'http://192.168.1.50:5174',
+      hostname: 'hospitalrun.local',
+    })
+    const res = await router.fetch(new Request('http://hub.local/_discover'))
+    expect(res.status).toBe(200)
+    expect(res.headers.get('cache-control')).toBe('no-store')
+    expect(await res.json()).toEqual({
+      app: 'HospitalRun',
+      version: '0.0.0-test',
+      url: 'http://192.168.1.50:5174',
+      hostname: 'hospitalrun.local',
+    })
+  })
+
+  it('returns nulls for LAN fields when getLanInfo is not configured', async () => {
+    const router = makeRouter()
+    const res = await router.fetch(new Request('http://hub.local/_discover'))
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({
+      app: 'HospitalRun',
+      version: '0.0.0-test',
+      url: null,
+      hostname: null,
+    })
   })
 
   it('serves index.html at /', async () => {

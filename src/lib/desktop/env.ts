@@ -35,6 +35,12 @@ export interface BackupStatus {
   lastError: string | null
 }
 
+export interface UpdateDownloadedPayload {
+  version: string
+  releaseNotes?: string | null
+  releaseDate?: string | null
+}
+
 export interface DesktopIPC {
   /** Returns the saved run mode persisted in Electron's userData. */
   getRunMode: () => Promise<DesktopMode | null>
@@ -70,6 +76,14 @@ export interface DesktopIPC {
    * copies files, then restarts. Resolves null if the user cancelled.
    */
   restoreBackup: (sourceFolderPath?: string) => Promise<RestoreResult | null>
+  /**
+   * Subscribe to "update downloaded" events from electron-updater.
+   * Returns an unsubscribe function. The callback fires once per
+   * downloaded update; on disposal the listener is removed.
+   */
+  onUpdateDownloaded: (cb: (info: UpdateDownloadedPayload) => void) => () => void
+  /** Quit and install the downloaded update. No-op outside packaged builds. */
+  installUpdate: () => Promise<void>
 }
 
 declare global {

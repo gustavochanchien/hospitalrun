@@ -21,10 +21,23 @@ interface AppInfo {
   version: string
 }
 
+export interface LanInfo {
+  /** Canonical LAN URL (typically `http://<ip>:<port>`). */
+  url: string
+  /** Advertised mDNS hostname (e.g. `hospitalrun.local`). */
+  hostname: string
+}
+
 interface HubRouterOptions {
   staticRoot: string
   getBackendConfig: () => BackendConfig | null
   appInfo: AppInfo
+  /**
+   * Returns the hub's LAN addressing for the `/_discover` endpoint.
+   * Called per-request so a freshly-acquired IP shows up without a
+   * server restart.
+   */
+  getLanInfo?: () => LanInfo
   /** Optional sub-router (e.g. auth-local) mounted before the static catch-all. */
   authRouter?: Hono
 }
@@ -100,6 +113,20 @@ export function createHubRouter(opts: HubRouterOptions): Hono {
     c.json({ ok: true, app: appInfo.name, version: appInfo.version }),
   )
 
+  router.get('/_discover', (c) => {
+    const lan = opts.getLanInfo?.()
+    return c.json(
+      {
+        app: appInfo.name,
+        version: appInfo.version,
+        url: lan?.url ?? null,
+        hostname: lan?.hostname ?? null,
+      },
+      200,
+      { 'cache-control': 'no-store' },
+    )
+  })
+
   if (opts.authRouter) {
     router.route('/', opts.authRouter)
   }
@@ -144,6 +171,7 @@ export function createHubRouter(opts: HubRouterOptions): Hono {
 
 export interface StartHubServerOptions {
   authRouter?: Hono
+  getLanInfo?: () => LanInfo
 }
 
 export async function startHubServer(opts: StartHubServerOptions = {}): Promise<ServerHandle> {
@@ -154,6 +182,7 @@ export async function startHubServer(opts: StartHubServerOptions = {}): Promise<
     getBackendConfig: () => cachedBackend,
     appInfo: { name: app.getName(), version: app.getVersion() },
     authRouter: opts.authRouter,
+    getLanInfo: opts.getLanInfo,
   })
 
   const server = http.createServer(async (req, res) => {

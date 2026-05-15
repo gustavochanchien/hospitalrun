@@ -13,6 +13,15 @@ type ProbeResult =
   | { status: 'ok' }
   | { status: 'error'; message: string }
 
+type HubProbe =
+  | { status: 'idle' }
+  | { status: 'searching' }
+  | { status: 'found'; url: string; hostname: string | null }
+  | { status: 'not-found' }
+
+const HUB_DISCOVER_URL = 'http://hospitalrun.local:5174/_discover'
+const HUB_APP_NAME = 'HospitalRun'
+
 async function probeServer(url: string, anonKey: string): Promise<ProbeResult> {
   try {
     const res = await fetch(`${url}/auth/v1/health`, {
@@ -28,9 +37,38 @@ async function probeServer(url: string, anonKey: string): Promise<ProbeResult> {
   }
 }
 
+async function probeLanHub(): Promise<HubProbe> {
+  try {
+    const res = await fetch(HUB_DISCOVER_URL, { cache: 'no-store' })
+    if (!res.ok) return { status: 'not-found' }
+    const body = (await res.json()) as {
+      app?: unknown
+      url?: unknown
+      hostname?: unknown
+    }
+    if (body.app !== HUB_APP_NAME || typeof body.url !== 'string') {
+      return { status: 'not-found' }
+    }
+    return {
+      status: 'found',
+      url: body.url,
+      hostname: typeof body.hostname === 'string' ? body.hostname : null,
+    }
+  } catch {
+    return { status: 'not-found' }
+  }
+}
+
 interface CloudConnectFormProps {
   onBack?: () => void
   showCreateProjectLink?: boolean
+  /**
+   * Show a "Find HospitalRun hub on this network" button that probes the
+   * advertised mDNS hostname for a local hub. Useful when a tablet/phone
+   * lands on the setup page from a non-hub origin and the user doesn't
+   * know the hub's IP.
+   */
+  showFindHub?: boolean
   /**
    * Called after the form successfully saves valid credentials. The
    * caller decides whether to reload or chain into the next step (e.g.
@@ -43,16 +81,28 @@ interface CloudConnectFormProps {
 export function CloudConnectForm({
   onBack,
   showCreateProjectLink = false,
+  showFindHub = false,
   onSaved,
   submitLabel = 'Connect',
 }: CloudConnectFormProps) {
   const [probe, setProbe] = useState<ProbeResult>({ status: 'idle' })
+  const [hubProbe, setHubProbe] = useState<HubProbe>({ status: 'idle' })
   const [saving, setSaving] = useState(false)
 
   const form = useForm<SetupFormData>({
     resolver: zodResolver(setupSchema),
     defaultValues: { url: '', anonKey: '' },
   })
+
+  const onFindHub = async () => {
+    setHubProbe({ status: 'searching' })
+    setHubProbe(await probeLanHub())
+  }
+
+  const openFoundHub = () => {
+    if (hubProbe.status !== 'found') return
+    window.location.assign(hubProbe.url)
+  }
 
   const onTest = async () => {
     const values = form.getValues()
@@ -103,6 +153,58 @@ export function CloudConnectForm({
           >
             Open Supabase
           </Button>
+        </div>
+      )}
+
+      {showFindHub && (
+        <div className="rounded-md border bg-muted/40 p-3 text-sm">
+          <p className="mb-2 font-medium">On the clinic's network?</p>
+          <p className="mb-3 text-xs text-muted-foreground">
+            Scan this network for a HospitalRun hub instead of entering a
+            server URL.
+          </p>
+          {hubProbe.status === 'idle' && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={() => void onFindHub()}
+              disabled={saving}
+            >
+              Find hub on this network
+            </Button>
+          )}
+          {hubProbe.status === 'searching' && (
+            <p className="text-xs text-muted-foreground">Searching…</p>
+          )}
+          {hubProbe.status === 'found' && (
+            <div className="space-y-2">
+              <p className="text-xs">
+                Found a HospitalRun hub at{' '}
+                <span className="font-mono">{hubProbe.url}</span>.
+              </p>
+              <Button type="button" size="sm" onClick={openFoundHub}>
+                Open hub
+              </Button>
+            </div>
+          )}
+          {hubProbe.status === 'not-found' && (
+            <div className="space-y-2">
+              <p className="text-xs text-muted-foreground">
+                No HospitalRun hub found on this network. You can enter
+                the server URL below instead.
+              </p>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => void onFindHub()}
+                disabled={saving}
+              >
+                Try again
+              </Button>
+            </div>
+          )}
         </div>
       )}
 

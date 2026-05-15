@@ -28,6 +28,8 @@ function installFakeIPC(getRunMode: () => Promise<'solo' | 'hub' | null>) {
     runBackup: async () => null,
     getBackupStatus: async () => ({ lastBackupAt: null, lastDestination: null, lastError: null }),
     restoreBackup: async () => null,
+    onUpdateDownloaded: () => () => {},
+    installUpdate: async () => {},
   }
   window.hospitalrunIPC = fake
 }

@@ -4,8 +4,10 @@ import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { AppSidebar } from '@/components/layout/AppSidebar'
 import { NetworkStatusBanner } from '@/components/network-status-banner'
+import { UpdateAvailableBanner } from '@/components/update-available-banner'
 import { hasBackendConfig } from '@/lib/supabase/client'
 import { isDemoMode } from '@/lib/demo/seed'
+import { useHubReadyToast } from '@/hooks/useHubReadyToast'
 
 export const Route = createFileRoute('/_auth')({
   beforeLoad: async () => {
@@ -61,11 +63,13 @@ export const Route = createFileRoute('/_auth')({
 })
 
 function AuthLayout() {
+  useHubReadyToast()
   return (
     <TooltipProvider>
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
+          <UpdateAvailableBanner />
           <NetworkStatusBanner />
           <Outlet />
         </SidebarInset>

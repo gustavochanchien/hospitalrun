@@ -58,6 +58,8 @@ function installFakeIPC(overrides: Partial<DesktopIPC> = {}): DesktopIPC {
     runBackup: async () => null,
     getBackupStatus: async () => ({ lastBackupAt: null, lastDestination: null, lastError: null }),
     restoreBackup: async () => null,
+    onUpdateDownloaded: () => () => {},
+    installUpdate: async () => {},
     ...overrides,
   }
   window.hospitalrunIPC = fake

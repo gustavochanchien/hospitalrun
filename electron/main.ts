@@ -62,9 +62,9 @@ app.whenReady().then(async () => {
 
   await createWindow()
 
-  // Check for updates after the window is up so any user prompts have
-  // a parent window to attach to.
-  configureAutoUpdater()
+  // Check for updates after the window is up so the renderer can
+  // receive the `update-downloaded` event and show its banner.
+  configureAutoUpdater(() => mainWindow)
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

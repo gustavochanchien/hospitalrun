@@ -5,7 +5,7 @@ import {
   startHubServer,
   stopHubServer,
 } from './server.js'
-import { getLanIp, startMdns, stopMdns } from './mdns.js'
+import { getLanIp, MDNS_HOSTNAME, startMdns, stopMdns } from './mdns.js'
 import { defaultLogStorePath, openLogStore, type LogStore } from './log-store.js'
 import { defaultAuthCachePath, openAuthCache, type AuthCache } from './auth-cache.js'
 import { loadOrCreateHubKeys, type HubKeySet } from './hub-keys.js'
@@ -94,7 +94,16 @@ async function startHub(): Promise<HubInfo> {
   })
 
   if (!httpHandle) {
-    httpHandle = await startHubServer({ authRouter })
+    httpHandle = await startHubServer({
+      authRouter,
+      getLanInfo: () => {
+        const ip = getLanIp()
+        return {
+          url: `http://${ip}:${httpHandle!.port}`,
+          hostname: MDNS_HOSTNAME,
+        }
+      },
+    })
   }
   startMdns(httpHandle.port)
   await startRelayIfReady()

@@ -137,8 +137,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "hospitalrun",
-        "repo": "hospitalrun-frontend"
+        "owner": "gustavochanchien",
+        "repo": "hospitalrun"
       }
     ]
   }

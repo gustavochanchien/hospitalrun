@@ -118,7 +118,21 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
           computer.
         </p>
 
-        <Button className="w-full" onClick={() => window.location.assign('/')}>
+        <Button
+          className="w-full"
+          onClick={() => {
+            try {
+              localStorage.setItem(
+                'hr_hub_just_started',
+                JSON.stringify({ url: hubInfo.url }),
+              )
+            } catch {
+              // localStorage may be unavailable (private mode); the splash
+              // is a nice-to-have, not load-bearing.
+            }
+            window.location.assign('/')
+          }}
+        >
           Open HospitalRun
         </Button>
       </div>

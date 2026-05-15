@@ -50,6 +50,8 @@ function installFakeIPC(overrides: Partial<DesktopIPC> = {}): DesktopIPC {
     runBackup: async () => null,
     getBackupStatus: async () => ({ lastBackupAt: null, lastDestination: null, lastError: null }),
     restoreBackup: async () => null,
+    onUpdateDownloaded: () => () => {},
+    installUpdate: async () => {},
     ...overrides,
   }
   window.hospitalrunIPC = fake
@@ -131,5 +133,75 @@ describe('CloudConnectForm', () => {
     await userEvent.type(screen.getByLabelText(/Anon key/i), validKey)
     await userEvent.click(screen.getByRole('button', { name: /Test connection/i }))
     expect(await screen.findByText(/responded with 500/i)).toBeInTheDocument()
+  })
+
+  describe('Find hub on network', () => {
+    it('does not show the Find Hub block by default', () => {
+      render(<CloudConnectForm />)
+      expect(
+        screen.queryByRole('button', { name: /find hub on this network/i }),
+      ).not.toBeInTheDocument()
+    })
+
+    it('shows the Find Hub button when showFindHub is set', () => {
+      render(<CloudConnectForm showFindHub />)
+      expect(
+        screen.getByRole('button', { name: /find hub on this network/i }),
+      ).toBeInTheDocument()
+    })
+
+    it('probes /_discover and navigates to the discovered URL on success', async () => {
+      fetchSpy.mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            app: 'HospitalRun',
+            version: '1.0.0',
+            url: 'http://192.168.1.50:5174',
+            hostname: 'hospitalrun.local',
+          }),
+          { status: 200, headers: { 'content-type': 'application/json' } },
+        ),
+      )
+      render(<CloudConnectForm showFindHub />)
+      await userEvent.click(
+        screen.getByRole('button', { name: /find hub on this network/i }),
+      )
+      const [calledUrl] = fetchSpy.mock.calls[0] as [string, RequestInit]
+      expect(calledUrl).toBe('http://hospitalrun.local:5174/_discover')
+      const openHub = await screen.findByRole('button', { name: /open hub/i })
+      await userEvent.click(openHub)
+      expect(assignSpy).toHaveBeenCalledWith('http://192.168.1.50:5174')
+    })
+
+    it('shows a not-found message when /_discover fails', async () => {
+      fetchSpy.mockRejectedValueOnce(new Error('network'))
+      render(<CloudConnectForm showFindHub />)
+      await userEvent.click(
+        screen.getByRole('button', { name: /find hub on this network/i }),
+      )
+      expect(
+        await screen.findByText(/no hospitalrun hub found/i),
+      ).toBeInTheDocument()
+      expect(
+        screen.getByRole('button', { name: /try again/i }),
+      ).toBeInTheDocument()
+    })
+
+    it('treats a non-HospitalRun /_discover response as not-found', async () => {
+      fetchSpy.mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({ app: 'OtherApp', url: 'http://x' }),
+          { status: 200 },
+        ),
+      )
+      render(<CloudConnectForm showFindHub />)
+      await userEvent.click(
+        screen.getByRole('button', { name: /find hub on this network/i }),
+      )
+      expect(
+        await screen.findByText(/no hospitalrun hub found/i),
+      ).toBeInTheDocument()
+      expect(assignSpy).not.toHaveBeenCalled()
+    })
   })
 })

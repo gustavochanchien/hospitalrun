@@ -27,6 +27,12 @@ interface BackupStatus {
   lastError: string | null
 }
 
+interface UpdateDownloadedPayload {
+  version: string
+  releaseNotes?: string | null
+  releaseDate?: string | null
+}
+
 interface DesktopIPC {
   getRunMode: () => Promise<RunMode | null>
   setRunMode: (mode: RunMode) => Promise<void>
@@ -39,6 +45,8 @@ interface DesktopIPC {
   runBackup: (targetParent?: string) => Promise<BackupResult | null>
   getBackupStatus: () => Promise<BackupStatus>
   restoreBackup: (sourceFolderPath?: string) => Promise<RestoreResult | null>
+  onUpdateDownloaded: (cb: (info: UpdateDownloadedPayload) => void) => () => void
+  installUpdate: () => Promise<void>
 }
 
 const api: DesktopIPC = {
@@ -53,6 +61,14 @@ const api: DesktopIPC = {
   runBackup: (targetParent) => ipcRenderer.invoke('desktop:runBackup', targetParent),
   getBackupStatus: () => ipcRenderer.invoke('desktop:getBackupStatus'),
   restoreBackup: (sourceFolderPath) => ipcRenderer.invoke('desktop:restoreBackup', sourceFolderPath),
+  onUpdateDownloaded: (cb) => {
+    const listener = (_evt: unknown, info: UpdateDownloadedPayload) => cb(info)
+    ipcRenderer.on('desktop:update-downloaded', listener)
+    return () => {
+      ipcRenderer.removeListener('desktop:update-downloaded', listener)
+    }
+  },
+  installUpdate: () => ipcRenderer.invoke('desktop:installUpdate'),
 }
 
 contextBridge.exposeInMainWorld('hospitalrunIPC', api)
