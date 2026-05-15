@@ -15,5 +15,25 @@
     "edit": "Ubah",
     "save": "Simpan",
     "deactivate": "Nonaktifkan"
+  },
+  "appearance": {
+    "title": "Tampilan",
+    "theme": "Tema",
+    "help": "Original cocok dengan tampilan klasik HospitalRun. Pilih Abyss atau Cappuccino untuk mode gelap."
+  },
+  "language": {
+    "title": "Bahasa",
+    "displayLanguage": "Bahasa tampilan",
+    "help": "Terjemahan bahasa tambahan akan ditambahkan seiring waktu."
+  },
+  "server": {
+    "title": "Koneksi server",
+    "connectedTo": "Tersambung ke",
+    "notSet": "(belum diatur)",
+    "help": "Mengganti server akan mengeluarkan Anda dan menghapus semua data lokal di perangkat ini. Catatan yang belum tersinkronisasi akan hilang.",
+    "switch": "Ganti server",
+    "confirmTitle": "Ganti ke server lain?",
+    "confirmDesc": "Tindakan ini akan mengeluarkan Anda dan menghapus semua data lokal di perangkat ini. Perubahan yang belum tersinkronisasi akan hilang. Lanjutkan?",
+    "clearError": "Tidak dapat menghapus data lokal"
   }
 }

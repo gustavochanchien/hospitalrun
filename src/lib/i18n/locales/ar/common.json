@@ -65,5 +65,19 @@
     "updateAvailableWithVersion": "إصدار جديد من HospitalRun ({{version}}) جاهز للتثبيت.",
     "restartToUpdate": "إعادة التشغيل للتحديث",
     "restarting": "جارٍ إعادة التشغيل…"
+  },
+  "auth": {
+    "signInDescription": "سجّل الدخول إلى حسابك",
+    "signUpDescription": "أنشئ حسابًا للبدء",
+    "fullName": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "signingIn": "جارٍ تسجيل الدخول…",
+    "creatingAccount": "جارٍ إنشاء الحساب…",
+    "createAccount": "إنشاء حساب",
+    "haveAccount": "هل لديك حساب بالفعل؟",
+    "noAccount": "ليس لديك حساب؟"
   }
 }

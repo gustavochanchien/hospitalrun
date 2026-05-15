@@ -15,5 +15,25 @@
     "edit": "Editar",
     "save": "Guardar",
     "deactivate": "Desactivar"
+  },
+  "appearance": {
+    "title": "Apariencia",
+    "theme": "Tema",
+    "help": "Original mantiene el aspecto clásico de HospitalRun. Elige Abyss o Cappuccino para los modos oscuros."
+  },
+  "language": {
+    "title": "Idioma",
+    "displayLanguage": "Idioma de visualización",
+    "help": "Se añadirán más traducciones con el tiempo."
+  },
+  "server": {
+    "title": "Conexión al servidor",
+    "connectedTo": "Conectado a",
+    "notSet": "(no configurado)",
+    "help": "Cambiar de servidor cierra tu sesión y borra todos los datos locales en este dispositivo. Se perderán los registros que no se hayan sincronizado.",
+    "switch": "Cambiar servidor",
+    "confirmTitle": "¿Cambiar a un servidor diferente?",
+    "confirmDesc": "Esto cierra tu sesión y borra todos los datos locales en este dispositivo. Los cambios sin sincronizar se perderán. ¿Continuar?",
+    "clearError": "No se pudieron borrar los datos locales"
   }
 }

@@ -1,4 +1,5 @@
 import { useTheme } from 'next-themes'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import {
@@ -24,16 +25,17 @@ const SWATCHES: Record<Theme, { bg: string; primary: string; sidebar: string }> 
 
 export function ThemeCard() {
   const { theme, setTheme } = useTheme()
+  const { t } = useTranslation('settings')
   const current = ((theme as Theme | undefined) ?? DEFAULT_THEME) as Theme
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Appearance</CardTitle>
+        <CardTitle>{t('appearance.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="max-w-xs space-y-2">
-          <Label>Theme</Label>
+          <Label>{t('appearance.theme')}</Label>
           <Select
             value={current}
             onValueChange={(value) => setTheme(value)}
@@ -53,8 +55,7 @@ export function ThemeCard() {
             </SelectContent>
           </Select>
           <p className="text-xs text-muted-foreground">
-            Original matches the classic HospitalRun look. Choose Abyss or
-            Cappuccino for dark modes.
+            {t('appearance.help')}
           </p>
         </div>
       </CardContent>

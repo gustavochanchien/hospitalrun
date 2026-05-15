@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { z } from 'zod/v4'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -27,6 +28,7 @@ export function LoginPage() {
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
   const { signIn, signUp } = useAuthStore()
+  const { t } = useTranslation('common')
 
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -65,7 +67,7 @@ export function LoginPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">HospitalRun</CardTitle>
           <CardDescription>
-            {isSignUp ? 'Create an account to get started' : 'Sign in to your account'}
+            {isSignUp ? t('auth.signUpDescription') : t('auth.signInDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -78,7 +80,7 @@ export function LoginPage() {
           {isSignUp ? (
             <form onSubmit={signUpForm.handleSubmit(onSignUp)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full name</Label>
+                <Label htmlFor="fullName">{t('auth.fullName')}</Label>
                 <Input id="fullName" {...signUpForm.register('fullName')} />
                 {signUpForm.formState.errors.fullName && (
                   <p className="text-sm text-destructive">
@@ -87,7 +89,7 @@ export function LoginPage() {
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="signup-email">Email</Label>
+                <Label htmlFor="signup-email">{t('auth.email')}</Label>
                 <Input id="signup-email" type="email" {...signUpForm.register('email')} />
                 {signUpForm.formState.errors.email && (
                   <p className="text-sm text-destructive">
@@ -96,7 +98,7 @@ export function LoginPage() {
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="signup-password">Password</Label>
+                <Label htmlFor="signup-password">{t('auth.password')}</Label>
                 <Input
                   id="signup-password"
                   type="password"
@@ -109,23 +111,23 @@ export function LoginPage() {
                 )}
               </div>
               <Button type="submit" className="w-full" disabled={signUpForm.formState.isSubmitting}>
-                {signUpForm.formState.isSubmitting ? 'Creating account...' : 'Create account'}
+                {signUpForm.formState.isSubmitting ? t('auth.creatingAccount') : t('auth.createAccount')}
               </Button>
               <p className="text-center text-sm text-muted-foreground">
-                Already have an account?{' '}
+                {t('auth.haveAccount')}{' '}
                 <button
                   type="button"
                   onClick={() => setIsSignUp(false)}
                   className="text-primary underline-offset-4 hover:underline"
                 >
-                  Sign in
+                  {t('auth.signIn')}
                 </button>
               </p>
             </form>
           ) : (
             <form onSubmit={loginForm.handleSubmit(onLogin)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('auth.email')}</Label>
                 <Input id="email" type="email" {...loginForm.register('email')} />
                 {loginForm.formState.errors.email && (
                   <p className="text-sm text-destructive">
@@ -134,7 +136,7 @@ export function LoginPage() {
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('auth.password')}</Label>
                 <Input id="password" type="password" {...loginForm.register('password')} />
                 {loginForm.formState.errors.password && (
                   <p className="text-sm text-destructive">
@@ -143,16 +145,16 @@ export function LoginPage() {
                 )}
               </div>
               <Button type="submit" className="w-full" disabled={loginForm.formState.isSubmitting}>
-                {loginForm.formState.isSubmitting ? 'Signing in...' : 'Sign in'}
+                {loginForm.formState.isSubmitting ? t('auth.signingIn') : t('auth.signIn')}
               </Button>
               <p className="text-center text-sm text-muted-foreground">
-                Don&apos;t have an account?{' '}
+                {t('auth.noAccount')}{' '}
                 <button
                   type="button"
                   onClick={() => setIsSignUp(true)}
                   className="text-primary underline-offset-4 hover:underline"
                 >
-                  Sign up
+                  {t('auth.signUp')}
                 </button>
               </p>
             </form>

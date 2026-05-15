@@ -15,5 +15,25 @@
     "edit": "编辑",
     "save": "保存",
     "deactivate": "停用"
+  },
+  "appearance": {
+    "title": "外观",
+    "theme": "主题",
+    "help": "Original 与经典的 HospitalRun 外观一致。如需暗色模式，请选择 Abyss 或 Cappuccino。"
+  },
+  "language": {
+    "title": "语言",
+    "displayLanguage": "显示语言",
+    "help": "更多语言翻译将陆续加入。"
+  },
+  "server": {
+    "title": "服务器连接",
+    "connectedTo": "已连接到",
+    "notSet": "(未设置)",
+    "help": "切换服务器将使您退出登录，并清除此设备上的所有本地数据。任何尚未完成同步的记录都将丢失。",
+    "switch": "切换服务器",
+    "confirmTitle": "切换到其他服务器？",
+    "confirmDesc": "此操作将使您退出登录，并清除此设备上的所有本地数据。未同步的更改将丢失。是否继续？",
+    "clearError": "无法清除本地数据"
   }
 }

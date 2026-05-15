@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { isToday, format, parseISO } from 'date-fns'
 import { Users, CalendarDays, FlaskConical, AlertTriangle } from 'lucide-react'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -13,6 +14,7 @@ export const Route = createFileRoute('/_auth/')({
 })
 
 function DashboardPage() {
+  const { t } = useTranslation(['dashboard', 'common', 'patient'])
   const patients = useLiveQuery(() =>
     db.patients.filter((p) => !p._deleted).toArray(),
   )
@@ -64,30 +66,30 @@ function DashboardPage() {
 
   return (
     <>
-      <PageHeader title="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]} />
+      <PageHeader title={t('dashboard:title')} breadcrumbs={[{ label: t('dashboard:title') }]} />
       <div className="space-y-6 p-6">
         {/* Stats Cards */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatsCard
-            title="Total Patients"
+            title={t('dashboard:stats.totalPatients')}
             value={totalPatients}
             icon={<Users className="h-4 w-4 text-muted-foreground" />}
             loading={isLoading}
           />
           <StatsCard
-            title="Today's Appointments"
+            title={t('dashboard:stats.todaysAppointments')}
             value={todaysAppointments.length}
             icon={<CalendarDays className="h-4 w-4 text-muted-foreground" />}
             loading={isLoading}
           />
           <StatsCard
-            title="Open Labs"
+            title={t('dashboard:stats.openLabs')}
             value={openLabs}
             icon={<FlaskConical className="h-4 w-4 text-muted-foreground" />}
             loading={isLoading}
           />
           <StatsCard
-            title="Open Incidents"
+            title={t('dashboard:stats.openIncidents')}
             value={openIncidents}
             icon={<AlertTriangle className="h-4 w-4 text-muted-foreground" />}
             loading={isLoading}
@@ -98,7 +100,7 @@ function DashboardPage() {
           {/* Recent Patients */}
           <Card>
             <CardHeader>
-              <CardTitle>Recent Patients</CardTitle>
+              <CardTitle>{t('dashboard:recentPatients')}</CardTitle>
             </CardHeader>
             <CardContent>
               {isLoading ? (
@@ -109,12 +111,12 @@ function DashboardPage() {
                 </div>
               ) : recentPatients.length === 0 ? (
                 <p className="text-sm text-muted-foreground">
-                  No patients yet.{' '}
+                  {t('dashboard:noPatients')}{' '}
                   <Link
                     to="/patients/new"
                     className="text-primary underline-offset-4 hover:underline"
                   >
-                    Add a patient
+                    {t('dashboard:addPatient')}
                   </Link>
                 </p>
               ) : (
@@ -132,7 +134,7 @@ function DashboardPage() {
                         </p>
                         {patient.mrn && (
                           <p className="text-xs text-muted-foreground">
-                            MRN: {patient.mrn}
+                            {t('patient:fields.mrn')}: {patient.mrn}
                           </p>
                         )}
                       </div>
@@ -155,7 +157,7 @@ function DashboardPage() {
           {/* Today's Appointments */}
           <Card>
             <CardHeader>
-              <CardTitle>Today&apos;s Appointments</CardTitle>
+              <CardTitle>{t('dashboard:todaysAppointments')}</CardTitle>
             </CardHeader>
             <CardContent>
               {isLoading ? (
@@ -166,7 +168,7 @@ function DashboardPage() {
                 </div>
               ) : sortedTodayAppointments.length === 0 ? (
                 <p className="text-sm text-muted-foreground">
-                  No appointments today.
+                  {t('dashboard:noAppointments')}
                 </p>
               ) : (
                 <div className="space-y-2">
@@ -216,6 +218,7 @@ function AppointmentRow({
 }: {
   appointment: { id: string; patientId: string; startTime: string; type: string | null; status: string }
 }) {
+  const { t } = useTranslation('common')
   const patient = useLiveQuery(
     () => db.patients.get(appointment.patientId),
     [appointment.patientId],
@@ -238,7 +241,7 @@ function AppointmentRow({
         <p className="text-sm font-medium">
           {patient
             ? `${patient.givenName} ${patient.familyName}`
-            : 'Loading...'}
+            : t('actions.loading')}
         </p>
         <p className="text-xs text-muted-foreground">
           {format(parseISO(appointment.startTime), 'h:mm a')}

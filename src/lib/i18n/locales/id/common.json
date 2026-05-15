@@ -65,5 +65,19 @@
     "updateAvailableWithVersion": "Versi baru HospitalRun ({{version}}) siap dipasang.",
     "restartToUpdate": "Mulai ulang untuk memperbarui",
     "restarting": "Memulai ulang…"
+  },
+  "auth": {
+    "signInDescription": "Masuk ke akun Anda",
+    "signUpDescription": "Buat akun untuk memulai",
+    "fullName": "Nama lengkap",
+    "email": "Email",
+    "password": "Kata sandi",
+    "signIn": "Masuk",
+    "signUp": "Daftar",
+    "signingIn": "Sedang masuk…",
+    "creatingAccount": "Membuat akun…",
+    "createAccount": "Buat akun",
+    "haveAccount": "Sudah punya akun?",
+    "noAccount": "Belum punya akun?"
   }
 }

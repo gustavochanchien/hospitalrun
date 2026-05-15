@@ -65,5 +65,19 @@
     "updateAvailableWithVersion": "HospitalRun 的新版本 ({{version}}) 已可安装。",
     "restartToUpdate": "重启以更新",
     "restarting": "正在重启…"
+  },
+  "auth": {
+    "signInDescription": "登录您的账户",
+    "signUpDescription": "创建账户以开始",
+    "fullName": "姓名",
+    "email": "电子邮件",
+    "password": "密码",
+    "signIn": "登录",
+    "signUp": "注册",
+    "signingIn": "正在登录…",
+    "creatingAccount": "正在创建账户…",
+    "createAccount": "创建账户",
+    "haveAccount": "已经有账户？",
+    "noAccount": "还没有账户？"
   }
 }

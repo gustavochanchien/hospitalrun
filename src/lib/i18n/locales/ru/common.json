@@ -65,5 +65,19 @@
     "updateAvailableWithVersion": "Новая версия HospitalRun ({{version}}) готова к установке.",
     "restartToUpdate": "Перезапустить для обновления",
     "restarting": "Перезапуск…"
+  },
+  "auth": {
+    "signInDescription": "Войдите в свой аккаунт",
+    "signUpDescription": "Создайте аккаунт, чтобы начать",
+    "fullName": "Полное имя",
+    "email": "Email",
+    "password": "Пароль",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "signingIn": "Вход…",
+    "creatingAccount": "Создание аккаунта…",
+    "createAccount": "Создать аккаунт",
+    "haveAccount": "Уже есть аккаунт?",
+    "noAccount": "Нет аккаунта?"
   }
 }

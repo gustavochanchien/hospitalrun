@@ -15,5 +15,25 @@
     "edit": "Bearbeiten",
     "save": "Speichern",
     "deactivate": "Deaktivieren"
+  },
+  "appearance": {
+    "title": "Erscheinungsbild",
+    "theme": "Design",
+    "help": "Original entspricht dem klassischen HospitalRun-Look. Wählen Sie Abyss oder Cappuccino für dunkle Modi."
+  },
+  "language": {
+    "title": "Sprache",
+    "displayLanguage": "Anzeigesprache",
+    "help": "Weitere Sprachübersetzungen werden im Laufe der Zeit hinzugefügt."
+  },
+  "server": {
+    "title": "Serververbindung",
+    "connectedTo": "Verbunden mit",
+    "notSet": "(nicht gesetzt)",
+    "help": "Beim Wechsel des Servers werden Sie abgemeldet und alle lokalen Daten auf diesem Gerät gelöscht. Noch nicht synchronisierte Datensätze gehen verloren.",
+    "switch": "Server wechseln",
+    "confirmTitle": "Zu einem anderen Server wechseln?",
+    "confirmDesc": "Dadurch werden Sie abgemeldet und alle lokalen Daten auf diesem Gerät gelöscht. Nicht synchronisierte Änderungen gehen verloren. Fortfahren?",
+    "clearError": "Lokale Daten konnten nicht gelöscht werden"
   }
 }

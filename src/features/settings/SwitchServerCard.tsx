@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -13,6 +14,7 @@ import { db } from '@/lib/db'
 export function SwitchServerCard() {
   const [confirmOpen, setConfirmOpen] = useState(false)
   const config = getBackendConfig()
+  const { t } = useTranslation('settings')
 
   async function handleSwitch() {
     try {
@@ -24,7 +26,7 @@ export function SwitchServerCard() {
       await db.delete()
     } catch (err) {
       toast.error(
-        `Couldn't clear local data: ${err instanceof Error ? err.message : String(err)}`,
+        `${t('server.clearError')}: ${err instanceof Error ? err.message : String(err)}`,
       )
       return
     }
@@ -35,27 +37,26 @@ export function SwitchServerCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Server Connection</CardTitle>
+        <CardTitle>{t('server.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-1 text-sm">
-          <div className="text-muted-foreground">Connected to</div>
-          <code className="block break-all text-xs">{config?.url ?? '(not set)'}</code>
+          <div className="text-muted-foreground">{t('server.connectedTo')}</div>
+          <code className="block break-all text-xs">{config?.url ?? t('server.notSet')}</code>
         </div>
         <p className="text-xs text-muted-foreground">
-          Switching servers signs you out and clears all local data on this
-          device. Any records that haven't finished syncing will be lost.
+          {t('server.help')}
         </p>
         <Button variant="outline" onClick={() => setConfirmOpen(true)}>
-          Switch Server
+          {t('server.switch')}
         </Button>
       </CardContent>
       <ConfirmDialog
         open={confirmOpen}
         onOpenChange={setConfirmOpen}
-        title="Switch to a different server?"
-        description="This signs you out and erases all local data on this device. Unsynced changes will be lost. Continue?"
-        confirmLabel="Switch Server"
+        title={t('server.confirmTitle')}
+        description={t('server.confirmDesc')}
+        confirmLabel={t('server.switch')}
         onConfirm={handleSwitch}
       />
     </Card>

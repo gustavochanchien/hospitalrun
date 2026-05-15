@@ -15,5 +15,25 @@
     "edit": "Düzenle",
     "save": "Kaydet",
     "deactivate": "Devre dışı bırak"
+  },
+  "appearance": {
+    "title": "Görünüm",
+    "theme": "Tema",
+    "help": "Original klasik HospitalRun görünümüne karşılık gelir. Koyu modlar için Abyss veya Cappuccino'yu seçin."
+  },
+  "language": {
+    "title": "Dil",
+    "displayLanguage": "Görüntü dili",
+    "help": "Diğer dil çevirileri zaman içinde eklenecektir."
+  },
+  "server": {
+    "title": "Sunucu bağlantısı",
+    "connectedTo": "Bağlı",
+    "notSet": "(ayarlanmamış)",
+    "help": "Sunucu değiştirme oturumunuzu kapatır ve bu cihazdaki tüm yerel verileri siler. Senkronizasyonu tamamlanmamış kayıtlar kaybolur.",
+    "switch": "Sunucu değiştir",
+    "confirmTitle": "Farklı bir sunucuya geçilsin mi?",
+    "confirmDesc": "Bu, oturumunuzu kapatır ve bu cihazdaki tüm yerel verileri siler. Senkronize edilmemiş değişiklikler kaybolur. Devam edilsin mi?",
+    "clearError": "Yerel veriler silinemedi"
   }
 }

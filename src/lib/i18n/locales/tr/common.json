@@ -65,5 +65,19 @@
     "updateAvailableWithVersion": "HospitalRun'ın yeni bir sürümü ({{version}}) kuruluma hazır.",
     "restartToUpdate": "Güncellemek için yeniden başlat",
     "restarting": "Yeniden başlatılıyor…"
+  },
+  "auth": {
+    "signInDescription": "Hesabınıza giriş yapın",
+    "signUpDescription": "Başlamak için bir hesap oluşturun",
+    "fullName": "Ad Soyad",
+    "email": "E-posta",
+    "password": "Parola",
+    "signIn": "Giriş yap",
+    "signUp": "Kayıt ol",
+    "signingIn": "Giriş yapılıyor…",
+    "creatingAccount": "Hesap oluşturuluyor…",
+    "createAccount": "Hesap oluştur",
+    "haveAccount": "Zaten hesabınız var mı?",
+    "noAccount": "Hesabınız yok mu?"
   }
 }

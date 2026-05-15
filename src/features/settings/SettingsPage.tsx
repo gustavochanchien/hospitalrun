@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 import { db } from '@/lib/db'
 import { useAuthStore } from '@/features/auth/auth.store'
 import { supabase } from '@/lib/supabase/client'
@@ -199,15 +200,16 @@ function SeedDataCard({ orgId }: { orgId: string | null }) {
 function LanguageCard() {
   const language = useLanguageStore((s) => s.language)
   const setLanguage = useLanguageStore((s) => s.setLanguage)
+  const { t } = useTranslation('settings')
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Language</CardTitle>
+        <CardTitle>{t('language.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="max-w-xs space-y-2">
-          <Label htmlFor="language-select">Display Language</Label>
+          <Label htmlFor="language-select">{t('language.displayLanguage')}</Label>
           <Select
             value={language}
             onValueChange={(lang) => setLanguage(lang as LanguageCode)}
@@ -224,7 +226,7 @@ function LanguageCard() {
             </SelectContent>
           </Select>
           <p className="text-xs text-muted-foreground">
-            Additional language translations will be added over time.
+            {t('language.help')}
           </p>
         </div>
       </CardContent>

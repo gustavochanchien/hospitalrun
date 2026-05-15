@@ -65,5 +65,19 @@
     "updateAvailableWithVersion": "HospitalRun の新しいバージョン ({{version}}) がインストール可能です。",
     "restartToUpdate": "再起動して更新",
     "restarting": "再起動中…"
+  },
+  "auth": {
+    "signInDescription": "アカウントにサインインしてください",
+    "signUpDescription": "アカウントを作成して始める",
+    "fullName": "氏名",
+    "email": "メール",
+    "password": "パスワード",
+    "signIn": "サインイン",
+    "signUp": "登録",
+    "signingIn": "サインイン中…",
+    "creatingAccount": "アカウントを作成中…",
+    "createAccount": "アカウントを作成",
+    "haveAccount": "すでにアカウントをお持ちですか？",
+    "noAccount": "アカウントをお持ちでないですか？"
   }
 }

@@ -15,5 +15,25 @@
     "edit": "編集",
     "save": "保存",
     "deactivate": "無効化"
+  },
+  "appearance": {
+    "title": "外観",
+    "theme": "テーマ",
+    "help": "Original はクラシックな HospitalRun の見た目です。ダークモードには Abyss または Cappuccino を選択してください。"
+  },
+  "language": {
+    "title": "言語",
+    "displayLanguage": "表示言語",
+    "help": "今後さらに多くの言語翻訳が追加されます。"
+  },
+  "server": {
+    "title": "サーバー接続",
+    "connectedTo": "接続先",
+    "notSet": "(未設定)",
+    "help": "サーバーを切り替えるとサインアウトされ、このデバイス上のすべてのローカルデータが削除されます。同期未完了のレコードは失われます。",
+    "switch": "サーバーを切り替え",
+    "confirmTitle": "別のサーバーに切り替えますか？",
+    "confirmDesc": "この操作によりサインアウトされ、このデバイス上のすべてのローカルデータが削除されます。未同期の変更は失われます。続行しますか？",
+    "clearError": "ローカルデータを消去できませんでした"
   }
 }

@@ -15,5 +15,25 @@
     "edit": "Edit",
     "save": "Save",
     "deactivate": "Deactivate"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "theme": "Theme",
+    "help": "Original matches the classic HospitalRun look. Choose Abyss or Cappuccino for dark modes."
+  },
+  "language": {
+    "title": "Language",
+    "displayLanguage": "Display Language",
+    "help": "Additional language translations will be added over time."
+  },
+  "server": {
+    "title": "Server Connection",
+    "connectedTo": "Connected to",
+    "notSet": "(not set)",
+    "help": "Switching servers signs you out and clears all local data on this device. Any records that haven't finished syncing will be lost.",
+    "switch": "Switch Server",
+    "confirmTitle": "Switch to a different server?",
+    "confirmDesc": "This signs you out and erases all local data on this device. Unsynced changes will be lost. Continue?",
+    "clearError": "Couldn't clear local data"
   }
 }
