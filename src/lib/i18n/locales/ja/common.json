@@ -56,5 +56,14 @@
     "offlineDescription": "再接続時に変更が同期されます。",
     "online": "オンラインに戻りました",
     "onlineDescription": "保留中の変更を同期しています…"
+  },
+  "layout": {
+    "navigation": "ナビゲーション",
+    "signOut": "サインアウト",
+    "user": "ユーザー",
+    "updateAvailable": "HospitalRun の新しいバージョンがインストール可能です。",
+    "updateAvailableWithVersion": "HospitalRun の新しいバージョン ({{version}}) がインストール可能です。",
+    "restartToUpdate": "再起動して更新",
+    "restarting": "再起動中…"
   }
 }

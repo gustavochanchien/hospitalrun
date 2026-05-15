@@ -56,5 +56,14 @@
     "offlineDescription": "Perubahan akan disinkronkan saat tersambung kembali.",
     "online": "Kembali online",
     "onlineDescription": "Menyinkronkan perubahan tertunda…"
+  },
+  "layout": {
+    "navigation": "Navigasi",
+    "signOut": "Keluar",
+    "user": "Pengguna",
+    "updateAvailable": "Versi baru HospitalRun siap dipasang.",
+    "updateAvailableWithVersion": "Versi baru HospitalRun ({{version}}) siap dipasang.",
+    "restartToUpdate": "Mulai ulang untuk memperbarui",
+    "restarting": "Memulai ulang…"
   }
 }

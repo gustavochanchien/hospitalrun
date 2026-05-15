@@ -56,5 +56,14 @@
     "offlineDescription": "ستتم مزامنة التغييرات عند إعادة الاتصال.",
     "online": "عاد الاتصال",
     "onlineDescription": "جارٍ مزامنة التغييرات المعلقة..."
+  },
+  "layout": {
+    "navigation": "التنقل",
+    "signOut": "تسجيل الخروج",
+    "user": "المستخدم",
+    "updateAvailable": "إصدار جديد من HospitalRun جاهز للتثبيت.",
+    "updateAvailableWithVersion": "إصدار جديد من HospitalRun ({{version}}) جاهز للتثبيت.",
+    "restartToUpdate": "إعادة التشغيل للتحديث",
+    "restarting": "جارٍ إعادة التشغيل…"
   }
 }

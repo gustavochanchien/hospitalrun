@@ -56,5 +56,14 @@
     "offlineDescription": "重新连接后将同步更改。",
     "online": "已重新连接",
     "onlineDescription": "正在同步待处理的更改…"
+  },
+  "layout": {
+    "navigation": "导航",
+    "signOut": "退出登录",
+    "user": "用户",
+    "updateAvailable": "HospitalRun 的新版本已可安装。",
+    "updateAvailableWithVersion": "HospitalRun 的新版本 ({{version}}) 已可安装。",
+    "restartToUpdate": "重启以更新",
+    "restarting": "正在重启…"
   }
 }

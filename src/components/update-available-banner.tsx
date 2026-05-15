@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { getIPC, isDesktop, type UpdateDownloadedPayload } from '@/lib/desktop/env'
@@ -6,6 +7,7 @@ import { getIPC, isDesktop, type UpdateDownloadedPayload } from '@/lib/desktop/e
 export function UpdateAvailableBanner() {
   const [pending, setPending] = useState<UpdateDownloadedPayload | null>(null)
   const [restarting, setRestarting] = useState(false)
+  const { t } = useTranslation('common')
 
   useEffect(() => {
     if (!isDesktop()) return
@@ -17,7 +19,9 @@ export function UpdateAvailableBanner() {
 
   if (!pending) return null
 
-  const versionLabel = pending.version ? ` (v${pending.version})` : ''
+  const message = pending.version
+    ? t('layout.updateAvailableWithVersion', { version: `v${pending.version}` })
+    : t('layout.updateAvailable')
 
   return (
     <div
@@ -26,7 +30,7 @@ export function UpdateAvailableBanner() {
       className="sticky top-0 z-40 flex flex-wrap items-center justify-center gap-3 bg-sky-600/95 px-4 py-2 text-sm font-medium text-sky-50 shadow-sm"
     >
       <Sparkles className="h-4 w-4" aria-hidden="true" />
-      <span>A new version of HospitalRun{versionLabel} is ready to install.</span>
+      <span>{message}</span>
       <Button
         size="sm"
         variant="secondary"
@@ -41,7 +45,7 @@ export function UpdateAvailableBanner() {
             })
         }}
       >
-        {restarting ? 'Restarting…' : 'Restart to update'}
+        {restarting ? t('layout.restarting') : t('layout.restartToUpdate')}
       </Button>
     </div>
   )

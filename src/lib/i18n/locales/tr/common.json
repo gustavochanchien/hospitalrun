@@ -56,5 +56,14 @@
     "offlineDescription": "Yeniden bağlandığınızda değişiklikler senkronize edilecek.",
     "online": "Yeniden çevrimiçi",
     "onlineDescription": "Bekleyen değişiklikler senkronize ediliyor…"
+  },
+  "layout": {
+    "navigation": "Gezinme",
+    "signOut": "Çıkış",
+    "user": "Kullanıcı",
+    "updateAvailable": "HospitalRun'ın yeni bir sürümü kuruluma hazır.",
+    "updateAvailableWithVersion": "HospitalRun'ın yeni bir sürümü ({{version}}) kuruluma hazır.",
+    "restartToUpdate": "Güncellemek için yeniden başlat",
+    "restarting": "Yeniden başlatılıyor…"
   }
 }

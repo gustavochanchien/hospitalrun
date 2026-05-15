@@ -1,4 +1,5 @@
 import { Link, useMatchRoute, useNavigate } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import {
   LayoutDashboard,
   Users,
@@ -33,20 +34,21 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { ChevronUp } from 'lucide-react'
 
 const navItems = [
-  { label: 'Dashboard', to: '/' as const, icon: LayoutDashboard },
-  { label: 'Patients', to: '/patients' as const, icon: Users },
-  { label: 'Appointments', to: '/appointments' as const, icon: CalendarDays },
-  { label: 'Labs', to: '/labs' as const, icon: TestTubes },
-  { label: 'Medications', to: '/medications' as const, icon: Pill },
-  { label: 'Imaging', to: '/imaging' as const, icon: ScanLine },
-  { label: 'Incidents', to: '/incidents' as const, icon: AlertTriangle },
-  { label: 'Settings', to: '/settings' as const, icon: Settings },
-]
+  { key: 'dashboard', to: '/' as const, icon: LayoutDashboard },
+  { key: 'patients', to: '/patients' as const, icon: Users },
+  { key: 'appointments', to: '/appointments' as const, icon: CalendarDays },
+  { key: 'labs', to: '/labs' as const, icon: TestTubes },
+  { key: 'medications', to: '/medications' as const, icon: Pill },
+  { key: 'imaging', to: '/imaging' as const, icon: ScanLine },
+  { key: 'incidents', to: '/incidents' as const, icon: AlertTriangle },
+  { key: 'settings', to: '/settings' as const, icon: Settings },
+] as const
 
 export function AppSidebar() {
   const { user, signOut } = useAuthStore()
   const navigate = useNavigate()
   const matchRoute = useMatchRoute()
+  const { t } = useTranslation('common')
 
   const initials = user?.email
     ? user.email
@@ -68,7 +70,7 @@ export function AppSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel>{t('layout.navigation')}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => {
@@ -78,7 +80,7 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild isActive={!!isActive}>
                       <Link to={item.to}>
                         <item.icon className="size-4" />
-                        <span>{item.label}</span>
+                        <span>{t(`nav.${item.key}`)}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -98,7 +100,7 @@ export function AppSidebar() {
                   <Avatar className="size-6">
                     <AvatarFallback className="text-xs">{initials}</AvatarFallback>
                   </Avatar>
-                  <span className="truncate text-sm">{user?.email ?? 'User'}</span>
+                  <span className="truncate text-sm">{user?.email ?? t('layout.user')}</span>
                   <ChevronUp className="ml-auto size-4" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -109,7 +111,7 @@ export function AppSidebar() {
                     await navigate({ to: '/login' })
                   }}
                 >
-                  Sign out
+                  {t('layout.signOut')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

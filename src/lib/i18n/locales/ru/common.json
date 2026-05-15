@@ -56,5 +56,14 @@
     "offlineDescription": "Изменения синхронизируются при восстановлении соединения.",
     "online": "Соединение восстановлено",
     "onlineDescription": "Синхронизация отложенных изменений…"
+  },
+  "layout": {
+    "navigation": "Навигация",
+    "signOut": "Выйти",
+    "user": "Пользователь",
+    "updateAvailable": "Новая версия HospitalRun готова к установке.",
+    "updateAvailableWithVersion": "Новая версия HospitalRun ({{version}}) готова к установке.",
+    "restartToUpdate": "Перезапустить для обновления",
+    "restarting": "Перезапуск…"
   }
 }

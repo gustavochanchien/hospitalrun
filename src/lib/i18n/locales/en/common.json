@@ -56,5 +56,14 @@
     "offlineDescription": "Changes will sync when you reconnect.",
     "online": "Back online",
     "onlineDescription": "Syncing pending changes..."
+  },
+  "layout": {
+    "navigation": "Navigation",
+    "signOut": "Sign out",
+    "user": "User",
+    "updateAvailable": "A new version of HospitalRun is ready to install.",
+    "updateAvailableWithVersion": "A new version of HospitalRun ({{version}}) is ready to install.",
+    "restartToUpdate": "Restart to update",
+    "restarting": "Restarting…"
   }
 }

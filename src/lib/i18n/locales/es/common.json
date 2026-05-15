@@ -56,5 +56,14 @@
     "offlineDescription": "Los cambios se sincronizarán cuando te reconectes.",
     "online": "De nuevo en línea",
     "onlineDescription": "Sincronizando cambios pendientes..."
+  },
+  "layout": {
+    "navigation": "Navegación",
+    "signOut": "Cerrar sesión",
+    "user": "Usuario",
+    "updateAvailable": "Una nueva versión de HospitalRun está lista para instalar.",
+    "updateAvailableWithVersion": "Una nueva versión de HospitalRun ({{version}}) está lista para instalar.",
+    "restartToUpdate": "Reiniciar para actualizar",
+    "restarting": "Reiniciando…"
   }
 }
