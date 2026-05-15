@@ -288,6 +288,92 @@
       "none": "Keine",
       "save": "Speichern",
       "cancel": "Abbrechen"
+    },
+    "appointments": {
+      "title": "Termine",
+      "newAction": "Neuer Termin",
+      "create": "Termin anlegen",
+      "noResults": "Keine Termine gefunden.",
+      "fields": {
+        "type": "Typ",
+        "startTime": "Startzeit",
+        "endTime": "Endzeit",
+        "location": "Ort",
+        "notes": "Notizen",
+        "dateTime": "Datum / Uhrzeit",
+        "status": "Status"
+      },
+      "placeholders": {
+        "type": "z. B. Nachsorge, Konsultation",
+        "location": "z. B. Raum 204"
+      }
+    },
+    "visits": {
+      "title": "Besuche",
+      "newAction": "Neuer Besuch",
+      "create": "Besuch anlegen",
+      "noResults": "Keine Besuche gefunden.",
+      "fallbackName": "Besuch",
+      "fields": {
+        "type": "Typ",
+        "status": "Status",
+        "reason": "Grund",
+        "start": "Start",
+        "end": "Ende",
+        "location": "Ort"
+      },
+      "placeholders": {
+        "type": "z. B. Stationär, Ambulant, Notfall",
+        "status": "Status auswählen",
+        "reason": "Grund des Besuchs",
+        "location": "z. B. Raum 201, Station B"
+      },
+      "statusOption": {
+        "planned": "Geplant",
+        "inProgress": "In Bearbeitung",
+        "finished": "Abgeschlossen",
+        "cancelled": "Storniert",
+        "arrived": "Angekommen",
+        "triaged": "Triagiert",
+        "onLeave": "In Urlaub"
+      }
+    },
+    "relatedPersons": {
+      "title": "Bezugspersonen",
+      "newAction": "Neue Bezugsperson",
+      "noResults": "Keine Bezugspersonen erfasst.",
+      "fields": {
+        "givenNameRequired": "Vorname *",
+        "familyNameRequired": "Nachname *",
+        "relationship": "Beziehung",
+        "phone": "Telefon",
+        "email": "E-Mail",
+        "name": "Name"
+      },
+      "save": "Speichern",
+      "cancel": "Abbrechen"
+    },
+    "history": {
+      "title": "Verlauf",
+      "filters": {
+        "field": "Feld",
+        "allFields": "Alle Felder",
+        "actor": "Akteur",
+        "actorPlaceholder": "Nach Benutzer-ID filtern",
+        "from": "Von",
+        "to": "Bis",
+        "reset": "Zurücksetzen"
+      },
+      "count_one": "{{count}} Eintrag",
+      "count_other": "{{count}} Einträge",
+      "noResults": "Keine Verlaufseinträge entsprechen diesen Filtern.",
+      "changeLabel": "<field>{{field}}</field> geändert",
+      "fromShort": "Von:",
+      "toShort": "Nach:",
+      "byLabel": "von {{user}}",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "pageOf": "Seite {{current}} von {{total}}"
     }
   }
 }

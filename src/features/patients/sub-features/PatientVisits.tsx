@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Link } from '@tanstack/react-router'
 import { db } from '@/lib/db'
@@ -55,7 +56,28 @@ function statusVariant(status: string) {
   }
 }
 
+const STATUS_OPTION_KEY: Record<VisitStatus, string> = {
+  planned: 'planned',
+  'in-progress': 'inProgress',
+  finished: 'finished',
+  cancelled: 'cancelled',
+  arrived: 'arrived',
+  triaged: 'triaged',
+  'on-leave': 'onLeave',
+}
+
+const VISIT_STATUSES: VisitStatus[] = [
+  'planned',
+  'in-progress',
+  'finished',
+  'cancelled',
+  'arrived',
+  'triaged',
+  'on-leave',
+]
+
 export function PatientVisits({ patientId }: PatientVisitsProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [type, setType] = useState('')
@@ -109,62 +131,60 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
   }
 
   if (visits === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Visits</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.visits.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Visit</Button>
+            <Button size="sm">{t('subFeatures.visits.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Visit</DialogTitle>
+              <DialogTitle>{t('subFeatures.visits.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="visit-type">Type</Label>
+                <Label htmlFor="visit-type">{t('subFeatures.visits.fields.type')}</Label>
                 <Input
                   id="visit-type"
                   value={type}
                   onChange={(e) => setType(e.target.value)}
-                  placeholder="e.g. Inpatient, Outpatient, Emergency"
+                  placeholder={t('subFeatures.visits.placeholders.type')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="visit-status">Status</Label>
+                <Label htmlFor="visit-status">{t('subFeatures.visits.fields.status')}</Label>
                 <Select
                   value={status}
                   onValueChange={(val) => setStatus(val as VisitStatus)}
                 >
                   <SelectTrigger className="w-full" id="visit-status">
-                    <SelectValue placeholder="Select status" />
+                    <SelectValue placeholder={t('subFeatures.visits.placeholders.status')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="planned">Planned</SelectItem>
-                    <SelectItem value="in-progress">In Progress</SelectItem>
-                    <SelectItem value="finished">Finished</SelectItem>
-                    <SelectItem value="cancelled">Cancelled</SelectItem>
-                    <SelectItem value="arrived">Arrived</SelectItem>
-                    <SelectItem value="triaged">Triaged</SelectItem>
-                    <SelectItem value="on-leave">On Leave</SelectItem>
+                    {VISIT_STATUSES.map((s) => (
+                      <SelectItem key={s} value={s}>
+                        {t(`subFeatures.visits.statusOption.${STATUS_OPTION_KEY[s]}` as `subFeatures.visits.statusOption.${string}`)}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="visit-reason">Reason</Label>
+                <Label htmlFor="visit-reason">{t('subFeatures.visits.fields.reason')}</Label>
                 <Textarea
                   id="visit-reason"
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
-                  placeholder="Reason for visit"
+                  placeholder={t('subFeatures.visits.placeholders.reason')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="visit-start">Start</Label>
+                <Label htmlFor="visit-start">{t('subFeatures.visits.fields.start')}</Label>
                 <Input
                   id="visit-start"
                   type="datetime-local"
@@ -173,7 +193,7 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="visit-end">End</Label>
+                <Label htmlFor="visit-end">{t('subFeatures.visits.fields.end')}</Label>
                 <Input
                   id="visit-end"
                   type="datetime-local"
@@ -182,16 +202,16 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="visit-location">Location</Label>
+                <Label htmlFor="visit-location">{t('subFeatures.visits.fields.location')}</Label>
                 <Input
                   id="visit-location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  placeholder="e.g. Room 201, Ward B"
+                  placeholder={t('subFeatures.visits.placeholders.location')}
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Visit
+                {t('subFeatures.visits.create')}
               </Button>
             </form>
           </DialogContent>
@@ -200,19 +220,19 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
 
       {visits.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No visits found.
+          {t('subFeatures.visits.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Type</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Reason</TableHead>
-                <TableHead>Start</TableHead>
-                <TableHead>End</TableHead>
-                <TableHead>Location</TableHead>
+                <TableHead>{t('subFeatures.visits.fields.type')}</TableHead>
+                <TableHead>{t('subFeatures.visits.fields.status')}</TableHead>
+                <TableHead>{t('subFeatures.visits.fields.reason')}</TableHead>
+                <TableHead>{t('subFeatures.visits.fields.start')}</TableHead>
+                <TableHead>{t('subFeatures.visits.fields.end')}</TableHead>
+                <TableHead>{t('subFeatures.visits.fields.location')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -225,7 +245,7 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
                       params={{ visitId: visit.id }}
                       className="font-medium text-primary hover:underline"
                     >
-                      {visit.type ?? 'Visit'}
+                      {visit.type ?? t('subFeatures.visits.fallbackName')}
                     </Link>
                   </TableCell>
                   <TableCell>
@@ -234,20 +254,20 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
                     </Badge>
                   </TableCell>
                   <TableCell className="max-w-[200px] truncate text-muted-foreground">
-                    {visit.reason ?? '\u2014'}
+                    {visit.reason ?? '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {visit.startDatetime
                       ? format(parseISO(visit.startDatetime), 'MMM d, yyyy h:mm a')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {visit.endDatetime
                       ? format(parseISO(visit.endDatetime), 'MMM d, yyyy h:mm a')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {visit.location ?? '\u2014'}
+                    {visit.location ?? '—'}
                   </TableCell>
                   <TableCell>
                     <Button
@@ -255,7 +275,7 @@ export function PatientVisits({ patientId }: PatientVisitsProps) {
                       size="sm"
                       onClick={() => setPendingDeleteId(visit.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

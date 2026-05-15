@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { Trans, useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { db } from '@/lib/db'
 import { Input } from '@/components/ui/input'
@@ -24,6 +25,7 @@ export function PatientHistory({
   patientId,
   defaultField,
 }: PatientHistoryProps) {
+  const { t } = useTranslation('patient')
   const history = useLiveQuery(
     () =>
       db.patientHistory
@@ -48,7 +50,7 @@ export function PatientHistory({
   }, [history])
 
   if (history === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   const actorLower = actorFilter.trim().toLowerCase()
@@ -77,11 +79,11 @@ export function PatientHistory({
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold">History</h3>
+      <h3 className="text-lg font-semibold">{t('subFeatures.history.title')}</h3>
 
       <div className="flex flex-wrap items-end gap-3">
         <div className="min-w-[160px] space-y-1">
-          <Label htmlFor="history-field">Field</Label>
+          <Label htmlFor="history-field">{t('subFeatures.history.filters.field')}</Label>
           <Select
             value={fieldFilter}
             onValueChange={(v) => {
@@ -93,7 +95,7 @@ export function PatientHistory({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All fields</SelectItem>
+              <SelectItem value="all">{t('subFeatures.history.filters.allFields')}</SelectItem>
               {fieldOptions.map((f) => (
                 <SelectItem key={f} value={f}>
                   {f}
@@ -103,10 +105,10 @@ export function PatientHistory({
           </Select>
         </div>
         <div className="min-w-[180px] space-y-1">
-          <Label htmlFor="history-actor">Actor</Label>
+          <Label htmlFor="history-actor">{t('subFeatures.history.filters.actor')}</Label>
           <Input
             id="history-actor"
-            placeholder="Filter by user ID"
+            placeholder={t('subFeatures.history.filters.actorPlaceholder')}
             value={actorFilter}
             onChange={(e) => {
               setActorFilter(e.target.value)
@@ -115,7 +117,7 @@ export function PatientHistory({
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="history-from">From</Label>
+          <Label htmlFor="history-from">{t('subFeatures.history.filters.from')}</Label>
           <Input
             id="history-from"
             type="date"
@@ -127,7 +129,7 @@ export function PatientHistory({
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="history-to">To</Label>
+          <Label htmlFor="history-to">{t('subFeatures.history.filters.to')}</Label>
           <Input
             id="history-to"
             type="date"
@@ -139,16 +141,16 @@ export function PatientHistory({
           />
         </div>
         <Button variant="outline" size="sm" onClick={resetFilters}>
-          Reset
+          {t('subFeatures.history.filters.reset')}
         </Button>
         <p className="ml-auto text-sm text-muted-foreground">
-          {filtered.length} entr{filtered.length === 1 ? 'y' : 'ies'}
+          {t('subFeatures.history.count', { count: filtered.length })}
         </p>
       </div>
 
       {filtered.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No history entries match these filters.
+          {t('subFeatures.history.noResults')}
         </p>
       ) : (
         <>
@@ -161,29 +163,35 @@ export function PatientHistory({
                 <div className="absolute -left-[5px] top-1 h-2 w-2 rounded-full bg-muted-foreground" />
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFieldFilter(entry.fieldName)
-                        setPage(0)
+                    <Trans
+                      i18nKey="subFeatures.history.changeLabel"
+                      ns="patient"
+                      values={{ field: entry.fieldName }}
+                      components={{
+                        field: (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFieldFilter(entry.fieldName)
+                              setPage(0)
+                            }}
+                            className="font-semibold text-primary hover:underline"
+                          />
+                        ),
                       }}
-                      className="font-semibold text-primary hover:underline"
-                    >
-                      {entry.fieldName}
-                    </button>{' '}
-                    changed
+                    />
                   </p>
                   <div className="flex flex-wrap gap-x-4 text-sm text-muted-foreground">
                     <span>
-                      From:{' '}
+                      {t('subFeatures.history.fromShort')}{' '}
                       <span className="font-mono">
-                        {entry.oldValue ?? '\u2014'}
+                        {entry.oldValue ?? '—'}
                       </span>
                     </span>
                     <span>
-                      To:{' '}
+                      {t('subFeatures.history.toShort')}{' '}
                       <span className="font-mono">
-                        {entry.newValue ?? '\u2014'}
+                        {entry.newValue ?? '—'}
                       </span>
                     </span>
                   </div>
@@ -191,7 +199,9 @@ export function PatientHistory({
                     <span>
                       {format(parseISO(entry.changedAt), 'MMM d, yyyy h:mm a')}
                     </span>
-                    {entry.changedBy && <span>by {entry.changedBy}</span>}
+                    {entry.changedBy && (
+                      <span>{t('subFeatures.history.byLabel', { user: entry.changedBy })}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -201,7 +211,7 @@ export function PatientHistory({
           {totalPages > 1 && (
             <div className="flex items-center justify-between pt-2">
               <p className="text-sm text-muted-foreground">
-                Page {page + 1} of {totalPages}
+                {t('subFeatures.history.pageOf', { current: page + 1, total: totalPages })}
               </p>
               <div className="flex gap-2">
                 <Button
@@ -210,7 +220,7 @@ export function PatientHistory({
                   disabled={page === 0}
                   onClick={() => setPage((p) => p - 1)}
                 >
-                  Previous
+                  {t('subFeatures.history.previous')}
                 </Button>
                 <Button
                   variant="outline"
@@ -218,7 +228,7 @@ export function PatientHistory({
                   disabled={page >= totalPages - 1}
                   onClick={() => setPage((p) => p + 1)}
                 >
-                  Next
+                  {t('subFeatures.history.next')}
                 </Button>
               </div>
             </div>

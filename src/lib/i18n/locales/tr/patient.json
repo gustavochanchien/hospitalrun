@@ -288,6 +288,92 @@
       "none": "Yok",
       "save": "Kaydet",
       "cancel": "İptal"
+    },
+    "appointments": {
+      "title": "Randevular",
+      "newAction": "Yeni randevu",
+      "create": "Randevu oluştur",
+      "noResults": "Randevu bulunamadı.",
+      "fields": {
+        "type": "Tür",
+        "startTime": "Başlangıç saati",
+        "endTime": "Bitiş saati",
+        "location": "Konum",
+        "notes": "Notlar",
+        "dateTime": "Tarih / Saat",
+        "status": "Durum"
+      },
+      "placeholders": {
+        "type": "örn. Kontrol, Konsültasyon",
+        "location": "örn. Oda 204"
+      }
+    },
+    "visits": {
+      "title": "Ziyaretler",
+      "newAction": "Yeni ziyaret",
+      "create": "Ziyaret oluştur",
+      "noResults": "Ziyaret bulunamadı.",
+      "fallbackName": "Ziyaret",
+      "fields": {
+        "type": "Tür",
+        "status": "Durum",
+        "reason": "Neden",
+        "start": "Başlangıç",
+        "end": "Bitiş",
+        "location": "Konum"
+      },
+      "placeholders": {
+        "type": "örn. Yatan hasta, Ayakta tedavi, Acil",
+        "status": "Durum seçin",
+        "reason": "Ziyaret nedeni",
+        "location": "örn. Oda 201, Servis B"
+      },
+      "statusOption": {
+        "planned": "Planlandı",
+        "inProgress": "Sürüyor",
+        "finished": "Tamamlandı",
+        "cancelled": "İptal edildi",
+        "arrived": "Geldi",
+        "triaged": "Triyaj yapıldı",
+        "onLeave": "İzinli"
+      }
+    },
+    "relatedPersons": {
+      "title": "İlgili kişiler",
+      "newAction": "Yeni ilgili kişi",
+      "noResults": "İlgili kişi kaydedilmedi.",
+      "fields": {
+        "givenNameRequired": "Ad *",
+        "familyNameRequired": "Soyad *",
+        "relationship": "Yakınlık",
+        "phone": "Telefon",
+        "email": "E-posta",
+        "name": "Ad"
+      },
+      "save": "Kaydet",
+      "cancel": "İptal"
+    },
+    "history": {
+      "title": "Geçmiş",
+      "filters": {
+        "field": "Alan",
+        "allFields": "Tüm alanlar",
+        "actor": "Aktör",
+        "actorPlaceholder": "Kullanıcı kimliğine göre filtrele",
+        "from": "Başlangıç",
+        "to": "Bitiş",
+        "reset": "Sıfırla"
+      },
+      "count_one": "{{count}} kayıt",
+      "count_other": "{{count}} kayıt",
+      "noResults": "Bu filtrelerle eşleşen geçmiş kaydı yok.",
+      "changeLabel": "<field>{{field}}</field> değişti",
+      "fromShort": "Eski:",
+      "toShort": "Yeni:",
+      "byLabel": "{{user}} tarafından",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "pageOf": "Sayfa {{current}} / {{total}}"
     }
   }
 }

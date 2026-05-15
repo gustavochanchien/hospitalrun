@@ -288,6 +288,92 @@
       "none": "Aucun",
       "save": "Enregistrer",
       "cancel": "Annuler"
+    },
+    "appointments": {
+      "title": "Rendez-vous",
+      "newAction": "Nouveau rendez-vous",
+      "create": "Créer le rendez-vous",
+      "noResults": "Aucun rendez-vous trouvé.",
+      "fields": {
+        "type": "Type",
+        "startTime": "Heure de début",
+        "endTime": "Heure de fin",
+        "location": "Lieu",
+        "notes": "Notes",
+        "dateTime": "Date / Heure",
+        "status": "Statut"
+      },
+      "placeholders": {
+        "type": "ex. Suivi, Consultation",
+        "location": "ex. Salle 204"
+      }
+    },
+    "visits": {
+      "title": "Visites",
+      "newAction": "Nouvelle visite",
+      "create": "Créer la visite",
+      "noResults": "Aucune visite trouvée.",
+      "fallbackName": "Visite",
+      "fields": {
+        "type": "Type",
+        "status": "Statut",
+        "reason": "Motif",
+        "start": "Début",
+        "end": "Fin",
+        "location": "Lieu"
+      },
+      "placeholders": {
+        "type": "ex. Hospitalisation, Consultation externe, Urgences",
+        "status": "Sélectionner le statut",
+        "reason": "Motif de la visite",
+        "location": "ex. Salle 201, Pavillon B"
+      },
+      "statusOption": {
+        "planned": "Planifiée",
+        "inProgress": "En cours",
+        "finished": "Terminée",
+        "cancelled": "Annulée",
+        "arrived": "Arrivé(e)",
+        "triaged": "Trié(e)",
+        "onLeave": "En permission"
+      }
+    },
+    "relatedPersons": {
+      "title": "Proches",
+      "newAction": "Nouveau proche",
+      "noResults": "Aucun proche enregistré.",
+      "fields": {
+        "givenNameRequired": "Prénom *",
+        "familyNameRequired": "Nom *",
+        "relationship": "Relation",
+        "phone": "Téléphone",
+        "email": "E-mail",
+        "name": "Nom"
+      },
+      "save": "Enregistrer",
+      "cancel": "Annuler"
+    },
+    "history": {
+      "title": "Historique",
+      "filters": {
+        "field": "Champ",
+        "allFields": "Tous les champs",
+        "actor": "Auteur",
+        "actorPlaceholder": "Filtrer par ID utilisateur",
+        "from": "De",
+        "to": "À",
+        "reset": "Réinitialiser"
+      },
+      "count_one": "{{count}} entrée",
+      "count_other": "{{count}} entrées",
+      "noResults": "Aucune entrée d'historique ne correspond à ces filtres.",
+      "changeLabel": "<field>{{field}}</field> modifié",
+      "fromShort": "De :",
+      "toShort": "À :",
+      "byLabel": "par {{user}}",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "pageOf": "Page {{current}} sur {{total}}"
     }
   }
 }

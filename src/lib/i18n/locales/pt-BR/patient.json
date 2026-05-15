@@ -288,6 +288,92 @@
       "none": "Nenhum",
       "save": "Salvar",
       "cancel": "Cancelar"
+    },
+    "appointments": {
+      "title": "Consultas",
+      "newAction": "Nova consulta",
+      "create": "Criar consulta",
+      "noResults": "Nenhuma consulta encontrada.",
+      "fields": {
+        "type": "Tipo",
+        "startTime": "Hora de início",
+        "endTime": "Hora de término",
+        "location": "Local",
+        "notes": "Notas",
+        "dateTime": "Data / Hora",
+        "status": "Status"
+      },
+      "placeholders": {
+        "type": "ex.: Retorno, Consulta",
+        "location": "ex.: Sala 204"
+      }
+    },
+    "visits": {
+      "title": "Visitas",
+      "newAction": "Nova visita",
+      "create": "Criar visita",
+      "noResults": "Nenhuma visita encontrada.",
+      "fallbackName": "Visita",
+      "fields": {
+        "type": "Tipo",
+        "status": "Status",
+        "reason": "Motivo",
+        "start": "Início",
+        "end": "Fim",
+        "location": "Local"
+      },
+      "placeholders": {
+        "type": "ex.: Internação, Ambulatorial, Emergência",
+        "status": "Selecione o status",
+        "reason": "Motivo da visita",
+        "location": "ex.: Sala 201, Ala B"
+      },
+      "statusOption": {
+        "planned": "Planejada",
+        "inProgress": "Em andamento",
+        "finished": "Concluída",
+        "cancelled": "Cancelada",
+        "arrived": "Chegou",
+        "triaged": "Triagem feita",
+        "onLeave": "De licença"
+      }
+    },
+    "relatedPersons": {
+      "title": "Pessoas relacionadas",
+      "newAction": "Nova pessoa relacionada",
+      "noResults": "Nenhuma pessoa relacionada registrada.",
+      "fields": {
+        "givenNameRequired": "Nome *",
+        "familyNameRequired": "Sobrenome *",
+        "relationship": "Parentesco",
+        "phone": "Telefone",
+        "email": "E-mail",
+        "name": "Nome"
+      },
+      "save": "Salvar",
+      "cancel": "Cancelar"
+    },
+    "history": {
+      "title": "Histórico",
+      "filters": {
+        "field": "Campo",
+        "allFields": "Todos os campos",
+        "actor": "Autor",
+        "actorPlaceholder": "Filtrar por ID de usuário",
+        "from": "De",
+        "to": "Até",
+        "reset": "Redefinir"
+      },
+      "count_one": "{{count}} entrada",
+      "count_other": "{{count}} entradas",
+      "noResults": "Nenhuma entrada do histórico corresponde a esses filtros.",
+      "changeLabel": "<field>{{field}}</field> alterado",
+      "fromShort": "De:",
+      "toShort": "Para:",
+      "byLabel": "por {{user}}",
+      "previous": "Anterior",
+      "next": "Próximo",
+      "pageOf": "Página {{current}} de {{total}}"
     }
   }
 }

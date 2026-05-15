@@ -288,6 +288,92 @@
       "none": "None",
       "save": "Save",
       "cancel": "Cancel"
+    },
+    "appointments": {
+      "title": "Appointments",
+      "newAction": "New Appointment",
+      "create": "Create Appointment",
+      "noResults": "No appointments found.",
+      "fields": {
+        "type": "Type",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "location": "Location",
+        "notes": "Notes",
+        "dateTime": "Date / Time",
+        "status": "Status"
+      },
+      "placeholders": {
+        "type": "e.g. Follow-up, Consultation",
+        "location": "e.g. Room 204"
+      }
+    },
+    "visits": {
+      "title": "Visits",
+      "newAction": "New Visit",
+      "create": "Create Visit",
+      "noResults": "No visits found.",
+      "fallbackName": "Visit",
+      "fields": {
+        "type": "Type",
+        "status": "Status",
+        "reason": "Reason",
+        "start": "Start",
+        "end": "End",
+        "location": "Location"
+      },
+      "placeholders": {
+        "type": "e.g. Inpatient, Outpatient, Emergency",
+        "status": "Select status",
+        "reason": "Reason for visit",
+        "location": "e.g. Room 201, Ward B"
+      },
+      "statusOption": {
+        "planned": "Planned",
+        "inProgress": "In Progress",
+        "finished": "Finished",
+        "cancelled": "Cancelled",
+        "arrived": "Arrived",
+        "triaged": "Triaged",
+        "onLeave": "On Leave"
+      }
+    },
+    "relatedPersons": {
+      "title": "Related Persons",
+      "newAction": "New Related Person",
+      "noResults": "No related persons recorded.",
+      "fields": {
+        "givenNameRequired": "First Name *",
+        "familyNameRequired": "Last Name *",
+        "relationship": "Relationship",
+        "phone": "Phone",
+        "email": "Email",
+        "name": "Name"
+      },
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "history": {
+      "title": "History",
+      "filters": {
+        "field": "Field",
+        "allFields": "All fields",
+        "actor": "Actor",
+        "actorPlaceholder": "Filter by user ID",
+        "from": "From",
+        "to": "To",
+        "reset": "Reset"
+      },
+      "count_one": "{{count}} entry",
+      "count_other": "{{count}} entries",
+      "noResults": "No history entries match these filters.",
+      "changeLabel": "<field>{{field}}</field> changed",
+      "fromShort": "From:",
+      "toShort": "To:",
+      "byLabel": "by {{user}}",
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {{current}} of {{total}}"
     }
   }
 }

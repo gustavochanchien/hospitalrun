@@ -290,6 +290,94 @@
       "none": "Нет",
       "save": "Сохранить",
       "cancel": "Отмена"
+    },
+    "appointments": {
+      "title": "Приёмы",
+      "newAction": "Новый приём",
+      "create": "Создать приём",
+      "noResults": "Приёмы не найдены.",
+      "fields": {
+        "type": "Тип",
+        "startTime": "Время начала",
+        "endTime": "Время окончания",
+        "location": "Место",
+        "notes": "Заметки",
+        "dateTime": "Дата / время",
+        "status": "Статус"
+      },
+      "placeholders": {
+        "type": "напр. Повторный приём, Консультация",
+        "location": "напр. Кабинет 204"
+      }
+    },
+    "visits": {
+      "title": "Визиты",
+      "newAction": "Новый визит",
+      "create": "Создать визит",
+      "noResults": "Визиты не найдены.",
+      "fallbackName": "Визит",
+      "fields": {
+        "type": "Тип",
+        "status": "Статус",
+        "reason": "Причина",
+        "start": "Начало",
+        "end": "Окончание",
+        "location": "Место"
+      },
+      "placeholders": {
+        "type": "напр. Стационар, Амбулатория, Скорая",
+        "status": "Выберите статус",
+        "reason": "Причина визита",
+        "location": "напр. Палата 201, Отделение B"
+      },
+      "statusOption": {
+        "planned": "Запланировано",
+        "inProgress": "В процессе",
+        "finished": "Завершено",
+        "cancelled": "Отменено",
+        "arrived": "Прибыл",
+        "triaged": "Сортировка проведена",
+        "onLeave": "В отпуске"
+      }
+    },
+    "relatedPersons": {
+      "title": "Связанные лица",
+      "newAction": "Новое связанное лицо",
+      "noResults": "Связанные лица не записаны.",
+      "fields": {
+        "givenNameRequired": "Имя *",
+        "familyNameRequired": "Фамилия *",
+        "relationship": "Отношение",
+        "phone": "Телефон",
+        "email": "Эл. почта",
+        "name": "Имя"
+      },
+      "save": "Сохранить",
+      "cancel": "Отмена"
+    },
+    "history": {
+      "title": "История",
+      "filters": {
+        "field": "Поле",
+        "allFields": "Все поля",
+        "actor": "Автор",
+        "actorPlaceholder": "Фильтр по ID пользователя",
+        "from": "С",
+        "to": "По",
+        "reset": "Сбросить"
+      },
+      "count_one": "{{count}} запись",
+      "count_few": "{{count}} записи",
+      "count_many": "{{count}} записей",
+      "count_other": "{{count}} записей",
+      "noResults": "Нет записей истории, соответствующих этим фильтрам.",
+      "changeLabel": "<field>{{field}}</field> изменено",
+      "fromShort": "Было:",
+      "toShort": "Стало:",
+      "byLabel": "от {{user}}",
+      "previous": "Назад",
+      "next": "Далее",
+      "pageOf": "Страница {{current}} из {{total}}"
     }
   }
 }

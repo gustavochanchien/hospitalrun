@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Link } from '@tanstack/react-router'
 import { db } from '@/lib/db'
@@ -47,6 +48,7 @@ function statusVariant(status: string) {
 }
 
 export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [type, setType] = useState('')
@@ -104,33 +106,33 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
   }
 
   if (appointments === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Appointments</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.appointments.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Appointment</Button>
+            <Button size="sm">{t('subFeatures.appointments.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Appointment</DialogTitle>
+              <DialogTitle>{t('subFeatures.appointments.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="appt-type">Type</Label>
+                <Label htmlFor="appt-type">{t('subFeatures.appointments.fields.type')}</Label>
                 <Input
                   id="appt-type"
                   value={type}
                   onChange={(e) => setType(e.target.value)}
-                  placeholder="e.g. Follow-up, Consultation"
+                  placeholder={t('subFeatures.appointments.placeholders.type')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="appt-start">Start Time</Label>
+                <Label htmlFor="appt-start">{t('subFeatures.appointments.fields.startTime')}</Label>
                 <Input
                   id="appt-start"
                   type="datetime-local"
@@ -140,7 +142,7 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="appt-end">End Time</Label>
+                <Label htmlFor="appt-end">{t('subFeatures.appointments.fields.endTime')}</Label>
                 <Input
                   id="appt-end"
                   type="datetime-local"
@@ -150,16 +152,16 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="appt-location">Location</Label>
+                <Label htmlFor="appt-location">{t('subFeatures.appointments.fields.location')}</Label>
                 <Input
                   id="appt-location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  placeholder="e.g. Room 204"
+                  placeholder={t('subFeatures.appointments.placeholders.location')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="appt-notes">Notes</Label>
+                <Label htmlFor="appt-notes">{t('subFeatures.appointments.fields.notes')}</Label>
                 <Textarea
                   id="appt-notes"
                   value={notes}
@@ -167,7 +169,7 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Appointment
+                {t('subFeatures.appointments.create')}
               </Button>
             </form>
           </DialogContent>
@@ -176,17 +178,17 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
 
       {appointments.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No appointments found.
+          {t('subFeatures.appointments.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Date / Time</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Location</TableHead>
+                <TableHead>{t('subFeatures.appointments.fields.dateTime')}</TableHead>
+                <TableHead>{t('subFeatures.appointments.fields.type')}</TableHead>
+                <TableHead>{t('subFeatures.appointments.fields.status')}</TableHead>
+                <TableHead>{t('subFeatures.appointments.fields.location')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -203,7 +205,7 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
                     </Link>
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {appt.type ?? '\u2014'}
+                    {appt.type ?? '—'}
                   </TableCell>
                   <TableCell>
                     <Badge variant={statusVariant(appt.status)}>
@@ -211,7 +213,7 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
                     </Badge>
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {appt.location ?? '\u2014'}
+                    {appt.location ?? '—'}
                   </TableCell>
                   <TableCell>
                     <Button
@@ -219,7 +221,7 @@ export function PatientAppointments({ patientId }: PatientAppointmentsProps) {
                       size="sm"
                       onClick={() => setPendingDeleteId(appt.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

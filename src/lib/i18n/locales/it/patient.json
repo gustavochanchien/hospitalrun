@@ -288,6 +288,92 @@
       "none": "Nessuna",
       "save": "Salva",
       "cancel": "Annulla"
+    },
+    "appointments": {
+      "title": "Appuntamenti",
+      "newAction": "Nuovo appuntamento",
+      "create": "Crea appuntamento",
+      "noResults": "Nessun appuntamento trovato.",
+      "fields": {
+        "type": "Tipo",
+        "startTime": "Ora di inizio",
+        "endTime": "Ora di fine",
+        "location": "Luogo",
+        "notes": "Note",
+        "dateTime": "Data / Ora",
+        "status": "Stato"
+      },
+      "placeholders": {
+        "type": "es. Follow-up, Consulto",
+        "location": "es. Stanza 204"
+      }
+    },
+    "visits": {
+      "title": "Visite",
+      "newAction": "Nuova visita",
+      "create": "Crea visita",
+      "noResults": "Nessuna visita trovata.",
+      "fallbackName": "Visita",
+      "fields": {
+        "type": "Tipo",
+        "status": "Stato",
+        "reason": "Motivo",
+        "start": "Inizio",
+        "end": "Fine",
+        "location": "Luogo"
+      },
+      "placeholders": {
+        "type": "es. Ricovero, Ambulatoriale, Emergenza",
+        "status": "Seleziona stato",
+        "reason": "Motivo della visita",
+        "location": "es. Stanza 201, Reparto B"
+      },
+      "statusOption": {
+        "planned": "Pianificata",
+        "inProgress": "In corso",
+        "finished": "Conclusa",
+        "cancelled": "Annullata",
+        "arrived": "Arrivato/a",
+        "triaged": "Triage eseguito",
+        "onLeave": "In permesso"
+      }
+    },
+    "relatedPersons": {
+      "title": "Persone collegate",
+      "newAction": "Nuova persona collegata",
+      "noResults": "Nessuna persona collegata registrata.",
+      "fields": {
+        "givenNameRequired": "Nome *",
+        "familyNameRequired": "Cognome *",
+        "relationship": "Relazione",
+        "phone": "Telefono",
+        "email": "Email",
+        "name": "Nome"
+      },
+      "save": "Salva",
+      "cancel": "Annulla"
+    },
+    "history": {
+      "title": "Cronologia",
+      "filters": {
+        "field": "Campo",
+        "allFields": "Tutti i campi",
+        "actor": "Autore",
+        "actorPlaceholder": "Filtra per ID utente",
+        "from": "Da",
+        "to": "A",
+        "reset": "Reimposta"
+      },
+      "count_one": "{{count}} voce",
+      "count_other": "{{count}} voci",
+      "noResults": "Nessuna voce della cronologia corrisponde a questi filtri.",
+      "changeLabel": "<field>{{field}}</field> modificato",
+      "fromShort": "Da:",
+      "toShort": "A:",
+      "byLabel": "da {{user}}",
+      "previous": "Precedente",
+      "next": "Successivo",
+      "pageOf": "Pagina {{current}} di {{total}}"
     }
   }
 }

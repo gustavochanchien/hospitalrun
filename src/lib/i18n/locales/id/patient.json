@@ -288,6 +288,92 @@
       "none": "Tidak ada",
       "save": "Simpan",
       "cancel": "Batal"
+    },
+    "appointments": {
+      "title": "Janji temu",
+      "newAction": "Janji temu baru",
+      "create": "Buat janji temu",
+      "noResults": "Tidak ada janji temu ditemukan.",
+      "fields": {
+        "type": "Tipe",
+        "startTime": "Waktu mulai",
+        "endTime": "Waktu selesai",
+        "location": "Lokasi",
+        "notes": "Catatan",
+        "dateTime": "Tanggal / Waktu",
+        "status": "Status"
+      },
+      "placeholders": {
+        "type": "mis. Tindak lanjut, Konsultasi",
+        "location": "mis. Ruang 204"
+      }
+    },
+    "visits": {
+      "title": "Kunjungan",
+      "newAction": "Kunjungan baru",
+      "create": "Buat kunjungan",
+      "noResults": "Tidak ada kunjungan ditemukan.",
+      "fallbackName": "Kunjungan",
+      "fields": {
+        "type": "Tipe",
+        "status": "Status",
+        "reason": "Alasan",
+        "start": "Mulai",
+        "end": "Selesai",
+        "location": "Lokasi"
+      },
+      "placeholders": {
+        "type": "mis. Rawat inap, Rawat jalan, Gawat darurat",
+        "status": "Pilih status",
+        "reason": "Alasan kunjungan",
+        "location": "mis. Ruang 201, Bangsal B"
+      },
+      "statusOption": {
+        "planned": "Direncanakan",
+        "inProgress": "Sedang berlangsung",
+        "finished": "Selesai",
+        "cancelled": "Dibatalkan",
+        "arrived": "Tiba",
+        "triaged": "Sudah triase",
+        "onLeave": "Cuti"
+      }
+    },
+    "relatedPersons": {
+      "title": "Orang terkait",
+      "newAction": "Orang terkait baru",
+      "noResults": "Tidak ada orang terkait tercatat.",
+      "fields": {
+        "givenNameRequired": "Nama depan *",
+        "familyNameRequired": "Nama belakang *",
+        "relationship": "Hubungan",
+        "phone": "Telepon",
+        "email": "Email",
+        "name": "Nama"
+      },
+      "save": "Simpan",
+      "cancel": "Batal"
+    },
+    "history": {
+      "title": "Riwayat",
+      "filters": {
+        "field": "Field",
+        "allFields": "Semua field",
+        "actor": "Pelaku",
+        "actorPlaceholder": "Filter berdasarkan ID pengguna",
+        "from": "Dari",
+        "to": "Ke",
+        "reset": "Setel ulang"
+      },
+      "count_one": "{{count}} entri",
+      "count_other": "{{count}} entri",
+      "noResults": "Tidak ada entri riwayat yang cocok dengan filter ini.",
+      "changeLabel": "<field>{{field}}</field> berubah",
+      "fromShort": "Dari:",
+      "toShort": "Ke:",
+      "byLabel": "oleh {{user}}",
+      "previous": "Sebelumnya",
+      "next": "Berikutnya",
+      "pageOf": "Halaman {{current}} dari {{total}}"
     }
   }
 }

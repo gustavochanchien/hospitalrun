@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
@@ -29,6 +30,7 @@ interface PatientRelatedPersonsProps {
 }
 
 export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [givenName, setGivenName] = useState('')
@@ -83,24 +85,24 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
   }
 
   if (relatedPersons === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Related Persons</h3>
+        <h3 className="text-lg font-semibold">{t('subFeatures.relatedPersons.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Related Person</Button>
+            <Button size="sm">{t('subFeatures.relatedPersons.newAction')}</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>New Related Person</DialogTitle>
+              <DialogTitle>{t('subFeatures.relatedPersons.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="rp-givenName">First Name *</Label>
+                <Label htmlFor="rp-givenName">{t('subFeatures.relatedPersons.fields.givenNameRequired')}</Label>
                 <Input
                   id="rp-givenName"
                   value={givenName}
@@ -109,7 +111,7 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="rp-familyName">Last Name *</Label>
+                <Label htmlFor="rp-familyName">{t('subFeatures.relatedPersons.fields.familyNameRequired')}</Label>
                 <Input
                   id="rp-familyName"
                   value={familyName}
@@ -118,7 +120,7 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="rp-relationship">Relationship</Label>
+                <Label htmlFor="rp-relationship">{t('subFeatures.relatedPersons.fields.relationship')}</Label>
                 <Input
                   id="rp-relationship"
                   value={relationship}
@@ -126,7 +128,7 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="rp-phone">Phone</Label>
+                <Label htmlFor="rp-phone">{t('subFeatures.relatedPersons.fields.phone')}</Label>
                 <Input
                   id="rp-phone"
                   value={phone}
@@ -134,7 +136,7 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="rp-email">Email</Label>
+                <Label htmlFor="rp-email">{t('subFeatures.relatedPersons.fields.email')}</Label>
                 <Input
                   id="rp-email"
                   type="email"
@@ -144,9 +146,9 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
               </div>
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-                  Cancel
+                  {t('subFeatures.relatedPersons.cancel')}
                 </Button>
-                <Button type="submit">Save</Button>
+                <Button type="submit">{t('subFeatures.relatedPersons.save')}</Button>
               </div>
             </form>
           </DialogContent>
@@ -155,17 +157,17 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
 
       {relatedPersons.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No related persons recorded.
+          {t('subFeatures.relatedPersons.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Relationship</TableHead>
-                <TableHead>Phone</TableHead>
-                <TableHead>Email</TableHead>
+                <TableHead>{t('subFeatures.relatedPersons.fields.name')}</TableHead>
+                <TableHead>{t('subFeatures.relatedPersons.fields.relationship')}</TableHead>
+                <TableHead>{t('subFeatures.relatedPersons.fields.phone')}</TableHead>
+                <TableHead>{t('subFeatures.relatedPersons.fields.email')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -175,16 +177,16 @@ export function PatientRelatedPersons({ patientId }: PatientRelatedPersonsProps)
                   <TableCell className="font-medium">
                     {rp.givenName} {rp.familyName}
                   </TableCell>
-                  <TableCell>{rp.relationship ?? '\u2014'}</TableCell>
-                  <TableCell>{rp.phone ?? '\u2014'}</TableCell>
-                  <TableCell>{rp.email ?? '\u2014'}</TableCell>
+                  <TableCell>{rp.relationship ?? '—'}</TableCell>
+                  <TableCell>{rp.phone ?? '—'}</TableCell>
+                  <TableCell>{rp.email ?? '—'}</TableCell>
                   <TableCell>
                     <Button
                       variant="destructive"
                       size="sm"
                       onClick={() => setPendingDeleteId(rp.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

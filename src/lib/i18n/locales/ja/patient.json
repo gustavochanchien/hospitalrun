@@ -288,6 +288,92 @@
       "none": "なし",
       "save": "保存",
       "cancel": "キャンセル"
+    },
+    "appointments": {
+      "title": "予約",
+      "newAction": "新規予約",
+      "create": "予約を作成",
+      "noResults": "予約は見つかりませんでした。",
+      "fields": {
+        "type": "種類",
+        "startTime": "開始時刻",
+        "endTime": "終了時刻",
+        "location": "場所",
+        "notes": "メモ",
+        "dateTime": "日時",
+        "status": "状態"
+      },
+      "placeholders": {
+        "type": "例: フォローアップ、相談",
+        "location": "例: 204号室"
+      }
+    },
+    "visits": {
+      "title": "来院",
+      "newAction": "新規来院",
+      "create": "来院を作成",
+      "noResults": "来院は見つかりませんでした。",
+      "fallbackName": "来院",
+      "fields": {
+        "type": "種類",
+        "status": "状態",
+        "reason": "理由",
+        "start": "開始",
+        "end": "終了",
+        "location": "場所"
+      },
+      "placeholders": {
+        "type": "例: 入院、外来、救急",
+        "status": "状態を選択",
+        "reason": "来院の理由",
+        "location": "例: 201号室、病棟B"
+      },
+      "statusOption": {
+        "planned": "予定",
+        "inProgress": "進行中",
+        "finished": "終了",
+        "cancelled": "キャンセル",
+        "arrived": "到着",
+        "triaged": "トリアージ済み",
+        "onLeave": "外出中"
+      }
+    },
+    "relatedPersons": {
+      "title": "関係者",
+      "newAction": "新規関係者",
+      "noResults": "関係者は登録されていません。",
+      "fields": {
+        "givenNameRequired": "名 *",
+        "familyNameRequired": "姓 *",
+        "relationship": "関係",
+        "phone": "電話",
+        "email": "メール",
+        "name": "氏名"
+      },
+      "save": "保存",
+      "cancel": "キャンセル"
+    },
+    "history": {
+      "title": "履歴",
+      "filters": {
+        "field": "フィールド",
+        "allFields": "すべてのフィールド",
+        "actor": "実行者",
+        "actorPlaceholder": "ユーザーIDで絞り込み",
+        "from": "開始日",
+        "to": "終了日",
+        "reset": "リセット"
+      },
+      "count_one": "{{count}} 件",
+      "count_other": "{{count}} 件",
+      "noResults": "これらのフィルターに一致する履歴エントリはありません。",
+      "changeLabel": "<field>{{field}}</field> が変更されました",
+      "fromShort": "変更前:",
+      "toShort": "変更後:",
+      "byLabel": "{{user}} による",
+      "previous": "前へ",
+      "next": "次へ",
+      "pageOf": "{{total}} ページ中 {{current}} ページ目"
     }
   }
 }

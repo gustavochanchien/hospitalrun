@@ -288,6 +288,92 @@
       "none": "لا شيء",
       "save": "حفظ",
       "cancel": "إلغاء"
+    },
+    "appointments": {
+      "title": "المواعيد",
+      "newAction": "موعد جديد",
+      "create": "إنشاء موعد",
+      "noResults": "لم يتم العثور على مواعيد.",
+      "fields": {
+        "type": "النوع",
+        "startTime": "وقت البدء",
+        "endTime": "وقت الانتهاء",
+        "location": "الموقع",
+        "notes": "ملاحظات",
+        "dateTime": "التاريخ / الوقت",
+        "status": "الحالة"
+      },
+      "placeholders": {
+        "type": "مثال: متابعة، استشارة",
+        "location": "مثال: غرفة 204"
+      }
+    },
+    "visits": {
+      "title": "الزيارات",
+      "newAction": "زيارة جديدة",
+      "create": "إنشاء زيارة",
+      "noResults": "لم يتم العثور على زيارات.",
+      "fallbackName": "زيارة",
+      "fields": {
+        "type": "النوع",
+        "status": "الحالة",
+        "reason": "السبب",
+        "start": "البداية",
+        "end": "النهاية",
+        "location": "الموقع"
+      },
+      "placeholders": {
+        "type": "مثال: داخلي، خارجي، طوارئ",
+        "status": "اختر الحالة",
+        "reason": "سبب الزيارة",
+        "location": "مثال: غرفة 201، عنبر B"
+      },
+      "statusOption": {
+        "planned": "مخططة",
+        "inProgress": "قيد التنفيذ",
+        "finished": "منتهية",
+        "cancelled": "ملغاة",
+        "arrived": "وصل",
+        "triaged": "تم الفرز",
+        "onLeave": "في إجازة"
+      }
+    },
+    "relatedPersons": {
+      "title": "الأشخاص المرتبطون",
+      "newAction": "شخص مرتبط جديد",
+      "noResults": "لا يوجد أشخاص مرتبطون مسجلون.",
+      "fields": {
+        "givenNameRequired": "الاسم الأول *",
+        "familyNameRequired": "اسم العائلة *",
+        "relationship": "صلة القرابة",
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني",
+        "name": "الاسم"
+      },
+      "save": "حفظ",
+      "cancel": "إلغاء"
+    },
+    "history": {
+      "title": "السجل",
+      "filters": {
+        "field": "الحقل",
+        "allFields": "كل الحقول",
+        "actor": "المنفِّذ",
+        "actorPlaceholder": "تصفية حسب معرف المستخدم",
+        "from": "من",
+        "to": "إلى",
+        "reset": "إعادة تعيين"
+      },
+      "count_one": "{{count}} إدخال",
+      "count_other": "{{count}} إدخالات",
+      "noResults": "لا توجد إدخالات سجل تطابق هذه المرشحات.",
+      "changeLabel": "<field>{{field}}</field> تغيّر",
+      "fromShort": "من:",
+      "toShort": "إلى:",
+      "byLabel": "بواسطة {{user}}",
+      "previous": "السابق",
+      "next": "التالي",
+      "pageOf": "صفحة {{current}} من {{total}}"
     }
   }
 }
