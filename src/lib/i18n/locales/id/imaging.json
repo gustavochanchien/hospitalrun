@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "Pencitraan",
+  "newRequest": "Permintaan Baru",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
+    "patient": "Pasien",
+    "type": "Jenis",
+    "code": "Kode",
     "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "requestedBy": "Diminta oleh",
+    "requestedOn": "Diminta pada",
+    "notes": "Catatan"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "Selesaikan",
+    "cancel": "Batalkan permintaan"
   }
 }

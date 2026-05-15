@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "予約",
+  "newAppointment": "新規予約",
+  "editAppointment": "予約を編集",
+  "calendar": "カレンダー",
+  "list": "リスト",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
-    "status": "Status",
-    "notes": "Notes"
+    "patient": "患者",
+    "type": "タイプ",
+    "startTime": "開始時刻",
+    "endTime": "終了時刻",
+    "location": "場所",
+    "status": "状態",
+    "notes": "メモ"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "健康診断",
+    "emergency": "救急",
+    "followUp": "経過観察",
+    "routine": "定期",
+    "walkIn": "予約なし"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "予定",
+    "completed": "完了",
+    "cancelled": "キャンセル済み",
+    "noShow": "未来院"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "title": "Medications",
-  "newMedication": "New Medication",
+  "title": "Obat",
+  "newMedication": "Obat Baru",
   "fields": {
-    "name": "Medication Name",
-    "patient": "Patient",
+    "name": "Nama obat",
+    "patient": "Pasien",
     "status": "Status",
-    "intent": "Intent",
-    "priority": "Priority",
-    "quantity": "Quantity",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "notes": "Notes"
+    "intent": "Tujuan",
+    "priority": "Prioritas",
+    "quantity": "Jumlah",
+    "startDate": "Tanggal mulai",
+    "endDate": "Tanggal selesai",
+    "notes": "Catatan"
   }
 }

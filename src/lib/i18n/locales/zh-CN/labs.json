@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "实验室",
+  "newLab": "新建检查",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "patient": "患者",
+    "type": "类型",
+    "code": "编码",
+    "status": "状态",
+    "requestedBy": "申请人",
+    "requestedAt": "申请时间",
+    "result": "结果",
+    "notes": "备注"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "完成",
+    "cancel": "取消检查",
+    "saveResult": "保存结果"
   }
 }

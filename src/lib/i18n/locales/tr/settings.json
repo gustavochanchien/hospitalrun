@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "Ayarlar",
+  "organization": "Kuruluş",
+  "orgName": "Kuruluş adı",
+  "orgId": "Kuruluş ID",
+  "teamMembers": "Takım üyeleri",
+  "noMembers": "Takım üyesi bulunamadı.",
   "roles": {
-    "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "admin": "Yönetici",
+    "doctor": "Doktor",
+    "nurse": "Hemşire",
+    "user": "Kullanıcı"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "Düzenle",
+    "save": "Kaydet",
+    "deactivate": "Devre dışı bırak"
   }
 }

@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "المواعيد",
+  "newAppointment": "موعد جديد",
+  "editAppointment": "تعديل الموعد",
+  "calendar": "التقويم",
+  "list": "قائمة",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
-    "status": "Status",
-    "notes": "Notes"
+    "patient": "المريض",
+    "type": "النوع",
+    "startTime": "وقت البدء",
+    "endTime": "وقت الانتهاء",
+    "location": "الموقع",
+    "status": "الحالة",
+    "notes": "الملاحظات"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "فحص",
+    "emergency": "طارئ",
+    "followUp": "متابعة",
+    "routine": "روتيني",
+    "walkIn": "بدون موعد"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "مجدول",
+    "completed": "مكتمل",
+    "cancelled": "ملغى",
+    "noShow": "لم يحضر"
   }
 }

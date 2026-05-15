@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "Pano",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "Toplam hasta",
+    "todaysAppointments": "Bugünkü randevular",
+    "openLabs": "Açık tetkikler",
+    "openIncidents": "Açık olaylar"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "Son hastalar",
+  "todaysAppointments": "Bugünkü randevular",
+  "noPatients": "Henüz hasta yok.",
+  "addPatient": "Hasta ekle",
+  "noAppointments": "Bugün randevu yok."
 }

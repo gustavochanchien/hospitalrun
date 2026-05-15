@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "Laboratuvar",
+  "newLab": "Yeni Tetkik",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "patient": "Hasta",
+    "type": "Tür",
+    "code": "Kod",
+    "status": "Durum",
+    "requestedBy": "İsteyen",
+    "requestedAt": "İstek zamanı",
+    "result": "Sonuç",
+    "notes": "Notlar"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "Tamamla",
+    "cancel": "Tetkiki iptal et",
+    "saveResult": "Sonucu kaydet"
   }
 }

@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "设置",
+  "organization": "组织",
+  "orgName": "组织名称",
+  "orgId": "组织 ID",
+  "teamMembers": "团队成员",
+  "noMembers": "未找到团队成员。",
   "roles": {
-    "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "admin": "管理员",
+    "doctor": "医生",
+    "nurse": "护士",
+    "user": "用户"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "编辑",
+    "save": "保存",
+    "deactivate": "停用"
   }
 }

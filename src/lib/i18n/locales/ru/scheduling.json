@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "Приёмы",
+  "newAppointment": "Новый приём",
+  "editAppointment": "Редактировать приём",
+  "calendar": "Календарь",
+  "list": "Список",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
-    "status": "Status",
-    "notes": "Notes"
+    "patient": "Пациент",
+    "type": "Тип",
+    "startTime": "Начало",
+    "endTime": "Окончание",
+    "location": "Место",
+    "status": "Статус",
+    "notes": "Заметки"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "Осмотр",
+    "emergency": "Экстренный",
+    "followUp": "Повторный",
+    "routine": "Плановый",
+    "walkIn": "Без записи"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "Запланирован",
+    "completed": "Завершён",
+    "cancelled": "Отменён",
+    "noShow": "Не явился"
   }
 }

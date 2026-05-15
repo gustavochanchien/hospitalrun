@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "المختبرات",
+  "newLab": "فحص مختبري جديد",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "patient": "المريض",
+    "type": "النوع",
+    "code": "الرمز",
+    "status": "الحالة",
+    "requestedBy": "طُلب بواسطة",
+    "requestedAt": "تاريخ الطلب",
+    "result": "النتيجة",
+    "notes": "الملاحظات"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "إكمال",
+    "cancel": "إلغاء الفحص",
+    "saveResult": "حفظ النتيجة"
   }
 }

@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "Панель",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "Всего пациентов",
+    "todaysAppointments": "Приёмы на сегодня",
+    "openLabs": "Открытые исследования",
+    "openIncidents": "Открытые инциденты"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "Недавние пациенты",
+  "todaysAppointments": "Приёмы на сегодня",
+  "noPatients": "Пациентов пока нет.",
+  "addPatient": "Добавить пациента",
+  "noAppointments": "На сегодня приёмов нет."
 }

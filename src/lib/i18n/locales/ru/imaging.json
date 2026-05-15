@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "Визуализация",
+  "newRequest": "Новая заявка",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "patient": "Пациент",
+    "type": "Тип",
+    "code": "Код",
+    "status": "Статус",
+    "requestedBy": "Запросил",
+    "requestedOn": "Запрошено",
+    "notes": "Заметки"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "Завершить",
+    "cancel": "Отменить заявку"
   }
 }

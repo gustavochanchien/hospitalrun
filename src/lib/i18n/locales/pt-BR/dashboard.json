@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "Painel",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "Total de pacientes",
+    "todaysAppointments": "Consultas de hoje",
+    "openLabs": "Exames em aberto",
+    "openIncidents": "Incidentes em aberto"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "Pacientes recentes",
+  "todaysAppointments": "Consultas de hoje",
+  "noPatients": "Nenhum paciente ainda.",
+  "addPatient": "Adicionar paciente",
+  "noAppointments": "Sem consultas hoje."
 }

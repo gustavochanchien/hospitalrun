@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "预约",
+  "newAppointment": "新建预约",
+  "editAppointment": "编辑预约",
+  "calendar": "日历",
+  "list": "列表",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
-    "status": "Status",
-    "notes": "Notes"
+    "patient": "患者",
+    "type": "类型",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
+    "location": "地点",
+    "status": "状态",
+    "notes": "备注"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "体检",
+    "emergency": "急诊",
+    "followUp": "复诊",
+    "routine": "常规",
+    "walkIn": "现场就诊"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "已预约",
+    "completed": "已完成",
+    "cancelled": "已取消",
+    "noShow": "未到诊"
   }
 }

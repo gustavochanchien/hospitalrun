@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "Görüntüleme",
+  "newRequest": "Yeni İstek",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "patient": "Hasta",
+    "type": "Tür",
+    "code": "Kod",
+    "status": "Durum",
+    "requestedBy": "İsteyen",
+    "requestedOn": "İstek tarihi",
+    "notes": "Notlar"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "Tamamla",
+    "cancel": "İsteği iptal et"
   }
 }

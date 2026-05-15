@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "影像",
+  "newRequest": "新建申请",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "patient": "患者",
+    "type": "类型",
+    "code": "编码",
+    "status": "状态",
+    "requestedBy": "申请人",
+    "requestedOn": "申请日期",
+    "notes": "备注"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "完成",
+    "cancel": "取消申请"
   }
 }

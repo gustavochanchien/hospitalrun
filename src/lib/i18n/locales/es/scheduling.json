@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "Citas",
+  "newAppointment": "Nueva Cita",
+  "editAppointment": "Editar Cita",
+  "calendar": "Calendario",
+  "list": "Lista",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
-    "status": "Status",
-    "notes": "Notes"
+    "patient": "Paciente",
+    "type": "Tipo",
+    "startTime": "Hora de inicio",
+    "endTime": "Hora de finalización",
+    "location": "Ubicación",
+    "status": "Estado",
+    "notes": "Notas"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "Revisión",
+    "emergency": "Emergencia",
+    "followUp": "Seguimiento",
+    "routine": "Rutinaria",
+    "walkIn": "Sin cita"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "Programada",
+    "completed": "Completada",
+    "cancelled": "Cancelada",
+    "noShow": "No asistió"
   }
 }

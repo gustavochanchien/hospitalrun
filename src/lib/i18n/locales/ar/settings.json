@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "الإعدادات",
+  "organization": "المؤسسة",
+  "orgName": "اسم المؤسسة",
+  "orgId": "معرّف المؤسسة",
+  "teamMembers": "أعضاء الفريق",
+  "noMembers": "لم يتم العثور على أعضاء.",
   "roles": {
-    "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "admin": "مسؤول",
+    "doctor": "طبيب",
+    "nurse": "ممرّض/ممرّضة",
+    "user": "مستخدم"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "تعديل",
+    "save": "حفظ",
+    "deactivate": "تعطيل"
   }
 }

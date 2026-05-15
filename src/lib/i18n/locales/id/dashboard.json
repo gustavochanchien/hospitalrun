@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "Dasbor",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "Total pasien",
+    "todaysAppointments": "Janji temu hari ini",
+    "openLabs": "Pemeriksaan terbuka",
+    "openIncidents": "Insiden terbuka"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "Pasien terbaru",
+  "todaysAppointments": "Janji temu hari ini",
+  "noPatients": "Belum ada pasien.",
+  "addPatient": "Tambah pasien",
+  "noAppointments": "Tidak ada janji temu hari ini."
 }

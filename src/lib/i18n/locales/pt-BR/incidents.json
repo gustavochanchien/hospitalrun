@@ -1,24 +1,24 @@
 {
-  "title": "Incidents",
-  "reportIncident": "Report Incident",
-  "visualize": "Analytics",
-  "monthlyTrend": "Monthly Trend",
-  "byCategory": "By Category",
-  "byStatus": "By Status",
-  "byDepartment": "By Department",
-  "noData": "No incident data to visualize.",
+  "title": "Incidentes",
+  "reportIncident": "Reportar Incidente",
+  "visualize": "Análises",
+  "monthlyTrend": "Tendência mensal",
+  "byCategory": "Por categoria",
+  "byStatus": "Por status",
+  "byDepartment": "Por departamento",
+  "noData": "Sem dados de incidentes para exibir.",
   "fields": {
-    "date": "Date",
-    "reporter": "Reporter",
-    "department": "Department",
-    "category": "Category",
-    "categoryItem": "Category Item",
-    "description": "Description",
+    "date": "Data",
+    "reporter": "Relator",
+    "department": "Departamento",
+    "category": "Categoria",
+    "categoryItem": "Subcategoria",
+    "description": "Descrição",
     "status": "Status",
-    "resolvedOn": "Resolved On"
+    "resolvedOn": "Resolvido em"
   },
   "actions": {
-    "resolve": "Resolve",
-    "downloadCsv": "Download CSV"
+    "resolve": "Resolver",
+    "downloadCsv": "Baixar CSV"
   }
 }

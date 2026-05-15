@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "Laboratórios",
+  "newLab": "Novo Exame",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
+    "patient": "Paciente",
+    "type": "Tipo",
+    "code": "Código",
     "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "requestedBy": "Solicitado por",
+    "requestedAt": "Solicitado em",
+    "result": "Resultado",
+    "notes": "Notas"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "Concluir",
+    "cancel": "Cancelar exame",
+    "saveResult": "Salvar resultado"
   }
 }

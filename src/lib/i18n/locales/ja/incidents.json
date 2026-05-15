@@ -1,24 +1,24 @@
 {
-  "title": "Incidents",
-  "reportIncident": "Report Incident",
-  "visualize": "Analytics",
-  "monthlyTrend": "Monthly Trend",
-  "byCategory": "By Category",
-  "byStatus": "By Status",
-  "byDepartment": "By Department",
-  "noData": "No incident data to visualize.",
+  "title": "インシデント",
+  "reportIncident": "インシデントを報告",
+  "visualize": "分析",
+  "monthlyTrend": "月次推移",
+  "byCategory": "カテゴリ別",
+  "byStatus": "状態別",
+  "byDepartment": "部署別",
+  "noData": "表示するインシデントデータがありません。",
   "fields": {
-    "date": "Date",
-    "reporter": "Reporter",
-    "department": "Department",
-    "category": "Category",
-    "categoryItem": "Category Item",
-    "description": "Description",
-    "status": "Status",
-    "resolvedOn": "Resolved On"
+    "date": "日付",
+    "reporter": "報告者",
+    "department": "部署",
+    "category": "カテゴリ",
+    "categoryItem": "サブカテゴリ",
+    "description": "説明",
+    "status": "状態",
+    "resolvedOn": "解決日"
   },
   "actions": {
-    "resolve": "Resolve",
-    "downloadCsv": "Download CSV"
+    "resolve": "解決",
+    "downloadCsv": "CSV をダウンロード"
   }
 }

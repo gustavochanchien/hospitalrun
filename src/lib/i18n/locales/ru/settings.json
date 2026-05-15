@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "Настройки",
+  "organization": "Организация",
+  "orgName": "Название организации",
+  "orgId": "ID организации",
+  "teamMembers": "Члены команды",
+  "noMembers": "Члены команды не найдены.",
   "roles": {
-    "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "admin": "Администратор",
+    "doctor": "Врач",
+    "nurse": "Медсестра",
+    "user": "Пользователь"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "Изменить",
+    "save": "Сохранить",
+    "deactivate": "Отключить"
   }
 }

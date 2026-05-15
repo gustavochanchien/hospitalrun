@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "Tableau de bord",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "Total des patients",
+    "todaysAppointments": "Rendez-vous du jour",
+    "openLabs": "Examens ouverts",
+    "openIncidents": "Incidents ouverts"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "Patients récents",
+  "todaysAppointments": "Rendez-vous du jour",
+  "noPatients": "Aucun patient pour le moment.",
+  "addPatient": "Ajouter un patient",
+  "noAppointments": "Aucun rendez-vous aujourd'hui."
 }

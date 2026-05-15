@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "Лаборатории",
+  "newLab": "Новое исследование",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "patient": "Пациент",
+    "type": "Тип",
+    "code": "Код",
+    "status": "Статус",
+    "requestedBy": "Запросил",
+    "requestedAt": "Запрошено",
+    "result": "Результат",
+    "notes": "Заметки"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "Завершить",
+    "cancel": "Отменить исследование",
+    "saveResult": "Сохранить результат"
   }
 }

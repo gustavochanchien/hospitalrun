@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "検査",
+  "newLab": "新規検査",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "patient": "患者",
+    "type": "タイプ",
+    "code": "コード",
+    "status": "状態",
+    "requestedBy": "依頼者",
+    "requestedAt": "依頼日時",
+    "result": "結果",
+    "notes": "メモ"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "完了",
+    "cancel": "検査を取消",
+    "saveResult": "結果を保存"
   }
 }

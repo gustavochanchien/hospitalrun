@@ -1,15 +1,15 @@
 {
-  "title": "Medications",
-  "newMedication": "New Medication",
+  "title": "Лекарства",
+  "newMedication": "Новое лекарство",
   "fields": {
-    "name": "Medication Name",
-    "patient": "Patient",
-    "status": "Status",
-    "intent": "Intent",
-    "priority": "Priority",
-    "quantity": "Quantity",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "notes": "Notes"
+    "name": "Название лекарства",
+    "patient": "Пациент",
+    "status": "Статус",
+    "intent": "Назначение",
+    "priority": "Приоритет",
+    "quantity": "Количество",
+    "startDate": "Дата начала",
+    "endDate": "Дата окончания",
+    "notes": "Заметки"
   }
 }

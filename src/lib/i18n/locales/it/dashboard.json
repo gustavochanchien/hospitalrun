@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "Cruscotto",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "Totale pazienti",
+    "todaysAppointments": "Appuntamenti di oggi",
+    "openLabs": "Esami aperti",
+    "openIncidents": "Incidenti aperti"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "Pazienti recenti",
+  "todaysAppointments": "Appuntamenti di oggi",
+  "noPatients": "Ancora nessun paziente.",
+  "addPatient": "Aggiungi un paziente",
+  "noAppointments": "Nessun appuntamento oggi."
 }

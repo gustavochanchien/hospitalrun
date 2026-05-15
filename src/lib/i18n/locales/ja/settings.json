@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "設定",
+  "organization": "組織",
+  "orgName": "組織名",
+  "orgId": "組織 ID",
+  "teamMembers": "チームメンバー",
+  "noMembers": "チームメンバーが見つかりません。",
   "roles": {
-    "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "admin": "管理者",
+    "doctor": "医師",
+    "nurse": "看護師",
+    "user": "ユーザー"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "編集",
+    "save": "保存",
+    "deactivate": "無効化"
   }
 }

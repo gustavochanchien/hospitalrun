@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "仪表盘",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "患者总数",
+    "todaysAppointments": "今日预约",
+    "openLabs": "待处理检查",
+    "openIncidents": "待处理事件"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "最近患者",
+  "todaysAppointments": "今日预约",
+  "noPatients": "暂无患者。",
+  "addPatient": "添加患者",
+  "noAppointments": "今天没有预约。"
 }

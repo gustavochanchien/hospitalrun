@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "Einstellungen",
+  "organization": "Organisation",
+  "orgName": "Name der Organisation",
+  "orgId": "ID der Organisation",
+  "teamMembers": "Teammitglieder",
+  "noMembers": "Keine Mitglieder gefunden.",
   "roles": {
-    "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "admin": "Administrator",
+    "doctor": "Arzt/Ärztin",
+    "nurse": "Pfleger/in",
+    "user": "Benutzer"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "Bearbeiten",
+    "save": "Speichern",
+    "deactivate": "Deaktivieren"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "title": "Medications",
-  "newMedication": "New Medication",
+  "title": "薬剤",
+  "newMedication": "新規薬剤",
   "fields": {
-    "name": "Medication Name",
-    "patient": "Patient",
-    "status": "Status",
-    "intent": "Intent",
-    "priority": "Priority",
-    "quantity": "Quantity",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "notes": "Notes"
+    "name": "薬剤名",
+    "patient": "患者",
+    "status": "状態",
+    "intent": "用途",
+    "priority": "優先度",
+    "quantity": "数量",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "notes": "メモ"
   }
 }

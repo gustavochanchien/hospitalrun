@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "Laboratorium",
+  "newLab": "Pemeriksaan Baru",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
+    "patient": "Pasien",
+    "type": "Jenis",
+    "code": "Kode",
     "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "requestedBy": "Diminta oleh",
+    "requestedAt": "Diminta pada",
+    "result": "Hasil",
+    "notes": "Catatan"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "Selesaikan",
+    "cancel": "Batalkan pemeriksaan",
+    "saveResult": "Simpan hasil"
   }
 }

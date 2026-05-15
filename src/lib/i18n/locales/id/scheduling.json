@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "Janji temu",
+  "newAppointment": "Janji Baru",
+  "editAppointment": "Ubah Janji",
+  "calendar": "Kalender",
+  "list": "Daftar",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
+    "patient": "Pasien",
+    "type": "Jenis",
+    "startTime": "Waktu mulai",
+    "endTime": "Waktu selesai",
+    "location": "Lokasi",
     "status": "Status",
-    "notes": "Notes"
+    "notes": "Catatan"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "Pemeriksaan",
+    "emergency": "Darurat",
+    "followUp": "Kontrol ulang",
+    "routine": "Rutin",
+    "walkIn": "Tanpa janji"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "Terjadwal",
+    "completed": "Selesai",
+    "cancelled": "Dibatalkan",
+    "noShow": "Tidak hadir"
   }
 }

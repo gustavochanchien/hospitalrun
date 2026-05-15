@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "Bildgebung",
+  "newRequest": "Neue Anforderung",
   "fields": {
     "patient": "Patient",
-    "type": "Type",
+    "type": "Typ",
     "code": "Code",
     "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "requestedBy": "Angefordert von",
+    "requestedOn": "Angefordert am",
+    "notes": "Notizen"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "Abschließen",
+    "cancel": "Anforderung abbrechen"
   }
 }

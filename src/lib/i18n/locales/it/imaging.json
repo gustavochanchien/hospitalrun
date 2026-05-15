@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "Diagnostica per immagini",
+  "newRequest": "Nuova Richiesta",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "patient": "Paziente",
+    "type": "Tipo",
+    "code": "Codice",
+    "status": "Stato",
+    "requestedBy": "Richiesto da",
+    "requestedOn": "Richiesto il",
+    "notes": "Note"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "Completa",
+    "cancel": "Annulla richiesta"
   }
 }

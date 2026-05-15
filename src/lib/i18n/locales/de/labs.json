@@ -1,19 +1,19 @@
 {
-  "title": "Labs",
-  "newLab": "New Lab",
+  "title": "Labor",
+  "newLab": "Neue Untersuchung",
   "fields": {
     "patient": "Patient",
-    "type": "Type",
+    "type": "Typ",
     "code": "Code",
     "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedAt": "Requested At",
-    "result": "Result",
-    "notes": "Notes"
+    "requestedBy": "Angefordert von",
+    "requestedAt": "Angefordert am",
+    "result": "Ergebnis",
+    "notes": "Notizen"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Lab",
-    "saveResult": "Save Result"
+    "complete": "Abschließen",
+    "cancel": "Untersuchung abbrechen",
+    "saveResult": "Ergebnis speichern"
   }
 }

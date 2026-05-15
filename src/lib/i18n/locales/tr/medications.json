@@ -1,15 +1,15 @@
 {
-  "title": "Medications",
-  "newMedication": "New Medication",
+  "title": "İlaçlar",
+  "newMedication": "Yeni İlaç",
   "fields": {
-    "name": "Medication Name",
-    "patient": "Patient",
-    "status": "Status",
-    "intent": "Intent",
-    "priority": "Priority",
-    "quantity": "Quantity",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "notes": "Notes"
+    "name": "İlaç adı",
+    "patient": "Hasta",
+    "status": "Durum",
+    "intent": "Amaç",
+    "priority": "Öncelik",
+    "quantity": "Miktar",
+    "startDate": "Başlangıç tarihi",
+    "endDate": "Bitiş tarihi",
+    "notes": "Notlar"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "title": "Medications",
-  "newMedication": "New Medication",
+  "title": "Medicamentos",
+  "newMedication": "Nuevo Medicamento",
   "fields": {
-    "name": "Medication Name",
-    "patient": "Patient",
-    "status": "Status",
-    "intent": "Intent",
-    "priority": "Priority",
-    "quantity": "Quantity",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "notes": "Notes"
+    "name": "Nombre del medicamento",
+    "patient": "Paciente",
+    "status": "Estado",
+    "intent": "Intención",
+    "priority": "Prioridad",
+    "quantity": "Cantidad",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de finalización",
+    "notes": "Notas"
   }
 }

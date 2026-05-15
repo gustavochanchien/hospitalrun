@@ -1,14 +1,14 @@
 {
-  "title": "Dashboard",
+  "title": "ダッシュボード",
   "stats": {
-    "totalPatients": "Total Patients",
-    "todaysAppointments": "Today's Appointments",
-    "openLabs": "Open Labs",
-    "openIncidents": "Open Incidents"
+    "totalPatients": "患者総数",
+    "todaysAppointments": "本日の予約",
+    "openLabs": "未完了の検査",
+    "openIncidents": "未解決のインシデント"
   },
-  "recentPatients": "Recent Patients",
-  "todaysAppointments": "Today's Appointments",
-  "noPatients": "No patients yet.",
-  "addPatient": "Add a patient",
-  "noAppointments": "No appointments today."
+  "recentPatients": "最近の患者",
+  "todaysAppointments": "本日の予約",
+  "noPatients": "患者がまだいません。",
+  "addPatient": "患者を追加",
+  "noAppointments": "本日の予約はありません。"
 }

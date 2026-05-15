@@ -1,19 +1,19 @@
 {
-  "title": "Settings",
-  "organization": "Organization",
-  "orgName": "Organization Name",
-  "orgId": "Organization ID",
-  "teamMembers": "Team Members",
-  "noMembers": "No team members found.",
+  "title": "Pengaturan",
+  "organization": "Organisasi",
+  "orgName": "Nama organisasi",
+  "orgId": "ID organisasi",
+  "teamMembers": "Anggota tim",
+  "noMembers": "Tidak ada anggota tim ditemukan.",
   "roles": {
     "admin": "Admin",
-    "doctor": "Doctor",
-    "nurse": "Nurse",
-    "user": "User"
+    "doctor": "Dokter",
+    "nurse": "Perawat",
+    "user": "Pengguna"
   },
   "actions": {
-    "edit": "Edit",
-    "save": "Save",
-    "deactivate": "Deactivate"
+    "edit": "Ubah",
+    "save": "Simpan",
+    "deactivate": "Nonaktifkan"
   }
 }

@@ -1,29 +1,29 @@
 {
-  "title": "Appointments",
-  "newAppointment": "New Appointment",
-  "editAppointment": "Edit Appointment",
-  "calendar": "Calendar",
-  "list": "List",
+  "title": "Randevular",
+  "newAppointment": "Yeni Randevu",
+  "editAppointment": "Randevuyu Düzenle",
+  "calendar": "Takvim",
+  "list": "Liste",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "location": "Location",
-    "status": "Status",
-    "notes": "Notes"
+    "patient": "Hasta",
+    "type": "Tür",
+    "startTime": "Başlangıç saati",
+    "endTime": "Bitiş saati",
+    "location": "Konum",
+    "status": "Durum",
+    "notes": "Notlar"
   },
   "types": {
-    "checkup": "Checkup",
-    "emergency": "Emergency",
-    "followUp": "Follow Up",
-    "routine": "Routine",
-    "walkIn": "Walk In"
+    "checkup": "Muayene",
+    "emergency": "Acil",
+    "followUp": "Kontrol",
+    "routine": "Rutin",
+    "walkIn": "Randevusuz"
   },
   "status": {
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "noShow": "No Show"
+    "scheduled": "Planlandı",
+    "completed": "Tamamlandı",
+    "cancelled": "İptal edildi",
+    "noShow": "Gelmedi"
   }
 }

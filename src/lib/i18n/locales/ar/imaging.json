@@ -1,17 +1,17 @@
 {
-  "title": "Imaging",
-  "newRequest": "New Request",
+  "title": "الأشعة",
+  "newRequest": "طلب جديد",
   "fields": {
-    "patient": "Patient",
-    "type": "Type",
-    "code": "Code",
-    "status": "Status",
-    "requestedBy": "Requested By",
-    "requestedOn": "Requested On",
-    "notes": "Notes"
+    "patient": "المريض",
+    "type": "النوع",
+    "code": "الرمز",
+    "status": "الحالة",
+    "requestedBy": "طُلب بواسطة",
+    "requestedOn": "تاريخ الطلب",
+    "notes": "الملاحظات"
   },
   "actions": {
-    "complete": "Complete",
-    "cancel": "Cancel Request"
+    "complete": "إكمال",
+    "cancel": "إلغاء الطلب"
   }
 }
