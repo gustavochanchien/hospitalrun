@@ -22,6 +22,10 @@ release
 # Coverage
 coverage
 
+# TypeScript incremental build state (tsconfigs currently route these
+# into node_modules/.tmp/, but ignore the pattern in case that changes)
+*.tsbuildinfo
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
