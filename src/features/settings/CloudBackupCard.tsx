@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { formatDistanceToNow } from 'date-fns'
 import { toast } from 'sonner'
 import { Cloud, CloudOff } from 'lucide-react'
@@ -22,6 +23,7 @@ import { flushSyncQueue, getLastCloudSyncAt } from '@/lib/sync/sync'
 import { CloudConnectForm } from '@/features/setup/CloudConnectForm'
 
 export function CloudBackupCard() {
+  const { t } = useTranslation('settings')
   const [connectOpen, setConnectOpen] = useState(false)
   const [disconnectOpen, setDisconnectOpen] = useState(false)
   const [syncing, setSyncing] = useState(false)
@@ -50,13 +52,15 @@ export function CloudBackupCard() {
       const at = getLastCloudSyncAt()
       setLastSyncAt(at)
       if (at) {
-        toast.success('Synced with cloud')
+        toast.success(t('cloud.syncSuccess'))
       } else {
-        toast.warning('Sync attempted but cloud was unreachable')
+        toast.warning(t('cloud.syncUnreachable'))
       }
     } catch (err) {
       toast.error(
-        `Sync failed: ${err instanceof Error ? err.message : String(err)}`,
+        t('cloud.syncError', {
+          error: err instanceof Error ? err.message : String(err),
+        }),
       )
     } finally {
       setSyncing(false)
@@ -69,13 +73,15 @@ export function CloudBackupCard() {
         await getIPC().setBackendConfig(null)
       }
       clearBackendConfig()
-      toast.success('Disconnected from cloud. Hub is now local-only.')
+      toast.success(t('cloud.disconnectSuccess'))
       // Reload so the supabase client teardown / `isHubLocalMode` flag
       // settle correctly across the rest of the app.
       window.location.assign('/')
     } catch (err) {
       toast.error(
-        `Disconnect failed: ${err instanceof Error ? err.message : String(err)}`,
+        t('cloud.disconnectError', {
+          error: err instanceof Error ? err.message : String(err),
+        }),
       )
     }
   }
@@ -89,22 +95,24 @@ export function CloudBackupCard() {
           ) : (
             <CloudOff className="h-4 w-4" aria-hidden="true" />
           )}
-          Cloud Backup
+          {t('cloud.title')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {connected ? (
           <>
             <div className="space-y-1 text-sm">
-              <div className="text-muted-foreground">Connected to</div>
+              <div className="text-muted-foreground">{t('cloud.connectedTo')}</div>
               <code className="block break-all text-xs">{config?.url}</code>
             </div>
             <div className="text-sm">
-              <span className="text-muted-foreground">Last synced: </span>
+              <span className="text-muted-foreground">{t('cloud.lastSynced')}: </span>
               <span>
                 {lastSyncAt
-                  ? `${formatDistanceToNow(new Date(lastSyncAt))} ago`
-                  : 'never'}
+                  ? t('cloud.ago', {
+                      distance: formatDistanceToNow(new Date(lastSyncAt)),
+                    })
+                  : t('cloud.never')}
               </span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -113,30 +121,26 @@ export function CloudBackupCard() {
                 disabled={syncing}
                 variant="outline"
               >
-                {syncing ? 'Syncing…' : 'Sync now'}
+                {syncing ? t('cloud.syncing') : t('cloud.syncNow')}
               </Button>
               <Button
                 onClick={() => setDisconnectOpen(true)}
                 variant="outline"
               >
-                Disconnect
+                {t('cloud.disconnect')}
               </Button>
             </div>
             <p className="text-xs text-muted-foreground">
-              Local writes flush to cloud Supabase when the hub is online,
-              and fall back to LAN-only sync when it isn't. Disconnecting
-              reverts the hub to local-only mode.
+              {t('cloud.connectedHelp')}
             </p>
           </>
         ) : (
           <>
             <p className="text-sm text-muted-foreground">
-              This hub is running locally with no cloud backup. Connect a
-              Supabase project to mirror writes to the cloud and sync
-              across clinic sites.
+              {t('cloud.unconnectedHelp')}
             </p>
             <Button onClick={() => setConnectOpen(true)}>
-              Connect Supabase
+              {t('cloud.connect')}
             </Button>
           </>
         )}
@@ -145,10 +149,9 @@ export function CloudBackupCard() {
       <Dialog open={connectOpen} onOpenChange={setConnectOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Connect Supabase</DialogTitle>
+            <DialogTitle>{t('cloud.dialogTitle')}</DialogTitle>
             <DialogDescription>
-              Paste your Supabase project URL and anon key. LAN clients
-              will pick up the new config on their next reload.
+              {t('cloud.dialogDescription')}
             </DialogDescription>
           </DialogHeader>
           <CloudConnectForm
@@ -166,9 +169,9 @@ export function CloudBackupCard() {
       <ConfirmDialog
         open={disconnectOpen}
         onOpenChange={setDisconnectOpen}
-        title="Disconnect from cloud?"
-        description="The hub will revert to local-only mode. Records already saved on Supabase remain there, but new writes will no longer reach the cloud until you reconnect."
-        confirmLabel="Disconnect"
+        title={t('cloud.confirmTitle')}
+        description={t('cloud.confirmDesc')}
+        confirmLabel={t('cloud.disconnect')}
         onConfirm={handleDisconnect}
       />
     </Card>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -55,6 +56,7 @@ function isValidEmail(value: string): boolean {
 }
 
 export function TeamCard() {
+  const { t } = useTranslation('settings')
   const orgId = useAuthStore((s) => s.orgId)
   const role = useAuthStore((s) => s.role)
   const isAdmin = role === 'admin'
@@ -79,7 +81,7 @@ export function TeamCard() {
       .is('accepted_at', null)
       .order('invited_at', { ascending: false })
     if (error) {
-      toast.error(`Couldn't load invites: ${error.message}`)
+      toast.error(t('team.loadError', { error: error.message }))
       setInvites([])
       return
     }
@@ -99,10 +101,10 @@ export function TeamCard() {
     if (isHubLocalMode()) return
     const { error } = await supabase.from('org_members').delete().eq('id', id)
     if (error) {
-      toast.error(`Couldn't revoke: ${error.message}`)
+      toast.error(t('team.revokeError', { error: error.message }))
       return
     }
-    toast.success(`Revoked invite for ${inviteEmail}`)
+    toast.success(t('team.revokeSuccess', { email: inviteEmail }))
     setInvites((prev) => prev?.filter((i) => i.id !== id) ?? null)
   }
 
@@ -111,27 +113,27 @@ export function TeamCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Add Team Members</CardTitle>
+        <CardTitle>{t('team.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <Tabs defaultValue="create">
           <TabsList>
-            <TabsTrigger value="create">Create user</TabsTrigger>
+            <TabsTrigger value="create">{t('team.tabCreate')}</TabsTrigger>
             {isHubMode ? (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span>
                     <TabsTrigger value="invite" disabled>
-                      Invite by email
+                      {t('team.tabInvite')}
                     </TabsTrigger>
                   </span>
                 </TooltipTrigger>
                 <TooltipContent>
-                  Requires SMTP — not available in offline hub mode. Use "Create user" instead.
+                  {t('team.inviteDisabledTooltip')}
                 </TooltipContent>
               </Tooltip>
             ) : (
-              <TabsTrigger value="invite">Invite by email</TabsTrigger>
+              <TabsTrigger value="invite">{t('team.tabInvite')}</TabsTrigger>
             )}
           </TabsList>
           <TabsContent value="create" className="pt-4">
@@ -143,19 +145,19 @@ export function TeamCard() {
         </Tabs>
 
         <div>
-          <h3 className="mb-2 text-sm font-medium">Pending invitations</h3>
+          <h3 className="mb-2 text-sm font-medium">{t('team.pendingTitle')}</h3>
           {invites === null ? (
             <Skeleton className="h-10 w-full" />
           ) : invites.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No pending invites.</p>
+            <p className="text-sm text-muted-foreground">{t('team.noPending')}</p>
           ) : (
             <div className="rounded-md border">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Invited</TableHead>
+                    <TableHead>{t('team.colEmail')}</TableHead>
+                    <TableHead>{t('team.colRole')}</TableHead>
+                    <TableHead>{t('team.colInvited')}</TableHead>
                     <TableHead></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -177,7 +179,7 @@ export function TeamCard() {
                             revokeInvite(invite.id, invite.invited_email)
                           }
                         >
-                          Revoke
+                          {t('team.revoke')}
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -193,6 +195,7 @@ export function TeamCard() {
 }
 
 function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
+  const { t } = useTranslation('settings')
   const getAccessToken = useAuthStore((s) => s.getAccessToken)
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -205,15 +208,15 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
     const trimmedEmail = email.trim().toLowerCase()
     const trimmedName = fullName.trim()
     if (!trimmedName) {
-      toast.error('Enter the user\'s full name')
+      toast.error(t('team.errFullName'))
       return
     }
     if (!trimmedEmail || !isValidEmail(trimmedEmail)) {
-      toast.error('Enter a valid email')
+      toast.error(t('team.errEmail'))
       return
     }
     if (password.length < 8) {
-      toast.error('Password must be at least 8 characters')
+      toast.error(t('team.errPassword'))
       return
     }
     setWorking(true)
@@ -230,7 +233,7 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
         })
         const data = (await res.json()) as { error?: string }
         if (!res.ok) {
-          toast.error(`Create failed: ${data.error ?? 'Unknown error'}`)
+          toast.error(t('team.errCreate', { error: data.error ?? 'Unknown error' }))
           return
         }
       } else {
@@ -249,11 +252,11 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
         const payload = data ?? null
         if (error || payload?.error) {
           const msg = payload?.error ?? error?.message ?? 'Failed'
-          toast.error(`Create failed: ${msg}`)
+          toast.error(t('team.errCreate', { error: msg }))
           return
         }
       }
-      toast.success(`Created ${trimmedEmail}`)
+      toast.success(t('team.createSuccess', { email: trimmedEmail }))
       setHandoff({ email: trimmedEmail, password })
       setFullName('')
       setEmail('')
@@ -267,13 +270,10 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-muted-foreground">
-        Create a user account directly — no email required. Share the password
-        with them in person or over a secure channel.
-      </p>
+      <p className="text-xs text-muted-foreground">{t('team.createHelp')}</p>
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="create-name">Full name</Label>
+          <Label htmlFor="create-name">{t('team.fullName')}</Label>
           <Input
             id="create-name"
             value={fullName}
@@ -282,60 +282,59 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="create-email">Email</Label>
+          <Label htmlFor="create-email">{t('team.emailLabel')}</Label>
           <Input
             id="create-email"
             type="email"
-            placeholder="name@example.com"
+            placeholder={t('team.emailPlaceholder')}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={working}
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="create-password">Initial password</Label>
+          <Label htmlFor="create-password">{t('team.passwordLabel')}</Label>
           <Input
             id="create-password"
             type="text"
-            placeholder="Minimum 8 characters"
+            placeholder={t('team.passwordPlaceholder')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={working}
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="create-role">Role</Label>
+          <Label htmlFor="create-role">{t('team.roleLabel')}</Label>
           <Select value={newRole} onValueChange={(v) => setNewRole(v as Role)}>
             <SelectTrigger id="create-role">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="doctor">Doctor</SelectItem>
-              <SelectItem value="nurse">Nurse</SelectItem>
-              <SelectItem value="user">User</SelectItem>
+              <SelectItem value="admin">{t('roles.admin')}</SelectItem>
+              <SelectItem value="doctor">{t('roles.doctor')}</SelectItem>
+              <SelectItem value="nurse">{t('roles.nurse')}</SelectItem>
+              <SelectItem value="user">{t('roles.user')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
       </div>
       <Button onClick={handleCreate} disabled={working}>
-        {working ? 'Creating…' : 'Create User'}
+        {working ? t('team.creating') : t('team.createButton')}
       </Button>
 
       {handoff && (
         <div className="rounded-md border bg-muted/30 p-3 text-sm">
-          <div className="mb-1 font-medium">Share these credentials:</div>
+          <div className="mb-1 font-medium">{t('team.shareCreds')}</div>
           <div>
-            <span className="text-muted-foreground">Email: </span>
+            <span className="text-muted-foreground">{t('team.emailLabel')}: </span>
             <code>{handoff.email}</code>
           </div>
           <div>
-            <span className="text-muted-foreground">Password: </span>
+            <span className="text-muted-foreground">{t('team.passwordField')}: </span>
             <code>{handoff.password}</code>
           </div>
           <p className="mt-2 text-xs text-muted-foreground">
-            This is the only time the password will be shown. Ask the user to
-            change it after first login.
+            {t('team.shareWarning')}
           </p>
         </div>
       )}
@@ -344,6 +343,7 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
 }
 
 function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
+  const { t } = useTranslation('settings')
   const [email, setEmail] = useState('')
   const [inviteRole, setInviteRole] = useState<Role>('user')
   const [sending, setSending] = useState(false)
@@ -351,7 +351,7 @@ function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
   async function handleInvite() {
     const trimmed = email.trim().toLowerCase()
     if (!trimmed || !isValidEmail(trimmed)) {
-      toast.error('Enter a valid email')
+      toast.error(t('team.errEmail'))
       return
     }
     setSending(true)
@@ -365,10 +365,10 @@ function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
       const payload = data ?? null
       if (error || payload?.error) {
         const msg = payload?.error ?? error?.message ?? 'Failed'
-        toast.error(`Invite failed: ${msg}`)
+        toast.error(t('team.inviteError', { error: msg }))
         return
       }
-      toast.success(`Invited ${trimmed}`)
+      toast.success(t('team.inviteSuccess', { email: trimmed }))
       setEmail('')
       await onInvited()
     } finally {
@@ -378,24 +378,21 @@ function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-muted-foreground">
-        Sends a signup link to the user&apos;s email. Requires SMTP to be
-        configured on the server.
-      </p>
+      <p className="text-xs text-muted-foreground">{t('team.inviteHelp')}</p>
       <div className="flex flex-wrap items-end gap-2">
         <div className="flex-1 min-w-[220px] space-y-2">
-          <Label htmlFor="invite-email">Email address</Label>
+          <Label htmlFor="invite-email">{t('team.inviteEmailLabel')}</Label>
           <Input
             id="invite-email"
             type="email"
-            placeholder="name@example.com"
+            placeholder={t('team.emailPlaceholder')}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={sending}
           />
         </div>
         <div className="w-[140px] space-y-2">
-          <Label htmlFor="invite-role">Role</Label>
+          <Label htmlFor="invite-role">{t('team.roleLabel')}</Label>
           <Select
             value={inviteRole}
             onValueChange={(v) => setInviteRole(v as Role)}
@@ -404,15 +401,15 @@ function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="doctor">Doctor</SelectItem>
-              <SelectItem value="nurse">Nurse</SelectItem>
-              <SelectItem value="user">User</SelectItem>
+              <SelectItem value="admin">{t('roles.admin')}</SelectItem>
+              <SelectItem value="doctor">{t('roles.doctor')}</SelectItem>
+              <SelectItem value="nurse">{t('roles.nurse')}</SelectItem>
+              <SelectItem value="user">{t('roles.user')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
         <Button onClick={handleInvite} disabled={sending || !email.trim()}>
-          {sending ? 'Sending…' : 'Send Invite'}
+          {sending ? t('team.sending') : t('team.sendInvite')}
         </Button>
       </div>
     </div>
