@@ -5,15 +5,17 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { AppSidebar } from '@/components/layout/AppSidebar'
 import { NetworkStatusBanner } from '@/components/network-status-banner'
 import { hasBackendConfig } from '@/lib/supabase/client'
+import { isDemoMode } from '@/lib/demo/seed'
 
 export const Route = createFileRoute('/_auth')({
   beforeLoad: async () => {
-    if (!hasBackendConfig()) {
+    const demo = isDemoMode()
+    if (!demo && !hasBackendConfig()) {
       throw redirect({ to: '/setup' })
     }
     let { session } = useAuthStore.getState()
     const { isLoading } = useAuthStore.getState()
-    if (isLoading) {
+    if (!demo && isLoading) {
       await new Promise<void>((resolve) => {
         const unsub = useAuthStore.subscribe((state) => {
           if (!state.isLoading) {
@@ -29,6 +31,27 @@ export const Route = createFileRoute('/_auth')({
         }, 5000)
       })
       session = useAuthStore.getState().session
+    }
+    if (demo) {
+      // Demo seed runs in __root.tsx useEffect after mount — wait briefly
+      // for applyDemoAuth() to populate the session, otherwise the first
+      // navigation will bounce to /login before the seed lands.
+      if (!session) {
+        await new Promise<void>((resolve) => {
+          const unsub = useAuthStore.subscribe((state) => {
+            if (state.session) {
+              unsub()
+              resolve()
+            }
+          })
+          setTimeout(() => {
+            unsub()
+            resolve()
+          }, 3000)
+        })
+        session = useAuthStore.getState().session
+      }
+      return
     }
     if (!session) {
       throw redirect({ to: '/login' })
