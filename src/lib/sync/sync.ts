@@ -7,6 +7,35 @@ import type { SyncableRecord } from './lan-transport'
 
 let syncing = false
 
+const LAST_CLOUD_SYNC_KEY = 'hr_last_cloud_sync'
+
+function markCloudSyncSucceeded(): void {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(LAST_CLOUD_SYNC_KEY, String(Date.now()))
+  } catch {
+    // localStorage may be unavailable (private mode) — fine, the timestamp
+    // is purely informational.
+  }
+}
+
+/**
+ * Timestamp of the most recent successful cloud push (milliseconds since
+ * epoch), or null if no cloud sync has ever succeeded on this device.
+ * Persisted to localStorage so it survives reloads.
+ */
+export function getLastCloudSyncAt(): number | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = window.localStorage.getItem(LAST_CLOUD_SYNC_KEY)
+    if (!raw) return null
+    const parsed = Number.parseInt(raw, 10)
+    return Number.isFinite(parsed) ? parsed : null
+  } catch {
+    return null
+  }
+}
+
 /**
  * Process the sync queue: push local changes to cloud Supabase first,
  * fall back to the LAN transport when cloud is unreachable. Called on
@@ -18,7 +47,18 @@ export async function flushSyncQueue(): Promise<void> {
 
   try {
     const entries = await db.syncQueue.orderBy('seq').toArray()
-    if (entries.length === 0) return
+    if (entries.length === 0) {
+      // Nothing to push — if we're connected to cloud, treat this as
+      // "up to date" so the Settings UI can report a fresh timestamp
+      // after a manual "Sync now" with an empty queue.
+      if (
+        !isHubLocalMode() &&
+        (typeof navigator === 'undefined' || navigator.onLine)
+      ) {
+        markCloudSyncSucceeded()
+      }
+      return
+    }
 
     for (const entry of entries) {
       try {
@@ -60,6 +100,7 @@ async function pushEntryViaTransports(entry: SyncQueueEntry): Promise<boolean> {
   if (typeof navigator === 'undefined' || navigator.onLine) {
     try {
       await pushEntryToCloud(entry)
+      markCloudSyncSucceeded()
       return true
     } catch (err) {
       // Fall through to LAN.

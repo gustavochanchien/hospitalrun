@@ -16,8 +16,10 @@ vi.mock('@/lib/supabase/client', () => ({
 }))
 
 // Import after mocking
-const { flushSyncQueue } = await import('./sync')
+const { flushSyncQueue, getLastCloudSyncAt } = await import('./sync')
 const { supabase } = await import('@/lib/supabase/client')
+
+const LAST_CLOUD_SYNC_KEY = 'hr_last_cloud_sync'
 
 function fakeLan(overrides: Partial<LanTransport> = {}): LanTransport {
   const fake: LanTransport = {
@@ -66,6 +68,7 @@ beforeEach(async () => {
     await db.patients.clear()
     await db.syncQueue.clear()
   })
+  localStorage.removeItem(LAST_CLOUD_SYNC_KEY)
   vi.clearAllMocks()
 })
 
@@ -208,5 +211,42 @@ describe('flushSyncQueue', () => {
     // Queue entry should remain since push failed
     const queue = await db.syncQueue.toArray()
     expect(queue).toHaveLength(1)
+  })
+
+  it('records a last-cloud-sync timestamp after a successful cloud push', async () => {
+    Object.defineProperty(navigator, 'onLine', { value: true, writable: true, configurable: true })
+    // Reset supabase.from to the success-returning default — earlier tests
+    // may have overridden it via mockReturnValue.
+    vi.mocked(supabase.from).mockReturnValue({
+      upsert: vi.fn().mockResolvedValue({ error: null }),
+    } as never)
+
+    const before = Date.now()
+    expect(getLastCloudSyncAt()).toBeNull()
+
+    const patient = makePatient()
+    await dbPut('patients', patient, 'insert')
+    await flushSyncQueue()
+
+    const at = getLastCloudSyncAt()
+    expect(at).not.toBeNull()
+    expect(at!).toBeGreaterThanOrEqual(before)
+  })
+
+  it('records a timestamp when flushing an empty queue while online', async () => {
+    Object.defineProperty(navigator, 'onLine', { value: true, writable: true, configurable: true })
+    expect(getLastCloudSyncAt()).toBeNull()
+
+    await flushSyncQueue()
+
+    expect(getLastCloudSyncAt()).not.toBeNull()
+  })
+
+  it('does not record a timestamp when offline with an empty queue', async () => {
+    Object.defineProperty(navigator, 'onLine', { value: false, writable: true, configurable: true })
+
+    await flushSyncQueue()
+
+    expect(getLastCloudSyncAt()).toBeNull()
   })
 })

@@ -29,6 +29,7 @@ import { ThemeCard } from './ThemeCard'
 import { TeamCard } from './TeamCard'
 import { SwitchServerCard } from './SwitchServerCard'
 import { HubCard } from './HubCard'
+import { CloudBackupCard } from './CloudBackupCard'
 import { seedFakeData } from '@/lib/demo/seed-org'
 import { SUPPORTED_LANGUAGES, type LanguageCode } from '@/lib/i18n'
 import { useLanguageStore } from './language.store'
@@ -55,6 +56,7 @@ export function SettingsPage() {
       <TeamCard />
       <AccountDiagnosticsCard />
       <HubCard />
+      <CloudBackupCard />
       <SwitchServerCard />
       <SeedDataCard orgId={orgId} />
     </div>
