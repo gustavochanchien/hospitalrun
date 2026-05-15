@@ -100,5 +100,106 @@
     "sex": "Jenis kelamin",
     "phone": "Telepon",
     "status": "Status"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Memuat...",
+      "delete": "Hapus"
+    },
+    "allergies": {
+      "title": "Alergi",
+      "newAction": "Alergi baru",
+      "create": "Buat alergi",
+      "noResults": "Tidak ada alergi ditemukan.",
+      "fields": {
+        "allergen": "Alergen",
+        "reaction": "Reaksi",
+        "severity": "Tingkat keparahan"
+      },
+      "placeholders": {
+        "allergen": "mis. Penisilin",
+        "reaction": "mis. Biduran, Anafilaksis",
+        "severity": "Pilih tingkat keparahan"
+      },
+      "severity": {
+        "mild": "Ringan",
+        "moderate": "Sedang",
+        "severe": "Berat"
+      }
+    },
+    "diagnoses": {
+      "title": "Diagnosis",
+      "newAction": "Diagnosis baru",
+      "create": "Buat diagnosis",
+      "noResults": "Tidak ada diagnosis ditemukan.",
+      "fields": {
+        "icdCode": "Kode ICD",
+        "description": "Deskripsi",
+        "diagnosedBy": "Didiagnosis oleh",
+        "diagnosedAt": "Tanggal diagnosis",
+        "date": "Tanggal",
+        "notes": "Catatan",
+        "status": "Status",
+        "onsetDate": "Tanggal mulai",
+        "abatementDate": "Tanggal sembuh"
+      },
+      "placeholders": {
+        "icdCode": "mis. J06.9",
+        "description": "Deskripsi diagnosis",
+        "diagnosedBy": "Nama klinisi",
+        "status": "Pilih status"
+      }
+    },
+    "medications": {
+      "title": "Obat",
+      "newAction": "Obat baru",
+      "create": "Buat obat",
+      "noResults": "Tidak ada obat ditemukan.",
+      "fields": {
+        "name": "Nama",
+        "status": "Status",
+        "intent": "Maksud",
+        "priority": "Prioritas",
+        "quantity": "Jumlah",
+        "notes": "Catatan",
+        "startDate": "Tanggal mulai",
+        "endDate": "Tanggal selesai"
+      },
+      "placeholders": {
+        "name": "mis. Amoksisilin 500mg",
+        "status": "Pilih status",
+        "intent": "mis. order, rencana, usulan",
+        "priority": "mis. rutin, mendesak, stat",
+        "quantity": "mis. 30 tablet"
+      },
+      "statusOption": {
+        "draft": "Draf",
+        "active": "Aktif",
+        "onHold": "Ditangguhkan",
+        "canceled": "Dibatalkan",
+        "completed": "Selesai",
+        "enteredInError": "Salah input",
+        "stopped": "Dihentikan",
+        "unknown": "Tidak diketahui"
+      }
+    },
+    "labs": {
+      "title": "Laboratorium",
+      "newAction": "Lab baru",
+      "create": "Buat lab",
+      "noResults": "Tidak ada lab ditemukan.",
+      "fields": {
+        "type": "Tipe",
+        "code": "Kode",
+        "status": "Status",
+        "requestedAt": "Diminta pada",
+        "result": "Hasil",
+        "notes": "Catatan"
+      },
+      "placeholders": {
+        "type": "mis. CBC, BMP, Panel lipid",
+        "code": "mis. 85025"
+      }
+    }
   }
 }

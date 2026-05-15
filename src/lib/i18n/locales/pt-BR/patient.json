@@ -100,5 +100,106 @@
     "sex": "Sexo",
     "phone": "Telefone",
     "status": "Status"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Carregando...",
+      "delete": "Excluir"
+    },
+    "allergies": {
+      "title": "Alergias",
+      "newAction": "Nova alergia",
+      "create": "Criar alergia",
+      "noResults": "Nenhuma alergia encontrada.",
+      "fields": {
+        "allergen": "Alérgeno",
+        "reaction": "Reação",
+        "severity": "Gravidade"
+      },
+      "placeholders": {
+        "allergen": "ex.: Penicilina",
+        "reaction": "ex.: Urticária, Anafilaxia",
+        "severity": "Selecione a gravidade"
+      },
+      "severity": {
+        "mild": "Leve",
+        "moderate": "Moderada",
+        "severe": "Grave"
+      }
+    },
+    "diagnoses": {
+      "title": "Diagnósticos",
+      "newAction": "Novo diagnóstico",
+      "create": "Criar diagnóstico",
+      "noResults": "Nenhum diagnóstico encontrado.",
+      "fields": {
+        "icdCode": "Código CID",
+        "description": "Descrição",
+        "diagnosedBy": "Diagnosticado por",
+        "diagnosedAt": "Data do diagnóstico",
+        "date": "Data",
+        "notes": "Notas",
+        "status": "Status",
+        "onsetDate": "Data de início",
+        "abatementDate": "Data de remissão"
+      },
+      "placeholders": {
+        "icdCode": "ex.: J06.9",
+        "description": "Descrição do diagnóstico",
+        "diagnosedBy": "Nome do clínico",
+        "status": "Selecione o status"
+      }
+    },
+    "medications": {
+      "title": "Medicamentos",
+      "newAction": "Novo medicamento",
+      "create": "Criar medicamento",
+      "noResults": "Nenhum medicamento encontrado.",
+      "fields": {
+        "name": "Nome",
+        "status": "Status",
+        "intent": "Intenção",
+        "priority": "Prioridade",
+        "quantity": "Quantidade",
+        "notes": "Notas",
+        "startDate": "Data inicial",
+        "endDate": "Data final"
+      },
+      "placeholders": {
+        "name": "ex.: Amoxicilina 500mg",
+        "status": "Selecione o status",
+        "intent": "ex.: ordem, plano, proposta",
+        "priority": "ex.: rotina, urgente, stat",
+        "quantity": "ex.: 30 comprimidos"
+      },
+      "statusOption": {
+        "draft": "Rascunho",
+        "active": "Ativo",
+        "onHold": "Em espera",
+        "canceled": "Cancelado",
+        "completed": "Concluído",
+        "enteredInError": "Inserido por engano",
+        "stopped": "Interrompido",
+        "unknown": "Desconhecido"
+      }
+    },
+    "labs": {
+      "title": "Laboratórios",
+      "newAction": "Novo laboratório",
+      "create": "Criar laboratório",
+      "noResults": "Nenhum laboratório encontrado.",
+      "fields": {
+        "type": "Tipo",
+        "code": "Código",
+        "status": "Status",
+        "requestedAt": "Solicitado em",
+        "result": "Resultado",
+        "notes": "Notas"
+      },
+      "placeholders": {
+        "type": "ex.: CBC, BMP, Painel lipídico",
+        "code": "ex.: 85025"
+      }
+    }
   }
 }

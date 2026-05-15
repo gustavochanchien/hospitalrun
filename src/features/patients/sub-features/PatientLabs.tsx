@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Link } from '@tanstack/react-router'
 import { db } from '@/lib/db'
@@ -46,6 +47,7 @@ function statusVariant(status: string) {
 }
 
 export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [type, setType] = useState('')
@@ -103,43 +105,43 @@ export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
   }
 
   if (labs === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Labs</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.labs.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Lab</Button>
+            <Button size="sm">{t('subFeatures.labs.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Lab</DialogTitle>
+              <DialogTitle>{t('subFeatures.labs.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="lab-type">Type</Label>
+                <Label htmlFor="lab-type">{t('subFeatures.labs.fields.type')}</Label>
                 <Input
                   id="lab-type"
                   required
                   value={type}
                   onChange={(e) => setType(e.target.value)}
-                  placeholder="e.g. CBC, BMP, Lipid Panel"
+                  placeholder={t('subFeatures.labs.placeholders.type')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lab-code">Code</Label>
+                <Label htmlFor="lab-code">{t('subFeatures.labs.fields.code')}</Label>
                 <Input
                   id="lab-code"
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
-                  placeholder="e.g. 85025"
+                  placeholder={t('subFeatures.labs.placeholders.code')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lab-notes">Notes</Label>
+                <Label htmlFor="lab-notes">{t('subFeatures.labs.fields.notes')}</Label>
                 <Textarea
                   id="lab-notes"
                   value={notes}
@@ -147,7 +149,7 @@ export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Lab
+                {t('subFeatures.labs.create')}
               </Button>
             </form>
           </DialogContent>
@@ -156,18 +158,18 @@ export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
 
       {labs.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No labs found.
+          {t('subFeatures.labs.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Type</TableHead>
-                <TableHead>Code</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Requested At</TableHead>
-                <TableHead>Result</TableHead>
+                <TableHead>{t('subFeatures.labs.fields.type')}</TableHead>
+                <TableHead>{t('subFeatures.labs.fields.code')}</TableHead>
+                <TableHead>{t('subFeatures.labs.fields.status')}</TableHead>
+                <TableHead>{t('subFeatures.labs.fields.requestedAt')}</TableHead>
+                <TableHead>{t('subFeatures.labs.fields.result')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -184,7 +186,7 @@ export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
                     </Link>
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {lab.code ?? '\u2014'}
+                    {lab.code ?? '—'}
                   </TableCell>
                   <TableCell>
                     <Badge variant={statusVariant(lab.status)}>
@@ -198,7 +200,7 @@ export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
                     className="max-w-[200px] truncate text-muted-foreground"
                     title={lab.result ?? undefined}
                   >
-                    {lab.result ?? '\u2014'}
+                    {lab.result ?? '—'}
                   </TableCell>
                   <TableCell>
                     <Button
@@ -206,7 +208,7 @@ export function PatientLabs({ patientId, visitId = null }: PatientLabsProps) {
                       size="sm"
                       onClick={() => setPendingDeleteId(lab.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

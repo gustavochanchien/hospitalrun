@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Link } from '@tanstack/react-router'
 import { db } from '@/lib/db'
@@ -77,7 +78,19 @@ function statusVariant(status: MedicationStatus) {
   }
 }
 
+const STATUS_KEY: Record<MedicationStatus, string> = {
+  'draft': 'draft',
+  'active': 'active',
+  'on hold': 'onHold',
+  'canceled': 'canceled',
+  'completed': 'completed',
+  'entered in error': 'enteredInError',
+  'stopped': 'stopped',
+  'unknown': 'unknown',
+}
+
 export function PatientMedications({ patientId, visitId = null }: PatientMedicationsProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [name, setName] = useState('')
@@ -140,79 +153,79 @@ export function PatientMedications({ patientId, visitId = null }: PatientMedicat
   }
 
   if (medications === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Medications</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.medications.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Medication</Button>
+            <Button size="sm">{t('subFeatures.medications.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Medication</DialogTitle>
+              <DialogTitle>{t('subFeatures.medications.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="med-name">Name</Label>
+                <Label htmlFor="med-name">{t('subFeatures.medications.fields.name')}</Label>
                 <Input
                   id="med-name"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Amoxicillin 500mg"
+                  placeholder={t('subFeatures.medications.placeholders.name')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="med-status">Status</Label>
+                <Label htmlFor="med-status">{t('subFeatures.medications.fields.status')}</Label>
                 <Select
                   value={status}
                   onValueChange={(v) => setStatus(v as MedicationStatus)}
                 >
                   <SelectTrigger id="med-status">
-                    <SelectValue placeholder="Select status" />
+                    <SelectValue placeholder={t('subFeatures.medications.placeholders.status')} />
                   </SelectTrigger>
                   <SelectContent>
                     {MEDICATION_STATUSES.map((s) => (
                       <SelectItem key={s} value={s}>
-                        {s.charAt(0).toUpperCase() + s.slice(1)}
+                        {t(`subFeatures.medications.statusOption.${STATUS_KEY[s]}` as `subFeatures.medications.statusOption.${string}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="med-intent">Intent</Label>
+                <Label htmlFor="med-intent">{t('subFeatures.medications.fields.intent')}</Label>
                 <Input
                   id="med-intent"
                   value={intent}
                   onChange={(e) => setIntent(e.target.value)}
-                  placeholder="e.g. order, plan, proposal"
+                  placeholder={t('subFeatures.medications.placeholders.intent')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="med-priority">Priority</Label>
+                <Label htmlFor="med-priority">{t('subFeatures.medications.fields.priority')}</Label>
                 <Input
                   id="med-priority"
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
-                  placeholder="e.g. routine, urgent, stat"
+                  placeholder={t('subFeatures.medications.placeholders.priority')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="med-quantity">Quantity</Label>
+                <Label htmlFor="med-quantity">{t('subFeatures.medications.fields.quantity')}</Label>
                 <Input
                   id="med-quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
-                  placeholder="e.g. 30 tablets"
+                  placeholder={t('subFeatures.medications.placeholders.quantity')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="med-notes">Notes</Label>
+                <Label htmlFor="med-notes">{t('subFeatures.medications.fields.notes')}</Label>
                 <Textarea
                   id="med-notes"
                   value={notes}
@@ -220,7 +233,7 @@ export function PatientMedications({ patientId, visitId = null }: PatientMedicat
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Medication
+                {t('subFeatures.medications.create')}
               </Button>
             </form>
           </DialogContent>
@@ -229,18 +242,18 @@ export function PatientMedications({ patientId, visitId = null }: PatientMedicat
 
       {medications.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No medications found.
+          {t('subFeatures.medications.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead>Start Date</TableHead>
-                <TableHead>End Date</TableHead>
+                <TableHead>{t('subFeatures.medications.fields.name')}</TableHead>
+                <TableHead>{t('subFeatures.medications.fields.status')}</TableHead>
+                <TableHead>{t('subFeatures.medications.fields.quantity')}</TableHead>
+                <TableHead>{t('subFeatures.medications.fields.startDate')}</TableHead>
+                <TableHead>{t('subFeatures.medications.fields.endDate')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -262,17 +275,17 @@ export function PatientMedications({ patientId, visitId = null }: PatientMedicat
                     </Badge>
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {med.quantity ?? '\u2014'}
+                    {med.quantity ?? '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {med.startDate
                       ? format(parseISO(med.startDate), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {med.endDate
                       ? format(parseISO(med.endDate), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell>
                     <Button
@@ -280,7 +293,7 @@ export function PatientMedications({ patientId, visitId = null }: PatientMedicat
                       size="sm"
                       onClick={() => setPendingDeleteId(med.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

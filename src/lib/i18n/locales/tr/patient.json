@@ -100,5 +100,106 @@
     "sex": "Cinsiyet",
     "phone": "Telefon",
     "status": "Durum"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Yükleniyor...",
+      "delete": "Sil"
+    },
+    "allergies": {
+      "title": "Alerjiler",
+      "newAction": "Yeni alerji",
+      "create": "Alerji oluştur",
+      "noResults": "Alerji bulunamadı.",
+      "fields": {
+        "allergen": "Alerjen",
+        "reaction": "Reaksiyon",
+        "severity": "Şiddet"
+      },
+      "placeholders": {
+        "allergen": "örn. Penisilin",
+        "reaction": "örn. Kurdeşen, Anafilaksi",
+        "severity": "Şiddet seçin"
+      },
+      "severity": {
+        "mild": "Hafif",
+        "moderate": "Orta",
+        "severe": "Şiddetli"
+      }
+    },
+    "diagnoses": {
+      "title": "Tanılar",
+      "newAction": "Yeni tanı",
+      "create": "Tanı oluştur",
+      "noResults": "Tanı bulunamadı.",
+      "fields": {
+        "icdCode": "ICD kodu",
+        "description": "Açıklama",
+        "diagnosedBy": "Tanıyı koyan",
+        "diagnosedAt": "Tanı tarihi",
+        "date": "Tarih",
+        "notes": "Notlar",
+        "status": "Durum",
+        "onsetDate": "Başlangıç tarihi",
+        "abatementDate": "İyileşme tarihi"
+      },
+      "placeholders": {
+        "icdCode": "örn. J06.9",
+        "description": "Tanı açıklaması",
+        "diagnosedBy": "Klinisyen adı",
+        "status": "Durum seçin"
+      }
+    },
+    "medications": {
+      "title": "İlaçlar",
+      "newAction": "Yeni ilaç",
+      "create": "İlaç oluştur",
+      "noResults": "İlaç bulunamadı.",
+      "fields": {
+        "name": "Ad",
+        "status": "Durum",
+        "intent": "Niyet",
+        "priority": "Öncelik",
+        "quantity": "Miktar",
+        "notes": "Notlar",
+        "startDate": "Başlangıç tarihi",
+        "endDate": "Bitiş tarihi"
+      },
+      "placeholders": {
+        "name": "örn. Amoksisilin 500mg",
+        "status": "Durum seçin",
+        "intent": "örn. emir, plan, öneri",
+        "priority": "örn. rutin, acil, stat",
+        "quantity": "örn. 30 tablet"
+      },
+      "statusOption": {
+        "draft": "Taslak",
+        "active": "Aktif",
+        "onHold": "Beklemede",
+        "canceled": "İptal",
+        "completed": "Tamamlandı",
+        "enteredInError": "Yanlış girildi",
+        "stopped": "Durduruldu",
+        "unknown": "Bilinmiyor"
+      }
+    },
+    "labs": {
+      "title": "Laboratuvar",
+      "newAction": "Yeni laboratuvar",
+      "create": "Laboratuvar oluştur",
+      "noResults": "Laboratuvar bulunamadı.",
+      "fields": {
+        "type": "Tür",
+        "code": "Kod",
+        "status": "Durum",
+        "requestedAt": "İstek zamanı",
+        "result": "Sonuç",
+        "notes": "Notlar"
+      },
+      "placeholders": {
+        "type": "örn. CBC, BMP, Lipid Paneli",
+        "code": "örn. 85025"
+      }
+    }
   }
 }

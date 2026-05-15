@@ -100,5 +100,106 @@
     "sex": "Sexe",
     "phone": "Téléphone",
     "status": "Statut"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Chargement...",
+      "delete": "Supprimer"
+    },
+    "allergies": {
+      "title": "Allergies",
+      "newAction": "Nouvelle allergie",
+      "create": "Créer l'allergie",
+      "noResults": "Aucune allergie trouvée.",
+      "fields": {
+        "allergen": "Allergène",
+        "reaction": "Réaction",
+        "severity": "Sévérité"
+      },
+      "placeholders": {
+        "allergen": "ex. Pénicilline",
+        "reaction": "ex. Urticaire, Anaphylaxie",
+        "severity": "Sélectionner la sévérité"
+      },
+      "severity": {
+        "mild": "Légère",
+        "moderate": "Modérée",
+        "severe": "Sévère"
+      }
+    },
+    "diagnoses": {
+      "title": "Diagnostics",
+      "newAction": "Nouveau diagnostic",
+      "create": "Créer le diagnostic",
+      "noResults": "Aucun diagnostic trouvé.",
+      "fields": {
+        "icdCode": "Code CIM",
+        "description": "Description",
+        "diagnosedBy": "Diagnostiqué par",
+        "diagnosedAt": "Date du diagnostic",
+        "date": "Date",
+        "notes": "Notes",
+        "status": "Statut",
+        "onsetDate": "Date d'apparition",
+        "abatementDate": "Date de rémission"
+      },
+      "placeholders": {
+        "icdCode": "ex. J06.9",
+        "description": "Description du diagnostic",
+        "diagnosedBy": "Nom du clinicien",
+        "status": "Sélectionner le statut"
+      }
+    },
+    "medications": {
+      "title": "Médicaments",
+      "newAction": "Nouveau médicament",
+      "create": "Créer le médicament",
+      "noResults": "Aucun médicament trouvé.",
+      "fields": {
+        "name": "Nom",
+        "status": "Statut",
+        "intent": "Intention",
+        "priority": "Priorité",
+        "quantity": "Quantité",
+        "notes": "Notes",
+        "startDate": "Date de début",
+        "endDate": "Date de fin"
+      },
+      "placeholders": {
+        "name": "ex. Amoxicilline 500 mg",
+        "status": "Sélectionner le statut",
+        "intent": "ex. ordre, plan, proposition",
+        "priority": "ex. routine, urgent, stat",
+        "quantity": "ex. 30 comprimés"
+      },
+      "statusOption": {
+        "draft": "Brouillon",
+        "active": "Actif",
+        "onHold": "En attente",
+        "canceled": "Annulé",
+        "completed": "Terminé",
+        "enteredInError": "Saisi par erreur",
+        "stopped": "Arrêté",
+        "unknown": "Inconnu"
+      }
+    },
+    "labs": {
+      "title": "Laboratoires",
+      "newAction": "Nouveau laboratoire",
+      "create": "Créer le laboratoire",
+      "noResults": "Aucun laboratoire trouvé.",
+      "fields": {
+        "type": "Type",
+        "code": "Code",
+        "status": "Statut",
+        "requestedAt": "Demandé le",
+        "result": "Résultat",
+        "notes": "Notes"
+      },
+      "placeholders": {
+        "type": "ex. NFS, BMP, Bilan lipidique",
+        "code": "ex. 85025"
+      }
+    }
   }
 }

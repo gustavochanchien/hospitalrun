@@ -100,5 +100,106 @@
     "sex": "Geschlecht",
     "phone": "Telefon",
     "status": "Status"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Wird geladen...",
+      "delete": "Löschen"
+    },
+    "allergies": {
+      "title": "Allergien",
+      "newAction": "Neue Allergie",
+      "create": "Allergie anlegen",
+      "noResults": "Keine Allergien gefunden.",
+      "fields": {
+        "allergen": "Allergen",
+        "reaction": "Reaktion",
+        "severity": "Schweregrad"
+      },
+      "placeholders": {
+        "allergen": "z. B. Penicillin",
+        "reaction": "z. B. Nesselsucht, Anaphylaxie",
+        "severity": "Schweregrad auswählen"
+      },
+      "severity": {
+        "mild": "Leicht",
+        "moderate": "Mittel",
+        "severe": "Schwer"
+      }
+    },
+    "diagnoses": {
+      "title": "Diagnosen",
+      "newAction": "Neue Diagnose",
+      "create": "Diagnose anlegen",
+      "noResults": "Keine Diagnosen gefunden.",
+      "fields": {
+        "icdCode": "ICD-Code",
+        "description": "Beschreibung",
+        "diagnosedBy": "Diagnostiziert von",
+        "diagnosedAt": "Datum der Diagnose",
+        "date": "Datum",
+        "notes": "Notizen",
+        "status": "Status",
+        "onsetDate": "Beginn",
+        "abatementDate": "Abklingen"
+      },
+      "placeholders": {
+        "icdCode": "z. B. J06.9",
+        "description": "Diagnosebeschreibung",
+        "diagnosedBy": "Name der Klinikerin/des Klinikers",
+        "status": "Status auswählen"
+      }
+    },
+    "medications": {
+      "title": "Medikamente",
+      "newAction": "Neues Medikament",
+      "create": "Medikament anlegen",
+      "noResults": "Keine Medikamente gefunden.",
+      "fields": {
+        "name": "Name",
+        "status": "Status",
+        "intent": "Absicht",
+        "priority": "Priorität",
+        "quantity": "Menge",
+        "notes": "Notizen",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum"
+      },
+      "placeholders": {
+        "name": "z. B. Amoxicillin 500 mg",
+        "status": "Status auswählen",
+        "intent": "z. B. Bestellung, Plan, Vorschlag",
+        "priority": "z. B. Routine, dringend, sofort",
+        "quantity": "z. B. 30 Tabletten"
+      },
+      "statusOption": {
+        "draft": "Entwurf",
+        "active": "Aktiv",
+        "onHold": "Ausgesetzt",
+        "canceled": "Storniert",
+        "completed": "Abgeschlossen",
+        "enteredInError": "Fälschlich erfasst",
+        "stopped": "Beendet",
+        "unknown": "Unbekannt"
+      }
+    },
+    "labs": {
+      "title": "Labor",
+      "newAction": "Neues Labor",
+      "create": "Labor anlegen",
+      "noResults": "Keine Laborergebnisse gefunden.",
+      "fields": {
+        "type": "Typ",
+        "code": "Code",
+        "status": "Status",
+        "requestedAt": "Angefordert am",
+        "result": "Ergebnis",
+        "notes": "Notizen"
+      },
+      "placeholders": {
+        "type": "z. B. Blutbild, BMP, Lipidprofil",
+        "code": "z. B. 85025"
+      }
+    }
   }
 }

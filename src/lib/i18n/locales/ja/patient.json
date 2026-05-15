@@ -100,5 +100,106 @@
     "sex": "性別",
     "phone": "電話",
     "status": "状態"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "読み込み中...",
+      "delete": "削除"
+    },
+    "allergies": {
+      "title": "アレルギー",
+      "newAction": "新規アレルギー",
+      "create": "アレルギーを作成",
+      "noResults": "アレルギーは見つかりませんでした。",
+      "fields": {
+        "allergen": "アレルゲン",
+        "reaction": "反応",
+        "severity": "重症度"
+      },
+      "placeholders": {
+        "allergen": "例: ペニシリン",
+        "reaction": "例: 蕁麻疹、アナフィラキシー",
+        "severity": "重症度を選択"
+      },
+      "severity": {
+        "mild": "軽度",
+        "moderate": "中等度",
+        "severe": "重度"
+      }
+    },
+    "diagnoses": {
+      "title": "診断",
+      "newAction": "新規診断",
+      "create": "診断を作成",
+      "noResults": "診断は見つかりませんでした。",
+      "fields": {
+        "icdCode": "ICDコード",
+        "description": "説明",
+        "diagnosedBy": "診断者",
+        "diagnosedAt": "診断日",
+        "date": "日付",
+        "notes": "メモ",
+        "status": "状態",
+        "onsetDate": "発症日",
+        "abatementDate": "寛解日"
+      },
+      "placeholders": {
+        "icdCode": "例: J06.9",
+        "description": "診断の説明",
+        "diagnosedBy": "臨床医名",
+        "status": "状態を選択"
+      }
+    },
+    "medications": {
+      "title": "薬剤",
+      "newAction": "新規薬剤",
+      "create": "薬剤を作成",
+      "noResults": "薬剤は見つかりませんでした。",
+      "fields": {
+        "name": "名称",
+        "status": "状態",
+        "intent": "目的",
+        "priority": "優先度",
+        "quantity": "数量",
+        "notes": "メモ",
+        "startDate": "開始日",
+        "endDate": "終了日"
+      },
+      "placeholders": {
+        "name": "例: アモキシシリン 500mg",
+        "status": "状態を選択",
+        "intent": "例: 指示、計画、提案",
+        "priority": "例: 通常、緊急、stat",
+        "quantity": "例: 30錠"
+      },
+      "statusOption": {
+        "draft": "下書き",
+        "active": "有効",
+        "onHold": "保留",
+        "canceled": "取消",
+        "completed": "完了",
+        "enteredInError": "誤入力",
+        "stopped": "中止",
+        "unknown": "不明"
+      }
+    },
+    "labs": {
+      "title": "検査",
+      "newAction": "新規検査",
+      "create": "検査を作成",
+      "noResults": "検査は見つかりませんでした。",
+      "fields": {
+        "type": "種類",
+        "code": "コード",
+        "status": "状態",
+        "requestedAt": "依頼日時",
+        "result": "結果",
+        "notes": "メモ"
+      },
+      "placeholders": {
+        "type": "例: CBC、BMP、脂質パネル",
+        "code": "例: 85025"
+      }
+    }
   }
 }

@@ -100,5 +100,106 @@
     "sex": "Sesso",
     "phone": "Telefono",
     "status": "Stato"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Caricamento...",
+      "delete": "Elimina"
+    },
+    "allergies": {
+      "title": "Allergie",
+      "newAction": "Nuova allergia",
+      "create": "Crea allergia",
+      "noResults": "Nessuna allergia trovata.",
+      "fields": {
+        "allergen": "Allergene",
+        "reaction": "Reazione",
+        "severity": "Gravità"
+      },
+      "placeholders": {
+        "allergen": "es. Penicillina",
+        "reaction": "es. Orticaria, Anafilassi",
+        "severity": "Seleziona gravità"
+      },
+      "severity": {
+        "mild": "Lieve",
+        "moderate": "Moderata",
+        "severe": "Grave"
+      }
+    },
+    "diagnoses": {
+      "title": "Diagnosi",
+      "newAction": "Nuova diagnosi",
+      "create": "Crea diagnosi",
+      "noResults": "Nessuna diagnosi trovata.",
+      "fields": {
+        "icdCode": "Codice ICD",
+        "description": "Descrizione",
+        "diagnosedBy": "Diagnosticato da",
+        "diagnosedAt": "Data della diagnosi",
+        "date": "Data",
+        "notes": "Note",
+        "status": "Stato",
+        "onsetDate": "Data di insorgenza",
+        "abatementDate": "Data di remissione"
+      },
+      "placeholders": {
+        "icdCode": "es. J06.9",
+        "description": "Descrizione della diagnosi",
+        "diagnosedBy": "Nome del clinico",
+        "status": "Seleziona stato"
+      }
+    },
+    "medications": {
+      "title": "Farmaci",
+      "newAction": "Nuovo farmaco",
+      "create": "Crea farmaco",
+      "noResults": "Nessun farmaco trovato.",
+      "fields": {
+        "name": "Nome",
+        "status": "Stato",
+        "intent": "Intento",
+        "priority": "Priorità",
+        "quantity": "Quantità",
+        "notes": "Note",
+        "startDate": "Data inizio",
+        "endDate": "Data fine"
+      },
+      "placeholders": {
+        "name": "es. Amoxicillina 500mg",
+        "status": "Seleziona stato",
+        "intent": "es. ordine, piano, proposta",
+        "priority": "es. routine, urgente, stat",
+        "quantity": "es. 30 compresse"
+      },
+      "statusOption": {
+        "draft": "Bozza",
+        "active": "Attivo",
+        "onHold": "In sospeso",
+        "canceled": "Annullato",
+        "completed": "Completato",
+        "enteredInError": "Inserito per errore",
+        "stopped": "Interrotto",
+        "unknown": "Sconosciuto"
+      }
+    },
+    "labs": {
+      "title": "Laboratori",
+      "newAction": "Nuovo laboratorio",
+      "create": "Crea laboratorio",
+      "noResults": "Nessun laboratorio trovato.",
+      "fields": {
+        "type": "Tipo",
+        "code": "Codice",
+        "status": "Stato",
+        "requestedAt": "Richiesto il",
+        "result": "Risultato",
+        "notes": "Note"
+      },
+      "placeholders": {
+        "type": "es. Emocromo, BMP, Profilo lipidico",
+        "code": "es. 85025"
+      }
+    }
   }
 }

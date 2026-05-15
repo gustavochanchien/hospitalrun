@@ -100,5 +100,106 @@
     "sex": "Sex",
     "phone": "Phone",
     "status": "Status"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Loading...",
+      "delete": "Delete"
+    },
+    "allergies": {
+      "title": "Allergies",
+      "newAction": "New Allergy",
+      "create": "Create Allergy",
+      "noResults": "No allergies found.",
+      "fields": {
+        "allergen": "Allergen",
+        "reaction": "Reaction",
+        "severity": "Severity"
+      },
+      "placeholders": {
+        "allergen": "e.g. Penicillin",
+        "reaction": "e.g. Hives, Anaphylaxis",
+        "severity": "Select severity"
+      },
+      "severity": {
+        "mild": "Mild",
+        "moderate": "Moderate",
+        "severe": "Severe"
+      }
+    },
+    "diagnoses": {
+      "title": "Diagnoses",
+      "newAction": "New Diagnosis",
+      "create": "Create Diagnosis",
+      "noResults": "No diagnoses found.",
+      "fields": {
+        "icdCode": "ICD Code",
+        "description": "Description",
+        "diagnosedBy": "Diagnosed By",
+        "diagnosedAt": "Date Diagnosed",
+        "date": "Date",
+        "notes": "Notes",
+        "status": "Status",
+        "onsetDate": "Onset Date",
+        "abatementDate": "Abatement Date"
+      },
+      "placeholders": {
+        "icdCode": "e.g. J06.9",
+        "description": "Diagnosis description",
+        "diagnosedBy": "Clinician name",
+        "status": "Select status"
+      }
+    },
+    "medications": {
+      "title": "Medications",
+      "newAction": "New Medication",
+      "create": "Create Medication",
+      "noResults": "No medications found.",
+      "fields": {
+        "name": "Name",
+        "status": "Status",
+        "intent": "Intent",
+        "priority": "Priority",
+        "quantity": "Quantity",
+        "notes": "Notes",
+        "startDate": "Start Date",
+        "endDate": "End Date"
+      },
+      "placeholders": {
+        "name": "e.g. Amoxicillin 500mg",
+        "status": "Select status",
+        "intent": "e.g. order, plan, proposal",
+        "priority": "e.g. routine, urgent, stat",
+        "quantity": "e.g. 30 tablets"
+      },
+      "statusOption": {
+        "draft": "Draft",
+        "active": "Active",
+        "onHold": "On hold",
+        "canceled": "Canceled",
+        "completed": "Completed",
+        "enteredInError": "Entered in error",
+        "stopped": "Stopped",
+        "unknown": "Unknown"
+      }
+    },
+    "labs": {
+      "title": "Labs",
+      "newAction": "New Lab",
+      "create": "Create Lab",
+      "noResults": "No labs found.",
+      "fields": {
+        "type": "Type",
+        "code": "Code",
+        "status": "Status",
+        "requestedAt": "Requested At",
+        "result": "Result",
+        "notes": "Notes"
+      },
+      "placeholders": {
+        "type": "e.g. CBC, BMP, Lipid Panel",
+        "code": "e.g. 85025"
+      }
+    }
   }
 }

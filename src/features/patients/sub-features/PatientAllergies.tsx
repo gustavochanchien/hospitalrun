@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
@@ -51,6 +52,7 @@ function severityVariant(severity: Severity | null) {
 }
 
 export function PatientAllergies({ patientId }: PatientAllergiesProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [allergen, setAllergen] = useState('')
@@ -101,59 +103,59 @@ export function PatientAllergies({ patientId }: PatientAllergiesProps) {
   }
 
   if (allergies === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Allergies</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.allergies.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Allergy</Button>
+            <Button size="sm">{t('subFeatures.allergies.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Allergy</DialogTitle>
+              <DialogTitle>{t('subFeatures.allergies.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="allergy-allergen">Allergen</Label>
+                <Label htmlFor="allergy-allergen">{t('subFeatures.allergies.fields.allergen')}</Label>
                 <Input
                   id="allergy-allergen"
                   required
                   value={allergen}
                   onChange={(e) => setAllergen(e.target.value)}
-                  placeholder="e.g. Penicillin"
+                  placeholder={t('subFeatures.allergies.placeholders.allergen')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="allergy-reaction">Reaction</Label>
+                <Label htmlFor="allergy-reaction">{t('subFeatures.allergies.fields.reaction')}</Label>
                 <Input
                   id="allergy-reaction"
                   value={reaction}
                   onChange={(e) => setReaction(e.target.value)}
-                  placeholder="e.g. Hives, Anaphylaxis"
+                  placeholder={t('subFeatures.allergies.placeholders.reaction')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="allergy-severity">Severity</Label>
+                <Label htmlFor="allergy-severity">{t('subFeatures.allergies.fields.severity')}</Label>
                 <Select
                   value={severity}
                   onValueChange={(v) => setSeverity(v as Severity)}
                 >
                   <SelectTrigger id="allergy-severity">
-                    <SelectValue placeholder="Select severity" />
+                    <SelectValue placeholder={t('subFeatures.allergies.placeholders.severity')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="mild">Mild</SelectItem>
-                    <SelectItem value="moderate">Moderate</SelectItem>
-                    <SelectItem value="severe">Severe</SelectItem>
+                    <SelectItem value="mild">{t('subFeatures.allergies.severity.mild')}</SelectItem>
+                    <SelectItem value="moderate">{t('subFeatures.allergies.severity.moderate')}</SelectItem>
+                    <SelectItem value="severe">{t('subFeatures.allergies.severity.severe')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <Button type="submit" className="w-full">
-                Create Allergy
+                {t('subFeatures.allergies.create')}
               </Button>
             </form>
           </DialogContent>
@@ -162,16 +164,16 @@ export function PatientAllergies({ patientId }: PatientAllergiesProps) {
 
       {allergies.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No allergies found.
+          {t('subFeatures.allergies.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Allergen</TableHead>
-                <TableHead>Reaction</TableHead>
-                <TableHead>Severity</TableHead>
+                <TableHead>{t('subFeatures.allergies.fields.allergen')}</TableHead>
+                <TableHead>{t('subFeatures.allergies.fields.reaction')}</TableHead>
+                <TableHead>{t('subFeatures.allergies.fields.severity')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -182,7 +184,7 @@ export function PatientAllergies({ patientId }: PatientAllergiesProps) {
                     {allergy.allergen}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {allergy.reaction ?? '\u2014'}
+                    {allergy.reaction ?? '—'}
                   </TableCell>
                   <TableCell>
                     {allergy.severity ? (
@@ -190,7 +192,7 @@ export function PatientAllergies({ patientId }: PatientAllergiesProps) {
                         {allergy.severity}
                       </Badge>
                     ) : (
-                      '\u2014'
+                      '—'
                     )}
                   </TableCell>
                   <TableCell>
@@ -199,7 +201,7 @@ export function PatientAllergies({ patientId }: PatientAllergiesProps) {
                       size="sm"
                       onClick={() => setPendingDeleteId(allergy.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

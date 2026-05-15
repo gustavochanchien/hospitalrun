@@ -100,5 +100,106 @@
     "sex": "الجنس",
     "phone": "الهاتف",
     "status": "الحالة"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "جارٍ التحميل...",
+      "delete": "حذف"
+    },
+    "allergies": {
+      "title": "الحساسية",
+      "newAction": "حساسية جديدة",
+      "create": "إنشاء حساسية",
+      "noResults": "لم يتم العثور على حساسيات.",
+      "fields": {
+        "allergen": "المُحسّس",
+        "reaction": "ردّ الفعل",
+        "severity": "الشدة"
+      },
+      "placeholders": {
+        "allergen": "مثال: بنسلين",
+        "reaction": "مثال: شَرى، صدمة تأقية",
+        "severity": "اختر الشدة"
+      },
+      "severity": {
+        "mild": "خفيفة",
+        "moderate": "متوسطة",
+        "severe": "شديدة"
+      }
+    },
+    "diagnoses": {
+      "title": "التشخيصات",
+      "newAction": "تشخيص جديد",
+      "create": "إنشاء تشخيص",
+      "noResults": "لم يتم العثور على تشخيصات.",
+      "fields": {
+        "icdCode": "رمز ICD",
+        "description": "الوصف",
+        "diagnosedBy": "تم التشخيص بواسطة",
+        "diagnosedAt": "تاريخ التشخيص",
+        "date": "التاريخ",
+        "notes": "ملاحظات",
+        "status": "الحالة",
+        "onsetDate": "تاريخ البداية",
+        "abatementDate": "تاريخ الزوال"
+      },
+      "placeholders": {
+        "icdCode": "مثال: J06.9",
+        "description": "وصف التشخيص",
+        "diagnosedBy": "اسم الطبيب",
+        "status": "اختر الحالة"
+      }
+    },
+    "medications": {
+      "title": "الأدوية",
+      "newAction": "دواء جديد",
+      "create": "إنشاء دواء",
+      "noResults": "لم يتم العثور على أدوية.",
+      "fields": {
+        "name": "الاسم",
+        "status": "الحالة",
+        "intent": "الغرض",
+        "priority": "الأولوية",
+        "quantity": "الكمية",
+        "notes": "ملاحظات",
+        "startDate": "تاريخ البدء",
+        "endDate": "تاريخ الانتهاء"
+      },
+      "placeholders": {
+        "name": "مثال: أموكسيسيلين 500 ملغ",
+        "status": "اختر الحالة",
+        "intent": "مثال: طلب، خطة، اقتراح",
+        "priority": "مثال: روتيني، عاجل، فوري",
+        "quantity": "مثال: 30 قرصًا"
+      },
+      "statusOption": {
+        "draft": "مسودة",
+        "active": "نشط",
+        "onHold": "معلّق",
+        "canceled": "ملغى",
+        "completed": "مكتمل",
+        "enteredInError": "أُدخل بالخطأ",
+        "stopped": "متوقف",
+        "unknown": "غير معروف"
+      }
+    },
+    "labs": {
+      "title": "المختبرات",
+      "newAction": "تحليل جديد",
+      "create": "إنشاء تحليل",
+      "noResults": "لم يتم العثور على تحاليل.",
+      "fields": {
+        "type": "النوع",
+        "code": "الرمز",
+        "status": "الحالة",
+        "requestedAt": "وقت الطلب",
+        "result": "النتيجة",
+        "notes": "ملاحظات"
+      },
+      "placeholders": {
+        "type": "مثال: CBC، BMP، تحليل الدهون",
+        "code": "مثال: 85025"
+      }
+    }
   }
 }

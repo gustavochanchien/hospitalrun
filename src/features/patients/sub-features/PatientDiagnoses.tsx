@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
@@ -33,6 +34,7 @@ interface PatientDiagnosesProps {
 }
 
 export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnosesProps) {
+  const { t } = useTranslation('patient')
   const [open, setOpen] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [icdCode, setIcdCode] = useState('')
@@ -98,52 +100,52 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
   }
 
   if (diagnoses === undefined) {
-    return <p className="p-4 text-sm text-muted-foreground">Loading...</p>
+    return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-medium">Diagnoses</h3>
+        <h3 className="text-lg font-medium">{t('subFeatures.diagnoses.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">New Diagnosis</Button>
+            <Button size="sm">{t('subFeatures.diagnoses.newAction')}</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>New Diagnosis</DialogTitle>
+              <DialogTitle>{t('subFeatures.diagnoses.newAction')}</DialogTitle>
             </DialogHeader>
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="dx-icd">ICD Code</Label>
+                <Label htmlFor="dx-icd">{t('subFeatures.diagnoses.fields.icdCode')}</Label>
                 <Input
                   id="dx-icd"
                   value={icdCode}
                   onChange={(e) => setIcdCode(e.target.value)}
-                  placeholder="e.g. J06.9"
+                  placeholder={t('subFeatures.diagnoses.placeholders.icdCode')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-desc">Description</Label>
+                <Label htmlFor="dx-desc">{t('subFeatures.diagnoses.fields.description')}</Label>
                 <Textarea
                   id="dx-desc"
                   required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Diagnosis description"
+                  placeholder={t('subFeatures.diagnoses.placeholders.description')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-by">Diagnosed By</Label>
+                <Label htmlFor="dx-by">{t('subFeatures.diagnoses.fields.diagnosedBy')}</Label>
                 <Input
                   id="dx-by"
                   value={diagnosedBy}
                   onChange={(e) => setDiagnosedBy(e.target.value)}
-                  placeholder="Clinician name"
+                  placeholder={t('subFeatures.diagnoses.placeholders.diagnosedBy')}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-date">Date Diagnosed</Label>
+                <Label htmlFor="dx-date">{t('subFeatures.diagnoses.fields.diagnosedAt')}</Label>
                 <Input
                   id="dx-date"
                   type="date"
@@ -152,7 +154,7 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-notes">Notes</Label>
+                <Label htmlFor="dx-notes">{t('subFeatures.diagnoses.fields.notes')}</Label>
                 <Textarea
                   id="dx-notes"
                   value={notes}
@@ -160,10 +162,10 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-status">Status</Label>
+                <Label htmlFor="dx-status">{t('subFeatures.diagnoses.fields.status')}</Label>
                 <Select value={status} onValueChange={setStatus}>
                   <SelectTrigger id="dx-status">
-                    <SelectValue placeholder="Select status" />
+                    <SelectValue placeholder={t('subFeatures.diagnoses.placeholders.status')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="active">active</SelectItem>
@@ -176,7 +178,7 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-onset">Onset Date</Label>
+                <Label htmlFor="dx-onset">{t('subFeatures.diagnoses.fields.onsetDate')}</Label>
                 <Input
                   id="dx-onset"
                   type="date"
@@ -185,7 +187,7 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="dx-abatement">Abatement Date</Label>
+                <Label htmlFor="dx-abatement">{t('subFeatures.diagnoses.fields.abatementDate')}</Label>
                 <Input
                   id="dx-abatement"
                   type="date"
@@ -194,7 +196,7 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create Diagnosis
+                {t('subFeatures.diagnoses.create')}
               </Button>
             </form>
           </DialogContent>
@@ -203,20 +205,20 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
 
       {diagnoses.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">
-          No diagnoses found.
+          {t('subFeatures.diagnoses.noResults')}
         </p>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>ICD Code</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Diagnosed By</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Onset Date</TableHead>
-                <TableHead>Abatement Date</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.icdCode')}</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.description')}</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.diagnosedBy')}</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.date')}</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.status')}</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.onsetDate')}</TableHead>
+                <TableHead>{t('subFeatures.diagnoses.fields.abatementDate')}</TableHead>
                 <TableHead className="w-[80px]" />
               </TableRow>
             </TableHeader>
@@ -224,33 +226,33 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
               {diagnoses.map((dx) => (
                 <TableRow key={dx.id}>
                   <TableCell className="font-medium">
-                    {dx.icdCode ?? '\u2014'}
+                    {dx.icdCode ?? '—'}
                   </TableCell>
                   <TableCell>{dx.description}</TableCell>
                   <TableCell className="text-muted-foreground">
-                    {dx.diagnosedBy ?? '\u2014'}
+                    {dx.diagnosedBy ?? '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {dx.diagnosedAt
                       ? format(parseISO(dx.diagnosedAt), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell>
                     {dx.status ? (
                       <Badge variant="secondary">{dx.status}</Badge>
                     ) : (
-                      '\u2014'
+                      '—'
                     )}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {dx.onsetDate
                       ? format(parseISO(dx.onsetDate), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {dx.abatementDate
                       ? format(parseISO(dx.abatementDate), 'MMM d, yyyy')
-                      : '\u2014'}
+                      : '—'}
                   </TableCell>
                   <TableCell>
                     <Button
@@ -258,7 +260,7 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
                       size="sm"
                       onClick={() => setPendingDeleteId(dx.id)}
                     >
-                      Delete
+                      {t('subFeatures.common.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

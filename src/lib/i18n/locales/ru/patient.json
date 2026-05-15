@@ -102,5 +102,106 @@
     "sex": "Пол",
     "phone": "Телефон",
     "status": "Статус"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "Загрузка...",
+      "delete": "Удалить"
+    },
+    "allergies": {
+      "title": "Аллергии",
+      "newAction": "Новая аллергия",
+      "create": "Создать аллергию",
+      "noResults": "Аллергии не найдены.",
+      "fields": {
+        "allergen": "Аллерген",
+        "reaction": "Реакция",
+        "severity": "Тяжесть"
+      },
+      "placeholders": {
+        "allergen": "напр. Пенициллин",
+        "reaction": "напр. Крапивница, Анафилаксия",
+        "severity": "Выберите тяжесть"
+      },
+      "severity": {
+        "mild": "Лёгкая",
+        "moderate": "Умеренная",
+        "severe": "Тяжёлая"
+      }
+    },
+    "diagnoses": {
+      "title": "Диагнозы",
+      "newAction": "Новый диагноз",
+      "create": "Создать диагноз",
+      "noResults": "Диагнозы не найдены.",
+      "fields": {
+        "icdCode": "Код МКБ",
+        "description": "Описание",
+        "diagnosedBy": "Кем поставлен",
+        "diagnosedAt": "Дата постановки",
+        "date": "Дата",
+        "notes": "Заметки",
+        "status": "Статус",
+        "onsetDate": "Дата начала",
+        "abatementDate": "Дата ремиссии"
+      },
+      "placeholders": {
+        "icdCode": "напр. J06.9",
+        "description": "Описание диагноза",
+        "diagnosedBy": "Имя клинициста",
+        "status": "Выберите статус"
+      }
+    },
+    "medications": {
+      "title": "Лекарства",
+      "newAction": "Новое лекарство",
+      "create": "Создать лекарство",
+      "noResults": "Лекарства не найдены.",
+      "fields": {
+        "name": "Название",
+        "status": "Статус",
+        "intent": "Назначение",
+        "priority": "Приоритет",
+        "quantity": "Количество",
+        "notes": "Заметки",
+        "startDate": "Дата начала",
+        "endDate": "Дата окончания"
+      },
+      "placeholders": {
+        "name": "напр. Амоксициллин 500 мг",
+        "status": "Выберите статус",
+        "intent": "напр. заказ, план, предложение",
+        "priority": "напр. рутинно, срочно, stat",
+        "quantity": "напр. 30 таблеток"
+      },
+      "statusOption": {
+        "draft": "Черновик",
+        "active": "Активно",
+        "onHold": "На удержании",
+        "canceled": "Отменено",
+        "completed": "Завершено",
+        "enteredInError": "Ошибочный ввод",
+        "stopped": "Остановлено",
+        "unknown": "Неизвестно"
+      }
+    },
+    "labs": {
+      "title": "Лаборатория",
+      "newAction": "Новый анализ",
+      "create": "Создать анализ",
+      "noResults": "Анализы не найдены.",
+      "fields": {
+        "type": "Тип",
+        "code": "Код",
+        "status": "Статус",
+        "requestedAt": "Запрошено",
+        "result": "Результат",
+        "notes": "Заметки"
+      },
+      "placeholders": {
+        "type": "напр. ОАК, БАК, липидная панель",
+        "code": "напр. 85025"
+      }
+    }
   }
 }

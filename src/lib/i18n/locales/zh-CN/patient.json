@@ -100,5 +100,106 @@
     "sex": "性别",
     "phone": "电话",
     "status": "状态"
+  },
+  "subFeatures": {
+    "common": {
+      "loading": "加载中...",
+      "delete": "删除"
+    },
+    "allergies": {
+      "title": "过敏",
+      "newAction": "新建过敏",
+      "create": "创建过敏",
+      "noResults": "未找到过敏记录。",
+      "fields": {
+        "allergen": "过敏原",
+        "reaction": "反应",
+        "severity": "严重程度"
+      },
+      "placeholders": {
+        "allergen": "例如：青霉素",
+        "reaction": "例如：荨麻疹、过敏反应",
+        "severity": "选择严重程度"
+      },
+      "severity": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    "diagnoses": {
+      "title": "诊断",
+      "newAction": "新建诊断",
+      "create": "创建诊断",
+      "noResults": "未找到诊断。",
+      "fields": {
+        "icdCode": "ICD 编码",
+        "description": "描述",
+        "diagnosedBy": "诊断医生",
+        "diagnosedAt": "诊断日期",
+        "date": "日期",
+        "notes": "备注",
+        "status": "状态",
+        "onsetDate": "发病日期",
+        "abatementDate": "缓解日期"
+      },
+      "placeholders": {
+        "icdCode": "例如：J06.9",
+        "description": "诊断描述",
+        "diagnosedBy": "临床医生姓名",
+        "status": "选择状态"
+      }
+    },
+    "medications": {
+      "title": "药物",
+      "newAction": "新建药物",
+      "create": "创建药物",
+      "noResults": "未找到药物。",
+      "fields": {
+        "name": "名称",
+        "status": "状态",
+        "intent": "目的",
+        "priority": "优先级",
+        "quantity": "数量",
+        "notes": "备注",
+        "startDate": "开始日期",
+        "endDate": "结束日期"
+      },
+      "placeholders": {
+        "name": "例如：阿莫西林 500mg",
+        "status": "选择状态",
+        "intent": "例如：医嘱、计划、提议",
+        "priority": "例如：常规、紧急、立即",
+        "quantity": "例如：30 片"
+      },
+      "statusOption": {
+        "draft": "草稿",
+        "active": "活动",
+        "onHold": "暂停",
+        "canceled": "已取消",
+        "completed": "已完成",
+        "enteredInError": "录入错误",
+        "stopped": "已停止",
+        "unknown": "未知"
+      }
+    },
+    "labs": {
+      "title": "实验室",
+      "newAction": "新建检验",
+      "create": "创建检验",
+      "noResults": "未找到检验。",
+      "fields": {
+        "type": "类型",
+        "code": "编码",
+        "status": "状态",
+        "requestedAt": "申请时间",
+        "result": "结果",
+        "notes": "备注"
+      },
+      "placeholders": {
+        "type": "例如：血常规、BMP、血脂全套",
+        "code": "例如：85025"
+      }
+    }
   }
 }
