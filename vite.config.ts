@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    TanStackRouterVite(),
+    TanStackRouterVite({ routeFileIgnorePattern: '\\.test\\.tsx?$' }),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: isDesktopBuild ? false : 'auto',
