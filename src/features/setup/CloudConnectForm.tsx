@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Trans, useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -22,17 +23,22 @@ type HubProbe =
 const HUB_DISCOVER_URL = 'http://hospitalrun.local:5174/_discover'
 const HUB_APP_NAME = 'HospitalRun'
 
-async function probeServer(url: string, anonKey: string): Promise<ProbeResult> {
+async function probeServer(
+  url: string,
+  anonKey: string,
+  unreachableMessage: string,
+  statusTemplate: (status: number) => string,
+): Promise<ProbeResult> {
   try {
     const res = await fetch(`${url}/auth/v1/health`, {
       headers: { apikey: anonKey },
     })
     if (res.ok) return { status: 'ok' }
-    return { status: 'error', message: `Server responded with ${res.status}` }
+    return { status: 'error', message: statusTemplate(res.status) }
   } catch (err) {
     return {
       status: 'error',
-      message: err instanceof Error ? err.message : 'Could not reach server',
+      message: err instanceof Error ? err.message : unreachableMessage,
     }
   }
 }
@@ -83,8 +89,9 @@ export function CloudConnectForm({
   showCreateProjectLink = false,
   showFindHub = false,
   onSaved,
-  submitLabel = 'Connect',
+  submitLabel,
 }: CloudConnectFormProps) {
+  const { t } = useTranslation('setup')
   const [probe, setProbe] = useState<ProbeResult>({ status: 'idle' })
   const [hubProbe, setHubProbe] = useState<HubProbe>({ status: 'idle' })
   const [saving, setSaving] = useState(false)
@@ -112,7 +119,12 @@ export function CloudConnectForm({
       return
     }
     setProbe({ status: 'idle' })
-    const result = await probeServer(normalizeUrl(parsed.data.url), parsed.data.anonKey)
+    const result = await probeServer(
+      normalizeUrl(parsed.data.url),
+      parsed.data.anonKey,
+      t('cloudConnect.serverUnreachable'),
+      (status) => t('cloudConnect.serverErrorStatus', { status }),
+    )
     setProbe(result)
   }
 
@@ -140,10 +152,9 @@ export function CloudConnectForm({
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
       {showCreateProjectLink && (
         <div className="rounded-md border bg-muted/40 p-3 text-sm">
-          <p className="mb-2 font-medium">Need a Supabase project?</p>
+          <p className="mb-2 font-medium">{t('cloudConnect.needProject')}</p>
           <p className="mb-3 text-xs text-muted-foreground">
-            Create a free one, then copy the Project URL and anon key from
-            Project Settings → API.
+            {t('cloudConnect.needProjectHelp')}
           </p>
           <Button
             type="button"
@@ -151,17 +162,16 @@ export function CloudConnectForm({
             variant="outline"
             onClick={() => void openExternal('https://supabase.com/dashboard/new')}
           >
-            Open Supabase
+            {t('cloudConnect.openSupabase')}
           </Button>
         </div>
       )}
 
       {showFindHub && (
         <div className="rounded-md border bg-muted/40 p-3 text-sm">
-          <p className="mb-2 font-medium">On the clinic's network?</p>
+          <p className="mb-2 font-medium">{t('cloudConnect.onClinicNetwork')}</p>
           <p className="mb-3 text-xs text-muted-foreground">
-            Scan this network for a HospitalRun hub instead of entering a
-            server URL.
+            {t('cloudConnect.findHubHelp')}
           </p>
           {hubProbe.status === 'idle' && (
             <Button
@@ -171,28 +181,31 @@ export function CloudConnectForm({
               onClick={() => void onFindHub()}
               disabled={saving}
             >
-              Find hub on this network
+              {t('cloudConnect.findHub')}
             </Button>
           )}
           {hubProbe.status === 'searching' && (
-            <p className="text-xs text-muted-foreground">Searching…</p>
+            <p className="text-xs text-muted-foreground">{t('cloudConnect.searching')}</p>
           )}
           {hubProbe.status === 'found' && (
             <div className="space-y-2">
               <p className="text-xs">
-                Found a HospitalRun hub at{' '}
-                <span className="font-mono">{hubProbe.url}</span>.
+                <Trans
+                  i18nKey="cloudConnect.foundAt"
+                  ns="setup"
+                  values={{ url: hubProbe.url }}
+                  components={{ url: <span className="font-mono" /> }}
+                />
               </p>
               <Button type="button" size="sm" onClick={openFoundHub}>
-                Open hub
+                {t('cloudConnect.openHub')}
               </Button>
             </div>
           )}
           {hubProbe.status === 'not-found' && (
             <div className="space-y-2">
               <p className="text-xs text-muted-foreground">
-                No HospitalRun hub found on this network. You can enter
-                the server URL below instead.
+                {t('cloudConnect.notFound')}
               </p>
               <Button
                 type="button"
@@ -201,7 +214,7 @@ export function CloudConnectForm({
                 onClick={() => void onFindHub()}
                 disabled={saving}
               >
-                Try again
+                {t('cloudConnect.tryAgain')}
               </Button>
             </div>
           )}
@@ -209,7 +222,7 @@ export function CloudConnectForm({
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="server-url">Server URL</Label>
+        <Label htmlFor="server-url">{t('cloudConnect.serverUrl')}</Label>
         <Input
           id="server-url"
           placeholder="https://your-project.supabase.co"
@@ -222,7 +235,7 @@ export function CloudConnectForm({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="anon-key">Anon key</Label>
+        <Label htmlFor="anon-key">{t('cloudConnect.anonKey')}</Label>
         <Input
           id="anon-key"
           placeholder="sb_publishable_..."
@@ -236,7 +249,7 @@ export function CloudConnectForm({
 
       {probe.status === 'ok' && (
         <div className="rounded-md bg-emerald-500/10 p-3 text-sm text-emerald-700 dark:text-emerald-400">
-          Server reachable.
+          {t('cloudConnect.serverReachable')}
         </div>
       )}
       {probe.status === 'error' && (
@@ -248,7 +261,7 @@ export function CloudConnectForm({
       <div className="flex gap-2">
         {onBack && (
           <Button type="button" variant="ghost" onClick={onBack} disabled={saving}>
-            Back
+            {t('cloudConnect.back')}
           </Button>
         )}
         <Button
@@ -258,10 +271,10 @@ export function CloudConnectForm({
           onClick={onTest}
           disabled={saving}
         >
-          Test connection
+          {t('cloudConnect.test')}
         </Button>
         <Button type="submit" className="flex-1" disabled={saving}>
-          {saving ? 'Saving…' : submitLabel}
+          {saving ? t('cloudConnect.saving') : (submitLabel ?? t('cloudConnect.connect'))}
         </Button>
       </div>
     </form>

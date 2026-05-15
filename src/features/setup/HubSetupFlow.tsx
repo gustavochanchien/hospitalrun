@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { CheckCircle2, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,6 +15,7 @@ interface HubSetupFlowProps {
 }
 
 export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
+  const { t } = useTranslation('setup')
   const [step, setStep] = useState<Step>('start')
   const [hubInfo, setHubInfo] = useState<HubInfo | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -37,16 +39,14 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
     return (
       <div className="space-y-4">
         <div className="rounded-md border bg-muted/40 p-3 text-xs text-muted-foreground">
-          Hub mode runs HospitalRun on this computer and serves it to other
-          devices on your local network — no internet required. You can
-          optionally connect a Supabase project later for cloud backup.
+          {t('flow.intro')}
         </div>
         <div className="flex gap-2">
           <Button type="button" variant="ghost" onClick={onBack}>
-            Back
+            {t('flow.back')}
           </Button>
           <Button className="flex-1" onClick={startHub}>
-            Start hub
+            {t('flow.startHub')}
           </Button>
         </div>
       </div>
@@ -58,7 +58,7 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-sm">
           <Loader2 className="h-4 w-4 animate-spin" />
-          Starting the clinic hub on this computer…
+          {t('flow.starting')}
         </div>
       </div>
     )
@@ -72,12 +72,10 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
     return (
       <div className="space-y-4">
         <div className="rounded-md border bg-muted/40 p-3 text-xs text-muted-foreground">
-          <strong>Optional:</strong> Connect a Supabase project to enable cloud
-          backup and sync across sites. You can skip this and add it later in
-          Settings.
+          <strong>{t('flow.cloudPromptOptional')}</strong> {t('flow.cloudPromptBody')}
         </div>
         <CloudConnectForm
-          submitLabel="Connect Supabase"
+          submitLabel={t('flow.connectSupabase')}
           onSaved={() => setStep('ready')}
         />
         <Button
@@ -86,7 +84,7 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
           className="w-full"
           onClick={() => setStep('ready')}
         >
-          Skip for now
+          {t('flow.skipForNow')}
         </Button>
       </div>
     )
@@ -99,11 +97,8 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
           <div className="flex items-start gap-2 text-emerald-800 dark:text-emerald-300">
             <CheckCircle2 className="mt-0.5 h-4 w-4" />
             <div>
-              <p className="font-medium">Your clinic hub is ready.</p>
-              <p className="mt-1 text-xs">
-                Other devices on the same wifi can open this address in a
-                browser to use HospitalRun:
-              </p>
+              <p className="font-medium">{t('flow.readyTitle')}</p>
+              <p className="mt-1 text-xs">{t('flow.readyDesc')}</p>
             </div>
           </div>
         </div>
@@ -112,11 +107,7 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
           {hubInfo.url}
         </div>
 
-        <p className="text-xs text-muted-foreground">
-          Bookmark this URL on tablets and other laptops in the clinic. The hub
-          will start automatically every time you open this app on this
-          computer.
-        </p>
+        <p className="text-xs text-muted-foreground">{t('flow.bookmarkHelp')}</p>
 
         <Button
           className="w-full"
@@ -133,7 +124,7 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
             window.location.assign('/')
           }}
         >
-          Open HospitalRun
+          {t('flow.openApp')}
         </Button>
       </div>
     )
@@ -142,11 +133,11 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
   return (
     <div className="space-y-4">
       <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-        {errorMessage ?? 'Something went wrong starting the hub.'}
+        {errorMessage ?? t('flow.errorFallback')}
       </div>
       <div className="flex gap-2">
         <Button type="button" variant="ghost" onClick={onBack} className="flex-1">
-          Back
+          {t('flow.back')}
         </Button>
         <Button
           type="button"
@@ -156,7 +147,7 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
           }}
           className="flex-1"
         >
-          Try again
+          {t('flow.tryAgain')}
         </Button>
       </div>
     </div>
@@ -168,6 +159,7 @@ interface HubFirstUserFormProps {
 }
 
 function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
+  const { t } = useTranslation('setup')
   const signIn = useAuthStore((s) => s.signIn)
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -182,13 +174,13 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
 
     const trimEmail = email.trim().toLowerCase()
     const trimName = fullName.trim()
-    if (!trimName) { setError('Full name is required'); return }
+    if (!trimName) { setError(t('firstUser.errFullName')); return }
     if (!trimEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimEmail)) {
-      setError('Enter a valid email')
+      setError(t('firstUser.errEmail'))
       return
     }
-    if (password.length < 8) { setError('Password must be at least 8 characters'); return }
-    if (password !== confirmPassword) { setError('Passwords do not match'); return }
+    if (password.length < 8) { setError(t('firstUser.errPassword')); return }
+    if (password !== confirmPassword) { setError(t('firstUser.errMismatch')); return }
 
     setWorking(true)
     try {
@@ -198,7 +190,7 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
         body: JSON.stringify({ email: trimEmail, password, role: 'admin', fullName: trimName }),
       })
       const data = (await res.json()) as { error?: string }
-      if (!res.ok) { setError(data.error ?? 'Failed to create account'); return }
+      if (!res.ok) { setError(data.error ?? t('firstUser.errCreate')); return }
 
       // Sign in to populate the auth store, then continue the wizard.
       const { error: signInErr } = await signIn(trimEmail, password)
@@ -206,7 +198,7 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
 
       onDone()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Network error')
+      setError(err instanceof Error ? err.message : t('firstUser.errNetwork'))
     } finally {
       setWorking(false)
     }
@@ -214,17 +206,14 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <p className="text-sm text-muted-foreground">
-        Create the admin account for this hub. You&apos;ll use these credentials
-        to sign in on this computer and on LAN devices.
-      </p>
+      <p className="text-sm text-muted-foreground">{t('firstUser.intro')}</p>
 
       {error && (
         <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="hfu-name">Full name</Label>
+        <Label htmlFor="hfu-name">{t('firstUser.fullName')}</Label>
         <Input
           id="hfu-name"
           autoComplete="name"
@@ -235,7 +224,7 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="hfu-email">Email</Label>
+        <Label htmlFor="hfu-email">{t('firstUser.email')}</Label>
         <Input
           id="hfu-email"
           type="email"
@@ -247,7 +236,7 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="hfu-pw">Password</Label>
+        <Label htmlFor="hfu-pw">{t('firstUser.password')}</Label>
         <Input
           id="hfu-pw"
           type="password"
@@ -259,7 +248,7 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="hfu-pw2">Confirm password</Label>
+        <Label htmlFor="hfu-pw2">{t('firstUser.confirmPassword')}</Label>
         <Input
           id="hfu-pw2"
           type="password"
@@ -271,7 +260,7 @@ function HubFirstUserForm({ onDone }: HubFirstUserFormProps) {
       </div>
 
       <Button type="submit" className="w-full" disabled={working}>
-        {working ? 'Creating account…' : 'Create admin account'}
+        {working ? t('firstUser.creating') : t('firstUser.create')}
       </Button>
     </form>
   )
