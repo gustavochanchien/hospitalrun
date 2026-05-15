@@ -1,5 +1,5 @@
 import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
-import { supabase } from '@/lib/supabase/client'
+import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { fromSupabaseRow, supabaseTableName } from '@/lib/db/columns'
 import type { SyncableTable } from '@/lib/db/schema'
 import { applyInboundDelete, applyInboundRecord } from './apply-inbound'
@@ -17,6 +17,8 @@ const SYNCABLE_TABLE_NAMES = new Set<string>(Object.keys(supabaseTableName))
  * Returns an unsubscribe function.
  */
 export function subscribeToRealtime(): () => void {
+  if (isHubLocalMode()) return () => {}
+
   const channel = supabase
     .channel('db-changes')
     .on(

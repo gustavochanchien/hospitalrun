@@ -27,7 +27,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { supabase } from '@/lib/supabase/client'
+import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { useAuthStore } from '@/features/auth/auth.store'
 import { isDesktop, getIPC } from '@/lib/desktop/env'
 
@@ -68,7 +68,10 @@ export function TeamCard() {
   const [invites, setInvites] = useState<PendingInvite[] | null>(null)
 
   async function refreshInvites() {
-    if (!orgId) return
+    if (!orgId || isHubLocalMode()) {
+      setInvites([])
+      return
+    }
     const { data, error } = await supabase
       .from('org_members')
       .select('id, invited_email, role, invited_at, accepted_at')
@@ -93,6 +96,7 @@ export function TeamCard() {
   }, [orgId, isAdmin])
 
   async function revokeInvite(id: string, inviteEmail: string) {
+    if (isHubLocalMode()) return
     const { error } = await supabase.from('org_members').delete().eq('id', id)
     if (error) {
       toast.error(`Couldn't revoke: ${error.message}`)
@@ -189,6 +193,7 @@ export function TeamCard() {
 }
 
 function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
+  const getAccessToken = useAuthStore((s) => s.getAccessToken)
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -213,23 +218,40 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
     }
     setWorking(true)
     try {
-      const { data, error } = await supabase.functions.invoke<InviteResponse>(
-        'invite-member',
-        {
-          body: {
-            mode: 'create',
-            email: trimmedEmail,
-            role: newRole,
-            password,
-            fullName: trimmedName,
+      if (isHubLocalMode()) {
+        const token = getAccessToken()
+        const res = await fetch('/auth/local/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },
-        },
-      )
-      const payload = data ?? null
-      if (error || payload?.error) {
-        const msg = payload?.error ?? error?.message ?? 'Failed'
-        toast.error(`Create failed: ${msg}`)
-        return
+          body: JSON.stringify({ email: trimmedEmail, password, role: newRole, fullName: trimmedName }),
+        })
+        const data = (await res.json()) as { error?: string }
+        if (!res.ok) {
+          toast.error(`Create failed: ${data.error ?? 'Unknown error'}`)
+          return
+        }
+      } else {
+        const { data, error } = await supabase.functions.invoke<InviteResponse>(
+          'invite-member',
+          {
+            body: {
+              mode: 'create',
+              email: trimmedEmail,
+              role: newRole,
+              password,
+              fullName: trimmedName,
+            },
+          },
+        )
+        const payload = data ?? null
+        if (error || payload?.error) {
+          const msg = payload?.error ?? error?.message ?? 'Failed'
+          toast.error(`Create failed: ${msg}`)
+          return
+        }
       }
       toast.success(`Created ${trimmedEmail}`)
       setHandoff({ email: trimmedEmail, password })

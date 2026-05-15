@@ -9,6 +9,7 @@ const LOCAL_STORAGE_KEY = 'hr_backend_config'
 
 let resolvedConfig: BackendConfig | null = null
 let clientInstance: SupabaseClient | null = null
+let hubLocalMode = false
 
 function isValidConfig(candidate: Partial<BackendConfig>): candidate is BackendConfig {
   if (typeof candidate.url !== 'string' || typeof candidate.anonKey !== 'string') return false
@@ -42,12 +43,13 @@ function readBuildTimeConfig(): BackendConfig | null {
   return null
 }
 
-async function readRemoteConfig(): Promise<BackendConfig | null> {
+async function readRemoteConfig(): Promise<BackendConfig | null | 'local-hub'> {
   if (typeof window === 'undefined') return null
   try {
     const res = await fetch('/config.json', { cache: 'no-store' })
     if (!res.ok) return null
-    const data = (await res.json()) as Partial<BackendConfig>
+    const data = (await res.json()) as Partial<BackendConfig> & { mode?: string }
+    if (data.mode === 'local-hub') return 'local-hub'
     if (isValidConfig(data)) return { url: data.url, anonKey: data.anonKey }
   } catch {
     // No /config.json served — fine, fall through to other sources.
@@ -84,6 +86,12 @@ export async function initBackendConfig(): Promise<BackendConfig | null> {
   }
 
   const fromRemote = await readRemoteConfig()
+  if (fromRemote === 'local-hub') {
+    hubLocalMode = true
+    // Use a sentinel so hasBackendConfig() returns true, but no Supabase client is built.
+    resolvedConfig = { url: '', anonKey: '' }
+    return resolvedConfig
+  }
   if (fromRemote) {
     resolvedConfig = fromRemote
     clientInstance = buildClient(fromRemote)
@@ -102,6 +110,10 @@ export async function initBackendConfig(): Promise<BackendConfig | null> {
 
 export function hasBackendConfig(): boolean {
   return resolvedConfig !== null
+}
+
+export function isHubLocalMode(): boolean {
+  return hubLocalMode
 }
 
 export function getBackendConfig(): BackendConfig | null {
@@ -128,6 +140,11 @@ export function clearBackendConfig(): void {
 }
 
 export function getSupabase(): SupabaseClient {
+  if (hubLocalMode) {
+    throw new Error(
+      'Supabase is not available in local-hub mode. Guard this call with isHubLocalMode().',
+    )
+  }
   if (!clientInstance) {
     throw new Error(
       'Supabase client not initialized. Call initBackendConfig() before accessing it, or send the user to /setup.',

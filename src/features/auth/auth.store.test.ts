@@ -39,6 +39,7 @@ vi.mock('@/lib/supabase/client', () => ({
     from: (...args: unknown[]) => from(...(args as [string])),
     rpc: vi.fn(),
   },
+  isHubLocalMode: vi.fn(() => false),
 }))
 
 const hubSignin = vi.fn()

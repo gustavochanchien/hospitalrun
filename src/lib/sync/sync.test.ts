@@ -12,6 +12,7 @@ vi.mock('@/lib/supabase/client', () => ({
       upsert: vi.fn().mockResolvedValue({ error: null }),
     })),
   },
+  isHubLocalMode: vi.fn(() => false),
 }))
 
 // Import after mocking

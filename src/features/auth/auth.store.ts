@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { Session, User } from '@supabase/supabase-js'
 import { toast } from 'sonner'
-import { supabase } from '@/lib/supabase/client'
+import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { hubCachePassword, hubSignin, type HubProfile } from '@/lib/desktop/hub-auth'
 
 export type AuthIssuer = 'cloud' | 'hub'
@@ -118,6 +118,25 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   hubAccessToken: null,
 
   signIn: async (email, password) => {
+    // In local-hub mode skip Supabase entirely — only the hub can authenticate.
+    if (isHubLocalMode()) {
+      const hubResult = await hubSignin(email, password)
+      if (hubResult) {
+        const fakeSession = buildHubSession(hubResult.profile, hubResult.accessToken)
+        set({
+          session: fakeSession,
+          user: fakeSession.user,
+          orgId: hubResult.profile.orgId,
+          role: hubResult.profile.role,
+          issuer: 'hub',
+          hubAccessToken: hubResult.accessToken,
+          isLoading: false,
+        })
+        return { error: null }
+      }
+      return { error: 'Invalid credentials' }
+    }
+
     // 1. Try cloud Supabase first.
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     if (!error) {
@@ -207,6 +226,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   initialize: () => {
+    // In local-hub mode there's no Supabase session to restore.
+    // Auth happens via hubSignin() in signIn(). Start with a clean slate.
+    if (isHubLocalMode()) {
+      set({ session: null, user: null, orgId: null, role: null, issuer: null, hubAccessToken: null, isLoading: false })
+      return () => {}
+    }
+
     const applySession = (session: Session | null) => {
       set({
         session,

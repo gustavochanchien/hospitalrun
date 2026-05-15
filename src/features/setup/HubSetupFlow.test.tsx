@@ -4,23 +4,32 @@ import userEvent from '@testing-library/user-event'
 import { HubSetupFlow } from './HubSetupFlow'
 import type { DesktopIPC, HubInfo } from '@/lib/desktop/env'
 
-const saveBackendConfig = vi.fn()
 vi.mock('@/lib/supabase/client', () => ({
-  saveBackendConfig: (...args: unknown[]) => saveBackendConfig(...args),
+  saveBackendConfig: vi.fn(),
+  isHubLocalMode: vi.fn(() => false),
+}))
+
+const signIn = vi.fn()
+vi.mock('@/features/auth/auth.store', () => ({
+  useAuthStore: (selector: (s: unknown) => unknown) =>
+    selector({ signIn: (...args: unknown[]) => signIn(...args) }),
 }))
 
 const assignSpy = vi.fn()
 const originalAssign = window.location.assign
 beforeEach(() => {
-  saveBackendConfig.mockReset()
+  signIn.mockReset()
+  signIn.mockResolvedValue({ error: null })
   assignSpy.mockReset()
   Object.defineProperty(window, 'location', {
     configurable: true,
-    value: {
-      ...window.location,
-      assign: assignSpy,
-    },
+    value: { ...window.location, assign: assignSpy },
   })
+  // Default fetch mock: POST /auth/local/user succeeds
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+    ok: true,
+    json: async () => ({ userId: 'u-1', email: 'admin@test.com', orgId: 'org-1', role: 'admin' }),
+  }))
 })
 
 afterEach(() => {
@@ -29,6 +38,7 @@ afterEach(() => {
     configurable: true,
     value: { ...window.location, assign: originalAssign },
   })
+  vi.unstubAllGlobals()
 })
 
 function installFakeIPC(overrides: Partial<DesktopIPC> = {}): DesktopIPC {
@@ -54,25 +64,14 @@ function installFakeIPC(overrides: Partial<DesktopIPC> = {}): DesktopIPC {
   return fake
 }
 
-async function fillAndSubmitCloudForm() {
-  const url = await screen.findByLabelText(/Server URL/i)
-  const key = await screen.findByLabelText(/Anon key/i)
-  await userEvent.type(url, 'https://test-project.supabase.co')
-  await userEvent.type(key, 'sb_publishable_test_token_with_enough_length')
-  // The submit button in HubSetupFlow's connect step is labeled "Continue"
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await userEvent.click(button)
-}
-
 describe('HubSetupFlow', () => {
-  it('renders the connect step on initial mount', () => {
+  it('renders the start step with a "Start hub" button on initial mount', () => {
     installFakeIPC()
     render(<HubSetupFlow onBack={vi.fn()} />)
-    expect(screen.getByLabelText(/Server URL/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /Continue/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Start hub/i })).toBeInTheDocument()
   })
 
-  it('calls Back when the connect-step Back button is clicked', async () => {
+  it('calls Back when the back button is clicked', async () => {
     installFakeIPC()
     const onBack = vi.fn()
     render(<HubSetupFlow onBack={onBack} />)
@@ -80,26 +79,19 @@ describe('HubSetupFlow', () => {
     expect(onBack).toHaveBeenCalled()
   })
 
-  it('on successful save, persists hub run mode and starts the hub', async () => {
+  it('calls setRunMode(hub) and startHub when "Start hub" is clicked', async () => {
     const ipc = installFakeIPC()
     render(<HubSetupFlow onBack={vi.fn()} />)
-    await fillAndSubmitCloudForm()
-
+    await userEvent.click(screen.getByRole('button', { name: /Start hub/i }))
     await waitFor(() => expect(ipc.setRunMode).toHaveBeenCalledWith('hub'))
     expect(ipc.startHub).toHaveBeenCalled()
-    expect(saveBackendConfig).toHaveBeenCalledWith({
-      url: 'https://test-project.supabase.co',
-      anonKey: 'sb_publishable_test_token_with_enough_length',
-    })
   })
 
-  it('shows the LAN URL in the ready panel after startHub resolves', async () => {
+  it('shows the first-user form after startHub succeeds', async () => {
     installFakeIPC()
     render(<HubSetupFlow onBack={vi.fn()} />)
-    await fillAndSubmitCloudForm()
-
-    expect(await screen.findByText(/192\.168\.1\.42:5174/)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /Open HospitalRun/i })).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: /Start hub/i }))
+    expect(await screen.findByRole('button', { name: /Create admin account/i })).toBeInTheDocument()
   })
 
   it('shows error panel when startHub rejects, then allows retry', async () => {
@@ -109,12 +101,28 @@ describe('HubSetupFlow', () => {
       }) as unknown as () => Promise<HubInfo>,
     })
     render(<HubSetupFlow onBack={vi.fn()} />)
-    await fillAndSubmitCloudForm()
+    await userEvent.click(screen.getByRole('button', { name: /Start hub/i }))
 
     expect(await screen.findByText(/mdns busted/)).toBeInTheDocument()
     await userEvent.click(screen.getByRole('button', { name: /Try again/i }))
 
-    // Back to the connect step
-    expect(await screen.findByLabelText(/Server URL/i)).toBeInTheDocument()
+    // Back to the start step
+    expect(await screen.findByRole('button', { name: /Start hub/i })).toBeInTheDocument()
+  })
+
+  it('advances through first-user form to cloud-prompt step', async () => {
+    installFakeIPC()
+    render(<HubSetupFlow onBack={vi.fn()} />)
+    await userEvent.click(screen.getByRole('button', { name: /Start hub/i }))
+
+    // Fill first-user form
+    await userEvent.type(await screen.findByLabelText(/Full name/i), 'Admin User')
+    await userEvent.type(screen.getByLabelText(/^Email$/i), 'admin@test.com')
+    await userEvent.type(screen.getByLabelText(/^Password$/i), 'password123')
+    await userEvent.type(screen.getByLabelText(/Confirm password/i), 'password123')
+    await userEvent.click(screen.getByRole('button', { name: /Create admin account/i }))
+
+    // Should advance to cloud-prompt (skip button visible)
+    expect(await screen.findByRole('button', { name: /Skip for now/i })).toBeInTheDocument()
   })
 })

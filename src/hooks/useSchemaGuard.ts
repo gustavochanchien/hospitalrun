@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase/client'
+import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { useAuthStore } from '@/features/auth/auth.store'
 
 /**
@@ -18,11 +18,11 @@ type Status = 'checking' | 'ok' | 'stale-db' | 'missing-rpc'
  * expects. Status drives the root guard UI.
  */
 export function useSchemaGuard(): Status {
-  const [status, setStatus] = useState<Status>('checking')
+  const [status, setStatus] = useState<Status>(() => isHubLocalMode() ? 'ok' : 'checking')
   const session = useAuthStore((s) => s.session)
 
   useEffect(() => {
-    if (!session) return
+    if (!session || isHubLocalMode()) return
     let cancelled = false
 
     void (async () => {

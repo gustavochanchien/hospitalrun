@@ -38,19 +38,21 @@ describe('createHubRouter', () => {
     setBackendConfigForLan(null)
   })
 
-  it('returns 503 from /config.json when no config is cached', async () => {
+  it('returns local-hub mode from /config.json when no config is cached', async () => {
     const router = makeRouter(null)
     const res = await router.fetch(new Request('http://hub.local/config.json'))
-    expect(res.status).toBe(503)
+    expect(res.status).toBe(200)
+    expect(res.headers.get('cache-control')).toBe('no-store')
+    expect(await res.json()).toEqual({ mode: 'local-hub' })
   })
 
-  it('returns the config + no-store cache header when config is cached', async () => {
+  it('returns the config + mode=cloud + no-store cache header when config is cached', async () => {
     const cfg = { url: 'https://x.supabase.co', anonKey: 'sb_publishable_test' }
     const router = makeRouter(cfg)
     const res = await router.fetch(new Request('http://hub.local/config.json'))
     expect(res.status).toBe(200)
     expect(res.headers.get('cache-control')).toBe('no-store')
-    expect(await res.json()).toEqual(cfg)
+    expect(await res.json()).toEqual({ ...cfg, mode: 'cloud' })
   })
 
   it('returns app info from /healthz', async () => {

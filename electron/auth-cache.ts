@@ -44,6 +44,8 @@ export interface AuthCache {
   verify(email: string, password: string): CachedProfile | null
   /** Look up the profile without a password (e.g. for diagnostics). */
   lookup(email: string): CachedProfile | null
+  /** Returns the org_id shared by all cached users, or null if cache is empty. */
+  getAnyOrgId(): string | null
   /** Forget a single user (e.g. on admin removal). */
   forget(email: string): void
   close(): void
@@ -85,6 +87,7 @@ export function openAuthCache(filePath: string): AuthCache {
     `UPDATE auth_cache SET last_verified = ? WHERE email = ?`,
   )
   const stmtDelete = db.prepare<[string]>(`DELETE FROM auth_cache WHERE email = ?`)
+  const stmtAnyOrgId = db.prepare<[], { org_id: string }>(`SELECT org_id FROM auth_cache LIMIT 1`)
 
   function rowToProfile(row: CacheRow): CachedProfile {
     return {
@@ -121,6 +124,10 @@ export function openAuthCache(filePath: string): AuthCache {
     lookup(email) {
       const row = stmtSelect.get(email.toLowerCase())
       return row ? rowToProfile(row) : null
+    },
+    getAnyOrgId() {
+      const row = stmtAnyOrgId.get()
+      return row ? row.org_id : null
     },
     forget(email) {
       stmtDelete.run(email.toLowerCase())

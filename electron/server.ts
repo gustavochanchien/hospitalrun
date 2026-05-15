@@ -91,9 +91,9 @@ export function createHubRouter(opts: HubRouterOptions): Hono {
   router.get('/config.json', (c) => {
     const cfg = getBackendConfig()
     if (!cfg) {
-      return c.json({ error: 'Hub has no backend config yet' }, 503)
+      return c.json({ mode: 'local-hub' }, 200, { 'cache-control': 'no-store' })
     }
-    return c.json(cfg, 200, { 'cache-control': 'no-store' })
+    return c.json({ ...cfg, mode: 'cloud' }, 200, { 'cache-control': 'no-store' })
   })
 
   router.get('/healthz', (c) =>

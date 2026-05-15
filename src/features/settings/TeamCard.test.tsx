@@ -10,11 +10,12 @@ vi.mock('@/lib/supabase/client', () => ({
     functions: { invoke: (...args: unknown[]) => invoke(...args) },
     from: (...args: unknown[]) => from(...args),
   },
+  isHubLocalMode: vi.fn(() => false),
 }))
 
 vi.mock('@/features/auth/auth.store', () => ({
   useAuthStore: (selector: (s: unknown) => unknown) =>
-    selector({ orgId: 'org-1', role: 'admin' }),
+    selector({ orgId: 'org-1', role: 'admin', getAccessToken: () => 'test-token' }),
 }))
 
 import { TeamCard } from './TeamCard'

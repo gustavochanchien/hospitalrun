@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { supabase } from '@/lib/supabase/client'
+import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { toSupabaseRow, supabaseTableName } from '@/lib/db/columns'
 import type { SyncableTable, SyncQueueEntry } from '@/lib/db/schema'
 import { getLanTransport } from './transport-router'
@@ -42,6 +42,20 @@ export async function flushSyncQueue(): Promise<void> {
 }
 
 async function pushEntryViaTransports(entry: SyncQueueEntry): Promise<boolean> {
+  // In local-hub mode, skip cloud entirely and go straight to LAN.
+  if (isHubLocalMode()) {
+    const lan = getLanTransport()
+    if (lan && lan.state() === 'connected') {
+      try {
+        await pushEntryToLan(entry, lan)
+        return true
+      } catch (err) {
+        console.warn(`[sync] LAN push failed for ${entry.tableName}/${entry.recordId}`, err)
+      }
+    }
+    return false
+  }
+
   // 1. Try cloud first when the browser thinks it has internet.
   if (typeof navigator === 'undefined' || navigator.onLine) {
     try {

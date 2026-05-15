@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { SignJWT, type JWK, type KeyLike } from 'jose'
+import { SignJWT, jwtVerify, importJWK, type JWK, type KeyLike } from 'jose'
 import type { AuthCache } from './auth-cache.js'
 import type { AuthVerifier } from './auth-verify.js'
 
@@ -44,6 +44,13 @@ interface CacheBody {
   accessToken: string
 }
 
+interface CreateUserBody {
+  email: string
+  password: string
+  role: string
+  fullName: string
+}
+
 export function createAuthLocalRouter(deps: AuthLocalDeps): Hono {
   const router = new Hono()
   const ttl = deps.tokenTtlSeconds ?? 12 * 60 * 60
@@ -83,6 +90,46 @@ export function createAuthLocalRouter(deps: AuthLocalDeps): Hono {
         role: profile.role,
       },
     })
+  })
+
+  router.post('/auth/local/user', async (c) => {
+    const body = await readJson<CreateUserBody>(c)
+    if (
+      !body ||
+      typeof body.email !== 'string' ||
+      typeof body.password !== 'string' ||
+      typeof body.role !== 'string'
+    ) {
+      return c.json({ error: 'email, password, and role required' }, 400)
+    }
+    if (body.password.length < 8) {
+      return c.json({ error: 'password must be at least 8 characters' }, 400)
+    }
+
+    const isEmpty = deps.cache.getAnyOrgId() === null
+    if (!isEmpty) {
+      // Subsequent users require an admin JWT.
+      const authHeader = c.req.header('Authorization') ?? ''
+      const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
+      if (!token) {
+        return c.json({ error: 'Authorization required' }, 401)
+      }
+      try {
+        const pubKey = await importJWK(deps.publicJwk, ALG)
+        const { payload } = await jwtVerify(token, pubKey, { issuer: issuer })
+        if (payload['role'] !== 'admin') {
+          return c.json({ error: 'Admin role required' }, 403)
+        }
+      } catch {
+        return c.json({ error: 'Invalid or expired token' }, 401)
+      }
+    }
+
+    const orgId = deps.cache.getAnyOrgId() ?? crypto.randomUUID()
+    const userId = crypto.randomUUID()
+    const role = body.role || 'user'
+    deps.cache.populate(body.email, body.password, { userId, orgId, role })
+    return c.json({ userId, email: body.email.toLowerCase(), orgId, role })
   })
 
   router.post('/auth/local/cache', async (c) => {
