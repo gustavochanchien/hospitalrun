@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Fitur",
+    "description": "Pilih fitur opsional yang digunakan organisasi Anda. Mengaktifkan fitur akan membuatnya terlihat oleh anggota tim yang telah diberi akses. Admin selalu memiliki akses ke semua fitur yang diaktifkan.",
+    "descriptionNonAdmin": "Hanya admin yang dapat mengubah fitur yang diaktifkan untuk organisasi."
+  },
+  "pdfExport": {
+    "label": "Ekspor & cetak PDF",
+    "description": "Ekspor ringkasan pasien, laporan lab, dan studi pencitraan sebagai PDF. Menambahkan tampilan ramah-cetak pada halaman detail."
+  },
+  "billing": {
+    "label": "Penagihan & faktur",
+    "description": "Buat faktur untuk kunjungan pasien, lacak pembayaran, dan kelola katalog layanan."
+  },
+  "inventory": {
+    "label": "Manajemen inventaris",
+    "description": "Lacak stok untuk barang habis pakai dan obat-obatan, catat penerimaan dan distribusi, dan dapatkan peringatan stok rendah."
+  },
+  "toggle": {
+    "enabled": "{{feature}} diaktifkan",
+    "disabled": "{{feature}} dinonaktifkan"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} fitur",
+    "adminAll": "Semua fitur (admin)",
+    "popoverTitle": "Fitur yang ditugaskan",
+    "popoverHint": "Pilih fitur aktif yang dapat dilihat oleh anggota tim ini.",
+    "adminHint": "Admin selalu memiliki akses ke semua fitur yang diaktifkan.",
+    "noneEnabled": "—"
+  }
+}

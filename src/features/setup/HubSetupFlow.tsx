@@ -7,8 +7,16 @@ import { Label } from '@/components/ui/label'
 import { getIPC, type HubInfo } from '@/lib/desktop/env'
 import { useAuthStore } from '@/features/auth/auth.store'
 import { CloudConnectForm } from './CloudConnectForm'
+import { ChooseFeaturesForm } from './ChooseFeaturesForm'
 
-type Step = 'start' | 'starting' | 'first-user' | 'cloud-prompt' | 'ready' | 'error'
+type Step =
+  | 'start'
+  | 'starting'
+  | 'first-user'
+  | 'choose-features'
+  | 'cloud-prompt'
+  | 'ready'
+  | 'error'
 
 interface HubSetupFlowProps {
   onBack: () => void
@@ -65,7 +73,11 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
   }
 
   if (step === 'first-user') {
-    return <HubFirstUserForm onDone={() => setStep('cloud-prompt')} />
+    return <HubFirstUserForm onDone={() => setStep('choose-features')} />
+  }
+
+  if (step === 'choose-features') {
+    return <ChooseFeaturesForm onDone={() => setStep('cloud-prompt')} />
   }
 
   if (step === 'cloud-prompt') {

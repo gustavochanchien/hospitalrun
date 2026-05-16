@@ -30,6 +30,14 @@
     "errCreate": "Échec de la création du compte",
     "errNetwork": "Erreur réseau"
   },
+  "chooseFeatures": {
+    "intro": "Choisissez les fonctionnalités optionnelles que vous souhaitez activer maintenant. Patients, rendez-vous, laboratoires, médicaments, imagerie et incidents sont toujours disponibles.",
+    "changeLater": "Vous pouvez activer ou désactiver des fonctionnalités à tout moment depuis Paramètres → Fonctionnalités.",
+    "skip": "Ignorer — tout désactivé",
+    "confirm": "Enregistrer et continuer",
+    "saving": "Enregistrement…",
+    "errNoOrg": "Aucune organisation dans votre session. Reconnectez-vous et réessayez."
+  },
   "cloudConnect": {
     "needProject": "Besoin d'un projet Supabase ?",
     "needProjectHelp": "Créez-en un gratuitement, puis copiez l'URL du projet et la clé anon depuis Project Settings → API.",

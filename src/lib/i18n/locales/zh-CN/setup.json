@@ -30,6 +30,14 @@
     "errCreate": "创建账户失败",
     "errNetwork": "网络错误"
   },
+  "chooseFeatures": {
+    "intro": "选择您希望现在启用的可选功能。患者、预约、化验、药品、影像和事件始终可用。",
+    "changeLater": "您可以随时在 设置 → 功能 中启用或禁用各项功能。",
+    "skip": "跳过 — 全部关闭",
+    "confirm": "保存并继续",
+    "saving": "正在保存…",
+    "errNoOrg": "您的会话中没有组织。请重新登录后再试。"
+  },
   "cloudConnect": {
     "needProject": "需要 Supabase 项目吗？",
     "needProjectHelp": "免费创建一个，然后从 Project Settings → API 复制项目 URL 和 anon 密钥。",

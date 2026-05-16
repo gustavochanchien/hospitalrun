@@ -30,6 +30,14 @@
     "errCreate": "Failed to create account",
     "errNetwork": "Network error"
   },
+  "chooseFeatures": {
+    "intro": "Pick the optional features you want to enable right now. Patients, appointments, labs, medications, imaging, and incidents are always available.",
+    "changeLater": "You can enable or disable features anytime in Settings → Features.",
+    "skip": "Skip — all off",
+    "confirm": "Save and continue",
+    "saving": "Saving…",
+    "errNoOrg": "No organization in your session. Sign back in and try again."
+  },
   "cloudConnect": {
     "needProject": "Need a Supabase project?",
     "needProjectHelp": "Create a free one, then copy the Project URL and anon key from Project Settings → API.",

@@ -31,6 +31,8 @@ import { TeamCard } from './TeamCard'
 import { SwitchServerCard } from './SwitchServerCard'
 import { HubCard } from './HubCard'
 import { CloudBackupCard } from './CloudBackupCard'
+import { FeaturesCard } from './FeaturesCard'
+import { UserFeaturesPopover } from './UserFeaturesPopover'
 import { seedFakeData } from '@/lib/demo/seed-org'
 import { SUPPORTED_LANGUAGES, type LanguageCode } from '@/lib/i18n'
 import { useLanguageStore } from './language.store'
@@ -51,6 +53,7 @@ export function SettingsPage() {
   return (
     <div className="space-y-6 p-6">
       <OrgSettingsCard orgId={orgId} isAdmin={isAdmin} />
+      <FeaturesCard />
       <LanguageCard />
       <ThemeCard />
       <UserListCard profiles={profiles} isAdmin={isAdmin} />
@@ -417,6 +420,7 @@ function UserListCard({
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Role</TableHead>
+                  <TableHead>Features</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -529,6 +533,13 @@ function UserRow({
         ) : (
           <Badge variant={roleBadgeVariant}>{profile.role}</Badge>
         )}
+      </TableCell>
+      <TableCell>
+        <UserFeaturesPopover
+          userId={profile.id}
+          isUserAdmin={profile.role === 'admin'}
+          canEdit={isAdmin && !isCurrentUser && !disabled}
+        />
       </TableCell>
       <TableCell>
         {isAdmin && !isCurrentUser && (

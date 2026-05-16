@@ -10,9 +10,17 @@ vi.mock('@/lib/supabase/client', () => ({
 }))
 
 const signIn = vi.fn()
+const authState: {
+  signIn: (...args: unknown[]) => unknown
+  orgId: string | null
+  user: { id: string } | null
+} = {
+  signIn: (...args: unknown[]) => signIn(...args),
+  orgId: null,
+  user: null,
+}
 vi.mock('@/features/auth/auth.store', () => ({
-  useAuthStore: (selector: (s: unknown) => unknown) =>
-    selector({ signIn: (...args: unknown[]) => signIn(...args) }),
+  useAuthStore: (selector: (s: unknown) => unknown) => selector(authState),
 }))
 
 const assignSpy = vi.fn()
@@ -112,7 +120,7 @@ describe('HubSetupFlow', () => {
     expect(await screen.findByRole('button', { name: /Start hub/i })).toBeInTheDocument()
   })
 
-  it('advances through first-user form to cloud-prompt step', async () => {
+  it('advances through first-user form to choose-features step', async () => {
     installFakeIPC()
     render(<HubSetupFlow onBack={vi.fn()} />)
     await userEvent.click(screen.getByRole('button', { name: /Start hub/i }))
@@ -124,7 +132,28 @@ describe('HubSetupFlow', () => {
     await userEvent.type(screen.getByLabelText(/Confirm password/i), 'password123')
     await userEvent.click(screen.getByRole('button', { name: /Create admin account/i }))
 
-    // Should advance to cloud-prompt (skip button visible)
-    expect(await screen.findByRole('button', { name: /Skip for now/i })).toBeInTheDocument()
+    // Now on the choose-features step (skip button + confirm both visible).
+    expect(
+      await screen.findByRole('button', { name: /Save and continue/i }),
+    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Skip — all off/i })).toBeInTheDocument()
+  })
+
+  it('advances from choose-features to cloud-prompt via Skip', async () => {
+    installFakeIPC()
+    render(<HubSetupFlow onBack={vi.fn()} />)
+    await userEvent.click(screen.getByRole('button', { name: /Start hub/i }))
+
+    await userEvent.type(await screen.findByLabelText(/Full name/i), 'Admin User')
+    await userEvent.type(screen.getByLabelText(/^Email$/i), 'admin@test.com')
+    await userEvent.type(screen.getByLabelText(/^Password$/i), 'password123')
+    await userEvent.type(screen.getByLabelText(/Confirm password/i), 'password123')
+    await userEvent.click(screen.getByRole('button', { name: /Create admin account/i }))
+
+    await userEvent.click(await screen.findByRole('button', { name: /Skip — all off/i }))
+
+    expect(
+      await screen.findByRole('button', { name: /Skip for now/i }),
+    ).toBeInTheDocument()
   })
 })

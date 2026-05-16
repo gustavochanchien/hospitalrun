@@ -30,6 +30,14 @@
     "errCreate": "アカウントを作成できませんでした",
     "errNetwork": "ネットワークエラー"
   },
+  "chooseFeatures": {
+    "intro": "今すぐ有効にしたいオプション機能を選択してください。患者、予約、検査、薬剤、画像、インシデントは常に利用可能です。",
+    "changeLater": "機能はいつでも 設定 → 機能 で有効化または無効化できます。",
+    "skip": "スキップ — すべて無効",
+    "confirm": "保存して続行",
+    "saving": "保存中…",
+    "errNoOrg": "セッションに組織がありません。再度サインインしてからお試しください。"
+  },
   "cloudConnect": {
     "needProject": "Supabaseプロジェクトが必要ですか？",
     "needProjectHelp": "無料で作成し、Project Settings → APIからプロジェクトURLとanonキーをコピーしてください。",

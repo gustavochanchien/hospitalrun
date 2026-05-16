@@ -30,6 +30,14 @@
     "errCreate": "Falha ao criar a conta",
     "errNetwork": "Erro de rede"
   },
+  "chooseFeatures": {
+    "intro": "Escolha os recursos opcionais que deseja ativar agora. Pacientes, consultas, laboratório, medicamentos, imagens e incidentes estão sempre disponíveis.",
+    "changeLater": "Você pode ativar ou desativar recursos a qualquer momento em Configurações → Recursos.",
+    "skip": "Pular — todos desativados",
+    "confirm": "Salvar e continuar",
+    "saving": "Salvando…",
+    "errNoOrg": "Nenhuma organização na sua sessão. Faça login novamente e tente outra vez."
+  },
   "cloudConnect": {
     "needProject": "Precisa de um projeto Supabase?",
     "needProjectHelp": "Crie um gratuitamente e copie a URL do projeto e a chave anon em Project Settings → API.",

@@ -30,6 +30,14 @@
     "errCreate": "Impossibile creare l'account",
     "errNetwork": "Errore di rete"
   },
+  "chooseFeatures": {
+    "intro": "Scegli le funzionalità opzionali che vuoi abilitare ora. Pazienti, appuntamenti, laboratorio, farmaci, imaging e incidenti sono sempre disponibili.",
+    "changeLater": "Puoi abilitare o disabilitare le funzionalità in qualsiasi momento da Impostazioni → Funzionalità.",
+    "skip": "Salta — tutte disattivate",
+    "confirm": "Salva e continua",
+    "saving": "Salvataggio…",
+    "errNoOrg": "Nessuna organizzazione nella tua sessione. Effettua di nuovo l'accesso e riprova."
+  },
   "cloudConnect": {
     "needProject": "Hai bisogno di un progetto Supabase?",
     "needProjectHelp": "Creane uno gratuito, poi copia l'URL del progetto e la chiave anon da Project Settings → API.",

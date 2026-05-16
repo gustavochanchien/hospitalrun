@@ -30,6 +30,14 @@
     "errCreate": "Konto konnte nicht erstellt werden",
     "errNetwork": "Netzwerkfehler"
   },
+  "chooseFeatures": {
+    "intro": "Wählen Sie die optionalen Funktionen, die Sie jetzt aktivieren möchten. Patienten, Termine, Labor, Medikamente, Bildgebung und Vorfälle sind immer verfügbar.",
+    "changeLater": "Sie können Funktionen jederzeit unter Einstellungen → Funktionen ein- oder ausschalten.",
+    "skip": "Überspringen — alle aus",
+    "confirm": "Speichern und weiter",
+    "saving": "Speichert…",
+    "errNoOrg": "Keine Organisation in Ihrer Sitzung. Melden Sie sich erneut an und versuchen Sie es noch einmal."
+  },
   "cloudConnect": {
     "needProject": "Brauchst du ein Supabase-Projekt?",
     "needProjectHelp": "Erstelle ein kostenloses Projekt und kopiere dann die Projekt-URL und den Anon-Schlüssel aus Project Settings → API.",

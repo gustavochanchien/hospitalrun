@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Özellikler",
+    "description": "Kuruluşunuzun kullanacağı isteğe bağlı özellikleri seçin. Bir özelliği açmak, izin verilen ekip üyeleri için görünür hale getirir. Yöneticiler her zaman tüm etkin özelliklere erişebilir.",
+    "descriptionNonAdmin": "Yalnızca yöneticiler kuruluş için hangi özelliklerin etkin olduğunu değiştirebilir."
+  },
+  "pdfExport": {
+    "label": "PDF dışa aktarma ve yazdırma",
+    "description": "Hasta özetlerini, laboratuvar raporlarını ve görüntüleme çalışmalarını PDF olarak dışa aktarın. Ayrıntı sayfalarında yazdırma dostu görünümler ekler."
+  },
+  "billing": {
+    "label": "Faturalama",
+    "description": "Hasta ziyaretleri için faturalar oluşturun, ödemeleri takip edin ve bir hizmet kataloğu yönetin."
+  },
+  "inventory": {
+    "label": "Stok yönetimi",
+    "description": "Sarf malzemeleri ve ilaçlar için stoğu takip edin, girişleri ve çıkışları kaydedin, düşük stok uyarıları alın."
+  },
+  "toggle": {
+    "enabled": "{{feature}} etkinleştirildi",
+    "disabled": "{{feature}} devre dışı bırakıldı"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} özellik",
+    "adminAll": "Tümü (yönetici)",
+    "popoverTitle": "Atanmış özellikler",
+    "popoverHint": "Bu üyenin görebileceği etkin özellikleri seçin.",
+    "adminHint": "Yöneticiler her zaman tüm etkin özelliklere erişebilir.",
+    "noneEnabled": "—"
+  }
+}

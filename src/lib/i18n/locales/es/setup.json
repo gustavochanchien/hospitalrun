@@ -30,6 +30,14 @@
     "errCreate": "No se pudo crear la cuenta",
     "errNetwork": "Error de red"
   },
+  "chooseFeatures": {
+    "intro": "Elija las funciones opcionales que desea habilitar ahora. Pacientes, citas, laboratorio, medicamentos, imágenes e incidentes siempre están disponibles.",
+    "changeLater": "Puede activar o desactivar funciones en cualquier momento desde Configuración → Funciones.",
+    "skip": "Omitir — todo desactivado",
+    "confirm": "Guardar y continuar",
+    "saving": "Guardando…",
+    "errNoOrg": "No hay organización en su sesión. Inicie sesión nuevamente e inténtelo otra vez."
+  },
   "cloudConnect": {
     "needProject": "¿Necesitas un proyecto de Supabase?",
     "needProjectHelp": "Crea uno gratis y luego copia la URL del proyecto y la clave anon desde Project Settings → API.",

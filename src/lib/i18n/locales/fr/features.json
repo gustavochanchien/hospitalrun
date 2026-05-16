@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Fonctionnalités",
+    "description": "Choisissez les fonctionnalités optionnelles que votre organisation utilise. Activer une fonctionnalité la rend visible pour les membres de l'équipe qui y ont accès. Les administrateurs ont toujours accès à toutes les fonctionnalités activées.",
+    "descriptionNonAdmin": "Seuls les administrateurs peuvent modifier les fonctionnalités activées pour l'organisation."
+  },
+  "pdfExport": {
+    "label": "Export et impression PDF",
+    "description": "Exportez les résumés patients, les rapports de laboratoire et les études d'imagerie au format PDF. Ajoute des vues adaptées à l'impression sur les pages de détail."
+  },
+  "billing": {
+    "label": "Facturation",
+    "description": "Créez des factures pour les visites des patients, suivez les paiements et gérez un catalogue de prestations."
+  },
+  "inventory": {
+    "label": "Gestion des stocks",
+    "description": "Suivez les stocks de consommables et de médicaments, enregistrez les réceptions et les dispensations et recevez des alertes de stock bas."
+  },
+  "toggle": {
+    "enabled": "{{feature}} activée",
+    "disabled": "{{feature}} désactivée"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} fonctionnalités",
+    "adminAll": "Toutes (admin)",
+    "popoverTitle": "Fonctionnalités attribuées",
+    "popoverHint": "Choisissez les fonctionnalités activées que ce membre peut voir.",
+    "adminHint": "Les administrateurs ont toujours accès à toutes les fonctionnalités activées.",
+    "noneEnabled": "—"
+  }
+}

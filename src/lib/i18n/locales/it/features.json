@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Funzionalità",
+    "description": "Scegli quali funzionalità opzionali la tua organizzazione utilizza. Attivare una funzionalità la rende visibile ai membri del team che ne sono autorizzati. Gli amministratori hanno sempre accesso a tutte le funzionalità abilitate.",
+    "descriptionNonAdmin": "Solo gli amministratori possono modificare le funzionalità abilitate per l'organizzazione."
+  },
+  "pdfExport": {
+    "label": "Esportazione PDF e stampa",
+    "description": "Esporta riepiloghi pazienti, referti di laboratorio e studi di imaging come PDF. Aggiunge viste ottimizzate per la stampa nelle pagine di dettaglio."
+  },
+  "billing": {
+    "label": "Fatturazione",
+    "description": "Crea fatture per le visite dei pazienti, registra i pagamenti e gestisci un catalogo di prestazioni."
+  },
+  "inventory": {
+    "label": "Gestione magazzino",
+    "description": "Tieni traccia delle scorte di consumabili e farmaci, registra entrate e dispensazioni e ricevi avvisi di scorta bassa."
+  },
+  "toggle": {
+    "enabled": "{{feature}} attivata",
+    "disabled": "{{feature}} disattivata"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} funzionalità",
+    "adminAll": "Tutte (admin)",
+    "popoverTitle": "Funzionalità assegnate",
+    "popoverHint": "Scegli quali funzionalità abilitate può vedere questo membro.",
+    "adminHint": "Gli amministratori hanno sempre accesso a tutte le funzionalità abilitate.",
+    "noneEnabled": "—"
+  }
+}

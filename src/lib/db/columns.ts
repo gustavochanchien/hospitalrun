@@ -221,6 +221,27 @@ const carePlanColumns = {
   updatedAt: 'updated_at',
 } as const
 
+const orgFeatureColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  feature: 'feature',
+  enabled: 'enabled',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
+const userFeatureColumns = {
+  id: 'id',
+  userId: 'user_id',
+  orgId: 'org_id',
+  feature: 'feature',
+  granted: 'granted',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
 export const columnMap: Record<SyncableTable, Record<string, string>> = {
   patients: patientColumns,
   visits: visitColumns,
@@ -235,6 +256,8 @@ export const columnMap: Record<SyncableTable, Record<string, string>> = {
   relatedPersons: relatedPersonColumns,
   careGoals: careGoalColumns,
   carePlans: carePlanColumns,
+  orgFeatures: orgFeatureColumns,
+  userFeatures: userFeatureColumns,
 }
 
 /** Dexie table name → Supabase table name */
@@ -252,6 +275,8 @@ export const supabaseTableName: Record<SyncableTable, string> = {
   relatedPersons: 'related_persons',
   careGoals: 'care_goals',
   carePlans: 'care_plans',
+  orgFeatures: 'org_features',
+  userFeatures: 'user_features',
 }
 
 /** Convert a Dexie record (camelCase) to a Supabase row (snake_case) */

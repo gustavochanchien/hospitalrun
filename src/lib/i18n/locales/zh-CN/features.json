@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "功能",
+    "description": "选择您的组织要使用的可选功能。启用功能后，对获得授权的团队成员可见。管理员始终可以访问所有已启用的功能。",
+    "descriptionNonAdmin": "只有管理员可以更改组织中启用的功能。"
+  },
+  "pdfExport": {
+    "label": "PDF 导出与打印",
+    "description": "将患者摘要、化验报告和影像研究导出为 PDF。在详情页面添加适合打印的视图。"
+  },
+  "billing": {
+    "label": "计费与开票",
+    "description": "为患者就诊创建发票，跟踪付款，并管理服务目录。"
+  },
+  "inventory": {
+    "label": "库存管理",
+    "description": "跟踪耗材和药品库存，记录入库与发放，并获取库存不足提醒。"
+  },
+  "toggle": {
+    "enabled": "已启用 {{feature}}",
+    "disabled": "已禁用 {{feature}}"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} 项功能",
+    "adminAll": "全部（管理员）",
+    "popoverTitle": "分配的功能",
+    "popoverHint": "选择该成员可以看到的已启用功能。",
+    "adminHint": "管理员始终可以访问所有已启用的功能。",
+    "noneEnabled": "—"
+  }
+}

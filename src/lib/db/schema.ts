@@ -318,6 +318,31 @@ export interface PatientHistory {
   newValue: string | null
 }
 
+export interface OrgFeature {
+  id: string
+  orgId: string
+  feature: string
+  enabled: boolean
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
+export interface UserFeature {
+  id: string
+  userId: string
+  orgId: string
+  feature: string
+  granted: boolean
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
 export interface SyncQueueEntry {
   seq?: number
   tableName: string
@@ -342,6 +367,8 @@ export type TableMap = {
   careGoals: CareGoal
   carePlans: CarePlan
   patientHistory: PatientHistory
+  orgFeatures: OrgFeature
+  userFeatures: UserFeature
   syncQueue: SyncQueueEntry
 }
 

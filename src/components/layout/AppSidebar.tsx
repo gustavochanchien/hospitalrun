@@ -24,6 +24,8 @@ import {
   SidebarFooter,
 } from '@/components/ui/sidebar'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { useEnabledFeatures } from '@/hooks/useFeatureEnabled'
+import type { Feature } from '@/lib/features'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,22 +35,33 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { ChevronUp } from 'lucide-react'
 
-const navItems = [
-  { key: 'dashboard', to: '/' as const, icon: LayoutDashboard },
-  { key: 'patients', to: '/patients' as const, icon: Users },
-  { key: 'appointments', to: '/appointments' as const, icon: CalendarDays },
-  { key: 'labs', to: '/labs' as const, icon: TestTubes },
-  { key: 'medications', to: '/medications' as const, icon: Pill },
-  { key: 'imaging', to: '/imaging' as const, icon: ScanLine },
-  { key: 'incidents', to: '/incidents' as const, icon: AlertTriangle },
-  { key: 'settings', to: '/settings' as const, icon: Settings },
-] as const
+type NavItem = {
+  key: string
+  to: '/' | '/patients' | '/appointments' | '/labs' | '/medications' | '/imaging' | '/incidents' | '/settings'
+  icon: typeof LayoutDashboard
+  feature?: Feature
+}
+
+const navItems: readonly NavItem[] = [
+  { key: 'dashboard', to: '/', icon: LayoutDashboard },
+  { key: 'patients', to: '/patients', icon: Users },
+  { key: 'appointments', to: '/appointments', icon: CalendarDays },
+  { key: 'labs', to: '/labs', icon: TestTubes },
+  { key: 'medications', to: '/medications', icon: Pill },
+  { key: 'imaging', to: '/imaging', icon: ScanLine },
+  { key: 'incidents', to: '/incidents', icon: AlertTriangle },
+  { key: 'settings', to: '/settings', icon: Settings },
+]
 
 export function AppSidebar() {
   const { user, signOut } = useAuthStore()
   const navigate = useNavigate()
   const matchRoute = useMatchRoute()
   const { t } = useTranslation('common')
+  const enabledFeatures = useEnabledFeatures()
+  const visibleNavItems = navItems.filter(
+    (item) => !item.feature || enabledFeatures.includes(item.feature),
+  )
 
   const initials = user?.email
     ? user.email
@@ -73,7 +86,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>{t('layout.navigation')}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navItems.map((item) => {
+              {visibleNavItems.map((item) => {
                 const isActive = matchRoute({ to: item.to, fuzzy: true })
                 return (
                   <SidebarMenuItem key={item.to}>

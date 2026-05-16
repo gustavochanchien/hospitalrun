@@ -19,6 +19,8 @@ const syncableTables: SyncableTable[] = [
   'relatedPersons',
   'careGoals',
   'carePlans',
+  'orgFeatures',
+  'userFeatures',
 ]
 
 /**

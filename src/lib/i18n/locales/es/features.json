@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Funciones",
+    "description": "Elija qué funciones opcionales utilizará su organización. Al activar una función, se hará visible para los miembros del equipo a los que se les haya concedido. Los administradores siempre tienen acceso a todas las funciones habilitadas.",
+    "descriptionNonAdmin": "Solo los administradores pueden cambiar qué funciones están habilitadas para la organización."
+  },
+  "pdfExport": {
+    "label": "Exportación e impresión en PDF",
+    "description": "Exporte resúmenes de pacientes, informes de laboratorio y estudios de imagen como PDF. Añade vistas optimizadas para impresión en las páginas de detalle."
+  },
+  "billing": {
+    "label": "Facturación",
+    "description": "Cree facturas para visitas de pacientes, registre pagos y gestione un catálogo de servicios."
+  },
+  "inventory": {
+    "label": "Gestión de inventario",
+    "description": "Controle las existencias de consumibles y medicamentos, registre recepciones y dispensaciones y reciba alertas de bajo stock."
+  },
+  "toggle": {
+    "enabled": "{{feature}} activada",
+    "disabled": "{{feature}} desactivada"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} funciones",
+    "adminAll": "Todas las funciones (admin)",
+    "popoverTitle": "Funciones asignadas",
+    "popoverHint": "Elija qué funciones habilitadas puede ver este miembro del equipo.",
+    "adminHint": "Los administradores siempre tienen acceso a todas las funciones habilitadas.",
+    "noneEnabled": "—"
+  }
+}

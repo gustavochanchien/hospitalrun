@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Funktionen",
+    "description": "Wählen Sie aus, welche optionalen Funktionen Ihre Organisation verwendet. Eine aktivierte Funktion wird für Teammitglieder sichtbar, denen sie zugewiesen ist. Administratoren haben immer Zugriff auf alle aktivierten Funktionen.",
+    "descriptionNonAdmin": "Nur Administratoren können ändern, welche Funktionen für die Organisation aktiviert sind."
+  },
+  "pdfExport": {
+    "label": "PDF-Export & Druck",
+    "description": "Exportieren Sie Patientenzusammenfassungen, Laborberichte und Bildgebungsstudien als PDF. Fügt druckfreundliche Ansichten auf Detailseiten hinzu."
+  },
+  "billing": {
+    "label": "Rechnungsstellung",
+    "description": "Erstellen Sie Rechnungen für Patientenbesuche, verfolgen Sie Zahlungen und verwalten Sie einen Leistungskatalog."
+  },
+  "inventory": {
+    "label": "Bestandsverwaltung",
+    "description": "Verfolgen Sie Bestände für Verbrauchsmaterialien und Medikamente, erfassen Sie Eingänge und Abgaben und erhalten Sie Warnungen bei niedrigem Bestand."
+  },
+  "toggle": {
+    "enabled": "{{feature}} aktiviert",
+    "disabled": "{{feature}} deaktiviert"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} Funktionen",
+    "adminAll": "Alle (Admin)",
+    "popoverTitle": "Zugewiesene Funktionen",
+    "popoverHint": "Wählen Sie aus, welche aktivierten Funktionen dieses Teammitglied sehen darf.",
+    "adminHint": "Administratoren haben immer Zugriff auf alle aktivierten Funktionen.",
+    "noneEnabled": "—"
+  }
+}

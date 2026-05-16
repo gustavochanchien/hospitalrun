@@ -1,0 +1,31 @@
+{
+  "card": {
+    "title": "Features",
+    "description": "Choose which optional features your organization uses. Turning a feature on makes it visible to team members who have been granted it. Admins always have access to every enabled feature.",
+    "descriptionNonAdmin": "Only admins can change which features are enabled for the organization."
+  },
+  "pdfExport": {
+    "label": "PDF export & printing",
+    "description": "Export patient summaries, lab reports, and imaging studies as PDFs. Adds print-friendly views on detail pages."
+  },
+  "billing": {
+    "label": "Billing & invoicing",
+    "description": "Create invoices for patient visits, track payments, and manage a service catalog."
+  },
+  "inventory": {
+    "label": "Inventory management",
+    "description": "Track stock for consumables and medications, record receipts and dispenses, and get low-stock alerts."
+  },
+  "toggle": {
+    "enabled": "Enabled {{feature}}",
+    "disabled": "Disabled {{feature}}"
+  },
+  "user": {
+    "assigned": "{{count}}/{{total}} features",
+    "adminAll": "All features (admin)",
+    "popoverTitle": "Assigned features",
+    "popoverHint": "Pick which enabled features this team member can see.",
+    "adminHint": "Admins always have access to every enabled feature.",
+    "noneEnabled": "—"
+  }
+}

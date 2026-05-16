@@ -14,6 +14,8 @@ import type {
   CareGoal,
   CarePlan,
   PatientHistory,
+  OrgFeature,
+  UserFeature,
   SyncQueueEntry,
 } from './schema'
 
@@ -32,6 +34,8 @@ export class HospitalRunDB extends Dexie {
   careGoals!: Dexie.Table<CareGoal, string>
   carePlans!: Dexie.Table<CarePlan, string>
   patientHistory!: Dexie.Table<PatientHistory, string>
+  orgFeatures!: Dexie.Table<OrgFeature, string>
+  userFeatures!: Dexie.Table<UserFeature, string>
   syncQueue!: Dexie.Table<SyncQueueEntry, number>
 
   constructor() {
@@ -75,6 +79,12 @@ export class HospitalRunDB extends Dexie {
             if (row.visitId === undefined) row.visitId = null
           })
       })
+
+    // v3: feature flags (per-org enable + per-user grant).
+    this.version(3).stores({
+      orgFeatures: 'id, orgId, feature, [orgId+feature], _synced',
+      userFeatures: 'id, userId, orgId, feature, [userId+orgId+feature], [orgId+feature], _synced',
+    })
   }
 }
 

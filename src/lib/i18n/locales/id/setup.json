@@ -30,6 +30,14 @@
     "errCreate": "Gagal membuat akun",
     "errNetwork": "Kesalahan jaringan"
   },
+  "chooseFeatures": {
+    "intro": "Pilih fitur opsional yang ingin Anda aktifkan sekarang. Pasien, janji temu, lab, obat, pencitraan, dan insiden selalu tersedia.",
+    "changeLater": "Anda dapat mengaktifkan atau menonaktifkan fitur kapan saja di Pengaturan → Fitur.",
+    "skip": "Lewati — semua nonaktif",
+    "confirm": "Simpan dan lanjutkan",
+    "saving": "Menyimpan…",
+    "errNoOrg": "Tidak ada organisasi di sesi Anda. Masuk kembali dan coba lagi."
+  },
   "cloudConnect": {
     "needProject": "Butuh proyek Supabase?",
     "needProjectHelp": "Buat satu secara gratis, lalu salin URL Proyek dan kunci anon dari Project Settings → API.",

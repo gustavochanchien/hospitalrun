@@ -30,6 +30,14 @@
     "errCreate": "Hesap oluşturulamadı",
     "errNetwork": "Ağ hatası"
   },
+  "chooseFeatures": {
+    "intro": "Şimdi etkinleştirmek istediğiniz isteğe bağlı özellikleri seçin. Hastalar, randevular, laboratuvar, ilaçlar, görüntüleme ve olaylar her zaman kullanılabilir.",
+    "changeLater": "Özellikleri istediğiniz zaman Ayarlar → Özellikler bölümünden açıp kapatabilirsiniz.",
+    "skip": "Atla — tümü kapalı",
+    "confirm": "Kaydet ve devam et",
+    "saving": "Kaydediliyor…",
+    "errNoOrg": "Oturumunuzda kuruluş yok. Tekrar oturum açıp deneyin."
+  },
   "cloudConnect": {
     "needProject": "Supabase projesine mi ihtiyacınız var?",
     "needProjectHelp": "Ücretsiz bir proje oluşturun, ardından Project Settings → API bölümünden Proje URL'sini ve anon anahtarını kopyalayın.",
