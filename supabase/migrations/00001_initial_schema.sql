@@ -1,8 +1,9 @@
--- HospitalRun 3 — Initial Database Schema (squashed)
+-- HospitalRun 3 — Squashed Schema (v3)
 --
--- Single-file schema covering tables, RLS, JWT hook, storage, and version
--- tracking. Replays of this migration are blocked at the deploy.sql layer
--- by the schema_meta guard; supabase db push is idempotent at the file level.
+-- Single-file schema covering all tables, RLS, JWT hook, storage, and
+-- feature flags, billing & payments. Run this once against a fresh
+-- Supabase project. Do not hand-edit once applied to any live database;
+-- add new numbered migrations instead.
 
 -- ============================================================
 -- Tables
@@ -311,6 +312,122 @@ create table org_members (
 create unique index org_members_org_email_idx on org_members (org_id, lower(invited_email));
 create index org_members_user_idx on org_members (user_id);
 
+-- Feature flags: per-org enable + per-user grant.
+create table org_features (
+  id         uuid primary key default gen_random_uuid(),
+  org_id     uuid not null references organizations(id) on delete cascade,
+  feature    text not null,
+  enabled    boolean not null default false,
+  deleted_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique (org_id, feature)
+);
+
+create index org_features_org_idx on org_features (org_id);
+
+-- Per-member feature grant within the org. Absent row means not granted.
+-- Admins are implicitly granted (enforced client-side in useFeatureEnabled).
+create table user_features (
+  id         uuid primary key default gen_random_uuid(),
+  user_id    uuid not null references auth.users(id) on delete cascade,
+  org_id     uuid not null references organizations(id) on delete cascade,
+  feature    text not null,
+  granted    boolean not null default true,
+  deleted_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique (user_id, org_id, feature)
+);
+
+create index user_features_user_org_idx on user_features (user_id, org_id);
+create index user_features_org_idx on user_features (org_id);
+
+-- Billing: charge item catalog.
+create table charge_items (
+  id          uuid primary key default gen_random_uuid(),
+  org_id      uuid not null references organizations(id) on delete cascade,
+  code        text not null,
+  name        text not null,
+  description text,
+  unit_amount numeric(12,2) not null default 0,
+  currency    text not null default 'USD',
+  active      boolean not null default true,
+  deleted_at  timestamptz,
+  created_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now()
+);
+
+create index charge_items_org_idx on charge_items (org_id);
+create unique index charge_items_org_code_uidx on charge_items (org_id, code) where deleted_at is null;
+
+-- Patient-scoped invoice header.
+create table invoices (
+  id             uuid primary key default gen_random_uuid(),
+  org_id         uuid not null references organizations(id) on delete cascade,
+  patient_id     uuid not null references patients(id) on delete cascade,
+  visit_id       uuid references visits(id) on delete set null,
+  invoice_number text not null,
+  status         text not null default 'draft'
+                   check (status in ('draft','issued','partial','paid','void')),
+  issued_at      timestamptz,
+  due_at         timestamptz,
+  currency       text not null default 'USD',
+  subtotal       numeric(14,2) not null default 0,
+  tax            numeric(14,2) not null default 0,
+  discount       numeric(14,2) not null default 0,
+  total          numeric(14,2) not null default 0,
+  amount_paid    numeric(14,2) not null default 0,
+  notes          text,
+  deleted_at     timestamptz,
+  created_at     timestamptz not null default now(),
+  updated_at     timestamptz not null default now()
+);
+
+create index invoices_org_idx       on invoices (org_id);
+create index invoices_patient_idx   on invoices (patient_id);
+create index invoices_status_idx    on invoices (status);
+create unique index invoices_org_number_uidx on invoices (org_id, invoice_number) where deleted_at is null;
+
+-- Denormalised lines linked to an invoice.
+create table invoice_line_items (
+  id             uuid primary key default gen_random_uuid(),
+  org_id         uuid not null references organizations(id) on delete cascade,
+  invoice_id     uuid not null references invoices(id) on delete cascade,
+  charge_item_id uuid references charge_items(id) on delete set null,
+  description    text not null,
+  quantity       numeric(12,2) not null default 1,
+  unit_amount    numeric(12,2) not null default 0,
+  amount         numeric(14,2) not null default 0,
+  deleted_at     timestamptz,
+  created_at     timestamptz not null default now(),
+  updated_at     timestamptz not null default now()
+);
+
+create index invoice_line_items_org_idx     on invoice_line_items (org_id);
+create index invoice_line_items_invoice_idx on invoice_line_items (invoice_id);
+
+-- Money received against an invoice.
+create table payments (
+  id          uuid primary key default gen_random_uuid(),
+  org_id      uuid not null references organizations(id) on delete cascade,
+  invoice_id  uuid not null references invoices(id) on delete cascade,
+  patient_id  uuid not null references patients(id) on delete cascade,
+  amount      numeric(14,2) not null,
+  method      text not null
+                check (method in ('cash','card','bank-transfer','insurance','other')),
+  received_at timestamptz not null default now(),
+  reference   text,
+  notes       text,
+  deleted_at  timestamptz,
+  created_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now()
+);
+
+create index payments_org_idx     on payments (org_id);
+create index payments_invoice_idx on payments (invoice_id);
+create index payments_patient_idx on payments (patient_id);
+
 create table schema_meta (
   version    int primary key,
   applied_at timestamptz not null default now()
@@ -327,19 +444,25 @@ begin
 end;
 $$ language plpgsql;
 
-create trigger trg_patients_updated_at        before update on patients        for each row execute function update_updated_at();
-create trigger trg_visits_updated_at          before update on visits          for each row execute function update_updated_at();
-create trigger trg_appointments_updated_at    before update on appointments    for each row execute function update_updated_at();
-create trigger trg_labs_updated_at            before update on labs            for each row execute function update_updated_at();
-create trigger trg_medications_updated_at     before update on medications     for each row execute function update_updated_at();
-create trigger trg_incidents_updated_at       before update on incidents       for each row execute function update_updated_at();
-create trigger trg_imaging_updated_at         before update on imaging         for each row execute function update_updated_at();
-create trigger trg_diagnoses_updated_at       before update on diagnoses       for each row execute function update_updated_at();
-create trigger trg_allergies_updated_at       before update on allergies       for each row execute function update_updated_at();
-create trigger trg_notes_updated_at           before update on notes           for each row execute function update_updated_at();
-create trigger trg_related_persons_updated_at before update on related_persons for each row execute function update_updated_at();
-create trigger trg_care_goals_updated_at      before update on care_goals      for each row execute function update_updated_at();
-create trigger trg_care_plans_updated_at      before update on care_plans      for each row execute function update_updated_at();
+create trigger trg_patients_updated_at            before update on patients            for each row execute function update_updated_at();
+create trigger trg_visits_updated_at              before update on visits              for each row execute function update_updated_at();
+create trigger trg_appointments_updated_at        before update on appointments        for each row execute function update_updated_at();
+create trigger trg_labs_updated_at                before update on labs                for each row execute function update_updated_at();
+create trigger trg_medications_updated_at         before update on medications         for each row execute function update_updated_at();
+create trigger trg_incidents_updated_at           before update on incidents           for each row execute function update_updated_at();
+create trigger trg_imaging_updated_at             before update on imaging             for each row execute function update_updated_at();
+create trigger trg_diagnoses_updated_at           before update on diagnoses           for each row execute function update_updated_at();
+create trigger trg_allergies_updated_at           before update on allergies           for each row execute function update_updated_at();
+create trigger trg_notes_updated_at               before update on notes               for each row execute function update_updated_at();
+create trigger trg_related_persons_updated_at     before update on related_persons     for each row execute function update_updated_at();
+create trigger trg_care_goals_updated_at          before update on care_goals          for each row execute function update_updated_at();
+create trigger trg_care_plans_updated_at          before update on care_plans          for each row execute function update_updated_at();
+create trigger trg_org_features_updated_at        before update on org_features        for each row execute function update_updated_at();
+create trigger trg_user_features_updated_at       before update on user_features       for each row execute function update_updated_at();
+create trigger trg_charge_items_updated_at        before update on charge_items        for each row execute function update_updated_at();
+create trigger trg_invoices_updated_at            before update on invoices            for each row execute function update_updated_at();
+create trigger trg_invoice_line_items_updated_at  before update on invoice_line_items  for each row execute function update_updated_at();
+create trigger trg_payments_updated_at            before update on payments            for each row execute function update_updated_at();
 
 -- ============================================================
 -- Helpers + JWT hook + auth bootstrap
@@ -355,7 +478,7 @@ returns uuid as $$
 $$ language sql stable security definer;
 
 -- Custom Access Token hook: copy org_id + role from profiles into JWT
--- app_metadata. Wired up in the dashboard (Auth → Hooks).
+-- app_metadata. Wire up in the dashboard (Auth → Hooks).
 create or replace function public.custom_access_token_hook(event jsonb)
 returns jsonb
 language plpgsql
@@ -511,7 +634,13 @@ grant select, insert, update, delete on
   care_goals,
   care_plans,
   patient_history,
-  org_members
+  org_members,
+  org_features,
+  user_features,
+  charge_items,
+  invoices,
+  invoice_line_items,
+  payments
 to authenticated;
 
 grant usage, select on all sequences in schema public to authenticated;
@@ -538,24 +667,30 @@ grant execute on function public.current_schema_version() to authenticated;
 -- ============================================================
 -- RLS
 -- ============================================================
-alter table organizations    enable row level security;
-alter table profiles         enable row level security;
-alter table patients         enable row level security;
-alter table visits           enable row level security;
-alter table appointments     enable row level security;
-alter table labs             enable row level security;
-alter table medications      enable row level security;
-alter table incidents        enable row level security;
-alter table imaging          enable row level security;
-alter table diagnoses        enable row level security;
-alter table allergies        enable row level security;
-alter table notes            enable row level security;
-alter table related_persons  enable row level security;
-alter table care_goals       enable row level security;
-alter table care_plans       enable row level security;
-alter table patient_history  enable row level security;
-alter table org_members      enable row level security;
-alter table schema_meta      enable row level security;
+alter table organizations       enable row level security;
+alter table profiles            enable row level security;
+alter table patients            enable row level security;
+alter table visits              enable row level security;
+alter table appointments        enable row level security;
+alter table labs                enable row level security;
+alter table medications         enable row level security;
+alter table incidents           enable row level security;
+alter table imaging             enable row level security;
+alter table diagnoses           enable row level security;
+alter table allergies           enable row level security;
+alter table notes               enable row level security;
+alter table related_persons     enable row level security;
+alter table care_goals          enable row level security;
+alter table care_plans          enable row level security;
+alter table patient_history     enable row level security;
+alter table org_members         enable row level security;
+alter table schema_meta         enable row level security;
+alter table org_features        enable row level security;
+alter table user_features       enable row level security;
+alter table charge_items        enable row level security;
+alter table invoices            enable row level security;
+alter table invoice_line_items  enable row level security;
+alter table payments            enable row level security;
 
 -- Organizations: members read; admins update.
 create policy "Users can view own org"
@@ -710,6 +845,140 @@ create policy "org_members_self_select"
 create policy schema_meta_select on schema_meta
   for select to authenticated using (true);
 
+-- org_features: everyone in the org reads; only admins write.
+create policy "Org members read org_features"
+  on org_features for select
+  using (org_id = public.org_id());
+
+create policy "Admins insert org_features"
+  on org_features for insert
+  with check (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = org_features.org_id
+    )
+  );
+
+create policy "Admins update org_features"
+  on org_features for update
+  using (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = org_features.org_id
+    )
+  )
+  with check (org_id = public.org_id());
+
+-- user_features: a user reads their own grants; admins read+write all in org.
+create policy "Users read own feature grants"
+  on user_features for select
+  using (user_id = auth.uid() and org_id = public.org_id());
+
+create policy "Admins read all user_features in org"
+  on user_features for select
+  using (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = user_features.org_id
+    )
+  );
+
+create policy "Admins insert user_features"
+  on user_features for insert
+  with check (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = user_features.org_id
+    )
+  );
+
+create policy "Admins update user_features"
+  on user_features for update
+  using (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = user_features.org_id
+    )
+  )
+  with check (org_id = public.org_id());
+
+-- charge_items
+create policy "Org members read charge_items"
+  on charge_items for select
+  using (org_id = public.org_id());
+
+create policy "Org members insert charge_items"
+  on charge_items for insert
+  with check (org_id = public.org_id());
+
+create policy "Org members update charge_items"
+  on charge_items for update
+  using (org_id = public.org_id())
+  with check (org_id = public.org_id());
+
+create policy "Org members delete charge_items"
+  on charge_items for delete
+  using (org_id = public.org_id());
+
+-- invoices
+create policy "Org members read invoices"
+  on invoices for select
+  using (org_id = public.org_id());
+
+create policy "Org members insert invoices"
+  on invoices for insert
+  with check (org_id = public.org_id());
+
+create policy "Org members update invoices"
+  on invoices for update
+  using (org_id = public.org_id())
+  with check (org_id = public.org_id());
+
+create policy "Org members delete invoices"
+  on invoices for delete
+  using (org_id = public.org_id());
+
+-- invoice_line_items
+create policy "Org members read invoice_line_items"
+  on invoice_line_items for select
+  using (org_id = public.org_id());
+
+create policy "Org members insert invoice_line_items"
+  on invoice_line_items for insert
+  with check (org_id = public.org_id());
+
+create policy "Org members update invoice_line_items"
+  on invoice_line_items for update
+  using (org_id = public.org_id())
+  with check (org_id = public.org_id());
+
+create policy "Org members delete invoice_line_items"
+  on invoice_line_items for delete
+  using (org_id = public.org_id());
+
+-- payments
+create policy "Org members read payments"
+  on payments for select
+  using (org_id = public.org_id());
+
+create policy "Org members insert payments"
+  on payments for insert
+  with check (org_id = public.org_id());
+
+create policy "Org members update payments"
+  on payments for update
+  using (org_id = public.org_id())
+  with check (org_id = public.org_id());
+
+create policy "Org members delete payments"
+  on payments for delete
+  using (org_id = public.org_id());
+
 -- ============================================================
 -- Storage: imaging bucket (private, org-scoped path prefix)
 -- ============================================================
@@ -752,7 +1021,6 @@ create policy "imaging: delete own org files"
 
 -- ============================================================
 -- Schema version marker — must be last.
--- The deploy.sql guard checks for version >= 1 to short-circuit re-runs.
 -- ============================================================
-insert into schema_meta (version) values (1)
+insert into schema_meta (version) values (3)
   on conflict (version) do nothing;
