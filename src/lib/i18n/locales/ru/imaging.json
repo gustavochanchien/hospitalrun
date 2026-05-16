@@ -8,10 +8,81 @@
     "status": "Статус",
     "requestedBy": "Запросил",
     "requestedOn": "Запрошено",
+    "completedOn": "Завершено",
+    "canceledOn": "Отменено",
     "notes": "Заметки"
   },
   "actions": {
     "complete": "Завершить",
     "cancel": "Отменить заявку"
+  },
+  "status": {
+    "requested": "Запрошено",
+    "completed": "Завершено",
+    "canceled": "Отменено"
+  },
+  "createFirst": "Создать первую заявку",
+  "backToImaging": "Назад к визуализации",
+  "notFound": "Заявка на визуализацию не найдена.",
+  "form": {
+    "selectPatient": "Выберите пациента...",
+    "searchPatients": "Поиск пациентов...",
+    "typePlaceholder": "напр. Рентген, КТ, МРТ",
+    "codePlaceholder": "напр. 71046",
+    "notesPlaceholder": "Дополнительные заметки...",
+    "noPatients": "Пациенты не найдены.",
+    "saving": "Сохранение...",
+    "request": "Запросить визуализацию"
+  },
+  "list": {
+    "searchPlaceholder": "Поиск по имени пациента или типу визуализации...",
+    "allStatuses": "Все статусы",
+    "noMatches": "Ни одна заявка не соответствует вашему поиску.",
+    "noRequests": "Заявок на визуализацию пока нет.",
+    "count_one": "{{count}} заявка",
+    "count_few": "{{count}} заявки",
+    "count_many": "{{count}} заявок",
+    "count_other": "{{count}} заявок",
+    "previous": "Назад",
+    "next": "Далее",
+    "pageOf": "Страница {{current}} из {{total}}",
+    "columns": {
+      "patient": "Пациент",
+      "type": "Тип",
+      "code": "Код",
+      "status": "Статус",
+      "requestedOn": "Запрошено"
+    }
+  },
+  "detail": {
+    "cardTitle": "Заявка на визуализацию",
+    "imageCardTitle": "Изображение",
+    "upload": "Загрузить",
+    "replace": "Заменить",
+    "remove": "Удалить",
+    "uploading": "Загрузка…",
+    "noImage": "Изображение ещё не загружено.",
+    "complete": "Завершить",
+    "cancel": "Отменить",
+    "delete": "Удалить",
+    "imageRemoved": "Изображение удалено",
+    "uploadFailed": "Ошибка загрузки",
+    "imageUploaded": "Изображение загружено",
+    "markedCompleted": "Визуализация отмечена как завершённая",
+    "requestCanceled": "Заявка на визуализацию отменена",
+    "requestDeleted": "Заявка на визуализацию удалена",
+    "missingOrg": "Контекст организации отсутствует. Пожалуйста, войдите снова."
+  },
+  "exportColumns": {
+    "filename": "Визуализация",
+    "patient": "Пациент",
+    "type": "Тип",
+    "code": "Код",
+    "status": "Статус",
+    "requestedOn": "Запрошено"
+  },
+  "validation": {
+    "patientRequired": "Пациент обязателен",
+    "typeRequired": "Тип визуализации обязателен"
   }
 }

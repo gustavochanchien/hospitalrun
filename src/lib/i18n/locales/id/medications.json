@@ -1,6 +1,9 @@
 {
   "title": "Obat",
   "newMedication": "Obat Baru",
+  "addFirst": "Tambahkan obat pertama",
+  "backToMedications": "Kembali ke Daftar Obat",
+  "notFound": "Obat tidak ditemukan.",
   "fields": {
     "name": "Nama obat",
     "patient": "Pasien",
@@ -11,5 +14,86 @@
     "startDate": "Tanggal mulai",
     "endDate": "Tanggal selesai",
     "notes": "Catatan"
+  },
+  "statusOption": {
+    "draft": "Draf",
+    "active": "Aktif",
+    "onHold": "Ditangguhkan",
+    "canceled": "Dibatalkan",
+    "completed": "Selesai",
+    "enteredInError": "Dimasukkan keliru",
+    "stopped": "Dihentikan",
+    "unknown": "Tidak diketahui"
+  },
+  "intentOption": {
+    "proposal": "Usulan",
+    "plan": "Rencana",
+    "order": "Perintah",
+    "originalOrder": "Perintah asli",
+    "reflexOrder": "Perintah refleks",
+    "fillerOrder": "Perintah pengisian",
+    "instanceOrder": "Perintah instans",
+    "option": "Pilihan"
+  },
+  "priorityOption": {
+    "routine": "Rutin",
+    "urgent": "Mendesak",
+    "asap": "Sesegera mungkin",
+    "stat": "Segera"
+  },
+  "form": {
+    "selectPatient": "Pilih pasien...",
+    "searchPatients": "Cari pasien...",
+    "namePlaceholder": "mis. Amoksisilin 500 mg",
+    "selectStatus": "Pilih status",
+    "selectIntent": "Pilih tujuan",
+    "selectPriority": "Pilih prioritas",
+    "quantityPlaceholder": "mis. 30 tablet",
+    "notesPlaceholder": "Catatan tambahan...",
+    "noPatients": "Tidak ada pasien ditemukan.",
+    "saving": "Menyimpan...",
+    "create": "Buat obat",
+    "update": "Perbarui obat"
+  },
+  "list": {
+    "searchPlaceholder": "Cari berdasarkan obat atau nama pasien...",
+    "allStatuses": "Semua status",
+    "noMatches": "Tidak ada obat yang cocok dengan pencarian Anda.",
+    "noMedications": "Belum ada obat.",
+    "count_one": "{{count}} obat",
+    "count_other": "{{count}} obat",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pageOf": "Halaman {{current}} dari {{total}}",
+    "columns": {
+      "name": "Nama obat",
+      "patient": "Pasien",
+      "status": "Status",
+      "quantity": "Jumlah",
+      "startDate": "Tanggal mulai",
+      "endDate": "Tanggal selesai"
+    }
+  },
+  "detail": {
+    "patientLabel": "Pasien:",
+    "updateStatusTitle": "Perbarui Status",
+    "updateStatus": "Perbarui Status",
+    "deleteMedication": "Hapus Obat",
+    "selectNewStatus": "Pilih status baru",
+    "statusUpdated": "Status diperbarui menjadi \"{{status}}\"",
+    "deleted": "Obat dihapus"
+  },
+  "exportColumns": {
+    "filename": "Obat",
+    "name": "Nama obat",
+    "patient": "Pasien",
+    "status": "Status",
+    "quantity": "Jumlah",
+    "startDate": "Tanggal mulai",
+    "endDate": "Tanggal selesai"
+  },
+  "validation": {
+    "patientRequired": "Pasien diperlukan",
+    "nameRequired": "Nama obat diperlukan"
   }
 }

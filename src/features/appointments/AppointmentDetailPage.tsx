@@ -3,6 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -34,6 +35,7 @@ function statusVariant(status: string) {
 export function AppointmentDetailPage({
   appointmentId,
 }: AppointmentDetailPageProps) {
+  const { t } = useTranslation('scheduling')
   const navigate = useNavigate()
   const [confirmOpen, setConfirmOpen] = useState(false)
 
@@ -61,9 +63,9 @@ export function AppointmentDetailPage({
   if (!appointment || appointment._deleted) {
     return (
       <div className="flex flex-col items-center justify-center p-12">
-        <p className="text-muted-foreground">Appointment not found.</p>
+        <p className="text-muted-foreground">{t('notFound')}</p>
         <Button asChild variant="outline" className="mt-4">
-          <Link to="/appointments">Back to Appointments</Link>
+          <Link to="/appointments">{t('backToAppointments')}</Link>
         </Button>
       </div>
     )
@@ -85,12 +87,12 @@ export function AppointmentDetailPage({
       },
       'update',
     )
-    toast.success(`Appointment marked as ${newStatus}`)
+    toast.success(t('detail.markedAs', { status: newStatus }))
   }
 
   async function handleDelete() {
     await dbDelete('appointments', appointmentId)
-    toast.success('Appointment deleted')
+    toast.success(t('detail.deleted'))
     await navigate({ to: '/appointments' })
   }
 
@@ -98,7 +100,7 @@ export function AppointmentDetailPage({
     <div className="space-y-6 p-6">
       <Card>
         <CardHeader className="flex flex-row items-start justify-between">
-          <CardTitle className="text-xl">Appointment Details</CardTitle>
+          <CardTitle className="text-xl">{t('detail.cardTitle')}</CardTitle>
           <Badge variant={statusVariant(appointment.status)}>
             {appointment.status}
           </Badge>
@@ -106,7 +108,7 @@ export function AppointmentDetailPage({
         <CardContent>
           <div className="grid gap-4 text-sm sm:grid-cols-2">
             <div>
-              <p className="font-medium text-muted-foreground">Patient</p>
+              <p className="font-medium text-muted-foreground">{t('fields.patient')}</p>
               <Link
                 to="/patients/$patientId"
                 params={{ patientId: appointment.patientId }}
@@ -116,34 +118,34 @@ export function AppointmentDetailPage({
               </Link>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Type</p>
-              <p>{appointment.type ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.type')}</p>
+              <p>{appointment.type ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Start Time</p>
+              <p className="font-medium text-muted-foreground">{t('fields.startTime')}</p>
               <p>{format(parseISO(appointment.startTime), 'MMM d, yyyy h:mm a')}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">End Time</p>
+              <p className="font-medium text-muted-foreground">{t('fields.endTime')}</p>
               <p>{format(parseISO(appointment.endTime), 'MMM d, yyyy h:mm a')}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Location</p>
-              <p>{appointment.location ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.location')}</p>
+              <p>{appointment.location ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Status</p>
+              <p className="font-medium text-muted-foreground">{t('fields.status')}</p>
               <p className="capitalize">{appointment.status}</p>
             </div>
             {appointment.reason && (
               <div className="sm:col-span-2">
-                <p className="font-medium text-muted-foreground">Reason for Visit</p>
+                <p className="font-medium text-muted-foreground">{t('fields.reasonForVisit')}</p>
                 <p className="whitespace-pre-wrap">{appointment.reason}</p>
               </div>
             )}
             {appointment.notes && (
               <div className="sm:col-span-2">
-                <p className="font-medium text-muted-foreground">Notes</p>
+                <p className="font-medium text-muted-foreground">{t('fields.notes')}</p>
                 <p className="whitespace-pre-wrap">{appointment.notes}</p>
               </div>
             )}
@@ -156,19 +158,19 @@ export function AppointmentDetailPage({
         {appointment.status === 'scheduled' && (
           <PermissionGuard permission="write:appointments">
             <Button onClick={() => void handleStatusChange('completed')}>
-              Complete
+              {t('detail.complete')}
             </Button>
             <Button
               variant="destructive"
               onClick={() => void handleStatusChange('cancelled')}
             >
-              Cancel
+              {t('detail.cancel')}
             </Button>
             <Button
               variant="outline"
               onClick={() => void handleStatusChange('no-show')}
             >
-              No Show
+              {t('detail.noShow')}
             </Button>
           </PermissionGuard>
         )}
@@ -177,7 +179,7 @@ export function AppointmentDetailPage({
             variant="destructive"
             onClick={() => setConfirmOpen(true)}
           >
-            Delete
+            {t('detail.delete')}
           </Button>
         </PermissionGuard>
       </div>

@@ -336,6 +336,16 @@
         "arrived": "到着",
         "triaged": "トリアージ済み",
         "onLeave": "外出中"
+      },
+      "notFound": "来院が見つかりません。",
+      "backToPatients": "患者一覧へ戻る",
+      "patientFallback": "患者",
+      "tabs": {
+        "diagnoses": "診断",
+        "labs": "検査",
+        "medications": "薬剤",
+        "imaging": "画像診断",
+        "notes": "メモ"
       }
     },
     "relatedPersons": {

@@ -3,7 +3,10 @@
   "newAppointment": "Neuer Termin",
   "editAppointment": "Termin bearbeiten",
   "calendar": "Kalender",
-  "list": "Liste",
+  "listView": "Liste",
+  "scheduleFirst": "Ersten Termin planen",
+  "backToAppointments": "Zurück zu Terminen",
+  "notFound": "Termin nicht gefunden.",
   "fields": {
     "patient": "Patient",
     "type": "Typ",
@@ -11,7 +14,8 @@
     "endTime": "Ende",
     "location": "Ort",
     "status": "Status",
-    "notes": "Notizen"
+    "notes": "Notizen",
+    "reasonForVisit": "Besuchsgrund"
   },
   "types": {
     "checkup": "Untersuchung",
@@ -25,5 +29,56 @@
     "completed": "Abgeschlossen",
     "cancelled": "Abgesagt",
     "noShow": "Nicht erschienen"
+  },
+  "form": {
+    "selectPatient": "Patient auswählen...",
+    "searchPatients": "Patienten suchen...",
+    "selectType": "Typ auswählen",
+    "locationPlaceholder": "z. B. Raum 204",
+    "noPatients": "Keine Patienten gefunden.",
+    "saving": "Wird gespeichert...",
+    "create": "Termin erstellen",
+    "update": "Termin aktualisieren"
+  },
+  "list": {
+    "searchPlaceholder": "Nach Patientenname suchen...",
+    "allStatuses": "Alle Status",
+    "noMatches": "Keine Termine entsprechen Ihrer Suche.",
+    "noAppointments": "Noch keine Termine.",
+    "count_one": "{{count}} Termin",
+    "count_other": "{{count}} Termine",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {{current}} von {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Typ",
+      "dateTime": "Datum / Uhrzeit",
+      "location": "Ort",
+      "status": "Status"
+    }
+  },
+  "detail": {
+    "cardTitle": "Termindetails",
+    "complete": "Abschließen",
+    "cancel": "Abbrechen",
+    "noShow": "Nicht erschienen",
+    "delete": "Löschen",
+    "deleted": "Termin gelöscht",
+    "markedAs": "Termin als {{status}} markiert"
+  },
+  "exportColumns": {
+    "filename": "Termine",
+    "patient": "Patient",
+    "type": "Typ",
+    "dateTime": "Datum / Uhrzeit",
+    "location": "Ort",
+    "status": "Status"
+  },
+  "validation": {
+    "patientRequired": "Patient ist erforderlich",
+    "startTimeRequired": "Beginn ist erforderlich",
+    "endTimeRequired": "Ende ist erforderlich",
+    "endTimeAfterStart": "Ende muss nach Beginn liegen"
   }
 }

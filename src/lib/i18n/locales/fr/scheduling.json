@@ -3,7 +3,10 @@
   "newAppointment": "Nouveau rendez-vous",
   "editAppointment": "Modifier le rendez-vous",
   "calendar": "Calendrier",
-  "list": "Liste",
+  "listView": "Liste",
+  "scheduleFirst": "Planifier votre premier rendez-vous",
+  "backToAppointments": "Retour aux rendez-vous",
+  "notFound": "Rendez-vous introuvable.",
   "fields": {
     "patient": "Patient",
     "type": "Type",
@@ -11,7 +14,8 @@
     "endTime": "Heure de fin",
     "location": "Lieu",
     "status": "Statut",
-    "notes": "Notes"
+    "notes": "Notes",
+    "reasonForVisit": "Motif de la visite"
   },
   "types": {
     "checkup": "Bilan",
@@ -25,5 +29,56 @@
     "completed": "Terminé",
     "cancelled": "Annulé",
     "noShow": "Absent"
+  },
+  "form": {
+    "selectPatient": "Sélectionner un patient...",
+    "searchPatients": "Rechercher un patient...",
+    "selectType": "Sélectionner le type",
+    "locationPlaceholder": "ex. Salle 204",
+    "noPatients": "Aucun patient trouvé.",
+    "saving": "Enregistrement...",
+    "create": "Créer un rendez-vous",
+    "update": "Mettre à jour le rendez-vous"
+  },
+  "list": {
+    "searchPlaceholder": "Rechercher par nom du patient...",
+    "allStatuses": "Tous les statuts",
+    "noMatches": "Aucun rendez-vous ne correspond à votre recherche.",
+    "noAppointments": "Aucun rendez-vous pour l'instant.",
+    "count_one": "{{count}} rendez-vous",
+    "count_other": "{{count}} rendez-vous",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {{current}} sur {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Type",
+      "dateTime": "Date / Heure",
+      "location": "Lieu",
+      "status": "Statut"
+    }
+  },
+  "detail": {
+    "cardTitle": "Détails du rendez-vous",
+    "complete": "Terminer",
+    "cancel": "Annuler",
+    "noShow": "Absent",
+    "delete": "Supprimer",
+    "deleted": "Rendez-vous supprimé",
+    "markedAs": "Rendez-vous marqué comme {{status}}"
+  },
+  "exportColumns": {
+    "filename": "Rendez-vous",
+    "patient": "Patient",
+    "type": "Type",
+    "dateTime": "Date / Heure",
+    "location": "Lieu",
+    "status": "Statut"
+  },
+  "validation": {
+    "patientRequired": "Le patient est obligatoire",
+    "startTimeRequired": "L'heure de début est obligatoire",
+    "endTimeRequired": "L'heure de fin est obligatoire",
+    "endTimeAfterStart": "L'heure de fin doit être après l'heure de début"
   }
 }

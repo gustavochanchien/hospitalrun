@@ -8,10 +8,79 @@
     "status": "Durum",
     "requestedBy": "İsteyen",
     "requestedOn": "İstek tarihi",
+    "completedOn": "Tamamlanma tarihi",
+    "canceledOn": "İptal tarihi",
     "notes": "Notlar"
   },
   "actions": {
     "complete": "Tamamla",
     "cancel": "İsteği iptal et"
+  },
+  "status": {
+    "requested": "İstendi",
+    "completed": "Tamamlandı",
+    "canceled": "İptal edildi"
+  },
+  "createFirst": "İlk İsteği Oluştur",
+  "backToImaging": "Görüntülemeye Dön",
+  "notFound": "Görüntüleme isteği bulunamadı.",
+  "form": {
+    "selectPatient": "Hasta seçin...",
+    "searchPatients": "Hasta ara...",
+    "typePlaceholder": "örn. Röntgen, BT, MR",
+    "codePlaceholder": "örn. 71046",
+    "notesPlaceholder": "Ek notlar...",
+    "noPatients": "Hasta bulunamadı.",
+    "saving": "Kaydediliyor...",
+    "request": "Görüntüleme İste"
+  },
+  "list": {
+    "searchPlaceholder": "Hasta adı veya görüntüleme türüyle ara...",
+    "allStatuses": "Tüm durumlar",
+    "noMatches": "Aramanızla eşleşen görüntüleme isteği yok.",
+    "noRequests": "Henüz görüntüleme isteği yok.",
+    "count_one": "{{count}} istek",
+    "count_other": "{{count}} istek",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "Sayfa {{current}} / {{total}}",
+    "columns": {
+      "patient": "Hasta",
+      "type": "Tür",
+      "code": "Kod",
+      "status": "Durum",
+      "requestedOn": "İstek tarihi"
+    }
+  },
+  "detail": {
+    "cardTitle": "Görüntüleme İsteği",
+    "imageCardTitle": "Görüntü",
+    "upload": "Yükle",
+    "replace": "Değiştir",
+    "remove": "Kaldır",
+    "uploading": "Yükleniyor…",
+    "noImage": "Henüz görüntü yüklenmedi.",
+    "complete": "Tamamla",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "imageRemoved": "Görüntü kaldırıldı",
+    "uploadFailed": "Yükleme başarısız",
+    "imageUploaded": "Görüntü yüklendi",
+    "markedCompleted": "Görüntüleme tamamlandı olarak işaretlendi",
+    "requestCanceled": "Görüntüleme isteği iptal edildi",
+    "requestDeleted": "Görüntüleme isteği silindi",
+    "missingOrg": "Kuruluş bağlamı eksik. Lütfen tekrar giriş yapın."
+  },
+  "exportColumns": {
+    "filename": "Görüntüleme",
+    "patient": "Hasta",
+    "type": "Tür",
+    "code": "Kod",
+    "status": "Durum",
+    "requestedOn": "İstek tarihi"
+  },
+  "validation": {
+    "patientRequired": "Hasta zorunludur",
+    "typeRequired": "Görüntüleme türü zorunludur"
   }
 }

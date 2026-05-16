@@ -3,7 +3,10 @@
   "newAppointment": "新規予約",
   "editAppointment": "予約を編集",
   "calendar": "カレンダー",
-  "list": "リスト",
+  "listView": "リスト",
+  "scheduleFirst": "最初の予約を作成",
+  "backToAppointments": "予約一覧に戻る",
+  "notFound": "予約が見つかりません。",
   "fields": {
     "patient": "患者",
     "type": "タイプ",
@@ -11,7 +14,8 @@
     "endTime": "終了時刻",
     "location": "場所",
     "status": "状態",
-    "notes": "メモ"
+    "notes": "メモ",
+    "reasonForVisit": "受診理由"
   },
   "types": {
     "checkup": "健康診断",
@@ -25,5 +29,56 @@
     "completed": "完了",
     "cancelled": "キャンセル済み",
     "noShow": "未来院"
+  },
+  "form": {
+    "selectPatient": "患者を選択...",
+    "searchPatients": "患者を検索...",
+    "selectType": "タイプを選択",
+    "locationPlaceholder": "例：204号室",
+    "noPatients": "患者が見つかりません。",
+    "saving": "保存中...",
+    "create": "予約を作成",
+    "update": "予約を更新"
+  },
+  "list": {
+    "searchPlaceholder": "患者名で検索...",
+    "allStatuses": "すべての状態",
+    "noMatches": "検索に一致する予約はありません。",
+    "noAppointments": "まだ予約はありません。",
+    "count_one": "{{count}}件の予約",
+    "count_other": "{{count}}件の予約",
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "{{total}}ページ中{{current}}ページ",
+    "columns": {
+      "patient": "患者",
+      "type": "タイプ",
+      "dateTime": "日付 / 時刻",
+      "location": "場所",
+      "status": "状態"
+    }
+  },
+  "detail": {
+    "cardTitle": "予約詳細",
+    "complete": "完了",
+    "cancel": "キャンセル",
+    "noShow": "未来院",
+    "delete": "削除",
+    "deleted": "予約を削除しました",
+    "markedAs": "予約を{{status}}としてマークしました"
+  },
+  "exportColumns": {
+    "filename": "予約",
+    "patient": "患者",
+    "type": "タイプ",
+    "dateTime": "日付 / 時刻",
+    "location": "場所",
+    "status": "状態"
+  },
+  "validation": {
+    "patientRequired": "患者は必須です",
+    "startTimeRequired": "開始時刻は必須です",
+    "endTimeRequired": "終了時刻は必須です",
+    "endTimeAfterStart": "終了時刻は開始時刻より後でなければなりません"
   }
 }

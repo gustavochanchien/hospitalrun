@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -26,6 +27,15 @@ import {
   type AppointmentFormValues,
 } from './appointment.schema'
 
+type AppointmentType = (typeof APPOINTMENT_TYPES)[number]
+const TYPE_KEY: Record<AppointmentType, string> = {
+  checkup: 'checkup',
+  emergency: 'emergency',
+  'follow up': 'followUp',
+  routine: 'routine',
+  'walk in': 'walkIn',
+}
+
 interface AppointmentFormProps {
   defaultValues?: Partial<AppointmentFormValues>
   onSubmit: (data: AppointmentFormValues) => Promise<void>
@@ -37,6 +47,8 @@ export function AppointmentForm({
   onSubmit,
   appointment,
 }: AppointmentFormProps) {
+  const { t } = useTranslation('scheduling')
+
   const {
     register,
     handleSubmit,
@@ -101,7 +113,7 @@ export function AppointmentForm({
     <form onSubmit={handleSubmit((data) => onSubmit(data as AppointmentFormValues))} className="max-w-2xl space-y-6">
       {/* Patient Picker */}
       <div className="space-y-2">
-        <Label>Patient *</Label>
+        <Label>{t('fields.patient')} *</Label>
         <input type="hidden" {...register('patientId')} />
         <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
           <PopoverTrigger asChild>
@@ -111,14 +123,14 @@ export function AppointmentForm({
               className="w-full justify-start font-normal"
               onClick={() => setPopoverOpen(true)}
             >
-              {patientDisplayName || 'Select a patient...'}
+              {patientDisplayName || t('form.selectPatient')}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-80 p-0" align="start">
             <div className="p-2">
               <Input
                 ref={inputRef}
-                placeholder="Search patients..."
+                placeholder={t('form.searchPatients')}
                 value={patientSearch}
                 onChange={(e) => setPatientSearch(e.target.value)}
                 autoFocus
@@ -127,7 +139,7 @@ export function AppointmentForm({
             <div className="max-h-60 overflow-y-auto">
               {filteredPatients.length === 0 ? (
                 <p className="px-3 py-4 text-center text-sm text-muted-foreground">
-                  No patients found.
+                  {t('form.noPatients')}
                 </p>
               ) : (
                 filteredPatients.map((p) => {
@@ -157,16 +169,16 @@ export function AppointmentForm({
             </div>
           </PopoverContent>
         </Popover>
-        {errors.patientId && (
+        {errors.patientId?.message && (
           <p className="text-sm text-destructive">
-            {errors.patientId.message}
+            {t(errors.patientId.message as 'validation.patientRequired')}
           </p>
         )}
       </div>
 
       {/* Type */}
       <div className="space-y-2">
-        <Label htmlFor="type">Type</Label>
+        <Label htmlFor="type">{t('fields.type')}</Label>
         <Select
           value={watch('type') ?? ''}
           onValueChange={(v) =>
@@ -176,12 +188,12 @@ export function AppointmentForm({
           }
         >
           <SelectTrigger id="type">
-            <SelectValue placeholder="Select type" />
+            <SelectValue placeholder={t('form.selectType')} />
           </SelectTrigger>
           <SelectContent>
-            {APPOINTMENT_TYPES.map((t) => (
-              <SelectItem key={t} value={t} className="capitalize">
-                {t}
+            {APPOINTMENT_TYPES.map((type) => (
+              <SelectItem key={type} value={type}>
+                {t(`types.${TYPE_KEY[type]}` as `types.${string}`)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -191,28 +203,28 @@ export function AppointmentForm({
       {/* Start / End Time */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="startTime">Start Time *</Label>
+          <Label htmlFor="startTime">{t('fields.startTime')} *</Label>
           <Input
             id="startTime"
             type="datetime-local"
             {...register('startTime')}
           />
-          {errors.startTime && (
+          {errors.startTime?.message && (
             <p className="text-sm text-destructive">
-              {errors.startTime.message}
+              {t(errors.startTime.message as 'validation.startTimeRequired')}
             </p>
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="endTime">End Time *</Label>
+          <Label htmlFor="endTime">{t('fields.endTime')} *</Label>
           <Input
             id="endTime"
             type="datetime-local"
             {...register('endTime')}
           />
-          {errors.endTime && (
+          {errors.endTime?.message && (
             <p className="text-sm text-destructive">
-              {errors.endTime.message}
+              {t(errors.endTime.message as 'validation.endTimeRequired')}
             </p>
           )}
         </div>
@@ -220,32 +232,32 @@ export function AppointmentForm({
 
       {/* Location */}
       <div className="space-y-2">
-        <Label htmlFor="location">Location</Label>
+        <Label htmlFor="location">{t('fields.location')}</Label>
         <Input
           id="location"
-          placeholder="e.g. Room 204"
+          placeholder={t('form.locationPlaceholder')}
           {...register('location')}
         />
       </div>
 
       {/* Reason */}
       <div className="space-y-2">
-        <Label htmlFor="reason">Reason for Visit</Label>
+        <Label htmlFor="reason">{t('fields.reasonForVisit')}</Label>
         <Textarea id="reason" {...register('reason')} />
       </div>
 
       {/* Notes */}
       <div className="space-y-2">
-        <Label htmlFor="notes">Notes</Label>
+        <Label htmlFor="notes">{t('fields.notes')}</Label>
         <Textarea id="notes" {...register('notes')} />
       </div>
 
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting
-          ? 'Saving...'
+          ? t('form.saving')
           : appointment
-            ? 'Update Appointment'
-            : 'Create Appointment'}
+            ? t('form.update')
+            : t('form.create')}
       </Button>
     </form>
   )

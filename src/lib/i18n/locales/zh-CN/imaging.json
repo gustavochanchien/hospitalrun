@@ -8,10 +8,79 @@
     "status": "状态",
     "requestedBy": "申请人",
     "requestedOn": "申请日期",
+    "completedOn": "完成日期",
+    "canceledOn": "取消日期",
     "notes": "备注"
   },
   "actions": {
     "complete": "完成",
     "cancel": "取消申请"
+  },
+  "status": {
+    "requested": "已申请",
+    "completed": "已完成",
+    "canceled": "已取消"
+  },
+  "createFirst": "创建第一个申请",
+  "backToImaging": "返回影像列表",
+  "notFound": "未找到影像申请。",
+  "form": {
+    "selectPatient": "选择患者...",
+    "searchPatients": "搜索患者...",
+    "typePlaceholder": "例如：X 光、CT、MRI",
+    "codePlaceholder": "例如：71046",
+    "notesPlaceholder": "其他备注...",
+    "noPatients": "未找到患者。",
+    "saving": "保存中...",
+    "request": "申请影像"
+  },
+  "list": {
+    "searchPlaceholder": "按患者姓名或影像类型搜索...",
+    "allStatuses": "所有状态",
+    "noMatches": "没有符合您搜索条件的影像申请。",
+    "noRequests": "暂无影像申请。",
+    "count_one": "{{count}} 条申请",
+    "count_other": "{{count}} 条申请",
+    "previous": "上一页",
+    "next": "下一页",
+    "pageOf": "第 {{current}} 页，共 {{total}} 页",
+    "columns": {
+      "patient": "患者",
+      "type": "类型",
+      "code": "编码",
+      "status": "状态",
+      "requestedOn": "申请日期"
+    }
+  },
+  "detail": {
+    "cardTitle": "影像申请",
+    "imageCardTitle": "图像",
+    "upload": "上传",
+    "replace": "替换",
+    "remove": "移除",
+    "uploading": "上传中…",
+    "noImage": "尚未上传图像。",
+    "complete": "完成",
+    "cancel": "取消",
+    "delete": "删除",
+    "imageRemoved": "图像已移除",
+    "uploadFailed": "上传失败",
+    "imageUploaded": "图像已上传",
+    "markedCompleted": "影像已标记为完成",
+    "requestCanceled": "影像申请已取消",
+    "requestDeleted": "影像申请已删除",
+    "missingOrg": "缺少组织上下文，请重新登录。"
+  },
+  "exportColumns": {
+    "filename": "影像",
+    "patient": "患者",
+    "type": "类型",
+    "code": "编码",
+    "status": "状态",
+    "requestedOn": "申请日期"
+  },
+  "validation": {
+    "patientRequired": "患者为必填项",
+    "typeRequired": "影像类型为必填项"
   }
 }

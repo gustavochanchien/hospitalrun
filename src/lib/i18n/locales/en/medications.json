@@ -1,6 +1,9 @@
 {
   "title": "Medications",
   "newMedication": "New Medication",
+  "addFirst": "Add Your First Medication",
+  "backToMedications": "Back to Medications",
+  "notFound": "Medication not found.",
   "fields": {
     "name": "Medication Name",
     "patient": "Patient",
@@ -11,5 +14,86 @@
     "startDate": "Start Date",
     "endDate": "End Date",
     "notes": "Notes"
+  },
+  "statusOption": {
+    "draft": "Draft",
+    "active": "Active",
+    "onHold": "On hold",
+    "canceled": "Canceled",
+    "completed": "Completed",
+    "enteredInError": "Entered in error",
+    "stopped": "Stopped",
+    "unknown": "Unknown"
+  },
+  "intentOption": {
+    "proposal": "Proposal",
+    "plan": "Plan",
+    "order": "Order",
+    "originalOrder": "Original Order",
+    "reflexOrder": "Reflex Order",
+    "fillerOrder": "Filler Order",
+    "instanceOrder": "Instance Order",
+    "option": "Option"
+  },
+  "priorityOption": {
+    "routine": "Routine",
+    "urgent": "Urgent",
+    "asap": "ASAP",
+    "stat": "Stat"
+  },
+  "form": {
+    "selectPatient": "Select a patient...",
+    "searchPatients": "Search patients...",
+    "namePlaceholder": "e.g. Amoxicillin 500mg",
+    "selectStatus": "Select status",
+    "selectIntent": "Select intent",
+    "selectPriority": "Select priority",
+    "quantityPlaceholder": "e.g. 30 tablets",
+    "notesPlaceholder": "Additional notes...",
+    "noPatients": "No patients found.",
+    "saving": "Saving...",
+    "create": "Create Medication",
+    "update": "Update Medication"
+  },
+  "list": {
+    "searchPlaceholder": "Search by medication or patient name...",
+    "allStatuses": "All Statuses",
+    "noMatches": "No medications match your search.",
+    "noMedications": "No medications yet.",
+    "count_one": "{{count}} medication",
+    "count_other": "{{count}} medications",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{current}} of {{total}}",
+    "columns": {
+      "name": "Medication Name",
+      "patient": "Patient",
+      "status": "Status",
+      "quantity": "Quantity",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    }
+  },
+  "detail": {
+    "patientLabel": "Patient:",
+    "updateStatusTitle": "Update Status",
+    "updateStatus": "Update Status",
+    "deleteMedication": "Delete Medication",
+    "selectNewStatus": "Select new status",
+    "statusUpdated": "Status updated to \"{{status}}\"",
+    "deleted": "Medication deleted"
+  },
+  "exportColumns": {
+    "filename": "Medications",
+    "name": "Medication Name",
+    "patient": "Patient",
+    "status": "Status",
+    "quantity": "Quantity",
+    "startDate": "Start Date",
+    "endDate": "End Date"
+  },
+  "validation": {
+    "patientRequired": "Patient is required",
+    "nameRequired": "Medication name is required"
   }
 }

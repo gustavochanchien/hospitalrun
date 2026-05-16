@@ -12,7 +12,7 @@ describe('appointmentFormSchema', () => {
     const result = appointmentFormSchema.safeParse({ ...base, patientId: '' })
     expect(result.success).toBe(false)
     if (!result.success) {
-      expect(result.error.issues[0].message).toBe('Patient is required')
+      expect(result.error.issues[0].message).toBe('validation.patientRequired')
     }
   })
 
@@ -34,7 +34,7 @@ describe('appointmentFormSchema', () => {
     })
     expect(result.success).toBe(false)
     if (!result.success) {
-      expect(result.error.issues[0].message).toBe('End time must be after start time')
+      expect(result.error.issues[0].message).toBe('validation.endTimeAfterStart')
     }
   })
 

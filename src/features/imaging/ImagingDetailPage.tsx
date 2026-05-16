@@ -3,6 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -35,6 +36,7 @@ function statusVariant(status: string) {
 }
 
 export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
+  const { t } = useTranslation('imaging')
   const navigate = useNavigate()
   const orgId = useAuthStore((state) => state.orgId)
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -86,9 +88,9 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
   if (!imaging || imaging._deleted) {
     return (
       <div className="flex flex-col items-center justify-center p-12">
-        <p className="text-muted-foreground">Imaging request not found.</p>
+        <p className="text-muted-foreground">{t('notFound')}</p>
         <Button asChild variant="outline" className="mt-4">
-          <Link to="/imaging">Back to Imaging</Link>
+          <Link to="/imaging">{t('backToImaging')}</Link>
         </Button>
       </div>
     )
@@ -109,7 +111,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       },
       'update',
     )
-    toast.success('Imaging marked as completed')
+    toast.success(t('detail.markedCompleted'))
   }
 
   async function handleCancel() {
@@ -123,7 +125,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       },
       'update',
     )
-    toast.success('Imaging request canceled')
+    toast.success(t('detail.requestCanceled'))
   }
 
   async function handleDelete() {
@@ -136,7 +138,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       }
     }
     await dbDelete('imaging', imagingId)
-    toast.success('Imaging request deleted')
+    toast.success(t('detail.requestDeleted'))
     await navigate({ to: '/imaging' })
   }
 
@@ -145,7 +147,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
     event.target.value = ''
     if (!file || !imaging) return
     if (!orgId) {
-      toast.error('Missing organization context. Please sign in again.')
+      toast.error(t('detail.missingOrg'))
       return
     }
     setUploading(true)
@@ -159,9 +161,9 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       }
       const path = await uploadImagingFile(orgId, imagingId, file)
       await dbPut('imaging', { ...imaging, storagePath: path }, 'update')
-      toast.success('Image uploaded')
+      toast.success(t('detail.imageUploaded'))
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Upload failed'
+      const message = err instanceof Error ? err.message : t('detail.uploadFailed')
       toast.error(message)
     } finally {
       setUploading(false)
@@ -176,20 +178,20 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       // ignore — proceed with clearing the DB reference
     }
     await dbPut('imaging', { ...imaging, storagePath: null }, 'update')
-    toast.success('Image removed')
+    toast.success(t('detail.imageRemoved'))
   }
 
   return (
     <div className="space-y-6 p-6">
       <Card>
         <CardHeader className="flex flex-row items-start justify-between">
-          <CardTitle className="text-xl">Imaging Request</CardTitle>
+          <CardTitle className="text-xl">{t('detail.cardTitle')}</CardTitle>
           <Badge variant={statusVariant(imaging.status)}>{imaging.status}</Badge>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 text-sm sm:grid-cols-2">
             <div>
-              <p className="font-medium text-muted-foreground">Patient</p>
+              <p className="font-medium text-muted-foreground">{t('fields.patient')}</p>
               <Link
                 to="/patients/$patientId"
                 params={{ patientId: imaging.patientId }}
@@ -199,36 +201,36 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
               </Link>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Type</p>
+              <p className="font-medium text-muted-foreground">{t('fields.type')}</p>
               <p>{imaging.type}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Code</p>
-              <p>{imaging.code ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.code')}</p>
+              <p>{imaging.code ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Requested By</p>
-              <p>{imaging.requestedBy ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.requestedBy')}</p>
+              <p>{imaging.requestedBy ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Requested On</p>
+              <p className="font-medium text-muted-foreground">{t('fields.requestedOn')}</p>
               <p>{format(parseISO(imaging.requestedOn), 'MMM d, yyyy h:mm a')}</p>
             </div>
             {imaging.completedOn && (
               <div>
-                <p className="font-medium text-muted-foreground">Completed On</p>
+                <p className="font-medium text-muted-foreground">{t('fields.completedOn')}</p>
                 <p>{format(parseISO(imaging.completedOn), 'MMM d, yyyy h:mm a')}</p>
               </div>
             )}
             {imaging.canceledOn && (
               <div>
-                <p className="font-medium text-muted-foreground">Canceled On</p>
+                <p className="font-medium text-muted-foreground">{t('fields.canceledOn')}</p>
                 <p>{format(parseISO(imaging.canceledOn), 'MMM d, yyyy h:mm a')}</p>
               </div>
             )}
             <div className="sm:col-span-2">
-              <p className="font-medium text-muted-foreground">Notes</p>
-              <p className="whitespace-pre-wrap">{imaging.notes ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.notes')}</p>
+              <p className="whitespace-pre-wrap">{imaging.notes ?? '—'}</p>
             </div>
           </div>
         </CardContent>
@@ -236,7 +238,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-lg">Image</CardTitle>
+          <CardTitle className="text-lg">{t('detail.imageCardTitle')}</CardTitle>
           <div className="flex gap-2">
             <input
               ref={fileInputRef}
@@ -252,10 +254,10 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
               onClick={() => fileInputRef.current?.click()}
             >
               {uploading
-                ? 'Uploading…'
+                ? t('detail.uploading')
                 : imaging.storagePath
-                  ? 'Replace'
-                  : 'Upload'}
+                  ? t('detail.replace')
+                  : t('detail.upload')}
             </Button>
             {imaging.storagePath && (
               <Button
@@ -264,7 +266,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
                 disabled={uploading}
                 onClick={() => void handleRemoveImage()}
               >
-                Remove
+                {t('detail.remove')}
               </Button>
             )}
           </div>
@@ -272,7 +274,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
         <CardContent>
           {!imaging.storagePath && (
             <p className="text-sm text-muted-foreground">
-              No image uploaded yet.
+              {t('detail.noImage')}
             </p>
           )}
           {imaging.storagePath && previewError && (
@@ -295,14 +297,14 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       <div className="flex flex-wrap gap-2">
         {imaging.status === 'requested' && (
           <>
-            <Button onClick={() => void handleComplete()}>Complete</Button>
+            <Button onClick={() => void handleComplete()}>{t('detail.complete')}</Button>
             <Button variant="outline" onClick={() => void handleCancel()}>
-              Cancel
+              {t('detail.cancel')}
             </Button>
           </>
         )}
         <Button variant="destructive" onClick={() => setConfirmOpen(true)}>
-          Delete
+          {t('detail.delete')}
         </Button>
       </div>
 

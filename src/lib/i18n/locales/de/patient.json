@@ -336,6 +336,16 @@
         "arrived": "Angekommen",
         "triaged": "Triagiert",
         "onLeave": "In Urlaub"
+      },
+      "notFound": "Besuch nicht gefunden.",
+      "backToPatients": "Zurück zu Patienten",
+      "patientFallback": "Patient",
+      "tabs": {
+        "diagnoses": "Diagnosen",
+        "labs": "Labor",
+        "medications": "Medikamente",
+        "imaging": "Bildgebung",
+        "notes": "Notizen"
       }
     },
     "relatedPersons": {

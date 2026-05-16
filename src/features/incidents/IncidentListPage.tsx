@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -28,6 +29,7 @@ import { ExportButton } from '@/components/export-button'
 const PAGE_SIZE = 20
 
 export function IncidentListPage() {
+  const { t } = useTranslation('incidents')
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [page, setPage] = useState(0)
@@ -78,7 +80,7 @@ export function IncidentListPage() {
         <div className="relative flex-1 min-w-[200px] max-w-sm">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search by reporter or description..."
+            placeholder={t('list.searchPlaceholder')}
             value={search}
             onChange={(e) => {
               setSearch(e.target.value)
@@ -98,29 +100,29 @@ export function IncidentListPage() {
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Statuses</SelectItem>
-            <SelectItem value="reported">Reported</SelectItem>
-            <SelectItem value="resolved">Resolved</SelectItem>
+            <SelectItem value="all">{t('list.allStatuses')}</SelectItem>
+            <SelectItem value="reported">{t('status.reported')}</SelectItem>
+            <SelectItem value="resolved">{t('status.resolved')}</SelectItem>
           </SelectContent>
         </Select>
         <p className="text-sm text-muted-foreground">
-          {filtered.length} incident{filtered.length !== 1 ? 's' : ''}
+          {t('list.count', { count: filtered.length })}
         </p>
         <ExportButton
-          filename="Incidents"
+          filename={t('exportColumns.filename')}
           rows={filtered}
           columns={[
             {
-              header: 'Date',
+              header: t('exportColumns.date'),
               accessor: (inc) =>
                 inc.reportedOn
                   ? format(parseISO(inc.reportedOn), 'yyyy-MM-dd')
                   : '',
             },
-            { header: 'Reporter', accessor: (inc) => inc.reportedBy ?? '' },
-            { header: 'Department', accessor: (inc) => inc.department ?? '' },
-            { header: 'Category', accessor: (inc) => inc.category ?? '' },
-            { header: 'Status', accessor: (inc) => inc.status },
+            { header: t('exportColumns.reporter'), accessor: (inc) => inc.reportedBy ?? '' },
+            { header: t('exportColumns.department'), accessor: (inc) => inc.department ?? '' },
+            { header: t('exportColumns.category'), accessor: (inc) => inc.category ?? '' },
+            { header: t('exportColumns.status'), accessor: (inc) => inc.status },
           ]}
         />
       </div>
@@ -130,12 +132,12 @@ export function IncidentListPage() {
         <div className="flex flex-col items-center justify-center py-12">
           <p className="text-muted-foreground">
             {search || statusFilter !== 'all'
-              ? 'No incidents match your search.'
-              : 'No incidents yet.'}
+              ? t('list.noMatches')
+              : t('list.noIncidents')}
           </p>
           {!search && statusFilter === 'all' && (
             <Button asChild className="mt-4">
-              <Link to="/incidents/new">Report Your First Incident</Link>
+              <Link to="/incidents/new">{t('reportFirst')}</Link>
             </Button>
           )}
         </div>
@@ -145,12 +147,12 @@ export function IncidentListPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Reporter</TableHead>
-                  <TableHead>Department</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead>Status</TableHead>
+                  <TableHead>{t('list.columns.date')}</TableHead>
+                  <TableHead>{t('list.columns.reporter')}</TableHead>
+                  <TableHead>{t('list.columns.department')}</TableHead>
+                  <TableHead>{t('list.columns.category')}</TableHead>
+                  <TableHead>{t('list.columns.description')}</TableHead>
+                  <TableHead>{t('list.columns.status')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -166,13 +168,13 @@ export function IncidentListPage() {
                       </Link>
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {incident.reportedBy ?? '\u2014'}
+                      {incident.reportedBy ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {incident.department ?? '\u2014'}
+                      {incident.department ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {incident.category ?? '\u2014'}
+                      {incident.category ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
                       {truncate(incident.description, 60)}
@@ -190,7 +192,7 @@ export function IncidentListPage() {
           {totalPages > 1 && (
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
-                Page {page + 1} of {totalPages}
+                {t('list.pageOf', { current: page + 1, total: totalPages })}
               </p>
               <div className="flex gap-2">
                 <Button
@@ -199,7 +201,7 @@ export function IncidentListPage() {
                   disabled={page === 0}
                   onClick={() => setPage((p) => p - 1)}
                 >
-                  Previous
+                  {t('list.previous')}
                 </Button>
                 <Button
                   variant="outline"
@@ -207,7 +209,7 @@ export function IncidentListPage() {
                   disabled={page >= totalPages - 1}
                   onClick={() => setPage((p) => p + 1)}
                 >
-                  Next
+                  {t('list.next')}
                 </Button>
               </div>
             </div>

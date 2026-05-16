@@ -1,6 +1,9 @@
 {
   "title": "Labs",
   "newLab": "New Lab",
+  "requestFirst": "Request Your First Lab",
+  "backToLabs": "Back to Labs",
+  "notFound": "Lab not found.",
   "fields": {
     "patient": "Patient",
     "type": "Type",
@@ -8,6 +11,8 @@
     "status": "Status",
     "requestedBy": "Requested By",
     "requestedAt": "Requested At",
+    "completedAt": "Completed At",
+    "canceledAt": "Canceled At",
     "result": "Result",
     "notes": "Notes"
   },
@@ -15,5 +20,72 @@
     "complete": "Complete",
     "cancel": "Cancel Lab",
     "saveResult": "Save Result"
+  },
+  "status": {
+    "requested": "Requested",
+    "completed": "Completed",
+    "canceled": "Canceled"
+  },
+  "form": {
+    "labType": "Lab Type",
+    "labTypePlaceholder": "e.g. Complete Blood Count",
+    "codePlaceholder": "e.g. CBC, BMP",
+    "notesPlaceholder": "Additional notes...",
+    "searchPatient": "Search for a patient...",
+    "noPatients": "No patients found.",
+    "saving": "Saving...",
+    "request": "Request Lab"
+  },
+  "list": {
+    "searchPlaceholder": "Search by patient name...",
+    "allStatuses": "All Statuses",
+    "noMatches": "No labs match your search.",
+    "noLabs": "No labs yet.",
+    "count_one": "{{count}} lab",
+    "count_other": "{{count}} labs",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{current}} of {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Type",
+      "code": "Code",
+      "status": "Status",
+      "requestedAt": "Requested At",
+      "result": "Result"
+    }
+  },
+  "detail": {
+    "cardTitle": "Lab Details",
+    "resultCardTitle": "Result",
+    "enterResult": "Enter Result",
+    "resultPlaceholder": "Enter lab result...",
+    "saveResult": "Save Result",
+    "saveAndComplete": "Save & Complete",
+    "complete": "Complete",
+    "completeDialogTitle": "Complete Lab",
+    "resultLabel": "Result *",
+    "cancelLab": "Cancel Lab",
+    "delete": "Delete",
+    "resultSaved": "Result saved",
+    "labCompleted": "Lab completed",
+    "labCanceled": "Lab canceled",
+    "labDeleted": "Lab deleted",
+    "resultRequired": "Please enter a result before completing.",
+    "resultRequiredShort": "Please enter a result.",
+    "noResultAvailable": "No result available."
+  },
+  "exportColumns": {
+    "filename": "Labs",
+    "patient": "Patient",
+    "type": "Type",
+    "code": "Code",
+    "status": "Status",
+    "requestedAt": "Requested At",
+    "result": "Result"
+  },
+  "validation": {
+    "patientRequired": "Patient is required",
+    "typeRequired": "Lab type is required"
   }
 }

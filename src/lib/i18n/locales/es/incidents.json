@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Resolver",
     "downloadCsv": "Descargar CSV"
+  },
+  "status": {
+    "reported": "Reportado",
+    "resolved": "Resuelto"
+  },
+  "reportFirst": "Reporta tu primer incidente",
+  "backToIncidents": "Volver a Incidentes",
+  "notFound": "Incidente no encontrado.",
+  "form": {
+    "description": "Descripción",
+    "department": "Departamento",
+    "category": "Categoría",
+    "categoryItem": "Subcategoría",
+    "patientId": "ID del paciente (opcional)",
+    "descriptionPlaceholder": "Describe el incidente...",
+    "departmentPlaceholder": "ej. Urgencias",
+    "categoryPlaceholder": "ej. Seguridad",
+    "categoryItemPlaceholder": "ej. Caída",
+    "patientIdPlaceholder": "ID del paciente",
+    "saving": "Guardando...",
+    "report": "Reportar incidente"
+  },
+  "list": {
+    "searchPlaceholder": "Buscar por reportado por o descripción...",
+    "allStatuses": "Todos los estados",
+    "noMatches": "Ningún incidente coincide con tu búsqueda.",
+    "noIncidents": "Aún no hay incidentes.",
+    "count_one": "{{count}} incidente",
+    "count_other": "{{count}} incidentes",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pageOf": "Página {{current}} de {{total}}",
+    "columns": {
+      "date": "Fecha",
+      "reporter": "Reportado por",
+      "department": "Departamento",
+      "category": "Categoría",
+      "description": "Descripción",
+      "status": "Estado"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detalles del incidente",
+    "resolve": "Resolver",
+    "delete": "Eliminar",
+    "resolved": "Incidente resuelto",
+    "deleted": "Incidente eliminado"
+  },
+  "visualize": {
+    "noData": "No hay datos de incidentes para visualizar.",
+    "incidentsLabel": "Incidentes",
+    "monthlyTrend": "Tendencia mensual ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Incidentes",
+    "date": "Fecha",
+    "reporter": "Reportado por",
+    "department": "Departamento",
+    "category": "Categoría",
+    "status": "Estado"
+  },
+  "validation": {
+    "descriptionRequired": "La descripción es obligatoria"
   }
 }

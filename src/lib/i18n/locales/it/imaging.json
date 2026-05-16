@@ -8,10 +8,79 @@
     "status": "Stato",
     "requestedBy": "Richiesto da",
     "requestedOn": "Richiesto il",
+    "completedOn": "Completato il",
+    "canceledOn": "Annullato il",
     "notes": "Note"
   },
   "actions": {
     "complete": "Completa",
     "cancel": "Annulla richiesta"
+  },
+  "status": {
+    "requested": "Richiesto",
+    "completed": "Completato",
+    "canceled": "Annullato"
+  },
+  "createFirst": "Crea la tua prima richiesta",
+  "backToImaging": "Torna alla diagnostica per immagini",
+  "notFound": "Richiesta di diagnostica per immagini non trovata.",
+  "form": {
+    "selectPatient": "Seleziona un paziente...",
+    "searchPatients": "Cerca pazienti...",
+    "typePlaceholder": "es. Radiografia, TC, RM",
+    "codePlaceholder": "es. 71046",
+    "notesPlaceholder": "Note aggiuntive...",
+    "noPatients": "Nessun paziente trovato.",
+    "saving": "Salvataggio...",
+    "request": "Richiedi diagnostica per immagini"
+  },
+  "list": {
+    "searchPlaceholder": "Cerca per nome del paziente o tipo di diagnostica...",
+    "allStatuses": "Tutti gli stati",
+    "noMatches": "Nessuna richiesta di diagnostica corrisponde alla tua ricerca.",
+    "noRequests": "Ancora nessuna richiesta di diagnostica per immagini.",
+    "count_one": "{{count}} richiesta",
+    "count_other": "{{count}} richieste",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "pageOf": "Pagina {{current}} di {{total}}",
+    "columns": {
+      "patient": "Paziente",
+      "type": "Tipo",
+      "code": "Codice",
+      "status": "Stato",
+      "requestedOn": "Richiesto il"
+    }
+  },
+  "detail": {
+    "cardTitle": "Richiesta di diagnostica per immagini",
+    "imageCardTitle": "Immagine",
+    "upload": "Carica",
+    "replace": "Sostituisci",
+    "remove": "Rimuovi",
+    "uploading": "Caricamento in corso…",
+    "noImage": "Nessuna immagine caricata.",
+    "complete": "Completa",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "imageRemoved": "Immagine rimossa",
+    "uploadFailed": "Caricamento fallito",
+    "imageUploaded": "Immagine caricata",
+    "markedCompleted": "Diagnostica contrassegnata come completata",
+    "requestCanceled": "Richiesta di diagnostica annullata",
+    "requestDeleted": "Richiesta di diagnostica eliminata",
+    "missingOrg": "Contesto organizzazione mancante. Accedere nuovamente."
+  },
+  "exportColumns": {
+    "filename": "Diagnostica per immagini",
+    "patient": "Paziente",
+    "type": "Tipo",
+    "code": "Codice",
+    "status": "Stato",
+    "requestedOn": "Richiesto il"
+  },
+  "validation": {
+    "patientRequired": "Il paziente è obbligatorio",
+    "typeRequired": "Il tipo di diagnostica è obbligatorio"
   }
 }

@@ -3,7 +3,10 @@
   "newAppointment": "Nuovo Appuntamento",
   "editAppointment": "Modifica Appuntamento",
   "calendar": "Calendario",
-  "list": "Elenco",
+  "listView": "Elenco",
+  "scheduleFirst": "Pianifica il primo appuntamento",
+  "backToAppointments": "Torna agli appuntamenti",
+  "notFound": "Appuntamento non trovato.",
   "fields": {
     "patient": "Paziente",
     "type": "Tipo",
@@ -11,7 +14,8 @@
     "endTime": "Ora di fine",
     "location": "Luogo",
     "status": "Stato",
-    "notes": "Note"
+    "notes": "Note",
+    "reasonForVisit": "Motivo della visita"
   },
   "types": {
     "checkup": "Controllo",
@@ -25,5 +29,56 @@
     "completed": "Completato",
     "cancelled": "Annullato",
     "noShow": "Non presentato"
+  },
+  "form": {
+    "selectPatient": "Seleziona paziente...",
+    "searchPatients": "Cerca pazienti...",
+    "selectType": "Seleziona tipo",
+    "locationPlaceholder": "es. Sala 204",
+    "noPatients": "Nessun paziente trovato.",
+    "saving": "Salvataggio in corso...",
+    "create": "Crea appuntamento",
+    "update": "Aggiorna appuntamento"
+  },
+  "list": {
+    "searchPlaceholder": "Cerca per nome paziente...",
+    "allStatuses": "Tutti gli stati",
+    "noMatches": "Nessun appuntamento corrisponde alla ricerca.",
+    "noAppointments": "Ancora nessun appuntamento.",
+    "count_one": "{{count}} appuntamento",
+    "count_other": "{{count}} appuntamenti",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "pageOf": "Pagina {{current}} di {{total}}",
+    "columns": {
+      "patient": "Paziente",
+      "type": "Tipo",
+      "dateTime": "Data / Ora",
+      "location": "Luogo",
+      "status": "Stato"
+    }
+  },
+  "detail": {
+    "cardTitle": "Dettagli Appuntamento",
+    "complete": "Completa",
+    "cancel": "Annulla",
+    "noShow": "Non presentato",
+    "delete": "Elimina",
+    "deleted": "Appuntamento eliminato",
+    "markedAs": "Appuntamento contrassegnato come {{status}}"
+  },
+  "exportColumns": {
+    "filename": "Appuntamenti",
+    "patient": "Paziente",
+    "type": "Tipo",
+    "dateTime": "Data / Ora",
+    "location": "Luogo",
+    "status": "Stato"
+  },
+  "validation": {
+    "patientRequired": "Il paziente è obbligatorio",
+    "startTimeRequired": "L'ora di inizio è obbligatoria",
+    "endTimeRequired": "L'ora di fine è obbligatoria",
+    "endTimeAfterStart": "L'ora di fine deve essere successiva all'ora di inizio"
   }
 }

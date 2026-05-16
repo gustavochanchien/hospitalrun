@@ -1,6 +1,9 @@
 {
   "title": "Medikamente",
   "newMedication": "Neues Medikament",
+  "addFirst": "Erstes Medikament hinzufügen",
+  "backToMedications": "Zurück zu Medikamenten",
+  "notFound": "Medikament nicht gefunden.",
   "fields": {
     "name": "Medikamentenname",
     "patient": "Patient",
@@ -11,5 +14,86 @@
     "startDate": "Startdatum",
     "endDate": "Enddatum",
     "notes": "Notizen"
+  },
+  "statusOption": {
+    "draft": "Entwurf",
+    "active": "Aktiv",
+    "onHold": "Ausgesetzt",
+    "canceled": "Abgebrochen",
+    "completed": "Abgeschlossen",
+    "enteredInError": "Irrtümlich eingegeben",
+    "stopped": "Gestoppt",
+    "unknown": "Unbekannt"
+  },
+  "intentOption": {
+    "proposal": "Vorschlag",
+    "plan": "Plan",
+    "order": "Verordnung",
+    "originalOrder": "Ursprüngliche Verordnung",
+    "reflexOrder": "Reflexverordnung",
+    "fillerOrder": "Ergänzungsverordnung",
+    "instanceOrder": "Instanzverordnung",
+    "option": "Option"
+  },
+  "priorityOption": {
+    "routine": "Routine",
+    "urgent": "Dringend",
+    "asap": "So bald wie möglich",
+    "stat": "Sofort"
+  },
+  "form": {
+    "selectPatient": "Patient auswählen...",
+    "searchPatients": "Patienten suchen...",
+    "namePlaceholder": "z. B. Amoxicillin 500 mg",
+    "selectStatus": "Status auswählen",
+    "selectIntent": "Absicht auswählen",
+    "selectPriority": "Priorität auswählen",
+    "quantityPlaceholder": "z. B. 30 Tabletten",
+    "notesPlaceholder": "Zusätzliche Notizen...",
+    "noPatients": "Keine Patienten gefunden.",
+    "saving": "Wird gespeichert...",
+    "create": "Medikament erstellen",
+    "update": "Medikament aktualisieren"
+  },
+  "list": {
+    "searchPlaceholder": "Nach Medikament oder Patientenname suchen...",
+    "allStatuses": "Alle Status",
+    "noMatches": "Keine Medikamente entsprechen Ihrer Suche.",
+    "noMedications": "Noch keine Medikamente.",
+    "count_one": "{{count}} Medikament",
+    "count_other": "{{count}} Medikamente",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {{current}} von {{total}}",
+    "columns": {
+      "name": "Medikamentenname",
+      "patient": "Patient",
+      "status": "Status",
+      "quantity": "Menge",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum"
+    }
+  },
+  "detail": {
+    "patientLabel": "Patient:",
+    "updateStatusTitle": "Status aktualisieren",
+    "updateStatus": "Status aktualisieren",
+    "deleteMedication": "Medikament löschen",
+    "selectNewStatus": "Neuen Status auswählen",
+    "statusUpdated": "Status aktualisiert auf \"{{status}}\"",
+    "deleted": "Medikament gelöscht"
+  },
+  "exportColumns": {
+    "filename": "Medikamente",
+    "name": "Medikamentenname",
+    "patient": "Patient",
+    "status": "Status",
+    "quantity": "Menge",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum"
+  },
+  "validation": {
+    "patientRequired": "Patient ist erforderlich",
+    "nameRequired": "Medikamentenname ist erforderlich"
   }
 }

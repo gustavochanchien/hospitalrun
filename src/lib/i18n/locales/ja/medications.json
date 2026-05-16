@@ -1,6 +1,9 @@
 {
   "title": "薬剤",
   "newMedication": "新規薬剤",
+  "addFirst": "最初の薬剤を追加",
+  "backToMedications": "薬剤一覧に戻る",
+  "notFound": "薬剤が見つかりません。",
   "fields": {
     "name": "薬剤名",
     "patient": "患者",
@@ -11,5 +14,86 @@
     "startDate": "開始日",
     "endDate": "終了日",
     "notes": "メモ"
+  },
+  "statusOption": {
+    "draft": "下書き",
+    "active": "有効",
+    "onHold": "保留中",
+    "canceled": "取消済み",
+    "completed": "完了",
+    "enteredInError": "誤入力",
+    "stopped": "停止",
+    "unknown": "不明"
+  },
+  "intentOption": {
+    "proposal": "提案",
+    "plan": "計画",
+    "order": "処方",
+    "originalOrder": "元の処方",
+    "reflexOrder": "反射処方",
+    "fillerOrder": "補充処方",
+    "instanceOrder": "インスタンス処方",
+    "option": "オプション"
+  },
+  "priorityOption": {
+    "routine": "定期",
+    "urgent": "緊急",
+    "asap": "できるだけ早く",
+    "stat": "即時"
+  },
+  "form": {
+    "selectPatient": "患者を選択...",
+    "searchPatients": "患者を検索...",
+    "namePlaceholder": "例：アモキシシリン 500mg",
+    "selectStatus": "状態を選択",
+    "selectIntent": "用途を選択",
+    "selectPriority": "優先度を選択",
+    "quantityPlaceholder": "例：30錠",
+    "notesPlaceholder": "追加メモ...",
+    "noPatients": "患者が見つかりません。",
+    "saving": "保存中...",
+    "create": "薬剤を作成",
+    "update": "薬剤を更新"
+  },
+  "list": {
+    "searchPlaceholder": "薬剤名または患者名で検索...",
+    "allStatuses": "すべての状態",
+    "noMatches": "検索に一致する薬剤はありません。",
+    "noMedications": "まだ薬剤はありません。",
+    "count_one": "{{count}}件の薬剤",
+    "count_other": "{{count}}件の薬剤",
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "{{total}}ページ中{{current}}ページ",
+    "columns": {
+      "name": "薬剤名",
+      "patient": "患者",
+      "status": "状態",
+      "quantity": "数量",
+      "startDate": "開始日",
+      "endDate": "終了日"
+    }
+  },
+  "detail": {
+    "patientLabel": "患者：",
+    "updateStatusTitle": "状態の更新",
+    "updateStatus": "状態を更新",
+    "deleteMedication": "薬剤を削除",
+    "selectNewStatus": "新しい状態を選択",
+    "statusUpdated": "状態を「{{status}}」に更新しました",
+    "deleted": "薬剤を削除しました"
+  },
+  "exportColumns": {
+    "filename": "薬剤",
+    "name": "薬剤名",
+    "patient": "患者",
+    "status": "状態",
+    "quantity": "数量",
+    "startDate": "開始日",
+    "endDate": "終了日"
+  },
+  "validation": {
+    "patientRequired": "患者は必須です",
+    "nameRequired": "薬剤名は必須です"
   }
 }

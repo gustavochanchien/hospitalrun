@@ -8,10 +8,79 @@
     "status": "Status",
     "requestedBy": "Requested By",
     "requestedOn": "Requested On",
+    "completedOn": "Completed On",
+    "canceledOn": "Canceled On",
     "notes": "Notes"
   },
   "actions": {
     "complete": "Complete",
     "cancel": "Cancel Request"
+  },
+  "status": {
+    "requested": "Requested",
+    "completed": "Completed",
+    "canceled": "Canceled"
+  },
+  "createFirst": "Create Your First Request",
+  "backToImaging": "Back to Imaging",
+  "notFound": "Imaging request not found.",
+  "form": {
+    "selectPatient": "Select a patient...",
+    "searchPatients": "Search patients...",
+    "typePlaceholder": "e.g. X-Ray, CT Scan, MRI",
+    "codePlaceholder": "e.g. 71046",
+    "notesPlaceholder": "Additional notes...",
+    "noPatients": "No patients found.",
+    "saving": "Saving...",
+    "request": "Request Imaging"
+  },
+  "list": {
+    "searchPlaceholder": "Search by patient name or imaging type...",
+    "allStatuses": "All Statuses",
+    "noMatches": "No imaging requests match your search.",
+    "noRequests": "No imaging requests yet.",
+    "count_one": "{{count}} request",
+    "count_other": "{{count}} requests",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{current}} of {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Type",
+      "code": "Code",
+      "status": "Status",
+      "requestedOn": "Requested On"
+    }
+  },
+  "detail": {
+    "cardTitle": "Imaging Request",
+    "imageCardTitle": "Image",
+    "upload": "Upload",
+    "replace": "Replace",
+    "remove": "Remove",
+    "uploading": "Uploading…",
+    "noImage": "No image uploaded yet.",
+    "complete": "Complete",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "imageRemoved": "Image removed",
+    "uploadFailed": "Upload failed",
+    "imageUploaded": "Image uploaded",
+    "markedCompleted": "Imaging marked as completed",
+    "requestCanceled": "Imaging request canceled",
+    "requestDeleted": "Imaging request deleted",
+    "missingOrg": "Missing organization context. Please sign in again."
+  },
+  "exportColumns": {
+    "filename": "Imaging",
+    "patient": "Patient",
+    "type": "Type",
+    "code": "Code",
+    "status": "Status",
+    "requestedOn": "Requested On"
+  },
+  "validation": {
+    "patientRequired": "Patient is required",
+    "typeRequired": "Imaging type is required"
   }
 }

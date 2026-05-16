@@ -32,8 +32,8 @@ export const MEDICATION_PRIORITIES = [
 ] as const
 
 export const medicationFormSchema = z.object({
-  patientId: z.string().min(1, 'Patient is required'),
-  name: z.string().min(1, 'Medication name is required'),
+  patientId: z.string().min(1, 'validation.patientRequired'),
+  name: z.string().min(1, 'validation.nameRequired'),
   status: z.enum(MEDICATION_STATUSES),
   intent: z.enum(MEDICATION_INTENTS).optional(),
   priority: z.enum(MEDICATION_PRIORITIES).optional(),

@@ -3,7 +3,10 @@
   "newAppointment": "Nova Consulta",
   "editAppointment": "Editar Consulta",
   "calendar": "Calendário",
-  "list": "Lista",
+  "listView": "Lista",
+  "scheduleFirst": "Agendar Primeira Consulta",
+  "backToAppointments": "Voltar às Consultas",
+  "notFound": "Consulta não encontrada.",
   "fields": {
     "patient": "Paciente",
     "type": "Tipo",
@@ -11,7 +14,8 @@
     "endTime": "Término",
     "location": "Local",
     "status": "Status",
-    "notes": "Notas"
+    "notes": "Notas",
+    "reasonForVisit": "Motivo da consulta"
   },
   "types": {
     "checkup": "Check-up",
@@ -25,5 +29,56 @@
     "completed": "Concluída",
     "cancelled": "Cancelada",
     "noShow": "Faltou"
+  },
+  "form": {
+    "selectPatient": "Selecionar paciente...",
+    "searchPatients": "Buscar pacientes...",
+    "selectType": "Selecionar tipo",
+    "locationPlaceholder": "ex. Sala 204",
+    "noPatients": "Nenhum paciente encontrado.",
+    "saving": "Salvando...",
+    "create": "Criar consulta",
+    "update": "Atualizar consulta"
+  },
+  "list": {
+    "searchPlaceholder": "Buscar por nome do paciente...",
+    "allStatuses": "Todos os status",
+    "noMatches": "Nenhuma consulta corresponde à sua busca.",
+    "noAppointments": "Ainda não há consultas.",
+    "count_one": "{{count}} consulta",
+    "count_other": "{{count}} consultas",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "pageOf": "Página {{current}} de {{total}}",
+    "columns": {
+      "patient": "Paciente",
+      "type": "Tipo",
+      "dateTime": "Data / Hora",
+      "location": "Local",
+      "status": "Status"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detalhes da Consulta",
+    "complete": "Concluir",
+    "cancel": "Cancelar",
+    "noShow": "Faltou",
+    "delete": "Excluir",
+    "deleted": "Consulta excluída",
+    "markedAs": "Consulta marcada como {{status}}"
+  },
+  "exportColumns": {
+    "filename": "Consultas",
+    "patient": "Paciente",
+    "type": "Tipo",
+    "dateTime": "Data / Hora",
+    "location": "Local",
+    "status": "Status"
+  },
+  "validation": {
+    "patientRequired": "Paciente é obrigatório",
+    "startTimeRequired": "Início é obrigatório",
+    "endTimeRequired": "Término é obrigatório",
+    "endTimeAfterStart": "O término deve ser após o início"
   }
 }

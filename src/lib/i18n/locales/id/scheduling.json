@@ -3,7 +3,10 @@
   "newAppointment": "Janji Baru",
   "editAppointment": "Ubah Janji",
   "calendar": "Kalender",
-  "list": "Daftar",
+  "listView": "Daftar",
+  "scheduleFirst": "Buat Janji Temu Pertama",
+  "backToAppointments": "Kembali ke Janji Temu",
+  "notFound": "Janji temu tidak ditemukan.",
   "fields": {
     "patient": "Pasien",
     "type": "Jenis",
@@ -11,7 +14,8 @@
     "endTime": "Waktu selesai",
     "location": "Lokasi",
     "status": "Status",
-    "notes": "Catatan"
+    "notes": "Catatan",
+    "reasonForVisit": "Alasan kunjungan"
   },
   "types": {
     "checkup": "Pemeriksaan",
@@ -25,5 +29,56 @@
     "completed": "Selesai",
     "cancelled": "Dibatalkan",
     "noShow": "Tidak hadir"
+  },
+  "form": {
+    "selectPatient": "Pilih pasien...",
+    "searchPatients": "Cari pasien...",
+    "selectType": "Pilih jenis",
+    "locationPlaceholder": "mis. Ruang 204",
+    "noPatients": "Tidak ada pasien ditemukan.",
+    "saving": "Menyimpan...",
+    "create": "Buat janji",
+    "update": "Perbarui janji"
+  },
+  "list": {
+    "searchPlaceholder": "Cari berdasarkan nama pasien...",
+    "allStatuses": "Semua status",
+    "noMatches": "Tidak ada janji temu yang cocok dengan pencarian Anda.",
+    "noAppointments": "Belum ada janji temu.",
+    "count_one": "{{count}} janji temu",
+    "count_other": "{{count}} janji temu",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pageOf": "Halaman {{current}} dari {{total}}",
+    "columns": {
+      "patient": "Pasien",
+      "type": "Jenis",
+      "dateTime": "Tanggal / Waktu",
+      "location": "Lokasi",
+      "status": "Status"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detail Janji Temu",
+    "complete": "Selesaikan",
+    "cancel": "Batalkan",
+    "noShow": "Tidak hadir",
+    "delete": "Hapus",
+    "deleted": "Janji temu dihapus",
+    "markedAs": "Janji temu ditandai sebagai {{status}}"
+  },
+  "exportColumns": {
+    "filename": "Janji Temu",
+    "patient": "Pasien",
+    "type": "Jenis",
+    "dateTime": "Tanggal / Waktu",
+    "location": "Lokasi",
+    "status": "Status"
+  },
+  "validation": {
+    "patientRequired": "Pasien diperlukan",
+    "startTimeRequired": "Waktu mulai diperlukan",
+    "endTimeRequired": "Waktu selesai diperlukan",
+    "endTimeAfterStart": "Waktu selesai harus setelah waktu mulai"
   }
 }

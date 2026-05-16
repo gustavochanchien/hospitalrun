@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "解決",
     "downloadCsv": "CSV をダウンロード"
+  },
+  "status": {
+    "reported": "報告済み",
+    "resolved": "解決済み"
+  },
+  "reportFirst": "最初のインシデントを報告",
+  "backToIncidents": "インシデント一覧へ戻る",
+  "notFound": "インシデントが見つかりません。",
+  "form": {
+    "description": "説明",
+    "department": "部署",
+    "category": "カテゴリ",
+    "categoryItem": "サブカテゴリ",
+    "patientId": "患者ID（任意）",
+    "descriptionPlaceholder": "インシデントを説明してください...",
+    "departmentPlaceholder": "例: 救急",
+    "categoryPlaceholder": "例: 安全",
+    "categoryItemPlaceholder": "例: 転倒",
+    "patientIdPlaceholder": "患者ID",
+    "saving": "保存中...",
+    "report": "インシデントを報告"
+  },
+  "list": {
+    "searchPlaceholder": "報告者または説明で検索...",
+    "allStatuses": "すべての状態",
+    "noMatches": "検索に一致するインシデントはありません。",
+    "noIncidents": "インシデントがまだありません。",
+    "count_one": "{{count}} 件のインシデント",
+    "count_other": "{{count}} 件のインシデント",
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "{{total}} ページ中 {{current}} ページ目",
+    "columns": {
+      "date": "日付",
+      "reporter": "報告者",
+      "department": "部署",
+      "category": "カテゴリ",
+      "description": "説明",
+      "status": "状態"
+    }
+  },
+  "detail": {
+    "cardTitle": "インシデント詳細",
+    "resolve": "解決",
+    "delete": "削除",
+    "resolved": "インシデントを解決しました",
+    "deleted": "インシデントを削除しました"
+  },
+  "visualize": {
+    "noData": "表示するインシデントデータがありません。",
+    "incidentsLabel": "インシデント",
+    "monthlyTrend": "月次推移 ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "インシデント",
+    "date": "日付",
+    "reporter": "報告者",
+    "department": "部署",
+    "category": "カテゴリ",
+    "status": "状態"
+  },
+  "validation": {
+    "descriptionRequired": "説明は必須です"
   }
 }

@@ -1,6 +1,9 @@
 {
   "title": "Laboratuvar",
   "newLab": "Yeni Tetkik",
+  "requestFirst": "İlk tetkikinizi isteyin",
+  "backToLabs": "Laboratuvara Dön",
+  "notFound": "Laboratuvar tetkiki bulunamadı.",
   "fields": {
     "patient": "Hasta",
     "type": "Tür",
@@ -8,6 +11,8 @@
     "status": "Durum",
     "requestedBy": "İsteyen",
     "requestedAt": "İstek zamanı",
+    "completedAt": "Tamamlanma zamanı",
+    "canceledAt": "İptal zamanı",
     "result": "Sonuç",
     "notes": "Notlar"
   },
@@ -15,5 +20,72 @@
     "complete": "Tamamla",
     "cancel": "Tetkiki iptal et",
     "saveResult": "Sonucu kaydet"
+  },
+  "status": {
+    "requested": "İstendi",
+    "completed": "Tamamlandı",
+    "canceled": "İptal edildi"
+  },
+  "form": {
+    "labType": "Tetkik türü",
+    "labTypePlaceholder": "örn. Tam Kan Sayımı",
+    "codePlaceholder": "örn. CBC, BMP",
+    "notesPlaceholder": "Ek notlar...",
+    "searchPatient": "Hasta ara...",
+    "noPatients": "Hasta bulunamadı.",
+    "saving": "Kaydediliyor...",
+    "request": "Tetkik iste"
+  },
+  "list": {
+    "searchPlaceholder": "Hasta adıyla ara...",
+    "allStatuses": "Tüm durumlar",
+    "noMatches": "Aramanızla eşleşen tetkik yok.",
+    "noLabs": "Henüz tetkik yok.",
+    "count_one": "{{count}} tetkik",
+    "count_other": "{{count}} tetkik",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "{{total}} sayfadan {{current}}. sayfa",
+    "columns": {
+      "patient": "Hasta",
+      "type": "Tür",
+      "code": "Kod",
+      "status": "Durum",
+      "requestedAt": "İstek zamanı",
+      "result": "Sonuç"
+    }
+  },
+  "detail": {
+    "cardTitle": "Tetkik Detayları",
+    "resultCardTitle": "Sonuç",
+    "enterResult": "Sonuç girin",
+    "resultPlaceholder": "Laboratuvar sonucunu girin...",
+    "saveResult": "Sonucu kaydet",
+    "saveAndComplete": "Kaydet ve tamamla",
+    "complete": "Tamamla",
+    "completeDialogTitle": "Tetkiki tamamla",
+    "resultLabel": "Sonuç *",
+    "cancelLab": "Tetkiki iptal et",
+    "delete": "Sil",
+    "resultSaved": "Sonuç kaydedildi",
+    "labCompleted": "Tetkik tamamlandı",
+    "labCanceled": "Tetkik iptal edildi",
+    "labDeleted": "Tetkik silindi",
+    "resultRequired": "Tamamlamadan önce lütfen bir sonuç girin.",
+    "resultRequiredShort": "Lütfen bir sonuç girin.",
+    "noResultAvailable": "Sonuç mevcut değil."
+  },
+  "exportColumns": {
+    "filename": "Laboratuvar",
+    "patient": "Hasta",
+    "type": "Tür",
+    "code": "Kod",
+    "status": "Durum",
+    "requestedAt": "İstek zamanı",
+    "result": "Sonuç"
+  },
+  "validation": {
+    "patientRequired": "Hasta zorunludur",
+    "typeRequired": "Tetkik türü zorunludur"
   }
 }

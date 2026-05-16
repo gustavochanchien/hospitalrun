@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Resolve",
     "downloadCsv": "Download CSV"
+  },
+  "status": {
+    "reported": "Reported",
+    "resolved": "Resolved"
+  },
+  "reportFirst": "Report Your First Incident",
+  "backToIncidents": "Back to Incidents",
+  "notFound": "Incident not found.",
+  "form": {
+    "description": "Description",
+    "department": "Department",
+    "category": "Category",
+    "categoryItem": "Category Item",
+    "patientId": "Patient ID (optional)",
+    "descriptionPlaceholder": "Describe the incident...",
+    "departmentPlaceholder": "e.g. Emergency",
+    "categoryPlaceholder": "e.g. Safety",
+    "categoryItemPlaceholder": "e.g. Fall",
+    "patientIdPlaceholder": "Patient ID",
+    "saving": "Saving...",
+    "report": "Report Incident"
+  },
+  "list": {
+    "searchPlaceholder": "Search by reporter or description...",
+    "allStatuses": "All Statuses",
+    "noMatches": "No incidents match your search.",
+    "noIncidents": "No incidents yet.",
+    "count_one": "{{count}} incident",
+    "count_other": "{{count}} incidents",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{current}} of {{total}}",
+    "columns": {
+      "date": "Date",
+      "reporter": "Reporter",
+      "department": "Department",
+      "category": "Category",
+      "description": "Description",
+      "status": "Status"
+    }
+  },
+  "detail": {
+    "cardTitle": "Incident Details",
+    "resolve": "Resolve",
+    "delete": "Delete",
+    "resolved": "Incident resolved",
+    "deleted": "Incident deleted"
+  },
+  "visualize": {
+    "noData": "No incident data to visualize.",
+    "incidentsLabel": "Incidents",
+    "monthlyTrend": "Monthly Trend ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Incidents",
+    "date": "Date",
+    "reporter": "Reporter",
+    "department": "Department",
+    "category": "Category",
+    "status": "Status"
+  },
+  "validation": {
+    "descriptionRequired": "Description is required"
   }
 }

@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Çöz",
     "downloadCsv": "CSV indir"
+  },
+  "status": {
+    "reported": "Bildirildi",
+    "resolved": "Çözüldü"
+  },
+  "reportFirst": "İlk Olayı Bildir",
+  "backToIncidents": "Olaylara Dön",
+  "notFound": "Olay bulunamadı.",
+  "form": {
+    "description": "Açıklama",
+    "department": "Bölüm",
+    "category": "Kategori",
+    "categoryItem": "Alt kategori",
+    "patientId": "Hasta kimliği (isteğe bağlı)",
+    "descriptionPlaceholder": "Olayı açıklayın...",
+    "departmentPlaceholder": "örn. Acil",
+    "categoryPlaceholder": "örn. Güvenlik",
+    "categoryItemPlaceholder": "örn. Düşme",
+    "patientIdPlaceholder": "Hasta kimliği",
+    "saving": "Kaydediliyor...",
+    "report": "Olay Bildir"
+  },
+  "list": {
+    "searchPlaceholder": "Bildiren veya açıklamaya göre ara...",
+    "allStatuses": "Tüm durumlar",
+    "noMatches": "Aramanızla eşleşen olay yok.",
+    "noIncidents": "Henüz olay yok.",
+    "count_one": "{{count}} olay",
+    "count_other": "{{count}} olay",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "Sayfa {{current}} / {{total}}",
+    "columns": {
+      "date": "Tarih",
+      "reporter": "Bildiren",
+      "department": "Bölüm",
+      "category": "Kategori",
+      "description": "Açıklama",
+      "status": "Durum"
+    }
+  },
+  "detail": {
+    "cardTitle": "Olay Detayları",
+    "resolve": "Çöz",
+    "delete": "Sil",
+    "resolved": "Olay çözüldü",
+    "deleted": "Olay silindi"
+  },
+  "visualize": {
+    "noData": "Görüntülenecek olay verisi yok.",
+    "incidentsLabel": "Olaylar",
+    "monthlyTrend": "Aylık eğilim ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Olaylar",
+    "date": "Tarih",
+    "reporter": "Bildiren",
+    "department": "Bölüm",
+    "category": "Kategori",
+    "status": "Durum"
+  },
+  "validation": {
+    "descriptionRequired": "Açıklama zorunludur"
   }
 }

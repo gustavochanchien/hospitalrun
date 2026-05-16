@@ -1,6 +1,9 @@
 {
   "title": "Laboratori",
   "newLab": "Nuovo Esame",
+  "requestFirst": "Richiedi il primo esame",
+  "backToLabs": "Torna ai laboratori",
+  "notFound": "Esame di laboratorio non trovato.",
   "fields": {
     "patient": "Paziente",
     "type": "Tipo",
@@ -8,6 +11,8 @@
     "status": "Stato",
     "requestedBy": "Richiesto da",
     "requestedAt": "Richiesto il",
+    "completedAt": "Completato il",
+    "canceledAt": "Annullato il",
     "result": "Risultato",
     "notes": "Note"
   },
@@ -15,5 +20,72 @@
     "complete": "Completa",
     "cancel": "Annulla esame",
     "saveResult": "Salva risultato"
+  },
+  "status": {
+    "requested": "Richiesto",
+    "completed": "Completato",
+    "canceled": "Annullato"
+  },
+  "form": {
+    "labType": "Tipo di esame",
+    "labTypePlaceholder": "es. Emocromo completo",
+    "codePlaceholder": "es. CBC, BMP",
+    "notesPlaceholder": "Note aggiuntive...",
+    "searchPatient": "Cerca un paziente...",
+    "noPatients": "Nessun paziente trovato.",
+    "saving": "Salvataggio in corso...",
+    "request": "Richiedi esame"
+  },
+  "list": {
+    "searchPlaceholder": "Cerca per nome paziente...",
+    "allStatuses": "Tutti gli stati",
+    "noMatches": "Nessun esame corrisponde alla ricerca.",
+    "noLabs": "Ancora nessun esame.",
+    "count_one": "{{count}} esame",
+    "count_other": "{{count}} esami",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "pageOf": "Pagina {{current}} di {{total}}",
+    "columns": {
+      "patient": "Paziente",
+      "type": "Tipo",
+      "code": "Codice",
+      "status": "Stato",
+      "requestedAt": "Richiesto il",
+      "result": "Risultato"
+    }
+  },
+  "detail": {
+    "cardTitle": "Dettagli Laboratorio",
+    "resultCardTitle": "Risultato",
+    "enterResult": "Inserisci risultato",
+    "resultPlaceholder": "Inserisci il risultato dell'esame...",
+    "saveResult": "Salva risultato",
+    "saveAndComplete": "Salva e completa",
+    "complete": "Completa",
+    "completeDialogTitle": "Completa esame",
+    "resultLabel": "Risultato *",
+    "cancelLab": "Annulla esame",
+    "delete": "Elimina",
+    "resultSaved": "Risultato salvato",
+    "labCompleted": "Esame completato",
+    "labCanceled": "Esame annullato",
+    "labDeleted": "Esame eliminato",
+    "resultRequired": "Inserire un risultato prima di completare.",
+    "resultRequiredShort": "Inserire un risultato.",
+    "noResultAvailable": "Nessun risultato disponibile."
+  },
+  "exportColumns": {
+    "filename": "Laboratori",
+    "patient": "Paziente",
+    "type": "Tipo",
+    "code": "Codice",
+    "status": "Stato",
+    "requestedAt": "Richiesto il",
+    "result": "Risultato"
+  },
+  "validation": {
+    "patientRequired": "Il paziente è obbligatorio",
+    "typeRequired": "Il tipo di esame è obbligatorio"
   }
 }

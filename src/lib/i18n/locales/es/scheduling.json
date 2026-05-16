@@ -3,7 +3,10 @@
   "newAppointment": "Nueva Cita",
   "editAppointment": "Editar Cita",
   "calendar": "Calendario",
-  "list": "Lista",
+  "listView": "Lista",
+  "scheduleFirst": "Agendar tu Primera Cita",
+  "backToAppointments": "Volver a Citas",
+  "notFound": "Cita no encontrada.",
   "fields": {
     "patient": "Paciente",
     "type": "Tipo",
@@ -11,7 +14,8 @@
     "endTime": "Hora de finalización",
     "location": "Ubicación",
     "status": "Estado",
-    "notes": "Notas"
+    "notes": "Notas",
+    "reasonForVisit": "Motivo de la visita"
   },
   "types": {
     "checkup": "Revisión",
@@ -25,5 +29,56 @@
     "completed": "Completada",
     "cancelled": "Cancelada",
     "noShow": "No asistió"
+  },
+  "form": {
+    "selectPatient": "Seleccionar paciente...",
+    "searchPatients": "Buscar pacientes...",
+    "selectType": "Seleccionar tipo",
+    "locationPlaceholder": "Ej. Sala 204",
+    "noPatients": "No se encontraron pacientes.",
+    "saving": "Guardando...",
+    "create": "Crear cita",
+    "update": "Actualizar cita"
+  },
+  "list": {
+    "searchPlaceholder": "Buscar por nombre del paciente...",
+    "allStatuses": "Todos los estados",
+    "noMatches": "Ninguna cita coincide con tu búsqueda.",
+    "noAppointments": "Aún no hay citas.",
+    "count_one": "{{count}} cita",
+    "count_other": "{{count}} citas",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pageOf": "Página {{current}} de {{total}}",
+    "columns": {
+      "patient": "Paciente",
+      "type": "Tipo",
+      "dateTime": "Fecha / Hora",
+      "location": "Ubicación",
+      "status": "Estado"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detalles de la cita",
+    "complete": "Completar",
+    "cancel": "Cancelar",
+    "noShow": "No asistió",
+    "delete": "Eliminar",
+    "deleted": "Cita eliminada",
+    "markedAs": "Cita marcada como {{status}}"
+  },
+  "exportColumns": {
+    "filename": "Citas",
+    "patient": "Paciente",
+    "type": "Tipo",
+    "dateTime": "Fecha / Hora",
+    "location": "Ubicación",
+    "status": "Estado"
+  },
+  "validation": {
+    "patientRequired": "El paciente es obligatorio",
+    "startTimeRequired": "La hora de inicio es obligatoria",
+    "endTimeRequired": "La hora de finalización es obligatoria",
+    "endTimeAfterStart": "La hora de finalización debe ser posterior a la hora de inicio"
   }
 }

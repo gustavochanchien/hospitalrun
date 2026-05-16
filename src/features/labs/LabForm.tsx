@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -20,6 +21,8 @@ interface LabFormProps {
 }
 
 export function LabForm({ defaultValues, onSubmit }: LabFormProps) {
+  const { t } = useTranslation('labs')
+
   const {
     register,
     handleSubmit,
@@ -76,12 +79,12 @@ export function LabForm({ defaultValues, onSubmit }: LabFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl space-y-6">
       {/* Patient Picker */}
       <div className="space-y-2">
-        <Label>Patient *</Label>
+        <Label>{t('fields.patient')} *</Label>
         <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
           <PopoverTrigger asChild>
             <div ref={triggerRef}>
               <Input
-                placeholder="Search for a patient..."
+                placeholder={t('form.searchPatient')}
                 value={popoverOpen ? patientSearch : selectedPatientName || patientSearch}
                 onChange={(e) => {
                   setPatientSearch(e.target.value)
@@ -102,7 +105,7 @@ export function LabForm({ defaultValues, onSubmit }: LabFormProps) {
           >
             {filteredPatients.length === 0 ? (
               <p className="p-3 text-sm text-muted-foreground">
-                No patients found.
+                {t('form.noPatients')}
               </p>
             ) : (
               <ul className="max-h-60 overflow-y-auto">
@@ -133,48 +136,48 @@ export function LabForm({ defaultValues, onSubmit }: LabFormProps) {
           </PopoverContent>
         </Popover>
         <input type="hidden" {...register('patientId')} />
-        {errors.patientId && (
+        {errors.patientId?.message && (
           <p className="text-sm text-destructive">
-            {errors.patientId.message}
+            {t(errors.patientId.message as 'validation.patientRequired')}
           </p>
         )}
       </div>
 
       {/* Type */}
       <div className="space-y-2">
-        <Label htmlFor="type">Lab Type *</Label>
+        <Label htmlFor="type">{t('form.labType')} *</Label>
         <Input
           id="type"
-          placeholder="e.g. Complete Blood Count"
+          placeholder={t('form.labTypePlaceholder')}
           {...register('type')}
         />
-        {errors.type && (
-          <p className="text-sm text-destructive">{errors.type.message}</p>
+        {errors.type?.message && (
+          <p className="text-sm text-destructive">{t(errors.type.message as 'validation.typeRequired')}</p>
         )}
       </div>
 
       {/* Code */}
       <div className="space-y-2">
-        <Label htmlFor="code">Code</Label>
+        <Label htmlFor="code">{t('fields.code')}</Label>
         <Input
           id="code"
-          placeholder="e.g. CBC, BMP"
+          placeholder={t('form.codePlaceholder')}
           {...register('code')}
         />
       </div>
 
       {/* Notes */}
       <div className="space-y-2">
-        <Label htmlFor="notes">Notes</Label>
+        <Label htmlFor="notes">{t('fields.notes')}</Label>
         <Textarea
           id="notes"
-          placeholder="Additional notes..."
+          placeholder={t('form.notesPlaceholder')}
           {...register('notes')}
         />
       </div>
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Saving...' : 'Request Lab'}
+        {isSubmitting ? t('form.saving') : t('form.request')}
       </Button>
     </form>
   )

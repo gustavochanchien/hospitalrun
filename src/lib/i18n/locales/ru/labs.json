@@ -1,6 +1,9 @@
 {
   "title": "Лаборатории",
   "newLab": "Новое исследование",
+  "requestFirst": "Запросить первое исследование",
+  "backToLabs": "Назад к лабораториям",
+  "notFound": "Исследование не найдено.",
   "fields": {
     "patient": "Пациент",
     "type": "Тип",
@@ -8,6 +11,8 @@
     "status": "Статус",
     "requestedBy": "Запросил",
     "requestedAt": "Запрошено",
+    "completedAt": "Завершено",
+    "canceledAt": "Отменено",
     "result": "Результат",
     "notes": "Заметки"
   },
@@ -15,5 +20,72 @@
     "complete": "Завершить",
     "cancel": "Отменить исследование",
     "saveResult": "Сохранить результат"
+  },
+  "status": {
+    "requested": "Запрошено",
+    "completed": "Завершено",
+    "canceled": "Отменено"
+  },
+  "form": {
+    "labType": "Тип исследования",
+    "labTypePlaceholder": "напр. Общий анализ крови",
+    "codePlaceholder": "напр. ОАК, БМП",
+    "notesPlaceholder": "Дополнительные заметки...",
+    "searchPatient": "Поиск пациента...",
+    "noPatients": "Пациенты не найдены.",
+    "saving": "Сохранение...",
+    "request": "Запросить исследование"
+  },
+  "list": {
+    "searchPlaceholder": "Поиск по имени пациента...",
+    "allStatuses": "Все статусы",
+    "noMatches": "Исследования, соответствующие поиску, не найдены.",
+    "noLabs": "Исследований пока нет.",
+    "count_one": "{{count}} исследование",
+    "count_other": "{{count}} исследований",
+    "previous": "Назад",
+    "next": "Вперёд",
+    "pageOf": "Страница {{current}} из {{total}}",
+    "columns": {
+      "patient": "Пациент",
+      "type": "Тип",
+      "code": "Код",
+      "status": "Статус",
+      "requestedAt": "Запрошено",
+      "result": "Результат"
+    }
+  },
+  "detail": {
+    "cardTitle": "Детали исследования",
+    "resultCardTitle": "Результат",
+    "enterResult": "Введите результат",
+    "resultPlaceholder": "Введите результат исследования...",
+    "saveResult": "Сохранить результат",
+    "saveAndComplete": "Сохранить и завершить",
+    "complete": "Завершить",
+    "completeDialogTitle": "Завершить исследование",
+    "resultLabel": "Результат *",
+    "cancelLab": "Отменить исследование",
+    "delete": "Удалить",
+    "resultSaved": "Результат сохранён",
+    "labCompleted": "Исследование завершено",
+    "labCanceled": "Исследование отменено",
+    "labDeleted": "Исследование удалено",
+    "resultRequired": "Пожалуйста, введите результат перед завершением.",
+    "resultRequiredShort": "Пожалуйста, введите результат.",
+    "noResultAvailable": "Результат отсутствует."
+  },
+  "exportColumns": {
+    "filename": "Лаборатории",
+    "patient": "Пациент",
+    "type": "Тип",
+    "code": "Код",
+    "status": "Статус",
+    "requestedAt": "Запрошено",
+    "result": "Результат"
+  },
+  "validation": {
+    "patientRequired": "Пациент обязателен",
+    "typeRequired": "Тип исследования обязателен"
   }
 }

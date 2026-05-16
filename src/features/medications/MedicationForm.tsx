@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -28,6 +29,39 @@ import {
 } from './medication.schema'
 import type { Medication } from '@/lib/db/schema'
 
+type MedicationStatus = (typeof MEDICATION_STATUSES)[number]
+type MedicationIntent = (typeof MEDICATION_INTENTS)[number]
+type MedicationPriority = (typeof MEDICATION_PRIORITIES)[number]
+
+const STATUS_KEY: Record<MedicationStatus, string> = {
+  draft: 'draft',
+  active: 'active',
+  'on hold': 'onHold',
+  canceled: 'canceled',
+  completed: 'completed',
+  'entered in error': 'enteredInError',
+  stopped: 'stopped',
+  unknown: 'unknown',
+}
+
+const INTENT_KEY: Record<MedicationIntent, string> = {
+  proposal: 'proposal',
+  plan: 'plan',
+  order: 'order',
+  'original order': 'originalOrder',
+  'reflex order': 'reflexOrder',
+  'filler order': 'fillerOrder',
+  'instance order': 'instanceOrder',
+  option: 'option',
+}
+
+const PRIORITY_KEY: Record<MedicationPriority, string> = {
+  routine: 'routine',
+  urgent: 'urgent',
+  asap: 'asap',
+  stat: 'stat',
+}
+
 interface MedicationFormProps {
   defaultValues?: Partial<MedicationFormValues>
   onSubmit: (data: MedicationFormValues) => Promise<void>
@@ -39,6 +73,7 @@ export function MedicationForm({
   onSubmit,
   medication,
 }: MedicationFormProps) {
+  const { t } = useTranslation('medications')
   const [patientSearch, setPatientSearch] = useState('')
   const [patientPopoverOpen, setPatientPopoverOpen] = useState(false)
 
@@ -84,7 +119,7 @@ export function MedicationForm({
     <form onSubmit={handleSubmit((data) => onSubmit(data as MedicationFormValues))} className="max-w-2xl space-y-6">
       {/* Patient Picker */}
       <div className="space-y-2">
-        <Label>Patient *</Label>
+        <Label>{t('fields.patient')} *</Label>
         <Popover open={patientPopoverOpen} onOpenChange={setPatientPopoverOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -94,12 +129,12 @@ export function MedicationForm({
             >
               {selectedPatient
                 ? `${selectedPatient.givenName} ${selectedPatient.familyName}`
-                : 'Select a patient...'}
+                : t('form.selectPatient')}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-80 p-2" align="start">
             <Input
-              placeholder="Search patients..."
+              placeholder={t('form.searchPatients')}
               value={patientSearch}
               onChange={(e) => setPatientSearch(e.target.value)}
               className="mb-2"
@@ -107,7 +142,7 @@ export function MedicationForm({
             <div className="max-h-60 overflow-y-auto">
               {filteredPatients.length === 0 ? (
                 <p className="py-4 text-center text-sm text-muted-foreground">
-                  No patients found.
+                  {t('form.noPatients')}
                 </p>
               ) : (
                 filteredPatients.slice(0, 50).map((p) => (
@@ -128,27 +163,27 @@ export function MedicationForm({
             </div>
           </PopoverContent>
         </Popover>
-        {errors.patientId && (
-          <p className="text-sm text-destructive">{errors.patientId.message}</p>
+        {errors.patientId?.message && (
+          <p className="text-sm text-destructive">{t(errors.patientId.message as 'validation.patientRequired')}</p>
         )}
       </div>
 
       {/* Medication Name */}
       <div className="space-y-2">
-        <Label htmlFor="name">Medication Name *</Label>
+        <Label htmlFor="name">{t('fields.name')} *</Label>
         <Input
           id="name"
-          placeholder="e.g. Amoxicillin 500mg"
+          placeholder={t('form.namePlaceholder')}
           {...register('name')}
         />
-        {errors.name && (
-          <p className="text-sm text-destructive">{errors.name.message}</p>
+        {errors.name?.message && (
+          <p className="text-sm text-destructive">{t(errors.name.message as 'validation.nameRequired')}</p>
         )}
       </div>
 
       {/* Status */}
       <div className="space-y-2">
-        <Label htmlFor="status">Status</Label>
+        <Label htmlFor="status">{t('fields.status')}</Label>
         <Select
           value={status}
           onValueChange={(v) =>
@@ -158,12 +193,12 @@ export function MedicationForm({
           }
         >
           <SelectTrigger id="status">
-            <SelectValue placeholder="Select status" />
+            <SelectValue placeholder={t('form.selectStatus')} />
           </SelectTrigger>
           <SelectContent>
             {MEDICATION_STATUSES.map((s) => (
               <SelectItem key={s} value={s}>
-                {s.charAt(0).toUpperCase() + s.slice(1)}
+                {t(`statusOption.${STATUS_KEY[s]}` as `statusOption.${string}`)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -176,7 +211,7 @@ export function MedicationForm({
       {/* Intent & Priority */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="intent">Intent</Label>
+          <Label htmlFor="intent">{t('fields.intent')}</Label>
           <Select
             value={watch('intent') ?? ''}
             onValueChange={(v) =>
@@ -186,19 +221,19 @@ export function MedicationForm({
             }
           >
             <SelectTrigger id="intent">
-              <SelectValue placeholder="Select intent" />
+              <SelectValue placeholder={t('form.selectIntent')} />
             </SelectTrigger>
             <SelectContent>
               {MEDICATION_INTENTS.map((i) => (
-                <SelectItem key={i} value={i} className="capitalize">
-                  {i}
+                <SelectItem key={i} value={i}>
+                  {t(`intentOption.${INTENT_KEY[i]}` as `intentOption.${string}`)}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="priority">Priority</Label>
+          <Label htmlFor="priority">{t('fields.priority')}</Label>
           <Select
             value={watch('priority') ?? ''}
             onValueChange={(v) =>
@@ -208,12 +243,12 @@ export function MedicationForm({
             }
           >
             <SelectTrigger id="priority">
-              <SelectValue placeholder="Select priority" />
+              <SelectValue placeholder={t('form.selectPriority')} />
             </SelectTrigger>
             <SelectContent>
               {MEDICATION_PRIORITIES.map((p) => (
-                <SelectItem key={p} value={p} className="capitalize">
-                  {p}
+                <SelectItem key={p} value={p}>
+                  {t(`priorityOption.${PRIORITY_KEY[p]}` as `priorityOption.${string}`)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -223,10 +258,10 @@ export function MedicationForm({
 
       {/* Quantity */}
       <div className="space-y-2">
-        <Label htmlFor="quantity">Quantity</Label>
+        <Label htmlFor="quantity">{t('fields.quantity')}</Label>
         <Input
           id="quantity"
-          placeholder="e.g. 30 tablets"
+          placeholder={t('form.quantityPlaceholder')}
           {...register('quantity')}
         />
       </div>
@@ -234,31 +269,31 @@ export function MedicationForm({
       {/* Dates */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="startDate">Start Date</Label>
+          <Label htmlFor="startDate">{t('fields.startDate')}</Label>
           <Input id="startDate" type="date" {...register('startDate')} />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="endDate">End Date</Label>
+          <Label htmlFor="endDate">{t('fields.endDate')}</Label>
           <Input id="endDate" type="date" {...register('endDate')} />
         </div>
       </div>
 
       {/* Notes */}
       <div className="space-y-2">
-        <Label htmlFor="notes">Notes</Label>
+        <Label htmlFor="notes">{t('fields.notes')}</Label>
         <Textarea
           id="notes"
-          placeholder="Additional notes..."
+          placeholder={t('form.notesPlaceholder')}
           {...register('notes')}
         />
       </div>
 
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting
-          ? 'Saving...'
+          ? t('form.saving')
           : medication
-            ? 'Update Medication'
-            : 'Create Medication'}
+            ? t('form.update')
+            : t('form.create')}
       </Button>
     </form>
   )

@@ -1,6 +1,9 @@
 {
   "title": "Laboratórios",
   "newLab": "Novo Exame",
+  "requestFirst": "Solicitar primeiro exame",
+  "backToLabs": "Voltar aos Laboratórios",
+  "notFound": "Exame de laboratório não encontrado.",
   "fields": {
     "patient": "Paciente",
     "type": "Tipo",
@@ -8,6 +11,8 @@
     "status": "Status",
     "requestedBy": "Solicitado por",
     "requestedAt": "Solicitado em",
+    "completedAt": "Concluído em",
+    "canceledAt": "Cancelado em",
     "result": "Resultado",
     "notes": "Notas"
   },
@@ -15,5 +20,72 @@
     "complete": "Concluir",
     "cancel": "Cancelar exame",
     "saveResult": "Salvar resultado"
+  },
+  "status": {
+    "requested": "Solicitado",
+    "completed": "Concluído",
+    "canceled": "Cancelado"
+  },
+  "form": {
+    "labType": "Tipo de exame",
+    "labTypePlaceholder": "ex. Hemograma completo",
+    "codePlaceholder": "ex. CBC, BMP",
+    "notesPlaceholder": "Notas adicionais...",
+    "searchPatient": "Buscar um paciente...",
+    "noPatients": "Nenhum paciente encontrado.",
+    "saving": "Salvando...",
+    "request": "Solicitar exame"
+  },
+  "list": {
+    "searchPlaceholder": "Buscar por nome do paciente...",
+    "allStatuses": "Todos os status",
+    "noMatches": "Nenhum exame corresponde à sua busca.",
+    "noLabs": "Ainda não há exames.",
+    "count_one": "{{count}} exame",
+    "count_other": "{{count}} exames",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "pageOf": "Página {{current}} de {{total}}",
+    "columns": {
+      "patient": "Paciente",
+      "type": "Tipo",
+      "code": "Código",
+      "status": "Status",
+      "requestedAt": "Solicitado em",
+      "result": "Resultado"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detalhes do Laboratório",
+    "resultCardTitle": "Resultado",
+    "enterResult": "Inserir resultado",
+    "resultPlaceholder": "Inserir resultado do exame...",
+    "saveResult": "Salvar resultado",
+    "saveAndComplete": "Salvar e concluir",
+    "complete": "Concluir",
+    "completeDialogTitle": "Concluir exame",
+    "resultLabel": "Resultado *",
+    "cancelLab": "Cancelar exame",
+    "delete": "Excluir",
+    "resultSaved": "Resultado salvo",
+    "labCompleted": "Exame concluído",
+    "labCanceled": "Exame cancelado",
+    "labDeleted": "Exame excluído",
+    "resultRequired": "Por favor insira um resultado antes de concluir.",
+    "resultRequiredShort": "Por favor insira um resultado.",
+    "noResultAvailable": "Nenhum resultado disponível."
+  },
+  "exportColumns": {
+    "filename": "Laboratórios",
+    "patient": "Paciente",
+    "type": "Tipo",
+    "code": "Código",
+    "status": "Status",
+    "requestedAt": "Solicitado em",
+    "result": "Resultado"
+  },
+  "validation": {
+    "patientRequired": "Paciente é obrigatório",
+    "typeRequired": "Tipo de exame é obrigatório"
   }
 }

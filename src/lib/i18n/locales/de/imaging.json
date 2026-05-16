@@ -8,10 +8,79 @@
     "status": "Status",
     "requestedBy": "Angefordert von",
     "requestedOn": "Angefordert am",
+    "completedOn": "Abgeschlossen am",
+    "canceledOn": "Abgebrochen am",
     "notes": "Notizen"
   },
   "actions": {
     "complete": "Abschließen",
     "cancel": "Anforderung abbrechen"
+  },
+  "status": {
+    "requested": "Angefordert",
+    "completed": "Abgeschlossen",
+    "canceled": "Abgebrochen"
+  },
+  "createFirst": "Erste Anforderung erstellen",
+  "backToImaging": "Zurück zur Bildgebung",
+  "notFound": "Bildgebungsanforderung nicht gefunden.",
+  "form": {
+    "selectPatient": "Patient auswählen...",
+    "searchPatients": "Patienten suchen...",
+    "typePlaceholder": "z. B. Röntgen, CT, MRT",
+    "codePlaceholder": "z. B. 71046",
+    "notesPlaceholder": "Zusätzliche Notizen...",
+    "noPatients": "Keine Patienten gefunden.",
+    "saving": "Wird gespeichert...",
+    "request": "Bildgebung anfordern"
+  },
+  "list": {
+    "searchPlaceholder": "Nach Patientenname oder Bildgebungstyp suchen...",
+    "allStatuses": "Alle Status",
+    "noMatches": "Keine Bildgebungsanforderungen entsprechen Ihrer Suche.",
+    "noRequests": "Noch keine Bildgebungsanforderungen.",
+    "count_one": "{{count}} Anforderung",
+    "count_other": "{{count}} Anforderungen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {{current}} von {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Typ",
+      "code": "Code",
+      "status": "Status",
+      "requestedOn": "Angefordert am"
+    }
+  },
+  "detail": {
+    "cardTitle": "Bildgebungsanforderung",
+    "imageCardTitle": "Bild",
+    "upload": "Hochladen",
+    "replace": "Ersetzen",
+    "remove": "Entfernen",
+    "uploading": "Wird hochgeladen…",
+    "noImage": "Noch kein Bild hochgeladen.",
+    "complete": "Abschließen",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "imageRemoved": "Bild entfernt",
+    "uploadFailed": "Upload fehlgeschlagen",
+    "imageUploaded": "Bild hochgeladen",
+    "markedCompleted": "Bildgebung als abgeschlossen markiert",
+    "requestCanceled": "Bildgebungsanforderung abgebrochen",
+    "requestDeleted": "Bildgebungsanforderung gelöscht",
+    "missingOrg": "Organisationskontext fehlt. Bitte erneut anmelden."
+  },
+  "exportColumns": {
+    "filename": "Bildgebung",
+    "patient": "Patient",
+    "type": "Typ",
+    "code": "Code",
+    "status": "Status",
+    "requestedOn": "Angefordert am"
+  },
+  "validation": {
+    "patientRequired": "Patient ist erforderlich",
+    "typeRequired": "Bildgebungstyp ist erforderlich"
   }
 }

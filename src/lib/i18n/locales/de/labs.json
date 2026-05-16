@@ -1,6 +1,9 @@
 {
   "title": "Labor",
   "newLab": "Neue Untersuchung",
+  "requestFirst": "Erste Laboruntersuchung anfordern",
+  "backToLabs": "Zurück zum Labor",
+  "notFound": "Laboruntersuchung nicht gefunden.",
   "fields": {
     "patient": "Patient",
     "type": "Typ",
@@ -8,6 +11,8 @@
     "status": "Status",
     "requestedBy": "Angefordert von",
     "requestedAt": "Angefordert am",
+    "completedAt": "Abgeschlossen am",
+    "canceledAt": "Abgebrochen am",
     "result": "Ergebnis",
     "notes": "Notizen"
   },
@@ -15,5 +20,72 @@
     "complete": "Abschließen",
     "cancel": "Untersuchung abbrechen",
     "saveResult": "Ergebnis speichern"
+  },
+  "status": {
+    "requested": "Angefordert",
+    "completed": "Abgeschlossen",
+    "canceled": "Abgebrochen"
+  },
+  "form": {
+    "labType": "Untersuchungsart",
+    "labTypePlaceholder": "z. B. Großes Blutbild",
+    "codePlaceholder": "z. B. CBC, BMP",
+    "notesPlaceholder": "Zusätzliche Notizen...",
+    "searchPatient": "Nach Patient suchen...",
+    "noPatients": "Keine Patienten gefunden.",
+    "saving": "Wird gespeichert...",
+    "request": "Untersuchung anfordern"
+  },
+  "list": {
+    "searchPlaceholder": "Nach Patientenname suchen...",
+    "allStatuses": "Alle Status",
+    "noMatches": "Keine Untersuchungen entsprechen Ihrer Suche.",
+    "noLabs": "Noch keine Untersuchungen.",
+    "count_one": "{{count}} Untersuchung",
+    "count_other": "{{count}} Untersuchungen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {{current}} von {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Typ",
+      "code": "Code",
+      "status": "Status",
+      "requestedAt": "Angefordert am",
+      "result": "Ergebnis"
+    }
+  },
+  "detail": {
+    "cardTitle": "Labordetails",
+    "resultCardTitle": "Ergebnis",
+    "enterResult": "Ergebnis eingeben",
+    "resultPlaceholder": "Laborergebnis eingeben...",
+    "saveResult": "Ergebnis speichern",
+    "saveAndComplete": "Speichern & Abschließen",
+    "complete": "Abschließen",
+    "completeDialogTitle": "Untersuchung abschließen",
+    "resultLabel": "Ergebnis *",
+    "cancelLab": "Untersuchung abbrechen",
+    "delete": "Löschen",
+    "resultSaved": "Ergebnis gespeichert",
+    "labCompleted": "Untersuchung abgeschlossen",
+    "labCanceled": "Untersuchung abgebrochen",
+    "labDeleted": "Untersuchung gelöscht",
+    "resultRequired": "Bitte Ergebnis vor dem Abschließen eingeben.",
+    "resultRequiredShort": "Bitte Ergebnis eingeben.",
+    "noResultAvailable": "Kein Ergebnis verfügbar."
+  },
+  "exportColumns": {
+    "filename": "Labor",
+    "patient": "Patient",
+    "type": "Typ",
+    "code": "Code",
+    "status": "Status",
+    "requestedAt": "Angefordert am",
+    "result": "Ergebnis"
+  },
+  "validation": {
+    "patientRequired": "Patient ist erforderlich",
+    "typeRequired": "Untersuchungsart ist erforderlich"
   }
 }

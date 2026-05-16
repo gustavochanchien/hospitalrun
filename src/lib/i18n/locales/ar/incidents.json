@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "حل",
     "downloadCsv": "تنزيل CSV"
+  },
+  "status": {
+    "reported": "مُبلَّغ عنه",
+    "resolved": "محلول"
+  },
+  "reportFirst": "أبلغ عن أول حادثة",
+  "backToIncidents": "العودة إلى الحوادث",
+  "notFound": "لم يتم العثور على الحادثة.",
+  "form": {
+    "description": "الوصف",
+    "department": "القسم",
+    "category": "الفئة",
+    "categoryItem": "البند",
+    "patientId": "معرّف المريض (اختياري)",
+    "descriptionPlaceholder": "صِف الحادثة...",
+    "departmentPlaceholder": "مثال: الطوارئ",
+    "categoryPlaceholder": "مثال: السلامة",
+    "categoryItemPlaceholder": "مثال: سقوط",
+    "patientIdPlaceholder": "معرّف المريض",
+    "saving": "جارٍ الحفظ...",
+    "report": "الإبلاغ عن حادثة"
+  },
+  "list": {
+    "searchPlaceholder": "ابحث باسم المُبلِّغ أو الوصف...",
+    "allStatuses": "كل الحالات",
+    "noMatches": "لا توجد حوادث تطابق بحثك.",
+    "noIncidents": "لا توجد حوادث بعد.",
+    "count_one": "{{count}} حادثة",
+    "count_other": "{{count}} حوادث",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{total}}",
+    "columns": {
+      "date": "التاريخ",
+      "reporter": "المُبلِّغ",
+      "department": "القسم",
+      "category": "الفئة",
+      "description": "الوصف",
+      "status": "الحالة"
+    }
+  },
+  "detail": {
+    "cardTitle": "تفاصيل الحادثة",
+    "resolve": "حل",
+    "delete": "حذف",
+    "resolved": "تم حل الحادثة",
+    "deleted": "تم حذف الحادثة"
+  },
+  "visualize": {
+    "noData": "لا توجد بيانات حوادث للعرض.",
+    "incidentsLabel": "الحوادث",
+    "monthlyTrend": "الاتجاه الشهري ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "الحوادث",
+    "date": "التاريخ",
+    "reporter": "المُبلِّغ",
+    "department": "القسم",
+    "category": "الفئة",
+    "status": "الحالة"
+  },
+  "validation": {
+    "descriptionRequired": "الوصف مطلوب"
   }
 }

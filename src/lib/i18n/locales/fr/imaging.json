@@ -8,10 +8,79 @@
     "status": "Statut",
     "requestedBy": "Demandé par",
     "requestedOn": "Demandé le",
+    "completedOn": "Terminé le",
+    "canceledOn": "Annulé le",
     "notes": "Notes"
   },
   "actions": {
     "complete": "Terminer",
     "cancel": "Annuler la demande"
+  },
+  "status": {
+    "requested": "Demandé",
+    "completed": "Terminé",
+    "canceled": "Annulé"
+  },
+  "createFirst": "Créer votre première demande",
+  "backToImaging": "Retour à l'imagerie",
+  "notFound": "Demande d'imagerie introuvable.",
+  "form": {
+    "selectPatient": "Sélectionner un patient...",
+    "searchPatients": "Rechercher des patients...",
+    "typePlaceholder": "ex. Radiographie, Scanner, IRM",
+    "codePlaceholder": "ex. 71046",
+    "notesPlaceholder": "Notes supplémentaires...",
+    "noPatients": "Aucun patient trouvé.",
+    "saving": "Enregistrement...",
+    "request": "Demander une imagerie"
+  },
+  "list": {
+    "searchPlaceholder": "Rechercher par nom du patient ou type d'imagerie...",
+    "allStatuses": "Tous les statuts",
+    "noMatches": "Aucune demande d'imagerie ne correspond à votre recherche.",
+    "noRequests": "Aucune demande d'imagerie pour le moment.",
+    "count_one": "{{count}} demande",
+    "count_other": "{{count}} demandes",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {{current}} sur {{total}}",
+    "columns": {
+      "patient": "Patient",
+      "type": "Type",
+      "code": "Code",
+      "status": "Statut",
+      "requestedOn": "Demandé le"
+    }
+  },
+  "detail": {
+    "cardTitle": "Demande d'imagerie",
+    "imageCardTitle": "Image",
+    "upload": "Téléverser",
+    "replace": "Remplacer",
+    "remove": "Supprimer",
+    "uploading": "Téléversement…",
+    "noImage": "Aucune image téléversée pour le moment.",
+    "complete": "Terminer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "imageRemoved": "Image supprimée",
+    "uploadFailed": "Échec du téléversement",
+    "imageUploaded": "Image téléversée",
+    "markedCompleted": "Imagerie marquée comme terminée",
+    "requestCanceled": "Demande d'imagerie annulée",
+    "requestDeleted": "Demande d'imagerie supprimée",
+    "missingOrg": "Contexte d'organisation manquant. Veuillez vous reconnecter."
+  },
+  "exportColumns": {
+    "filename": "Imagerie",
+    "patient": "Patient",
+    "type": "Type",
+    "code": "Code",
+    "status": "Statut",
+    "requestedOn": "Demandé le"
+  },
+  "validation": {
+    "patientRequired": "Le patient est requis",
+    "typeRequired": "Le type d'imagerie est requis"
   }
 }

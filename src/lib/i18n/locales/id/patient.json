@@ -336,6 +336,16 @@
         "arrived": "Tiba",
         "triaged": "Sudah triase",
         "onLeave": "Cuti"
+      },
+      "notFound": "Kunjungan tidak ditemukan.",
+      "backToPatients": "Kembali ke Pasien",
+      "patientFallback": "Pasien",
+      "tabs": {
+        "diagnoses": "Diagnosis",
+        "labs": "Laboratorium",
+        "medications": "Obat",
+        "imaging": "Pencitraan",
+        "notes": "Catatan"
       }
     },
     "relatedPersons": {

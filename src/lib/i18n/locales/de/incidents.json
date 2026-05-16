@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Lösen",
     "downloadCsv": "CSV herunterladen"
+  },
+  "status": {
+    "reported": "Gemeldet",
+    "resolved": "Gelöst"
+  },
+  "reportFirst": "Ersten Vorfall melden",
+  "backToIncidents": "Zurück zu Vorfällen",
+  "notFound": "Vorfall nicht gefunden.",
+  "form": {
+    "description": "Beschreibung",
+    "department": "Abteilung",
+    "category": "Kategorie",
+    "categoryItem": "Unterkategorie",
+    "patientId": "Patienten-ID (optional)",
+    "descriptionPlaceholder": "Vorfall beschreiben...",
+    "departmentPlaceholder": "z. B. Notaufnahme",
+    "categoryPlaceholder": "z. B. Sicherheit",
+    "categoryItemPlaceholder": "z. B. Sturz",
+    "patientIdPlaceholder": "Patienten-ID",
+    "saving": "Wird gespeichert...",
+    "report": "Vorfall melden"
+  },
+  "list": {
+    "searchPlaceholder": "Nach Melder oder Beschreibung suchen...",
+    "allStatuses": "Alle Status",
+    "noMatches": "Keine Vorfälle entsprechen Ihrer Suche.",
+    "noIncidents": "Noch keine Vorfälle.",
+    "count_one": "{{count}} Vorfall",
+    "count_other": "{{count}} Vorfälle",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {{current}} von {{total}}",
+    "columns": {
+      "date": "Datum",
+      "reporter": "Meldende Person",
+      "department": "Abteilung",
+      "category": "Kategorie",
+      "description": "Beschreibung",
+      "status": "Status"
+    }
+  },
+  "detail": {
+    "cardTitle": "Vorfalldetails",
+    "resolve": "Lösen",
+    "delete": "Löschen",
+    "resolved": "Vorfall gelöst",
+    "deleted": "Vorfall gelöscht"
+  },
+  "visualize": {
+    "noData": "Keine Vorfalldaten zum Anzeigen.",
+    "incidentsLabel": "Vorfälle",
+    "monthlyTrend": "Monatstrend ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Vorfälle",
+    "date": "Datum",
+    "reporter": "Meldende Person",
+    "department": "Abteilung",
+    "category": "Kategorie",
+    "status": "Status"
+  },
+  "validation": {
+    "descriptionRequired": "Beschreibung ist erforderlich"
   }
 }

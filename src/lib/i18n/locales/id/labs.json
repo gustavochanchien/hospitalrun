@@ -1,6 +1,9 @@
 {
   "title": "Laboratorium",
   "newLab": "Pemeriksaan Baru",
+  "requestFirst": "Minta Pemeriksaan Pertama",
+  "backToLabs": "Kembali ke Laboratorium",
+  "notFound": "Pemeriksaan laboratorium tidak ditemukan.",
   "fields": {
     "patient": "Pasien",
     "type": "Jenis",
@@ -8,6 +11,8 @@
     "status": "Status",
     "requestedBy": "Diminta oleh",
     "requestedAt": "Diminta pada",
+    "completedAt": "Diselesaikan pada",
+    "canceledAt": "Dibatalkan pada",
     "result": "Hasil",
     "notes": "Catatan"
   },
@@ -15,5 +20,72 @@
     "complete": "Selesaikan",
     "cancel": "Batalkan pemeriksaan",
     "saveResult": "Simpan hasil"
+  },
+  "status": {
+    "requested": "Diminta",
+    "completed": "Selesai",
+    "canceled": "Dibatalkan"
+  },
+  "form": {
+    "labType": "Jenis pemeriksaan",
+    "labTypePlaceholder": "mis. Darah Lengkap",
+    "codePlaceholder": "mis. CBC, BMP",
+    "notesPlaceholder": "Catatan tambahan...",
+    "searchPatient": "Cari pasien...",
+    "noPatients": "Tidak ada pasien ditemukan.",
+    "saving": "Menyimpan...",
+    "request": "Minta pemeriksaan"
+  },
+  "list": {
+    "searchPlaceholder": "Cari berdasarkan nama pasien...",
+    "allStatuses": "Semua status",
+    "noMatches": "Tidak ada pemeriksaan yang cocok dengan pencarian Anda.",
+    "noLabs": "Belum ada pemeriksaan.",
+    "count_one": "{{count}} pemeriksaan",
+    "count_other": "{{count}} pemeriksaan",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pageOf": "Halaman {{current}} dari {{total}}",
+    "columns": {
+      "patient": "Pasien",
+      "type": "Jenis",
+      "code": "Kode",
+      "status": "Status",
+      "requestedAt": "Diminta pada",
+      "result": "Hasil"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detail Laboratorium",
+    "resultCardTitle": "Hasil",
+    "enterResult": "Masukkan Hasil",
+    "resultPlaceholder": "Masukkan hasil laboratorium...",
+    "saveResult": "Simpan Hasil",
+    "saveAndComplete": "Simpan & Selesaikan",
+    "complete": "Selesaikan",
+    "completeDialogTitle": "Selesaikan Pemeriksaan",
+    "resultLabel": "Hasil *",
+    "cancelLab": "Batalkan Pemeriksaan",
+    "delete": "Hapus",
+    "resultSaved": "Hasil disimpan",
+    "labCompleted": "Pemeriksaan selesai",
+    "labCanceled": "Pemeriksaan dibatalkan",
+    "labDeleted": "Pemeriksaan dihapus",
+    "resultRequired": "Harap masukkan hasil sebelum menyelesaikan.",
+    "resultRequiredShort": "Harap masukkan hasil.",
+    "noResultAvailable": "Tidak ada hasil tersedia."
+  },
+  "exportColumns": {
+    "filename": "Laboratorium",
+    "patient": "Pasien",
+    "type": "Jenis",
+    "code": "Kode",
+    "status": "Status",
+    "requestedAt": "Diminta pada",
+    "result": "Hasil"
+  },
+  "validation": {
+    "patientRequired": "Pasien diperlukan",
+    "typeRequired": "Jenis pemeriksaan diperlukan"
   }
 }

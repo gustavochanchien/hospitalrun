@@ -3,7 +3,10 @@
   "newAppointment": "موعد جديد",
   "editAppointment": "تعديل الموعد",
   "calendar": "التقويم",
-  "list": "قائمة",
+  "listView": "قائمة",
+  "scheduleFirst": "جدّل موعدك الأول",
+  "backToAppointments": "العودة إلى المواعيد",
+  "notFound": "الموعد غير موجود.",
   "fields": {
     "patient": "المريض",
     "type": "النوع",
@@ -11,7 +14,8 @@
     "endTime": "وقت الانتهاء",
     "location": "الموقع",
     "status": "الحالة",
-    "notes": "الملاحظات"
+    "notes": "الملاحظات",
+    "reasonForVisit": "سبب الزيارة"
   },
   "types": {
     "checkup": "فحص",
@@ -25,5 +29,56 @@
     "completed": "مكتمل",
     "cancelled": "ملغى",
     "noShow": "لم يحضر"
+  },
+  "form": {
+    "selectPatient": "اختر مريضاً...",
+    "searchPatients": "البحث عن مريض...",
+    "selectType": "اختر النوع",
+    "locationPlaceholder": "مثال: غرفة 204",
+    "noPatients": "لا يوجد مرضى.",
+    "saving": "جارٍ الحفظ...",
+    "create": "إنشاء موعد",
+    "update": "تحديث الموعد"
+  },
+  "list": {
+    "searchPlaceholder": "البحث باسم المريض...",
+    "allStatuses": "جميع الحالات",
+    "noMatches": "لا توجد مواعيد تطابق بحثك.",
+    "noAppointments": "لا توجد مواعيد بعد.",
+    "count_one": "{{count}} موعد",
+    "count_other": "{{count}} مواعيد",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{total}}",
+    "columns": {
+      "patient": "المريض",
+      "type": "النوع",
+      "dateTime": "التاريخ / الوقت",
+      "location": "الموقع",
+      "status": "الحالة"
+    }
+  },
+  "detail": {
+    "cardTitle": "تفاصيل الموعد",
+    "complete": "إكمال",
+    "cancel": "إلغاء",
+    "noShow": "لم يحضر",
+    "delete": "حذف",
+    "deleted": "تم حذف الموعد",
+    "markedAs": "تم تغيير حالة الموعد إلى {{status}}"
+  },
+  "exportColumns": {
+    "filename": "المواعيد",
+    "patient": "المريض",
+    "type": "النوع",
+    "dateTime": "التاريخ / الوقت",
+    "location": "الموقع",
+    "status": "الحالة"
+  },
+  "validation": {
+    "patientRequired": "المريض مطلوب",
+    "startTimeRequired": "وقت البدء مطلوب",
+    "endTimeRequired": "وقت الانتهاء مطلوب",
+    "endTimeAfterStart": "يجب أن يكون وقت الانتهاء بعد وقت البدء"
   }
 }

@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Résoudre",
     "downloadCsv": "Télécharger CSV"
+  },
+  "status": {
+    "reported": "Signalé",
+    "resolved": "Résolu"
+  },
+  "reportFirst": "Signaler votre premier incident",
+  "backToIncidents": "Retour aux incidents",
+  "notFound": "Incident introuvable.",
+  "form": {
+    "description": "Description",
+    "department": "Service",
+    "category": "Catégorie",
+    "categoryItem": "Sous-catégorie",
+    "patientId": "ID patient (optionnel)",
+    "descriptionPlaceholder": "Décrire l'incident...",
+    "departmentPlaceholder": "ex. Urgences",
+    "categoryPlaceholder": "ex. Sécurité",
+    "categoryItemPlaceholder": "ex. Chute",
+    "patientIdPlaceholder": "ID patient",
+    "saving": "Enregistrement...",
+    "report": "Signaler l'incident"
+  },
+  "list": {
+    "searchPlaceholder": "Rechercher par déclarant ou description...",
+    "allStatuses": "Tous les statuts",
+    "noMatches": "Aucun incident ne correspond à votre recherche.",
+    "noIncidents": "Aucun incident pour le moment.",
+    "count_one": "{{count}} incident",
+    "count_other": "{{count}} incidents",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageOf": "Page {{current}} sur {{total}}",
+    "columns": {
+      "date": "Date",
+      "reporter": "Déclarant",
+      "department": "Service",
+      "category": "Catégorie",
+      "description": "Description",
+      "status": "Statut"
+    }
+  },
+  "detail": {
+    "cardTitle": "Détails de l'incident",
+    "resolve": "Résoudre",
+    "delete": "Supprimer",
+    "resolved": "Incident résolu",
+    "deleted": "Incident supprimé"
+  },
+  "visualize": {
+    "noData": "Aucune donnée d'incident à afficher.",
+    "incidentsLabel": "Incidents",
+    "monthlyTrend": "Tendance mensuelle ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Incidents",
+    "date": "Date",
+    "reporter": "Déclarant",
+    "department": "Service",
+    "category": "Catégorie",
+    "status": "Statut"
+  },
+  "validation": {
+    "descriptionRequired": "La description est requise"
   }
 }

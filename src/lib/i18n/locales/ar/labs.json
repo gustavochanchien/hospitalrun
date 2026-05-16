@@ -1,6 +1,9 @@
 {
   "title": "المختبرات",
   "newLab": "فحص مختبري جديد",
+  "requestFirst": "طلب أول فحص مختبري",
+  "backToLabs": "العودة إلى المختبرات",
+  "notFound": "الفحص المختبري غير موجود.",
   "fields": {
     "patient": "المريض",
     "type": "النوع",
@@ -8,6 +11,8 @@
     "status": "الحالة",
     "requestedBy": "طُلب بواسطة",
     "requestedAt": "تاريخ الطلب",
+    "completedAt": "تاريخ الاكتمال",
+    "canceledAt": "تاريخ الإلغاء",
     "result": "النتيجة",
     "notes": "الملاحظات"
   },
@@ -15,5 +20,72 @@
     "complete": "إكمال",
     "cancel": "إلغاء الفحص",
     "saveResult": "حفظ النتيجة"
+  },
+  "status": {
+    "requested": "مطلوب",
+    "completed": "مكتمل",
+    "canceled": "ملغى"
+  },
+  "form": {
+    "labType": "نوع الفحص",
+    "labTypePlaceholder": "مثال: صورة دم كاملة",
+    "codePlaceholder": "مثال: CBC, BMP",
+    "notesPlaceholder": "ملاحظات إضافية...",
+    "searchPatient": "البحث عن مريض...",
+    "noPatients": "لا يوجد مرضى.",
+    "saving": "جارٍ الحفظ...",
+    "request": "طلب فحص"
+  },
+  "list": {
+    "searchPlaceholder": "البحث باسم المريض...",
+    "allStatuses": "جميع الحالات",
+    "noMatches": "لا توجد فحوصات تطابق بحثك.",
+    "noLabs": "لا توجد فحوصات بعد.",
+    "count_one": "{{count}} فحص",
+    "count_other": "{{count}} فحوصات",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{total}}",
+    "columns": {
+      "patient": "المريض",
+      "type": "النوع",
+      "code": "الرمز",
+      "status": "الحالة",
+      "requestedAt": "تاريخ الطلب",
+      "result": "النتيجة"
+    }
+  },
+  "detail": {
+    "cardTitle": "تفاصيل الفحص",
+    "resultCardTitle": "النتيجة",
+    "enterResult": "إدخال النتيجة",
+    "resultPlaceholder": "أدخل نتيجة الفحص...",
+    "saveResult": "حفظ النتيجة",
+    "saveAndComplete": "حفظ وإكمال",
+    "complete": "إكمال",
+    "completeDialogTitle": "إكمال الفحص",
+    "resultLabel": "النتيجة *",
+    "cancelLab": "إلغاء الفحص",
+    "delete": "حذف",
+    "resultSaved": "تم حفظ النتيجة",
+    "labCompleted": "تم إكمال الفحص",
+    "labCanceled": "تم إلغاء الفحص",
+    "labDeleted": "تم حذف الفحص",
+    "resultRequired": "الرجاء إدخال نتيجة قبل الإكمال.",
+    "resultRequiredShort": "الرجاء إدخال نتيجة.",
+    "noResultAvailable": "لا توجد نتيجة متاحة."
+  },
+  "exportColumns": {
+    "filename": "المختبرات",
+    "patient": "المريض",
+    "type": "النوع",
+    "code": "الرمز",
+    "status": "الحالة",
+    "requestedAt": "تاريخ الطلب",
+    "result": "النتيجة"
+  },
+  "validation": {
+    "patientRequired": "المريض مطلوب",
+    "typeRequired": "نوع الفحص مطلوب"
   }
 }

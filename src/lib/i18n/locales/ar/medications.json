@@ -1,6 +1,9 @@
 {
   "title": "الأدوية",
   "newMedication": "دواء جديد",
+  "addFirst": "إضافة دوائك الأول",
+  "backToMedications": "العودة إلى الأدوية",
+  "notFound": "الدواء غير موجود.",
   "fields": {
     "name": "اسم الدواء",
     "patient": "المريض",
@@ -11,5 +14,86 @@
     "startDate": "تاريخ البدء",
     "endDate": "تاريخ الانتهاء",
     "notes": "الملاحظات"
+  },
+  "statusOption": {
+    "draft": "مسودة",
+    "active": "نشط",
+    "onHold": "معلق",
+    "canceled": "ملغى",
+    "completed": "مكتمل",
+    "enteredInError": "أُدخل بالخطأ",
+    "stopped": "موقوف",
+    "unknown": "غير معروف"
+  },
+  "intentOption": {
+    "proposal": "مقترح",
+    "plan": "خطة",
+    "order": "أمر",
+    "originalOrder": "أمر أصلي",
+    "reflexOrder": "أمر ارتدادي",
+    "fillerOrder": "أمر تعبئة",
+    "instanceOrder": "أمر مثيل",
+    "option": "خيار"
+  },
+  "priorityOption": {
+    "routine": "روتيني",
+    "urgent": "عاجل",
+    "asap": "في أقرب وقت",
+    "stat": "فوري"
+  },
+  "form": {
+    "selectPatient": "اختر مريضاً...",
+    "searchPatients": "البحث عن مريض...",
+    "namePlaceholder": "مثال: أموكسيسيلين 500 ملغ",
+    "selectStatus": "اختر الحالة",
+    "selectIntent": "اختر الغرض",
+    "selectPriority": "اختر الأولوية",
+    "quantityPlaceholder": "مثال: 30 قرصاً",
+    "notesPlaceholder": "ملاحظات إضافية...",
+    "noPatients": "لا يوجد مرضى.",
+    "saving": "جارٍ الحفظ...",
+    "create": "إنشاء دواء",
+    "update": "تحديث الدواء"
+  },
+  "list": {
+    "searchPlaceholder": "البحث باسم الدواء أو المريض...",
+    "allStatuses": "جميع الحالات",
+    "noMatches": "لا توجد أدوية تطابق بحثك.",
+    "noMedications": "لا توجد أدوية بعد.",
+    "count_one": "{{count}} دواء",
+    "count_other": "{{count}} أدوية",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{total}}",
+    "columns": {
+      "name": "اسم الدواء",
+      "patient": "المريض",
+      "status": "الحالة",
+      "quantity": "الكمية",
+      "startDate": "تاريخ البدء",
+      "endDate": "تاريخ الانتهاء"
+    }
+  },
+  "detail": {
+    "patientLabel": "المريض:",
+    "updateStatusTitle": "تحديث الحالة",
+    "updateStatus": "تحديث الحالة",
+    "deleteMedication": "حذف الدواء",
+    "selectNewStatus": "اختر الحالة الجديدة",
+    "statusUpdated": "تم تحديث الحالة إلى \"{{status}}\"",
+    "deleted": "تم حذف الدواء"
+  },
+  "exportColumns": {
+    "filename": "الأدوية",
+    "name": "اسم الدواء",
+    "patient": "المريض",
+    "status": "الحالة",
+    "quantity": "الكمية",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء"
+  },
+  "validation": {
+    "patientRequired": "المريض مطلوب",
+    "nameRequired": "اسم الدواء مطلوب"
   }
 }

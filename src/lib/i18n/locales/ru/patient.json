@@ -338,6 +338,16 @@
         "arrived": "Прибыл",
         "triaged": "Сортировка проведена",
         "onLeave": "В отпуске"
+      },
+      "notFound": "Визит не найден.",
+      "backToPatients": "Назад к пациентам",
+      "patientFallback": "Пациент",
+      "tabs": {
+        "diagnoses": "Диагнозы",
+        "labs": "Лаборатория",
+        "medications": "Лекарства",
+        "imaging": "Визуализация",
+        "notes": "Заметки"
       }
     },
     "relatedPersons": {

@@ -3,6 +3,7 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -21,6 +22,19 @@ import { MEDICATION_STATUSES, type MedicationStatus } from './medication.schema'
 
 interface MedicationDetailPageProps {
   medicationId: string
+}
+
+type MedicationStatusType = (typeof MEDICATION_STATUSES)[number]
+
+const STATUS_KEY: Record<MedicationStatusType, string> = {
+  draft: 'draft',
+  active: 'active',
+  'on hold': 'onHold',
+  canceled: 'canceled',
+  completed: 'completed',
+  'entered in error': 'enteredInError',
+  stopped: 'stopped',
+  unknown: 'unknown',
 }
 
 function statusVariant(status: MedicationStatus) {
@@ -43,6 +57,7 @@ function statusVariant(status: MedicationStatus) {
 export function MedicationDetailPage({
   medicationId,
 }: MedicationDetailPageProps) {
+  const { t } = useTranslation('medications')
   const navigate = useNavigate()
   const [newStatus, setNewStatus] = useState<MedicationStatus | ''>('')
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -72,9 +87,9 @@ export function MedicationDetailPage({
   if (!medication || medication._deleted) {
     return (
       <div className="flex flex-col items-center justify-center p-12">
-        <p className="text-muted-foreground">Medication not found.</p>
+        <p className="text-muted-foreground">{t('notFound')}</p>
         <Button asChild variant="outline" className="mt-4">
-          <Link to="/medications">Back to Medications</Link>
+          <Link to="/medications">{t('backToMedications')}</Link>
         </Button>
       </div>
     )
@@ -90,13 +105,13 @@ export function MedicationDetailPage({
       },
       'update',
     )
-    toast.success(`Status updated to "${newStatus}"`)
+    toast.success(t('detail.statusUpdated', { status: newStatus }))
     setNewStatus('')
   }
 
   async function handleDelete() {
     await dbDelete('medications', medicationId)
-    toast.success('Medication deleted')
+    toast.success(t('detail.deleted'))
     await navigate({ to: '/medications' })
   }
 
@@ -113,7 +128,7 @@ export function MedicationDetailPage({
             <CardTitle className="text-xl">{medication.name}</CardTitle>
             <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
               <span>
-                Patient:{' '}
+                {t('detail.patientLabel')}{' '}
                 <Link
                   to="/patients/$patientId"
                   params={{ patientId: medication.patientId }}
@@ -131,36 +146,36 @@ export function MedicationDetailPage({
         <CardContent>
           <div className="grid gap-4 text-sm sm:grid-cols-3">
             <div>
-              <p className="font-medium text-muted-foreground">Intent</p>
-              <p>{medication.intent ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.intent')}</p>
+              <p>{medication.intent ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Priority</p>
-              <p>{medication.priority ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.priority')}</p>
+              <p>{medication.priority ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Quantity</p>
-              <p>{medication.quantity ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.quantity')}</p>
+              <p>{medication.quantity ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Start Date</p>
+              <p className="font-medium text-muted-foreground">{t('fields.startDate')}</p>
               <p>
                 {medication.startDate
                   ? format(parseISO(medication.startDate), 'MMM d, yyyy')
-                  : '\u2014'}
+                  : '—'}
               </p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">End Date</p>
+              <p className="font-medium text-muted-foreground">{t('fields.endDate')}</p>
               <p>
                 {medication.endDate
                   ? format(parseISO(medication.endDate), 'MMM d, yyyy')
-                  : '\u2014'}
+                  : '—'}
               </p>
             </div>
             {medication.notes && (
               <div className="sm:col-span-3">
-                <p className="font-medium text-muted-foreground">Notes</p>
+                <p className="font-medium text-muted-foreground">{t('fields.notes')}</p>
                 <p className="whitespace-pre-wrap">{medication.notes}</p>
               </div>
             )}
@@ -171,7 +186,7 @@ export function MedicationDetailPage({
       {/* Status Transition */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Update Status</CardTitle>
+          <CardTitle className="text-lg">{t('detail.updateStatusTitle')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-3">
@@ -180,12 +195,12 @@ export function MedicationDetailPage({
               onValueChange={(v) => setNewStatus(v as MedicationStatus)}
             >
               <SelectTrigger className="w-[200px]">
-                <SelectValue placeholder="Select new status" />
+                <SelectValue placeholder={t('detail.selectNewStatus')} />
               </SelectTrigger>
               <SelectContent>
                 {MEDICATION_STATUSES.map((s) => (
                   <SelectItem key={s} value={s}>
-                    {s.charAt(0).toUpperCase() + s.slice(1)}
+                    {t(`statusOption.${STATUS_KEY[s]}` as `statusOption.${string}`)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -194,7 +209,7 @@ export function MedicationDetailPage({
               onClick={() => void handleStatusUpdate()}
               disabled={!newStatus || newStatus === medication.status}
             >
-              Update Status
+              {t('detail.updateStatus')}
             </Button>
           </div>
         </CardContent>
@@ -206,7 +221,7 @@ export function MedicationDetailPage({
           variant="destructive"
           onClick={() => setConfirmOpen(true)}
         >
-          Delete Medication
+          {t('detail.deleteMedication')}
         </Button>
       </div>
 

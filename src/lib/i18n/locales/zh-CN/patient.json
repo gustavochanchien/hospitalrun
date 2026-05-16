@@ -336,6 +336,16 @@
         "arrived": "已到达",
         "triaged": "已分诊",
         "onLeave": "请假中"
+      },
+      "notFound": "未找到就诊记录。",
+      "backToPatients": "返回患者列表",
+      "patientFallback": "患者",
+      "tabs": {
+        "diagnoses": "诊断",
+        "labs": "实验室",
+        "medications": "药物",
+        "imaging": "影像",
+        "notes": "记录"
       }
     },
     "relatedPersons": {

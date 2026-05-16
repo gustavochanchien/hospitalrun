@@ -1,5 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { getMonth, getYear, parseISO } from 'date-fns'
+import { useTranslation } from 'react-i18next'
 import {
   LineChart,
   Line,
@@ -20,6 +21,7 @@ const MONTHS = [
 ]
 
 export function IncidentVisualizePage() {
+  const { t } = useTranslation('incidents')
   const incidents = useLiveQuery(
     () => db.incidents.filter((i) => !i._deleted).toArray(),
     [],
@@ -38,7 +40,7 @@ export function IncidentVisualizePage() {
   if (incidents.length === 0) {
     return (
       <div className="flex items-center justify-center py-12">
-        <p className="text-muted-foreground">No incident data to visualize.</p>
+        <p className="text-muted-foreground">{t('visualize.noData')}</p>
       </div>
     )
   }
@@ -70,7 +72,7 @@ export function IncidentVisualizePage() {
       {/* Monthly Trend */}
       <Card>
         <CardHeader>
-          <CardTitle>Monthly Trend ({currentYear})</CardTitle>
+          <CardTitle>{t('visualize.monthlyTrend', { year: currentYear })}</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
@@ -85,7 +87,7 @@ export function IncidentVisualizePage() {
                 stroke="hsl(var(--primary))"
                 strokeWidth={2}
                 dot={{ r: 4 }}
-                name="Incidents"
+                name={t('visualize.incidentsLabel')}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -95,7 +97,7 @@ export function IncidentVisualizePage() {
       {/* By Category */}
       <Card>
         <CardHeader>
-          <CardTitle>By Category</CardTitle>
+          <CardTitle>{t('byCategory')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {Object.entries(byCategory)
@@ -122,7 +124,7 @@ export function IncidentVisualizePage() {
       {/* By Status */}
       <Card>
         <CardHeader>
-          <CardTitle>By Status</CardTitle>
+          <CardTitle>{t('byStatus')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {Object.entries(byStatus)
@@ -153,7 +155,7 @@ export function IncidentVisualizePage() {
       {/* By Department */}
       <Card>
         <CardHeader>
-          <CardTitle>By Department</CardTitle>
+          <CardTitle>{t('byDepartment')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {Object.entries(byDepartment)

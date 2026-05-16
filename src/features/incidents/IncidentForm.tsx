@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,6 +13,7 @@ interface IncidentFormProps {
 }
 
 export function IncidentForm({ defaultValues, onSubmit }: IncidentFormProps) {
+  const { t } = useTranslation('incidents')
   const {
     register,
     handleSubmit,
@@ -32,34 +34,34 @@ export function IncidentForm({ defaultValues, onSubmit }: IncidentFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl space-y-6">
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="description">Description *</Label>
+          <Label htmlFor="description">{t('form.description')} *</Label>
           <Textarea
             id="description"
-            placeholder="Describe the incident..."
+            placeholder={t('form.descriptionPlaceholder')}
             rows={4}
             {...register('description')}
           />
-          {errors.description && (
+          {errors.description?.message && (
             <p className="text-sm text-destructive">
-              {errors.description.message}
+              {t(errors.description.message as 'validation.descriptionRequired')}
             </p>
           )}
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="department">Department</Label>
+            <Label htmlFor="department">{t('form.department')}</Label>
             <Input
               id="department"
-              placeholder="e.g. Emergency"
+              placeholder={t('form.departmentPlaceholder')}
               {...register('department')}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category">{t('form.category')}</Label>
             <Input
               id="category"
-              placeholder="e.g. Safety"
+              placeholder={t('form.categoryPlaceholder')}
               {...register('category')}
             />
           </div>
@@ -67,18 +69,18 @@ export function IncidentForm({ defaultValues, onSubmit }: IncidentFormProps) {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="categoryItem">Category Item</Label>
+            <Label htmlFor="categoryItem">{t('form.categoryItem')}</Label>
             <Input
               id="categoryItem"
-              placeholder="e.g. Fall"
+              placeholder={t('form.categoryItemPlaceholder')}
               {...register('categoryItem')}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="patientId">Patient ID (optional)</Label>
+            <Label htmlFor="patientId">{t('form.patientId')}</Label>
             <Input
               id="patientId"
-              placeholder="Patient ID"
+              placeholder={t('form.patientIdPlaceholder')}
               {...register('patientId')}
             />
           </div>
@@ -86,7 +88,7 @@ export function IncidentForm({ defaultValues, onSubmit }: IncidentFormProps) {
       </div>
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Saving...' : 'Report Incident'}
+        {isSubmitting ? t('form.saving') : t('form.report')}
       </Button>
     </form>
   )

@@ -3,7 +3,10 @@
   "newAppointment": "Yeni Randevu",
   "editAppointment": "Randevuyu Düzenle",
   "calendar": "Takvim",
-  "list": "Liste",
+  "listView": "Liste",
+  "scheduleFirst": "İlk Randevunuzu Planlayın",
+  "backToAppointments": "Randevulara Dön",
+  "notFound": "Randevu bulunamadı.",
   "fields": {
     "patient": "Hasta",
     "type": "Tür",
@@ -11,7 +14,8 @@
     "endTime": "Bitiş saati",
     "location": "Konum",
     "status": "Durum",
-    "notes": "Notlar"
+    "notes": "Notlar",
+    "reasonForVisit": "Ziyaret sebebi"
   },
   "types": {
     "checkup": "Muayene",
@@ -25,5 +29,56 @@
     "completed": "Tamamlandı",
     "cancelled": "İptal edildi",
     "noShow": "Gelmedi"
+  },
+  "form": {
+    "selectPatient": "Hasta seçin...",
+    "searchPatients": "Hasta ara...",
+    "selectType": "Tür seçin",
+    "locationPlaceholder": "örn. Oda 204",
+    "noPatients": "Hasta bulunamadı.",
+    "saving": "Kaydediliyor...",
+    "create": "Randevu oluştur",
+    "update": "Randevuyu güncelle"
+  },
+  "list": {
+    "searchPlaceholder": "Hasta adıyla ara...",
+    "allStatuses": "Tüm durumlar",
+    "noMatches": "Aramanızla eşleşen randevu yok.",
+    "noAppointments": "Henüz randevu yok.",
+    "count_one": "{{count}} randevu",
+    "count_other": "{{count}} randevu",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "{{total}} sayfadan {{current}}. sayfa",
+    "columns": {
+      "patient": "Hasta",
+      "type": "Tür",
+      "dateTime": "Tarih / Saat",
+      "location": "Konum",
+      "status": "Durum"
+    }
+  },
+  "detail": {
+    "cardTitle": "Randevu Detayları",
+    "complete": "Tamamla",
+    "cancel": "İptal et",
+    "noShow": "Gelmedi",
+    "delete": "Sil",
+    "deleted": "Randevu silindi",
+    "markedAs": "Randevu {{status}} olarak işaretlendi"
+  },
+  "exportColumns": {
+    "filename": "Randevular",
+    "patient": "Hasta",
+    "type": "Tür",
+    "dateTime": "Tarih / Saat",
+    "location": "Konum",
+    "status": "Durum"
+  },
+  "validation": {
+    "patientRequired": "Hasta zorunludur",
+    "startTimeRequired": "Başlangıç saati zorunludur",
+    "endTimeRequired": "Bitiş saati zorunludur",
+    "endTimeAfterStart": "Bitiş saati başlangıç saatinden sonra olmalıdır"
   }
 }

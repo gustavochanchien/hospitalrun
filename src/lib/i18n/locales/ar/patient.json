@@ -336,6 +336,16 @@
         "arrived": "وصل",
         "triaged": "تم الفرز",
         "onLeave": "في إجازة"
+      },
+      "notFound": "لم يتم العثور على الزيارة.",
+      "backToPatients": "العودة إلى المرضى",
+      "patientFallback": "مريض",
+      "tabs": {
+        "diagnoses": "التشخيصات",
+        "labs": "المختبرات",
+        "medications": "الأدوية",
+        "imaging": "الأشعة",
+        "notes": "الملاحظات"
       }
     },
     "relatedPersons": {

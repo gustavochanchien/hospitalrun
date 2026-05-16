@@ -3,6 +3,7 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -26,6 +27,7 @@ interface LabDetailPageProps {
 }
 
 export function LabDetailPage({ labId }: LabDetailPageProps) {
+  const { t } = useTranslation('labs')
   const navigate = useNavigate()
   const [resultText, setResultText] = useState('')
   const [completeDialogOpen, setCompleteDialogOpen] = useState(false)
@@ -50,9 +52,9 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
   if (!lab || lab._deleted) {
     return (
       <div className="flex flex-col items-center justify-center p-12">
-        <p className="text-muted-foreground">Lab not found.</p>
+        <p className="text-muted-foreground">{t('notFound')}</p>
         <Button asChild variant="outline" className="mt-4">
-          <Link to="/labs">Back to Labs</Link>
+          <Link to="/labs">{t('backToLabs')}</Link>
         </Button>
       </div>
     )
@@ -71,7 +73,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
 
   async function handleComplete() {
     if (!resultText.trim()) {
-      toast.error('Please enter a result before completing.')
+      toast.error(t('detail.resultRequired'))
       return
     }
     setIsSaving(true)
@@ -86,7 +88,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
         },
         'update',
       )
-      toast.success('Lab completed')
+      toast.success(t('detail.labCompleted'))
       setCompleteDialogOpen(false)
       setResultText('')
     } finally {
@@ -106,7 +108,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
         },
         'update',
       )
-      toast.success('Lab canceled')
+      toast.success(t('detail.labCanceled'))
     } finally {
       setIsSaving(false)
     }
@@ -114,7 +116,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
 
   async function handleSaveResult() {
     if (!resultText.trim()) {
-      toast.error('Please enter a result.')
+      toast.error(t('detail.resultRequiredShort'))
       return
     }
     setIsSaving(true)
@@ -129,7 +131,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
         },
         'update',
       )
-      toast.success('Result saved')
+      toast.success(t('detail.resultSaved'))
       setResultText('')
     } finally {
       setIsSaving(false)
@@ -138,7 +140,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
 
   async function handleDelete() {
     await dbDelete('labs', labId)
-    toast.success('Lab deleted')
+    toast.success(t('detail.labDeleted'))
     await navigate({ to: '/labs' })
   }
 
@@ -147,13 +149,13 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
       {/* Lab Info Card */}
       <Card>
         <CardHeader className="flex flex-row items-start justify-between">
-          <CardTitle className="text-xl">Lab Details</CardTitle>
+          <CardTitle className="text-xl">{t('detail.cardTitle')}</CardTitle>
           <Badge variant={statusVariant}>{lab.status}</Badge>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 text-sm sm:grid-cols-2">
             <div>
-              <p className="font-medium text-muted-foreground">Patient</p>
+              <p className="font-medium text-muted-foreground">{t('fields.patient')}</p>
               <Link
                 to="/patients/$patientId"
                 params={{ patientId: lab.patientId }}
@@ -163,36 +165,36 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
               </Link>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Type</p>
+              <p className="font-medium text-muted-foreground">{t('fields.type')}</p>
               <p>{lab.type}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Code</p>
-              <p>{lab.code ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.code')}</p>
+              <p>{lab.code ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Requested By</p>
-              <p>{lab.requestedBy ?? '\u2014'}</p>
+              <p className="font-medium text-muted-foreground">{t('fields.requestedBy')}</p>
+              <p>{lab.requestedBy ?? '—'}</p>
             </div>
             <div>
-              <p className="font-medium text-muted-foreground">Requested At</p>
+              <p className="font-medium text-muted-foreground">{t('fields.requestedAt')}</p>
               <p>{format(parseISO(lab.requestedAt), 'MMM d, yyyy h:mm a')}</p>
             </div>
             {lab.completedAt && (
               <div>
-                <p className="font-medium text-muted-foreground">Completed At</p>
+                <p className="font-medium text-muted-foreground">{t('fields.completedAt')}</p>
                 <p>{format(parseISO(lab.completedAt), 'MMM d, yyyy h:mm a')}</p>
               </div>
             )}
             {lab.canceledAt && (
               <div>
-                <p className="font-medium text-muted-foreground">Canceled At</p>
+                <p className="font-medium text-muted-foreground">{t('fields.canceledAt')}</p>
                 <p>{format(parseISO(lab.canceledAt), 'MMM d, yyyy h:mm a')}</p>
               </div>
             )}
             {lab.notes && (
               <div className="sm:col-span-2">
-                <p className="font-medium text-muted-foreground">Notes</p>
+                <p className="font-medium text-muted-foreground">{t('fields.notes')}</p>
                 <p className="whitespace-pre-wrap">{lab.notes}</p>
               </div>
             )}
@@ -203,17 +205,17 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
       {/* Result Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Result</CardTitle>
+          <CardTitle>{t('detail.resultCardTitle')}</CardTitle>
         </CardHeader>
         <CardContent>
           {lab.status === 'completed' && lab.result ? (
             <p className="whitespace-pre-wrap">{lab.result}</p>
           ) : lab.status === 'requested' ? (
             <div className="space-y-3">
-              <Label htmlFor="result-input">Enter Result</Label>
+              <Label htmlFor="result-input">{t('detail.enterResult')}</Label>
               <Textarea
                 id="result-input"
-                placeholder="Enter lab result..."
+                placeholder={t('detail.resultPlaceholder')}
                 value={resultText}
                 onChange={(e) => setResultText(e.target.value)}
               />
@@ -221,11 +223,11 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
                 onClick={handleSaveResult}
                 disabled={isSaving || !resultText.trim()}
               >
-                {isSaving ? 'Saving...' : 'Save Result'}
+                {isSaving ? t('form.saving') : t('detail.saveResult')}
               </Button>
             </div>
           ) : (
-            <p className="text-muted-foreground">No result available.</p>
+            <p className="text-muted-foreground">{t('detail.noResultAvailable')}</p>
           )}
         </CardContent>
       </Card>
@@ -236,7 +238,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
           <>
             <PermissionGuard permission="complete:lab">
               <Button onClick={() => setCompleteDialogOpen(true)}>
-                Complete
+                {t('detail.complete')}
               </Button>
             </PermissionGuard>
             <PermissionGuard permission="cancel:lab">
@@ -245,13 +247,13 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
                 onClick={handleCancel}
                 disabled={isSaving}
               >
-                Cancel Lab
+                {t('detail.cancelLab')}
               </Button>
             </PermissionGuard>
           </>
         )}
         <Button variant="destructive" onClick={() => setConfirmOpen(true)}>
-          Delete
+          {t('detail.delete')}
         </Button>
       </div>
 
@@ -268,13 +270,13 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
       <Dialog open={completeDialogOpen} onOpenChange={setCompleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Complete Lab</DialogTitle>
+            <DialogTitle>{t('detail.completeDialogTitle')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
-            <Label htmlFor="complete-result">Result *</Label>
+            <Label htmlFor="complete-result">{t('detail.resultLabel')}</Label>
             <Textarea
               id="complete-result"
-              placeholder="Enter lab result..."
+              placeholder={t('detail.resultPlaceholder')}
               value={resultText}
               onChange={(e) => setResultText(e.target.value)}
             />
@@ -290,7 +292,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
               onClick={handleComplete}
               disabled={isSaving || !resultText.trim()}
             >
-              {isSaving ? 'Saving...' : 'Save & Complete'}
+              {isSaving ? t('form.saving') : t('detail.saveAndComplete')}
             </Button>
           </DialogFooter>
         </DialogContent>

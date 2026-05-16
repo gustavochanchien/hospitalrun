@@ -1,6 +1,9 @@
 {
   "title": "İlaçlar",
   "newMedication": "Yeni İlaç",
+  "addFirst": "İlk ilacı ekle",
+  "backToMedications": "İlaçlara Dön",
+  "notFound": "İlaç bulunamadı.",
   "fields": {
     "name": "İlaç adı",
     "patient": "Hasta",
@@ -11,5 +14,86 @@
     "startDate": "Başlangıç tarihi",
     "endDate": "Bitiş tarihi",
     "notes": "Notlar"
+  },
+  "statusOption": {
+    "draft": "Taslak",
+    "active": "Aktif",
+    "onHold": "Beklemede",
+    "canceled": "İptal edildi",
+    "completed": "Tamamlandı",
+    "enteredInError": "Hatalı girildi",
+    "stopped": "Durduruldu",
+    "unknown": "Bilinmiyor"
+  },
+  "intentOption": {
+    "proposal": "Öneri",
+    "plan": "Plan",
+    "order": "Reçete",
+    "originalOrder": "Orijinal reçete",
+    "reflexOrder": "Refleks reçete",
+    "fillerOrder": "Dolgu reçetesi",
+    "instanceOrder": "Örnek reçete",
+    "option": "Seçenek"
+  },
+  "priorityOption": {
+    "routine": "Rutin",
+    "urgent": "Acil",
+    "asap": "En kısa sürede",
+    "stat": "Hemen"
+  },
+  "form": {
+    "selectPatient": "Hasta seçin...",
+    "searchPatients": "Hasta ara...",
+    "namePlaceholder": "örn. Amoksisilin 500 mg",
+    "selectStatus": "Durum seçin",
+    "selectIntent": "Amaç seçin",
+    "selectPriority": "Öncelik seçin",
+    "quantityPlaceholder": "örn. 30 tablet",
+    "notesPlaceholder": "Ek notlar...",
+    "noPatients": "Hasta bulunamadı.",
+    "saving": "Kaydediliyor...",
+    "create": "İlaç oluştur",
+    "update": "İlacı güncelle"
+  },
+  "list": {
+    "searchPlaceholder": "İlaç veya hasta adıyla ara...",
+    "allStatuses": "Tüm durumlar",
+    "noMatches": "Aramanızla eşleşen ilaç yok.",
+    "noMedications": "Henüz ilaç yok.",
+    "count_one": "{{count}} ilaç",
+    "count_other": "{{count}} ilaç",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "{{total}} sayfadan {{current}}. sayfa",
+    "columns": {
+      "name": "İlaç adı",
+      "patient": "Hasta",
+      "status": "Durum",
+      "quantity": "Miktar",
+      "startDate": "Başlangıç tarihi",
+      "endDate": "Bitiş tarihi"
+    }
+  },
+  "detail": {
+    "patientLabel": "Hasta:",
+    "updateStatusTitle": "Durumu Güncelle",
+    "updateStatus": "Durumu Güncelle",
+    "deleteMedication": "İlacı Sil",
+    "selectNewStatus": "Yeni durum seçin",
+    "statusUpdated": "Durum \"{{status}}\" olarak güncellendi",
+    "deleted": "İlaç silindi"
+  },
+  "exportColumns": {
+    "filename": "İlaçlar",
+    "name": "İlaç adı",
+    "patient": "Hasta",
+    "status": "Durum",
+    "quantity": "Miktar",
+    "startDate": "Başlangıç tarihi",
+    "endDate": "Bitiş tarihi"
+  },
+  "validation": {
+    "patientRequired": "Hasta zorunludur",
+    "nameRequired": "İlaç adı zorunludur"
   }
 }

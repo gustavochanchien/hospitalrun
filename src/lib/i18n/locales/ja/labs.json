@@ -1,6 +1,9 @@
 {
   "title": "検査",
   "newLab": "新規検査",
+  "requestFirst": "最初の検査を依頼",
+  "backToLabs": "検査一覧に戻る",
+  "notFound": "検査が見つかりません。",
   "fields": {
     "patient": "患者",
     "type": "タイプ",
@@ -8,6 +11,8 @@
     "status": "状態",
     "requestedBy": "依頼者",
     "requestedAt": "依頼日時",
+    "completedAt": "完了日時",
+    "canceledAt": "取消日時",
     "result": "結果",
     "notes": "メモ"
   },
@@ -15,5 +20,72 @@
     "complete": "完了",
     "cancel": "検査を取消",
     "saveResult": "結果を保存"
+  },
+  "status": {
+    "requested": "依頼済み",
+    "completed": "完了",
+    "canceled": "取消済み"
+  },
+  "form": {
+    "labType": "検査タイプ",
+    "labTypePlaceholder": "例：全血球計算",
+    "codePlaceholder": "例：CBC、BMP",
+    "notesPlaceholder": "追加メモ...",
+    "searchPatient": "患者を検索...",
+    "noPatients": "患者が見つかりません。",
+    "saving": "保存中...",
+    "request": "検査を依頼"
+  },
+  "list": {
+    "searchPlaceholder": "患者名で検索...",
+    "allStatuses": "すべての状態",
+    "noMatches": "検索に一致する検査はありません。",
+    "noLabs": "まだ検査はありません。",
+    "count_one": "{{count}}件の検査",
+    "count_other": "{{count}}件の検査",
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "{{total}}ページ中{{current}}ページ",
+    "columns": {
+      "patient": "患者",
+      "type": "タイプ",
+      "code": "コード",
+      "status": "状態",
+      "requestedAt": "依頼日時",
+      "result": "結果"
+    }
+  },
+  "detail": {
+    "cardTitle": "検査詳細",
+    "resultCardTitle": "結果",
+    "enterResult": "結果を入力",
+    "resultPlaceholder": "検査結果を入力...",
+    "saveResult": "結果を保存",
+    "saveAndComplete": "保存して完了",
+    "complete": "完了",
+    "completeDialogTitle": "検査を完了",
+    "resultLabel": "結果 *",
+    "cancelLab": "検査を取消",
+    "delete": "削除",
+    "resultSaved": "結果を保存しました",
+    "labCompleted": "検査が完了しました",
+    "labCanceled": "検査を取り消しました",
+    "labDeleted": "検査を削除しました",
+    "resultRequired": "完了前に結果を入力してください。",
+    "resultRequiredShort": "結果を入力してください。",
+    "noResultAvailable": "結果はありません。"
+  },
+  "exportColumns": {
+    "filename": "検査",
+    "patient": "患者",
+    "type": "タイプ",
+    "code": "コード",
+    "status": "状態",
+    "requestedAt": "依頼日時",
+    "result": "結果"
+  },
+  "validation": {
+    "patientRequired": "患者は必須です",
+    "typeRequired": "検査タイプは必須です"
   }
 }

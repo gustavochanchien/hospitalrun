@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -29,6 +30,7 @@ import { ExportButton } from '@/components/export-button'
 const PAGE_SIZE = 20
 
 export function LabListPage() {
+  const { t } = useTranslation('labs')
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [page, setPage] = useState(0)
@@ -87,7 +89,7 @@ export function LabListPage() {
         <div className="relative flex-1 min-w-[200px] max-w-sm">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search by patient name..."
+            placeholder={t('list.searchPlaceholder')}
             value={search}
             onChange={(e) => {
               setSearch(e.target.value)
@@ -107,37 +109,37 @@ export function LabListPage() {
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Statuses</SelectItem>
-            <SelectItem value="requested">Requested</SelectItem>
-            <SelectItem value="completed">Completed</SelectItem>
-            <SelectItem value="canceled">Canceled</SelectItem>
+            <SelectItem value="all">{t('list.allStatuses')}</SelectItem>
+            <SelectItem value="requested">{t('status.requested')}</SelectItem>
+            <SelectItem value="completed">{t('status.completed')}</SelectItem>
+            <SelectItem value="canceled">{t('status.canceled')}</SelectItem>
           </SelectContent>
         </Select>
         <p className="text-sm text-muted-foreground">
-          {filtered.length} lab{filtered.length !== 1 ? 's' : ''}
+          {t('list.count', { count: filtered.length })}
         </p>
         <ExportButton
-          filename="Labs"
+          filename={t('exportColumns.filename')}
           rows={filtered}
           columns={[
             {
-              header: 'Patient',
+              header: t('exportColumns.patient'),
               accessor: (l) => {
                 const p = patientMap.get(l.patientId)
                 return p ? `${p.givenName} ${p.familyName}` : ''
               },
             },
-            { header: 'Type', accessor: (l) => l.type },
-            { header: 'Code', accessor: (l) => l.code ?? '' },
-            { header: 'Status', accessor: (l) => l.status },
+            { header: t('exportColumns.type'), accessor: (l) => l.type },
+            { header: t('exportColumns.code'), accessor: (l) => l.code ?? '' },
+            { header: t('exportColumns.status'), accessor: (l) => l.status },
             {
-              header: 'Requested At',
+              header: t('exportColumns.requestedAt'),
               accessor: (l) =>
                 l.requestedAt
                   ? format(parseISO(l.requestedAt), 'yyyy-MM-dd HH:mm')
                   : '',
             },
-            { header: 'Result', accessor: (l) => l.result ?? '' },
+            { header: t('exportColumns.result'), accessor: (l) => l.result ?? '' },
           ]}
         />
       </div>
@@ -147,12 +149,12 @@ export function LabListPage() {
         <div className="flex flex-col items-center justify-center py-12">
           <p className="text-muted-foreground">
             {search || statusFilter !== 'all'
-              ? 'No labs match your search.'
-              : 'No labs yet.'}
+              ? t('list.noMatches')
+              : t('list.noLabs')}
           </p>
           {!search && statusFilter === 'all' && (
             <Button asChild className="mt-4">
-              <Link to="/labs/new">Request Your First Lab</Link>
+              <Link to="/labs/new">{t('requestFirst')}</Link>
             </Button>
           )}
         </div>
@@ -162,12 +164,12 @@ export function LabListPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Patient</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Code</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Requested At</TableHead>
-                  <TableHead>Result</TableHead>
+                  <TableHead>{t('list.columns.patient')}</TableHead>
+                  <TableHead>{t('list.columns.type')}</TableHead>
+                  <TableHead>{t('list.columns.code')}</TableHead>
+                  <TableHead>{t('list.columns.status')}</TableHead>
+                  <TableHead>{t('list.columns.requestedAt')}</TableHead>
+                  <TableHead>{t('list.columns.result')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -198,7 +200,7 @@ export function LabListPage() {
                         </Link>
                       </TableCell>
                       <TableCell className="text-muted-foreground">
-                        {lab.code ?? '\u2014'}
+                        {lab.code ?? '—'}
                       </TableCell>
                       <TableCell>
                         <LabStatusBadge status={lab.status} />
@@ -211,7 +213,7 @@ export function LabListPage() {
                           ? lab.result.length > 50
                             ? `${lab.result.slice(0, 50)}...`
                             : lab.result
-                          : '\u2014'}
+                          : '—'}
                       </TableCell>
                     </TableRow>
                   )
@@ -224,7 +226,7 @@ export function LabListPage() {
           {totalPages > 1 && (
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
-                Page {page + 1} of {totalPages}
+                {t('list.pageOf', { current: page + 1, total: totalPages })}
               </p>
               <div className="flex gap-2">
                 <Button
@@ -233,7 +235,7 @@ export function LabListPage() {
                   disabled={page === 0}
                   onClick={() => setPage((p) => p - 1)}
                 >
-                  Previous
+                  {t('list.previous')}
                 </Button>
                 <Button
                   variant="outline"
@@ -241,7 +243,7 @@ export function LabListPage() {
                   disabled={page >= totalPages - 1}
                   onClick={() => setPage((p) => p + 1)}
                 >
-                  Next
+                  {t('list.next')}
                 </Button>
               </div>
             </div>

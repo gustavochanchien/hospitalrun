@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Selesaikan",
     "downloadCsv": "Unduh CSV"
+  },
+  "status": {
+    "reported": "Dilaporkan",
+    "resolved": "Diselesaikan"
+  },
+  "reportFirst": "Laporkan Insiden Pertama Anda",
+  "backToIncidents": "Kembali ke Insiden",
+  "notFound": "Insiden tidak ditemukan.",
+  "form": {
+    "description": "Deskripsi",
+    "department": "Departemen",
+    "category": "Kategori",
+    "categoryItem": "Subkategori",
+    "patientId": "ID pasien (opsional)",
+    "descriptionPlaceholder": "Deskripsikan insiden...",
+    "departmentPlaceholder": "mis. UGD",
+    "categoryPlaceholder": "mis. Keselamatan",
+    "categoryItemPlaceholder": "mis. Jatuh",
+    "patientIdPlaceholder": "ID pasien",
+    "saving": "Menyimpan...",
+    "report": "Laporkan Insiden"
+  },
+  "list": {
+    "searchPlaceholder": "Cari berdasarkan pelapor atau deskripsi...",
+    "allStatuses": "Semua status",
+    "noMatches": "Tidak ada insiden yang cocok dengan pencarian Anda.",
+    "noIncidents": "Belum ada insiden.",
+    "count_one": "{{count}} insiden",
+    "count_other": "{{count}} insiden",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pageOf": "Halaman {{current}} dari {{total}}",
+    "columns": {
+      "date": "Tanggal",
+      "reporter": "Pelapor",
+      "department": "Departemen",
+      "category": "Kategori",
+      "description": "Deskripsi",
+      "status": "Status"
+    }
+  },
+  "detail": {
+    "cardTitle": "Detail Insiden",
+    "resolve": "Selesaikan",
+    "delete": "Hapus",
+    "resolved": "Insiden diselesaikan",
+    "deleted": "Insiden dihapus"
+  },
+  "visualize": {
+    "noData": "Tidak ada data insiden untuk ditampilkan.",
+    "incidentsLabel": "Insiden",
+    "monthlyTrend": "Tren bulanan ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Insiden",
+    "date": "Tanggal",
+    "reporter": "Pelapor",
+    "department": "Departemen",
+    "category": "Kategori",
+    "status": "Status"
+  },
+  "validation": {
+    "descriptionRequired": "Deskripsi wajib diisi"
   }
 }

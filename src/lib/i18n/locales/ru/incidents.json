@@ -20,5 +20,70 @@
   "actions": {
     "resolve": "Решить",
     "downloadCsv": "Скачать CSV"
+  },
+  "status": {
+    "reported": "Сообщено",
+    "resolved": "Решено"
+  },
+  "reportFirst": "Сообщить о первом инциденте",
+  "backToIncidents": "Назад к инцидентам",
+  "notFound": "Инцидент не найден.",
+  "form": {
+    "description": "Описание",
+    "department": "Отделение",
+    "category": "Категория",
+    "categoryItem": "Подкатегория",
+    "patientId": "ID пациента (необязательно)",
+    "descriptionPlaceholder": "Опишите инцидент...",
+    "departmentPlaceholder": "напр. Скорая помощь",
+    "categoryPlaceholder": "напр. Безопасность",
+    "categoryItemPlaceholder": "напр. Падение",
+    "patientIdPlaceholder": "ID пациента",
+    "saving": "Сохранение...",
+    "report": "Сообщить об инциденте"
+  },
+  "list": {
+    "searchPlaceholder": "Поиск по докладчику или описанию...",
+    "allStatuses": "Все статусы",
+    "noMatches": "Ни один инцидент не соответствует вашему поиску.",
+    "noIncidents": "Инцидентов пока нет.",
+    "count_one": "{{count}} инцидент",
+    "count_few": "{{count}} инцидента",
+    "count_many": "{{count}} инцидентов",
+    "count_other": "{{count}} инцидентов",
+    "previous": "Назад",
+    "next": "Далее",
+    "pageOf": "Страница {{current}} из {{total}}",
+    "columns": {
+      "date": "Дата",
+      "reporter": "Сообщил",
+      "department": "Отделение",
+      "category": "Категория",
+      "description": "Описание",
+      "status": "Статус"
+    }
+  },
+  "detail": {
+    "cardTitle": "Детали инцидента",
+    "resolve": "Решить",
+    "delete": "Удалить",
+    "resolved": "Инцидент решён",
+    "deleted": "Инцидент удалён"
+  },
+  "visualize": {
+    "noData": "Нет данных об инцидентах для отображения.",
+    "incidentsLabel": "Инциденты",
+    "monthlyTrend": "Месячная динамика ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Инциденты",
+    "date": "Дата",
+    "reporter": "Сообщил",
+    "department": "Отделение",
+    "category": "Категория",
+    "status": "Статус"
+  },
+  "validation": {
+    "descriptionRequired": "Описание обязательно"
   }
 }

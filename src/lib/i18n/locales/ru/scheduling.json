@@ -3,7 +3,10 @@
   "newAppointment": "Новый приём",
   "editAppointment": "Редактировать приём",
   "calendar": "Календарь",
-  "list": "Список",
+  "listView": "Список",
+  "scheduleFirst": "Запланировать первый приём",
+  "backToAppointments": "Назад к приёмам",
+  "notFound": "Приём не найден.",
   "fields": {
     "patient": "Пациент",
     "type": "Тип",
@@ -11,7 +14,8 @@
     "endTime": "Окончание",
     "location": "Место",
     "status": "Статус",
-    "notes": "Заметки"
+    "notes": "Заметки",
+    "reasonForVisit": "Причина визита"
   },
   "types": {
     "checkup": "Осмотр",
@@ -25,5 +29,56 @@
     "completed": "Завершён",
     "cancelled": "Отменён",
     "noShow": "Не явился"
+  },
+  "form": {
+    "selectPatient": "Выберите пациента...",
+    "searchPatients": "Поиск пациентов...",
+    "selectType": "Выберите тип",
+    "locationPlaceholder": "напр. Кабинет 204",
+    "noPatients": "Пациенты не найдены.",
+    "saving": "Сохранение...",
+    "create": "Создать приём",
+    "update": "Обновить приём"
+  },
+  "list": {
+    "searchPlaceholder": "Поиск по имени пациента...",
+    "allStatuses": "Все статусы",
+    "noMatches": "Приёмы, соответствующие поиску, не найдены.",
+    "noAppointments": "Приёмов пока нет.",
+    "count_one": "{{count}} приём",
+    "count_other": "{{count}} приёмов",
+    "previous": "Назад",
+    "next": "Вперёд",
+    "pageOf": "Страница {{current}} из {{total}}",
+    "columns": {
+      "patient": "Пациент",
+      "type": "Тип",
+      "dateTime": "Дата / Время",
+      "location": "Место",
+      "status": "Статус"
+    }
+  },
+  "detail": {
+    "cardTitle": "Детали приёма",
+    "complete": "Завершить",
+    "cancel": "Отменить",
+    "noShow": "Не явился",
+    "delete": "Удалить",
+    "deleted": "Приём удалён",
+    "markedAs": "Приём отмечен как {{status}}"
+  },
+  "exportColumns": {
+    "filename": "Приёмы",
+    "patient": "Пациент",
+    "type": "Тип",
+    "dateTime": "Дата / Время",
+    "location": "Место",
+    "status": "Статус"
+  },
+  "validation": {
+    "patientRequired": "Пациент обязателен",
+    "startTimeRequired": "Начало обязательно",
+    "endTimeRequired": "Окончание обязательно",
+    "endTimeAfterStart": "Окончание должно быть после начала"
   }
 }

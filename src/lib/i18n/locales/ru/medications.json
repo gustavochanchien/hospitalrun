@@ -1,6 +1,9 @@
 {
   "title": "Лекарства",
   "newMedication": "Новое лекарство",
+  "addFirst": "Добавить первое лекарство",
+  "backToMedications": "Назад к лекарствам",
+  "notFound": "Лекарство не найдено.",
   "fields": {
     "name": "Название лекарства",
     "patient": "Пациент",
@@ -11,5 +14,86 @@
     "startDate": "Дата начала",
     "endDate": "Дата окончания",
     "notes": "Заметки"
+  },
+  "statusOption": {
+    "draft": "Черновик",
+    "active": "Активно",
+    "onHold": "Приостановлено",
+    "canceled": "Отменено",
+    "completed": "Завершено",
+    "enteredInError": "Введено ошибочно",
+    "stopped": "Остановлено",
+    "unknown": "Неизвестно"
+  },
+  "intentOption": {
+    "proposal": "Предложение",
+    "plan": "План",
+    "order": "Назначение",
+    "originalOrder": "Исходное назначение",
+    "reflexOrder": "Рефлекторное назначение",
+    "fillerOrder": "Замещающее назначение",
+    "instanceOrder": "Экземплярное назначение",
+    "option": "Вариант"
+  },
+  "priorityOption": {
+    "routine": "Плановое",
+    "urgent": "Срочное",
+    "asap": "Как можно скорее",
+    "stat": "Немедленно"
+  },
+  "form": {
+    "selectPatient": "Выберите пациента...",
+    "searchPatients": "Поиск пациентов...",
+    "namePlaceholder": "напр. Амоксициллин 500 мг",
+    "selectStatus": "Выберите статус",
+    "selectIntent": "Выберите назначение",
+    "selectPriority": "Выберите приоритет",
+    "quantityPlaceholder": "напр. 30 таблеток",
+    "notesPlaceholder": "Дополнительные заметки...",
+    "noPatients": "Пациенты не найдены.",
+    "saving": "Сохранение...",
+    "create": "Создать лекарство",
+    "update": "Обновить лекарство"
+  },
+  "list": {
+    "searchPlaceholder": "Поиск по лекарству или имени пациента...",
+    "allStatuses": "Все статусы",
+    "noMatches": "Лекарства, соответствующие поиску, не найдены.",
+    "noMedications": "Лекарств пока нет.",
+    "count_one": "{{count}} лекарство",
+    "count_other": "{{count}} лекарств",
+    "previous": "Назад",
+    "next": "Вперёд",
+    "pageOf": "Страница {{current}} из {{total}}",
+    "columns": {
+      "name": "Название лекарства",
+      "patient": "Пациент",
+      "status": "Статус",
+      "quantity": "Количество",
+      "startDate": "Дата начала",
+      "endDate": "Дата окончания"
+    }
+  },
+  "detail": {
+    "patientLabel": "Пациент:",
+    "updateStatusTitle": "Обновить статус",
+    "updateStatus": "Обновить статус",
+    "deleteMedication": "Удалить лекарство",
+    "selectNewStatus": "Выберите новый статус",
+    "statusUpdated": "Статус обновлён на «{{status}}»",
+    "deleted": "Лекарство удалено"
+  },
+  "exportColumns": {
+    "filename": "Лекарства",
+    "name": "Название лекарства",
+    "patient": "Пациент",
+    "status": "Статус",
+    "quantity": "Количество",
+    "startDate": "Дата начала",
+    "endDate": "Дата окончания"
+  },
+  "validation": {
+    "patientRequired": "Пациент обязателен",
+    "nameRequired": "Название лекарства обязательно"
   }
 }

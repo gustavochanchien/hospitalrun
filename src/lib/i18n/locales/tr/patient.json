@@ -336,6 +336,16 @@
         "arrived": "Geldi",
         "triaged": "Triyaj yapıldı",
         "onLeave": "İzinli"
+      },
+      "notFound": "Ziyaret bulunamadı.",
+      "backToPatients": "Hastalara Dön",
+      "patientFallback": "Hasta",
+      "tabs": {
+        "diagnoses": "Tanılar",
+        "labs": "Laboratuvar",
+        "medications": "İlaçlar",
+        "imaging": "Görüntüleme",
+        "notes": "Notlar"
       }
     },
     "relatedPersons": {

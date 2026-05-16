@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -28,6 +29,19 @@ import { MEDICATION_STATUSES, type MedicationStatus } from './medication.schema'
 
 const PAGE_SIZE = 20
 
+type MedicationStatusType = (typeof MEDICATION_STATUSES)[number]
+
+const STATUS_KEY: Record<MedicationStatusType, string> = {
+  draft: 'draft',
+  active: 'active',
+  'on hold': 'onHold',
+  canceled: 'canceled',
+  completed: 'completed',
+  'entered in error': 'enteredInError',
+  stopped: 'stopped',
+  unknown: 'unknown',
+}
+
 function statusVariant(status: MedicationStatus) {
   switch (status) {
     case 'active':
@@ -46,6 +60,7 @@ function statusVariant(status: MedicationStatus) {
 }
 
 export function MedicationListPage() {
+  const { t } = useTranslation('medications')
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [page, setPage] = useState(0)
@@ -100,7 +115,7 @@ export function MedicationListPage() {
         <div className="relative flex-1 min-w-[200px] max-w-sm">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search by medication or patient name..."
+            placeholder={t('list.searchPlaceholder')}
             value={search}
             onChange={(e) => {
               setSearch(e.target.value)
@@ -120,40 +135,40 @@ export function MedicationListPage() {
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Statuses</SelectItem>
+            <SelectItem value="all">{t('list.allStatuses')}</SelectItem>
             {MEDICATION_STATUSES.map((s) => (
               <SelectItem key={s} value={s}>
-                {s.charAt(0).toUpperCase() + s.slice(1)}
+                {t(`statusOption.${STATUS_KEY[s]}` as `statusOption.${string}`)}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
         <p className="text-sm text-muted-foreground">
-          {filtered.length} medication{filtered.length !== 1 ? 's' : ''}
+          {t('list.count', { count: filtered.length })}
         </p>
         <ExportButton
-          filename="Medications"
+          filename={t('exportColumns.filename')}
           rows={filtered}
           columns={[
-            { header: 'Medication Name', accessor: (m) => m.name },
+            { header: t('exportColumns.name'), accessor: (m) => m.name },
             {
-              header: 'Patient',
+              header: t('exportColumns.patient'),
               accessor: (m) => patientNameMap.get(m.patientId) ?? '',
             },
-            { header: 'Status', accessor: (m) => m.status },
+            { header: t('exportColumns.status'), accessor: (m) => m.status },
             {
-              header: 'Quantity',
+              header: t('exportColumns.quantity'),
               accessor: (m) => (m.quantity != null ? String(m.quantity) : ''),
             },
             {
-              header: 'Start Date',
+              header: t('exportColumns.startDate'),
               accessor: (m) =>
                 m.startDate
                   ? format(parseISO(m.startDate), 'yyyy-MM-dd')
                   : '',
             },
             {
-              header: 'End Date',
+              header: t('exportColumns.endDate'),
               accessor: (m) =>
                 m.endDate ? format(parseISO(m.endDate), 'yyyy-MM-dd') : '',
             },
@@ -166,12 +181,12 @@ export function MedicationListPage() {
         <div className="flex flex-col items-center justify-center py-12">
           <p className="text-muted-foreground">
             {search || statusFilter !== 'all'
-              ? 'No medications match your search.'
-              : 'No medications yet.'}
+              ? t('list.noMatches')
+              : t('list.noMedications')}
           </p>
           {!search && statusFilter === 'all' && (
             <Button asChild className="mt-4">
-              <Link to="/medications/new">Add Your First Medication</Link>
+              <Link to="/medications/new">{t('addFirst')}</Link>
             </Button>
           )}
         </div>
@@ -181,12 +196,12 @@ export function MedicationListPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Medication Name</TableHead>
-                  <TableHead>Patient</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Quantity</TableHead>
-                  <TableHead>Start Date</TableHead>
-                  <TableHead>End Date</TableHead>
+                  <TableHead>{t('list.columns.name')}</TableHead>
+                  <TableHead>{t('list.columns.patient')}</TableHead>
+                  <TableHead>{t('list.columns.status')}</TableHead>
+                  <TableHead>{t('list.columns.quantity')}</TableHead>
+                  <TableHead>{t('list.columns.startDate')}</TableHead>
+                  <TableHead>{t('list.columns.endDate')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -216,17 +231,17 @@ export function MedicationListPage() {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-muted-foreground">
-                      {med.quantity ?? '\u2014'}
+                      {med.quantity ?? '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
                       {med.startDate
                         ? format(parseISO(med.startDate), 'MMM d, yyyy')
-                        : '\u2014'}
+                        : '—'}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
                       {med.endDate
                         ? format(parseISO(med.endDate), 'MMM d, yyyy')
-                        : '\u2014'}
+                        : '—'}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -238,7 +253,7 @@ export function MedicationListPage() {
           {totalPages > 1 && (
             <div className="flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
-                Page {page + 1} of {totalPages}
+                {t('list.pageOf', { current: page + 1, total: totalPages })}
               </p>
               <div className="flex gap-2">
                 <Button
@@ -247,7 +262,7 @@ export function MedicationListPage() {
                   disabled={page === 0}
                   onClick={() => setPage((p) => p - 1)}
                 >
-                  Previous
+                  {t('list.previous')}
                 </Button>
                 <Button
                   variant="outline"
@@ -255,7 +270,7 @@ export function MedicationListPage() {
                   disabled={page >= totalPages - 1}
                   onClick={() => setPage((p) => p + 1)}
                 >
-                  Next
+                  {t('list.next')}
                 </Button>
               </div>
             </div>

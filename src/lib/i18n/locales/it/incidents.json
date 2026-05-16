@@ -20,5 +20,68 @@
   "actions": {
     "resolve": "Risolvi",
     "downloadCsv": "Scarica CSV"
+  },
+  "status": {
+    "reported": "Segnalato",
+    "resolved": "Risolto"
+  },
+  "reportFirst": "Segnala il tuo primo incidente",
+  "backToIncidents": "Torna agli incidenti",
+  "notFound": "Incidente non trovato.",
+  "form": {
+    "description": "Descrizione",
+    "department": "Reparto",
+    "category": "Categoria",
+    "categoryItem": "Sottocategoria",
+    "patientId": "ID paziente (opzionale)",
+    "descriptionPlaceholder": "Descrivere l'incidente...",
+    "departmentPlaceholder": "es. Pronto soccorso",
+    "categoryPlaceholder": "es. Sicurezza",
+    "categoryItemPlaceholder": "es. Caduta",
+    "patientIdPlaceholder": "ID paziente",
+    "saving": "Salvataggio...",
+    "report": "Segnala incidente"
+  },
+  "list": {
+    "searchPlaceholder": "Cerca per segnalatore o descrizione...",
+    "allStatuses": "Tutti gli stati",
+    "noMatches": "Nessun incidente corrisponde alla tua ricerca.",
+    "noIncidents": "Ancora nessun incidente.",
+    "count_one": "{{count}} incidente",
+    "count_other": "{{count}} incidenti",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "pageOf": "Pagina {{current}} di {{total}}",
+    "columns": {
+      "date": "Data",
+      "reporter": "Segnalatore",
+      "department": "Reparto",
+      "category": "Categoria",
+      "description": "Descrizione",
+      "status": "Stato"
+    }
+  },
+  "detail": {
+    "cardTitle": "Dettagli incidente",
+    "resolve": "Risolvi",
+    "delete": "Elimina",
+    "resolved": "Incidente risolto",
+    "deleted": "Incidente eliminato"
+  },
+  "visualize": {
+    "noData": "Nessun dato di incidenti da visualizzare.",
+    "incidentsLabel": "Incidenti",
+    "monthlyTrend": "Andamento mensile ({{year}})"
+  },
+  "exportColumns": {
+    "filename": "Incidenti",
+    "date": "Data",
+    "reporter": "Segnalatore",
+    "department": "Reparto",
+    "category": "Categoria",
+    "status": "Stato"
+  },
+  "validation": {
+    "descriptionRequired": "La descrizione è obbligatoria"
   }
 }

@@ -1,6 +1,9 @@
 {
   "title": "Farmaci",
   "newMedication": "Nuovo Farmaco",
+  "addFirst": "Aggiungi il primo farmaco",
+  "backToMedications": "Torna ai farmaci",
+  "notFound": "Farmaco non trovato.",
   "fields": {
     "name": "Nome del farmaco",
     "patient": "Paziente",
@@ -11,5 +14,86 @@
     "startDate": "Data di inizio",
     "endDate": "Data di fine",
     "notes": "Note"
+  },
+  "statusOption": {
+    "draft": "Bozza",
+    "active": "Attivo",
+    "onHold": "In sospeso",
+    "canceled": "Annullato",
+    "completed": "Completato",
+    "enteredInError": "Inserito per errore",
+    "stopped": "Interrotto",
+    "unknown": "Sconosciuto"
+  },
+  "intentOption": {
+    "proposal": "Proposta",
+    "plan": "Piano",
+    "order": "Ordine",
+    "originalOrder": "Ordine originale",
+    "reflexOrder": "Ordine riflesso",
+    "fillerOrder": "Ordine di sostituzione",
+    "instanceOrder": "Ordine di istanza",
+    "option": "Opzione"
+  },
+  "priorityOption": {
+    "routine": "Routine",
+    "urgent": "Urgente",
+    "asap": "Al più presto",
+    "stat": "Immediato"
+  },
+  "form": {
+    "selectPatient": "Seleziona paziente...",
+    "searchPatients": "Cerca pazienti...",
+    "namePlaceholder": "es. Amoxicillina 500 mg",
+    "selectStatus": "Seleziona stato",
+    "selectIntent": "Seleziona intento",
+    "selectPriority": "Seleziona priorità",
+    "quantityPlaceholder": "es. 30 compresse",
+    "notesPlaceholder": "Note aggiuntive...",
+    "noPatients": "Nessun paziente trovato.",
+    "saving": "Salvataggio in corso...",
+    "create": "Crea farmaco",
+    "update": "Aggiorna farmaco"
+  },
+  "list": {
+    "searchPlaceholder": "Cerca per farmaco o nome paziente...",
+    "allStatuses": "Tutti gli stati",
+    "noMatches": "Nessun farmaco corrisponde alla ricerca.",
+    "noMedications": "Ancora nessun farmaco.",
+    "count_one": "{{count}} farmaco",
+    "count_other": "{{count}} farmaci",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "pageOf": "Pagina {{current}} di {{total}}",
+    "columns": {
+      "name": "Nome del farmaco",
+      "patient": "Paziente",
+      "status": "Stato",
+      "quantity": "Quantità",
+      "startDate": "Data di inizio",
+      "endDate": "Data di fine"
+    }
+  },
+  "detail": {
+    "patientLabel": "Paziente:",
+    "updateStatusTitle": "Aggiorna stato",
+    "updateStatus": "Aggiorna stato",
+    "deleteMedication": "Elimina farmaco",
+    "selectNewStatus": "Seleziona nuovo stato",
+    "statusUpdated": "Stato aggiornato a \"{{status}}\"",
+    "deleted": "Farmaco eliminato"
+  },
+  "exportColumns": {
+    "filename": "Farmaci",
+    "name": "Nome del farmaco",
+    "patient": "Paziente",
+    "status": "Stato",
+    "quantity": "Quantità",
+    "startDate": "Data di inizio",
+    "endDate": "Data di fine"
+  },
+  "validation": {
+    "patientRequired": "Il paziente è obbligatorio",
+    "nameRequired": "Il nome del farmaco è obbligatorio"
   }
 }

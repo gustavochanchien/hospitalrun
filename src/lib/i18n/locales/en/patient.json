@@ -336,6 +336,16 @@
         "arrived": "Arrived",
         "triaged": "Triaged",
         "onLeave": "On Leave"
+      },
+      "notFound": "Visit not found.",
+      "backToPatients": "Back to Patients",
+      "patientFallback": "Patient",
+      "tabs": {
+        "diagnoses": "Diagnoses",
+        "labs": "Labs",
+        "medications": "Medications",
+        "imaging": "Imaging",
+        "notes": "Notes"
       }
     },
     "relatedPersons": {

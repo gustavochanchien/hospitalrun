@@ -8,10 +8,79 @@
     "status": "الحالة",
     "requestedBy": "طُلب بواسطة",
     "requestedOn": "تاريخ الطلب",
+    "completedOn": "تاريخ الاكتمال",
+    "canceledOn": "تاريخ الإلغاء",
     "notes": "الملاحظات"
   },
   "actions": {
     "complete": "إكمال",
     "cancel": "إلغاء الطلب"
+  },
+  "status": {
+    "requested": "مطلوب",
+    "completed": "مكتمل",
+    "canceled": "ملغى"
+  },
+  "createFirst": "أنشئ أول طلب",
+  "backToImaging": "العودة إلى الأشعة",
+  "notFound": "لم يتم العثور على طلب الأشعة.",
+  "form": {
+    "selectPatient": "اختر مريضًا...",
+    "searchPatients": "ابحث عن المرضى...",
+    "typePlaceholder": "مثال: أشعة سينية، أشعة مقطعية، رنين مغناطيسي",
+    "codePlaceholder": "مثال: 71046",
+    "notesPlaceholder": "ملاحظات إضافية...",
+    "noPatients": "لم يتم العثور على مرضى.",
+    "saving": "جارٍ الحفظ...",
+    "request": "طلب أشعة"
+  },
+  "list": {
+    "searchPlaceholder": "ابحث باسم المريض أو نوع الأشعة...",
+    "allStatuses": "كل الحالات",
+    "noMatches": "لا تتطابق أي طلبات أشعة مع بحثك.",
+    "noRequests": "لا توجد طلبات أشعة بعد.",
+    "count_one": "{{count}} طلب",
+    "count_other": "{{count}} طلبات",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{current}} من {{total}}",
+    "columns": {
+      "patient": "المريض",
+      "type": "النوع",
+      "code": "الرمز",
+      "status": "الحالة",
+      "requestedOn": "تاريخ الطلب"
+    }
+  },
+  "detail": {
+    "cardTitle": "طلب الأشعة",
+    "imageCardTitle": "الصورة",
+    "upload": "رفع",
+    "replace": "استبدال",
+    "remove": "إزالة",
+    "uploading": "جارٍ الرفع…",
+    "noImage": "لم يتم رفع أي صورة بعد.",
+    "complete": "إكمال",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "imageRemoved": "تمت إزالة الصورة",
+    "uploadFailed": "فشل الرفع",
+    "imageUploaded": "تم رفع الصورة",
+    "markedCompleted": "تم تعليم الأشعة كمكتملة",
+    "requestCanceled": "تم إلغاء طلب الأشعة",
+    "requestDeleted": "تم حذف طلب الأشعة",
+    "missingOrg": "سياق المؤسسة مفقود. يرجى تسجيل الدخول مرة أخرى."
+  },
+  "exportColumns": {
+    "filename": "الأشعة",
+    "patient": "المريض",
+    "type": "النوع",
+    "code": "الرمز",
+    "status": "الحالة",
+    "requestedOn": "تاريخ الطلب"
+  },
+  "validation": {
+    "patientRequired": "المريض مطلوب",
+    "typeRequired": "نوع الأشعة مطلوب"
   }
 }

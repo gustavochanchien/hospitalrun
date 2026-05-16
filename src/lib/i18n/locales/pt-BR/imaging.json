@@ -8,10 +8,79 @@
     "status": "Status",
     "requestedBy": "Solicitado por",
     "requestedOn": "Solicitado em",
+    "completedOn": "Concluído em",
+    "canceledOn": "Cancelado em",
     "notes": "Notas"
   },
   "actions": {
     "complete": "Concluir",
     "cancel": "Cancelar solicitação"
+  },
+  "status": {
+    "requested": "Solicitado",
+    "completed": "Concluído",
+    "canceled": "Cancelado"
+  },
+  "createFirst": "Criar sua primeira solicitação",
+  "backToImaging": "Voltar para Imagens",
+  "notFound": "Solicitação de imagem não encontrada.",
+  "form": {
+    "selectPatient": "Selecionar um paciente...",
+    "searchPatients": "Buscar pacientes...",
+    "typePlaceholder": "ex.: Raio-X, Tomografia, Ressonância",
+    "codePlaceholder": "ex.: 71046",
+    "notesPlaceholder": "Notas adicionais...",
+    "noPatients": "Nenhum paciente encontrado.",
+    "saving": "Salvando...",
+    "request": "Solicitar imagem"
+  },
+  "list": {
+    "searchPlaceholder": "Buscar por nome do paciente ou tipo de imagem...",
+    "allStatuses": "Todos os status",
+    "noMatches": "Nenhuma solicitação de imagem corresponde à sua busca.",
+    "noRequests": "Nenhuma solicitação de imagem ainda.",
+    "count_one": "{{count}} solicitação",
+    "count_other": "{{count}} solicitações",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "pageOf": "Página {{current}} de {{total}}",
+    "columns": {
+      "patient": "Paciente",
+      "type": "Tipo",
+      "code": "Código",
+      "status": "Status",
+      "requestedOn": "Solicitado em"
+    }
+  },
+  "detail": {
+    "cardTitle": "Solicitação de Imagem",
+    "imageCardTitle": "Imagem",
+    "upload": "Enviar",
+    "replace": "Substituir",
+    "remove": "Remover",
+    "uploading": "Enviando…",
+    "noImage": "Nenhuma imagem enviada ainda.",
+    "complete": "Concluir",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "imageRemoved": "Imagem removida",
+    "uploadFailed": "Falha no envio",
+    "imageUploaded": "Imagem enviada",
+    "markedCompleted": "Imagem marcada como concluída",
+    "requestCanceled": "Solicitação de imagem cancelada",
+    "requestDeleted": "Solicitação de imagem excluída",
+    "missingOrg": "Contexto da organização ausente. Por favor, faça login novamente."
+  },
+  "exportColumns": {
+    "filename": "Imagens",
+    "patient": "Paciente",
+    "type": "Tipo",
+    "code": "Código",
+    "status": "Status",
+    "requestedOn": "Solicitado em"
+  },
+  "validation": {
+    "patientRequired": "O paciente é obrigatório",
+    "typeRequired": "O tipo de imagem é obrigatório"
   }
 }

@@ -8,10 +8,79 @@
     "status": "Status",
     "requestedBy": "Diminta oleh",
     "requestedOn": "Diminta pada",
+    "completedOn": "Diselesaikan pada",
+    "canceledOn": "Dibatalkan pada",
     "notes": "Catatan"
   },
   "actions": {
     "complete": "Selesaikan",
     "cancel": "Batalkan permintaan"
+  },
+  "status": {
+    "requested": "Diminta",
+    "completed": "Selesai",
+    "canceled": "Dibatalkan"
+  },
+  "createFirst": "Buat Permintaan Pertama Anda",
+  "backToImaging": "Kembali ke Pencitraan",
+  "notFound": "Permintaan pencitraan tidak ditemukan.",
+  "form": {
+    "selectPatient": "Pilih pasien...",
+    "searchPatients": "Cari pasien...",
+    "typePlaceholder": "mis. Rontgen, CT Scan, MRI",
+    "codePlaceholder": "mis. 71046",
+    "notesPlaceholder": "Catatan tambahan...",
+    "noPatients": "Tidak ada pasien ditemukan.",
+    "saving": "Menyimpan...",
+    "request": "Minta Pencitraan"
+  },
+  "list": {
+    "searchPlaceholder": "Cari berdasarkan nama pasien atau jenis pencitraan...",
+    "allStatuses": "Semua status",
+    "noMatches": "Tidak ada permintaan pencitraan yang cocok dengan pencarian Anda.",
+    "noRequests": "Belum ada permintaan pencitraan.",
+    "count_one": "{{count}} permintaan",
+    "count_other": "{{count}} permintaan",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "pageOf": "Halaman {{current}} dari {{total}}",
+    "columns": {
+      "patient": "Pasien",
+      "type": "Jenis",
+      "code": "Kode",
+      "status": "Status",
+      "requestedOn": "Diminta pada"
+    }
+  },
+  "detail": {
+    "cardTitle": "Permintaan Pencitraan",
+    "imageCardTitle": "Gambar",
+    "upload": "Unggah",
+    "replace": "Ganti",
+    "remove": "Hapus",
+    "uploading": "Mengunggah…",
+    "noImage": "Belum ada gambar yang diunggah.",
+    "complete": "Selesaikan",
+    "cancel": "Batalkan",
+    "delete": "Hapus",
+    "imageRemoved": "Gambar dihapus",
+    "uploadFailed": "Gagal mengunggah",
+    "imageUploaded": "Gambar diunggah",
+    "markedCompleted": "Pencitraan ditandai selesai",
+    "requestCanceled": "Permintaan pencitraan dibatalkan",
+    "requestDeleted": "Permintaan pencitraan dihapus",
+    "missingOrg": "Konteks organisasi tidak ditemukan. Silakan masuk kembali."
+  },
+  "exportColumns": {
+    "filename": "Pencitraan",
+    "patient": "Pasien",
+    "type": "Jenis",
+    "code": "Kode",
+    "status": "Status",
+    "requestedOn": "Diminta pada"
+  },
+  "validation": {
+    "patientRequired": "Pasien wajib diisi",
+    "typeRequired": "Jenis pencitraan wajib diisi"
   }
 }
