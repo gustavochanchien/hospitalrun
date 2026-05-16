@@ -49,7 +49,8 @@
     "relatedPersons": "الأشخاص المرتبطون",
     "careGoals": "أهداف الرعاية",
     "carePlans": "خطط الرعاية",
-    "history": "السجل"
+    "history": "السجل",
+    "billing": "الفوترة"
   },
   "list": {
     "statusPlaceholder": "الحالة",

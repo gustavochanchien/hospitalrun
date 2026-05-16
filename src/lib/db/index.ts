@@ -16,6 +16,10 @@ import type {
   PatientHistory,
   OrgFeature,
   UserFeature,
+  ChargeItem,
+  Invoice,
+  InvoiceLineItem,
+  Payment,
   SyncQueueEntry,
 } from './schema'
 
@@ -36,6 +40,10 @@ export class HospitalRunDB extends Dexie {
   patientHistory!: Dexie.Table<PatientHistory, string>
   orgFeatures!: Dexie.Table<OrgFeature, string>
   userFeatures!: Dexie.Table<UserFeature, string>
+  chargeItems!: Dexie.Table<ChargeItem, string>
+  invoices!: Dexie.Table<Invoice, string>
+  invoiceLineItems!: Dexie.Table<InvoiceLineItem, string>
+  payments!: Dexie.Table<Payment, string>
   syncQueue!: Dexie.Table<SyncQueueEntry, number>
 
   constructor() {
@@ -84,6 +92,14 @@ export class HospitalRunDB extends Dexie {
     this.version(3).stores({
       orgFeatures: 'id, orgId, feature, [orgId+feature], _synced',
       userFeatures: 'id, userId, orgId, feature, [userId+orgId+feature], [orgId+feature], _synced',
+    })
+
+    // v4: billing & invoicing (charge_items, invoices, invoice_line_items, payments).
+    this.version(4).stores({
+      chargeItems: 'id, orgId, code, active, _synced',
+      invoices: 'id, orgId, patientId, visitId, status, invoiceNumber, _synced',
+      invoiceLineItems: 'id, orgId, invoiceId, chargeItemId, _synced',
+      payments: 'id, orgId, invoiceId, patientId, receivedAt, _synced',
     })
   }
 }

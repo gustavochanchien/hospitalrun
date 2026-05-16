@@ -49,7 +49,8 @@
     "relatedPersons": "Pessoas relacionadas",
     "careGoals": "Metas de cuidado",
     "carePlans": "Planos de cuidado",
-    "history": "Histórico"
+    "history": "Histórico",
+    "billing": "Faturamento"
   },
   "list": {
     "statusPlaceholder": "Status",

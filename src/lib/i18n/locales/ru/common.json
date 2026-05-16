@@ -49,6 +49,7 @@
     "medications": "Лекарства",
     "imaging": "Визуализация",
     "incidents": "Инциденты",
+    "billing": "Биллинг",
     "settings": "Настройки"
   },
   "network": {

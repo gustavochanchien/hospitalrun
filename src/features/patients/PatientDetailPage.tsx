@@ -24,6 +24,8 @@ import { PatientRelatedPersons } from './sub-features/PatientRelatedPersons'
 import { PatientCareGoals } from './sub-features/PatientCareGoals'
 import { PatientCarePlans } from './sub-features/PatientCarePlans'
 import { PatientHistory } from './sub-features/PatientHistory'
+import { PatientBilling } from './sub-features/PatientBilling'
+import { FeatureGate } from '@/components/ui/feature-gate'
 import { Link } from '@tanstack/react-router'
 
 interface PatientDetailPageProps {
@@ -209,6 +211,9 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
           <TabsTrigger value="goals">{t('tabs.careGoals')}</TabsTrigger>
           <TabsTrigger value="plans">{t('tabs.carePlans')}</TabsTrigger>
           <TabsTrigger value="history">{t('tabs.history')}</TabsTrigger>
+          <FeatureGate feature="billing">
+            <TabsTrigger value="billing">{t('tabs.billing')}</TabsTrigger>
+          </FeatureGate>
         </TabsList>
 
         <TabsContent value="appointments">
@@ -246,6 +251,9 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
         </TabsContent>
         <TabsContent value="history">
           <PatientHistory patientId={patientId} />
+        </TabsContent>
+        <TabsContent value="billing">
+          <PatientBilling patientId={patientId} />
         </TabsContent>
       </Tabs>
     </div>

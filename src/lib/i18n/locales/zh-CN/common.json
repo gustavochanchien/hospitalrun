@@ -49,6 +49,7 @@
     "medications": "药物",
     "imaging": "影像",
     "incidents": "事件",
+    "billing": "计费",
     "settings": "设置"
   },
   "network": {

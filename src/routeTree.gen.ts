@@ -19,6 +19,7 @@ import { Route as AuthMedicationsIndexRouteImport } from './routes/_auth/medicat
 import { Route as AuthLabsIndexRouteImport } from './routes/_auth/labs/index'
 import { Route as AuthIncidentsIndexRouteImport } from './routes/_auth/incidents/index'
 import { Route as AuthImagingIndexRouteImport } from './routes/_auth/imaging/index'
+import { Route as AuthBillingIndexRouteImport } from './routes/_auth/billing/index'
 import { Route as AuthAppointmentsIndexRouteImport } from './routes/_auth/appointments/index'
 import { Route as AuthVisitsVisitIdRouteImport } from './routes/_auth/visits/$visitId'
 import { Route as AuthPatientsNewRouteImport } from './routes/_auth/patients/new'
@@ -32,6 +33,8 @@ import { Route as AuthIncidentsNewRouteImport } from './routes/_auth/incidents/n
 import { Route as AuthIncidentsIncidentIdRouteImport } from './routes/_auth/incidents/$incidentId'
 import { Route as AuthImagingNewRouteImport } from './routes/_auth/imaging/new'
 import { Route as AuthImagingImagingIdRouteImport } from './routes/_auth/imaging/$imagingId'
+import { Route as AuthBillingNewRouteImport } from './routes/_auth/billing/new'
+import { Route as AuthBillingInvoiceIdRouteImport } from './routes/_auth/billing/$invoiceId'
 import { Route as AuthAppointmentsNewRouteImport } from './routes/_auth/appointments/new'
 import { Route as AuthAppointmentsCalendarRouteImport } from './routes/_auth/appointments/calendar'
 import { Route as AuthAppointmentsAppointmentIdRouteImport } from './routes/_auth/appointments/$appointmentId'
@@ -83,6 +86,11 @@ const AuthIncidentsIndexRoute = AuthIncidentsIndexRouteImport.update({
 const AuthImagingIndexRoute = AuthImagingIndexRouteImport.update({
   id: '/imaging/',
   path: '/imaging/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthBillingIndexRoute = AuthBillingIndexRouteImport.update({
+  id: '/billing/',
+  path: '/billing/',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthAppointmentsIndexRoute = AuthAppointmentsIndexRouteImport.update({
@@ -151,6 +159,16 @@ const AuthImagingImagingIdRoute = AuthImagingImagingIdRouteImport.update({
   path: '/imaging/$imagingId',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthBillingNewRoute = AuthBillingNewRouteImport.update({
+  id: '/billing/new',
+  path: '/billing/new',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthBillingInvoiceIdRoute = AuthBillingInvoiceIdRouteImport.update({
+  id: '/billing/$invoiceId',
+  path: '/billing/$invoiceId',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthAppointmentsNewRoute = AuthAppointmentsNewRouteImport.update({
   id: '/appointments/new',
   path: '/appointments/new',
@@ -176,6 +194,8 @@ export interface FileRoutesByFullPath {
   '/appointments/$appointmentId': typeof AuthAppointmentsAppointmentIdRoute
   '/appointments/calendar': typeof AuthAppointmentsCalendarRoute
   '/appointments/new': typeof AuthAppointmentsNewRoute
+  '/billing/$invoiceId': typeof AuthBillingInvoiceIdRoute
+  '/billing/new': typeof AuthBillingNewRoute
   '/imaging/$imagingId': typeof AuthImagingImagingIdRoute
   '/imaging/new': typeof AuthImagingNewRoute
   '/incidents/$incidentId': typeof AuthIncidentsIncidentIdRoute
@@ -189,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/patients/new': typeof AuthPatientsNewRoute
   '/visits/$visitId': typeof AuthVisitsVisitIdRoute
   '/appointments/': typeof AuthAppointmentsIndexRoute
+  '/billing/': typeof AuthBillingIndexRoute
   '/imaging/': typeof AuthImagingIndexRoute
   '/incidents/': typeof AuthIncidentsIndexRoute
   '/labs/': typeof AuthLabsIndexRoute
@@ -203,6 +224,8 @@ export interface FileRoutesByTo {
   '/appointments/$appointmentId': typeof AuthAppointmentsAppointmentIdRoute
   '/appointments/calendar': typeof AuthAppointmentsCalendarRoute
   '/appointments/new': typeof AuthAppointmentsNewRoute
+  '/billing/$invoiceId': typeof AuthBillingInvoiceIdRoute
+  '/billing/new': typeof AuthBillingNewRoute
   '/imaging/$imagingId': typeof AuthImagingImagingIdRoute
   '/imaging/new': typeof AuthImagingNewRoute
   '/incidents/$incidentId': typeof AuthIncidentsIncidentIdRoute
@@ -216,6 +239,7 @@ export interface FileRoutesByTo {
   '/patients/new': typeof AuthPatientsNewRoute
   '/visits/$visitId': typeof AuthVisitsVisitIdRoute
   '/appointments': typeof AuthAppointmentsIndexRoute
+  '/billing': typeof AuthBillingIndexRoute
   '/imaging': typeof AuthImagingIndexRoute
   '/incidents': typeof AuthIncidentsIndexRoute
   '/labs': typeof AuthLabsIndexRoute
@@ -232,6 +256,8 @@ export interface FileRoutesById {
   '/_auth/appointments/$appointmentId': typeof AuthAppointmentsAppointmentIdRoute
   '/_auth/appointments/calendar': typeof AuthAppointmentsCalendarRoute
   '/_auth/appointments/new': typeof AuthAppointmentsNewRoute
+  '/_auth/billing/$invoiceId': typeof AuthBillingInvoiceIdRoute
+  '/_auth/billing/new': typeof AuthBillingNewRoute
   '/_auth/imaging/$imagingId': typeof AuthImagingImagingIdRoute
   '/_auth/imaging/new': typeof AuthImagingNewRoute
   '/_auth/incidents/$incidentId': typeof AuthIncidentsIncidentIdRoute
@@ -245,6 +271,7 @@ export interface FileRoutesById {
   '/_auth/patients/new': typeof AuthPatientsNewRoute
   '/_auth/visits/$visitId': typeof AuthVisitsVisitIdRoute
   '/_auth/appointments/': typeof AuthAppointmentsIndexRoute
+  '/_auth/billing/': typeof AuthBillingIndexRoute
   '/_auth/imaging/': typeof AuthImagingIndexRoute
   '/_auth/incidents/': typeof AuthIncidentsIndexRoute
   '/_auth/labs/': typeof AuthLabsIndexRoute
@@ -261,6 +288,8 @@ export interface FileRouteTypes {
     | '/appointments/$appointmentId'
     | '/appointments/calendar'
     | '/appointments/new'
+    | '/billing/$invoiceId'
+    | '/billing/new'
     | '/imaging/$imagingId'
     | '/imaging/new'
     | '/incidents/$incidentId'
@@ -274,6 +303,7 @@ export interface FileRouteTypes {
     | '/patients/new'
     | '/visits/$visitId'
     | '/appointments/'
+    | '/billing/'
     | '/imaging/'
     | '/incidents/'
     | '/labs/'
@@ -288,6 +318,8 @@ export interface FileRouteTypes {
     | '/appointments/$appointmentId'
     | '/appointments/calendar'
     | '/appointments/new'
+    | '/billing/$invoiceId'
+    | '/billing/new'
     | '/imaging/$imagingId'
     | '/imaging/new'
     | '/incidents/$incidentId'
@@ -301,6 +333,7 @@ export interface FileRouteTypes {
     | '/patients/new'
     | '/visits/$visitId'
     | '/appointments'
+    | '/billing'
     | '/imaging'
     | '/incidents'
     | '/labs'
@@ -316,6 +349,8 @@ export interface FileRouteTypes {
     | '/_auth/appointments/$appointmentId'
     | '/_auth/appointments/calendar'
     | '/_auth/appointments/new'
+    | '/_auth/billing/$invoiceId'
+    | '/_auth/billing/new'
     | '/_auth/imaging/$imagingId'
     | '/_auth/imaging/new'
     | '/_auth/incidents/$incidentId'
@@ -329,6 +364,7 @@ export interface FileRouteTypes {
     | '/_auth/patients/new'
     | '/_auth/visits/$visitId'
     | '/_auth/appointments/'
+    | '/_auth/billing/'
     | '/_auth/imaging/'
     | '/_auth/incidents/'
     | '/_auth/labs/'
@@ -413,6 +449,13 @@ declare module '@tanstack/react-router' {
       path: '/imaging'
       fullPath: '/imaging/'
       preLoaderRoute: typeof AuthImagingIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/billing/': {
+      id: '/_auth/billing/'
+      path: '/billing'
+      fullPath: '/billing/'
+      preLoaderRoute: typeof AuthBillingIndexRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/appointments/': {
@@ -506,6 +549,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImagingImagingIdRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/billing/new': {
+      id: '/_auth/billing/new'
+      path: '/billing/new'
+      fullPath: '/billing/new'
+      preLoaderRoute: typeof AuthBillingNewRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/billing/$invoiceId': {
+      id: '/_auth/billing/$invoiceId'
+      path: '/billing/$invoiceId'
+      fullPath: '/billing/$invoiceId'
+      preLoaderRoute: typeof AuthBillingInvoiceIdRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_auth/appointments/new': {
       id: '/_auth/appointments/new'
       path: '/appointments/new'
@@ -535,6 +592,8 @@ interface AuthRouteChildren {
   AuthAppointmentsAppointmentIdRoute: typeof AuthAppointmentsAppointmentIdRoute
   AuthAppointmentsCalendarRoute: typeof AuthAppointmentsCalendarRoute
   AuthAppointmentsNewRoute: typeof AuthAppointmentsNewRoute
+  AuthBillingInvoiceIdRoute: typeof AuthBillingInvoiceIdRoute
+  AuthBillingNewRoute: typeof AuthBillingNewRoute
   AuthImagingImagingIdRoute: typeof AuthImagingImagingIdRoute
   AuthImagingNewRoute: typeof AuthImagingNewRoute
   AuthIncidentsIncidentIdRoute: typeof AuthIncidentsIncidentIdRoute
@@ -548,6 +607,7 @@ interface AuthRouteChildren {
   AuthPatientsNewRoute: typeof AuthPatientsNewRoute
   AuthVisitsVisitIdRoute: typeof AuthVisitsVisitIdRoute
   AuthAppointmentsIndexRoute: typeof AuthAppointmentsIndexRoute
+  AuthBillingIndexRoute: typeof AuthBillingIndexRoute
   AuthImagingIndexRoute: typeof AuthImagingIndexRoute
   AuthIncidentsIndexRoute: typeof AuthIncidentsIndexRoute
   AuthLabsIndexRoute: typeof AuthLabsIndexRoute
@@ -561,6 +621,8 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthAppointmentsAppointmentIdRoute: AuthAppointmentsAppointmentIdRoute,
   AuthAppointmentsCalendarRoute: AuthAppointmentsCalendarRoute,
   AuthAppointmentsNewRoute: AuthAppointmentsNewRoute,
+  AuthBillingInvoiceIdRoute: AuthBillingInvoiceIdRoute,
+  AuthBillingNewRoute: AuthBillingNewRoute,
   AuthImagingImagingIdRoute: AuthImagingImagingIdRoute,
   AuthImagingNewRoute: AuthImagingNewRoute,
   AuthIncidentsIncidentIdRoute: AuthIncidentsIncidentIdRoute,
@@ -574,6 +636,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthPatientsNewRoute: AuthPatientsNewRoute,
   AuthVisitsVisitIdRoute: AuthVisitsVisitIdRoute,
   AuthAppointmentsIndexRoute: AuthAppointmentsIndexRoute,
+  AuthBillingIndexRoute: AuthBillingIndexRoute,
   AuthImagingIndexRoute: AuthImagingIndexRoute,
   AuthIncidentsIndexRoute: AuthIncidentsIndexRoute,
   AuthLabsIndexRoute: AuthLabsIndexRoute,

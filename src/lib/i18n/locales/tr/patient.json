@@ -49,7 +49,8 @@
     "relatedPersons": "İlgili kişiler",
     "careGoals": "Bakım hedefleri",
     "carePlans": "Bakım planları",
-    "history": "Geçmiş"
+    "history": "Geçmiş",
+    "billing": "Faturalama"
   },
   "list": {
     "statusPlaceholder": "Durum",

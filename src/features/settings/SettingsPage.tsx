@@ -28,6 +28,7 @@ import { useAuthStore } from '@/features/auth/auth.store'
 import { supabase } from '@/lib/supabase/client'
 import { ThemeCard } from './ThemeCard'
 import { TeamCard } from './TeamCard'
+import { ChargeItemsCard } from './ChargeItemsCard'
 import { SwitchServerCard } from './SwitchServerCard'
 import { HubCard } from './HubCard'
 import { CloudBackupCard } from './CloudBackupCard'
@@ -57,6 +58,7 @@ export function SettingsPage() {
       <LanguageCard />
       <ThemeCard />
       <UserListCard profiles={profiles} isAdmin={isAdmin} />
+      <ChargeItemsCard />
       <TeamCard />
       <AccountDiagnosticsCard />
       <HubCard />

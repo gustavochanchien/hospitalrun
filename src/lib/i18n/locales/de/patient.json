@@ -49,7 +49,8 @@
     "relatedPersons": "Bezugspersonen",
     "careGoals": "Pflegeziele",
     "carePlans": "Pflegepläne",
-    "history": "Verlauf"
+    "history": "Verlauf",
+    "billing": "Abrechnung"
   },
   "list": {
     "statusPlaceholder": "Status",

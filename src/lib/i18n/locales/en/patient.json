@@ -49,7 +49,8 @@
     "relatedPersons": "Related Persons",
     "careGoals": "Care Goals",
     "carePlans": "Care Plans",
-    "history": "History"
+    "history": "History",
+    "billing": "Billing"
   },
   "list": {
     "statusPlaceholder": "Status",

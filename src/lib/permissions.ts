@@ -30,6 +30,11 @@ export const PERMISSIONS = [
   'write:related_person',
   'read:settings',
   'write:settings',
+  'read:billing',
+  'write:billing',
+  'void:invoice',
+  'record:payment',
+  'manage:charge_items',
 ] as const
 
 export type Permission = (typeof PERMISSIONS)[number]
@@ -66,6 +71,9 @@ const CLINICAL_PERMISSIONS: Permission[] = [
   'read:visit',
   'write:note',
   'write:related_person',
+  'read:billing',
+  'write:billing',
+  'record:payment',
 ]
 
 const READ_PERMISSIONS: Permission[] = [
@@ -78,6 +86,7 @@ const READ_PERMISSIONS: Permission[] = [
   'read:care_plan',
   'read:care_goal',
   'read:visit',
+  'read:billing',
 ]
 
 const ROLE_PERMISSIONS: Record<string, Permission[]> = {

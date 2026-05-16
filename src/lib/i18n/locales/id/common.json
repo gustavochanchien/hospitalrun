@@ -49,6 +49,7 @@
     "medications": "Obat",
     "imaging": "Pencitraan",
     "incidents": "Insiden",
+    "billing": "Penagihan",
     "settings": "Pengaturan"
   },
   "network": {

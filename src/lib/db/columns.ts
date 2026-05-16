@@ -242,6 +242,70 @@ const userFeatureColumns = {
   updatedAt: 'updated_at',
 } as const
 
+const chargeItemColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  unitAmount: 'unit_amount',
+  currency: 'currency',
+  active: 'active',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
+const invoiceColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  patientId: 'patient_id',
+  visitId: 'visit_id',
+  invoiceNumber: 'invoice_number',
+  status: 'status',
+  issuedAt: 'issued_at',
+  dueAt: 'due_at',
+  currency: 'currency',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  discount: 'discount',
+  total: 'total',
+  amountPaid: 'amount_paid',
+  notes: 'notes',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
+const invoiceLineItemColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  invoiceId: 'invoice_id',
+  chargeItemId: 'charge_item_id',
+  description: 'description',
+  quantity: 'quantity',
+  unitAmount: 'unit_amount',
+  amount: 'amount',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
+const paymentColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  invoiceId: 'invoice_id',
+  patientId: 'patient_id',
+  amount: 'amount',
+  method: 'method',
+  receivedAt: 'received_at',
+  reference: 'reference',
+  notes: 'notes',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
 export const columnMap: Record<SyncableTable, Record<string, string>> = {
   patients: patientColumns,
   visits: visitColumns,
@@ -258,6 +322,10 @@ export const columnMap: Record<SyncableTable, Record<string, string>> = {
   carePlans: carePlanColumns,
   orgFeatures: orgFeatureColumns,
   userFeatures: userFeatureColumns,
+  chargeItems: chargeItemColumns,
+  invoices: invoiceColumns,
+  invoiceLineItems: invoiceLineItemColumns,
+  payments: paymentColumns,
 }
 
 /** Dexie table name → Supabase table name */
@@ -277,6 +345,10 @@ export const supabaseTableName: Record<SyncableTable, string> = {
   carePlans: 'care_plans',
   orgFeatures: 'org_features',
   userFeatures: 'user_features',
+  chargeItems: 'charge_items',
+  invoices: 'invoices',
+  invoiceLineItems: 'invoice_line_items',
+  payments: 'payments',
 }
 
 /** Convert a Dexie record (camelCase) to a Supabase row (snake_case) */

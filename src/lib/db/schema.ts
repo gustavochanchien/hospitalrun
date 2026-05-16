@@ -343,6 +343,78 @@ export interface UserFeature {
   _deleted: boolean
 }
 
+export interface ChargeItem {
+  id: string
+  orgId: string
+  code: string
+  name: string
+  description: string | null
+  unitAmount: number
+  currency: string
+  active: boolean
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
+export interface Invoice {
+  id: string
+  orgId: string
+  patientId: string
+  visitId: string | null
+  invoiceNumber: string
+  status: 'draft' | 'issued' | 'partial' | 'paid' | 'void'
+  issuedAt: string | null
+  dueAt: string | null
+  currency: string
+  subtotal: number
+  tax: number
+  discount: number
+  total: number
+  amountPaid: number
+  notes: string | null
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
+export interface InvoiceLineItem {
+  id: string
+  orgId: string
+  invoiceId: string
+  chargeItemId: string | null
+  description: string
+  quantity: number
+  unitAmount: number
+  amount: number
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
+export interface Payment {
+  id: string
+  orgId: string
+  invoiceId: string
+  patientId: string
+  amount: number
+  method: 'cash' | 'card' | 'bank-transfer' | 'insurance' | 'other'
+  receivedAt: string
+  reference: string | null
+  notes: string | null
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
 export interface SyncQueueEntry {
   seq?: number
   tableName: string
@@ -369,6 +441,10 @@ export type TableMap = {
   patientHistory: PatientHistory
   orgFeatures: OrgFeature
   userFeatures: UserFeature
+  chargeItems: ChargeItem
+  invoices: Invoice
+  invoiceLineItems: InvoiceLineItem
+  payments: Payment
   syncQueue: SyncQueueEntry
 }
 

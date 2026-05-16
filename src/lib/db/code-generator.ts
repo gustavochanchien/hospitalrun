@@ -42,3 +42,27 @@ export async function generateCode(
   const next = maxNum + 1
   return `${prefix}-${String(next).padStart(5, '0')}`
 }
+
+/**
+ * Generate the next invoice number for an org. Format: INV-00001.
+ * Scans existing invoices (including soft-deleted) so reused numbers
+ * never collide with prior records.
+ */
+export async function generateInvoiceNumber(orgId: string): Promise<string> {
+  const pattern = /^INV-(\d+)$/
+  const invoices = await db.invoices
+    .where('orgId')
+    .equals(orgId)
+    .toArray()
+
+  let maxNum = 0
+  for (const invoice of invoices) {
+    const match = pattern.exec(invoice.invoiceNumber)
+    if (match) {
+      const num = parseInt(match[1], 10)
+      if (num > maxNum) maxNum = num
+    }
+  }
+
+  return `INV-${String(maxNum + 1).padStart(5, '0')}`
+}

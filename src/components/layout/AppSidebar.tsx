@@ -7,6 +7,7 @@ import {
   TestTubes,
   Pill,
   ScanLine,
+  Receipt,
   AlertTriangle,
   Settings,
   HeartPulse,
@@ -37,7 +38,7 @@ import { ChevronUp } from 'lucide-react'
 
 type NavItem = {
   key: string
-  to: '/' | '/patients' | '/appointments' | '/labs' | '/medications' | '/imaging' | '/incidents' | '/settings'
+  to: '/' | '/patients' | '/appointments' | '/labs' | '/medications' | '/imaging' | '/billing' | '/incidents' | '/settings'
   icon: typeof LayoutDashboard
   feature?: Feature
 }
@@ -49,6 +50,7 @@ const navItems: readonly NavItem[] = [
   { key: 'labs', to: '/labs', icon: TestTubes },
   { key: 'medications', to: '/medications', icon: Pill },
   { key: 'imaging', to: '/imaging', icon: ScanLine },
+  { key: 'billing', to: '/billing', icon: Receipt, feature: 'billing' as const },
   { key: 'incidents', to: '/incidents', icon: AlertTriangle },
   { key: 'settings', to: '/settings', icon: Settings },
 ]

@@ -49,7 +49,8 @@
     "relatedPersons": "Persone collegate",
     "careGoals": "Obiettivi di cura",
     "carePlans": "Piani di cura",
-    "history": "Cronologia"
+    "history": "Cronologia",
+    "billing": "Fatturazione"
   },
   "list": {
     "statusPlaceholder": "Stato",
