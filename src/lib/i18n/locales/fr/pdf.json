@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "Exporter en PDF",
+    "print": "Imprimer",
+    "generating": "Génération en cours…"
+  },
+  "footer": {
+    "generated": "Généré par HospitalRun le {{date}}",
+    "page": "Page {{page}} sur {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Patient inconnu",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Résumé du patient",
+    "subtitle": "IPP {{mrn}}",
+    "sections": {
+      "demographics": "Données personnelles",
+      "diagnoses": "Diagnostics actifs",
+      "medications": "Médicaments actifs",
+      "allergies": "Allergies",
+      "visits": "Visites récentes"
+    },
+    "fields": {
+      "name": "Nom",
+      "dateOfBirth": "Date de naissance",
+      "sex": "Sexe",
+      "bloodType": "Groupe sanguin",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "address": "Adresse",
+      "preferredLanguage": "Langue préférée",
+      "status": "Statut"
+    },
+    "empty": {
+      "diagnoses": "Aucun diagnostic actif enregistré.",
+      "medications": "Aucun médicament actif enregistré.",
+      "allergies": "Aucune allergie enregistrée.",
+      "visits": "Aucune visite récente."
+    }
+  },
+  "labReport": {
+    "title": "Rapport de laboratoire",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Patient",
+      "order": "Détails de la demande",
+      "result": "Résultat"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "IPP",
+      "type": "Analyse",
+      "code": "Code",
+      "status": "Statut",
+      "requestedBy": "Demandé par",
+      "requestedAt": "Demandé le",
+      "completedAt": "Complété le",
+      "notes": "Notes"
+    },
+    "empty": {
+      "result": "Aucun résultat n'a encore été enregistré."
+    }
+  },
+  "imagingReport": {
+    "title": "Compte rendu d'imagerie",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Patient",
+      "study": "Détails de l'examen",
+      "image": "Image"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "IPP",
+      "type": "Modalité",
+      "code": "Code",
+      "status": "Statut",
+      "requestedBy": "Demandé par",
+      "requestedOn": "Demandé le",
+      "completedOn": "Complété le",
+      "notes": "Conclusions"
+    },
+    "empty": {
+      "image": "Aucune image jointe à cet examen.",
+      "imageUnavailable": "L'image n'a pas pu être intégrée."
+    }
+  }
+}

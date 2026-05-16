@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "Exportar PDF",
+    "print": "Imprimir",
+    "generating": "Gerando…"
+  },
+  "footer": {
+    "generated": "Gerado pelo HospitalRun em {{date}}",
+    "page": "Página {{page}} de {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Paciente desconhecido",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Resumo do Paciente",
+    "subtitle": "Prontuário {{mrn}}",
+    "sections": {
+      "demographics": "Dados pessoais",
+      "diagnoses": "Diagnósticos ativos",
+      "medications": "Medicamentos ativos",
+      "allergies": "Alergias",
+      "visits": "Visitas recentes"
+    },
+    "fields": {
+      "name": "Nome",
+      "dateOfBirth": "Data de nascimento",
+      "sex": "Sexo",
+      "bloodType": "Tipo sanguíneo",
+      "phone": "Telefone",
+      "email": "E-mail",
+      "address": "Endereço",
+      "preferredLanguage": "Idioma preferido",
+      "status": "Status"
+    },
+    "empty": {
+      "diagnoses": "Nenhum diagnóstico ativo registrado.",
+      "medications": "Nenhum medicamento ativo registrado.",
+      "allergies": "Nenhuma alergia registrada.",
+      "visits": "Nenhuma visita recente."
+    }
+  },
+  "labReport": {
+    "title": "Laudo de Laboratório",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Paciente",
+      "order": "Detalhes do pedido",
+      "result": "Resultado"
+    },
+    "fields": {
+      "patient": "Paciente",
+      "mrn": "Prontuário",
+      "type": "Exame",
+      "code": "Código",
+      "status": "Status",
+      "requestedBy": "Solicitado por",
+      "requestedAt": "Solicitado em",
+      "completedAt": "Concluído em",
+      "notes": "Notas"
+    },
+    "empty": {
+      "result": "Nenhum resultado foi registrado ainda."
+    }
+  },
+  "imagingReport": {
+    "title": "Laudo de Imagem",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Paciente",
+      "study": "Detalhes do estudo",
+      "image": "Imagem"
+    },
+    "fields": {
+      "patient": "Paciente",
+      "mrn": "Prontuário",
+      "type": "Modalidade",
+      "code": "Código",
+      "status": "Status",
+      "requestedBy": "Solicitado por",
+      "requestedOn": "Solicitado em",
+      "completedOn": "Concluído em",
+      "notes": "Achados"
+    },
+    "empty": {
+      "image": "Nenhuma imagem anexada a este estudo.",
+      "imageUnavailable": "A imagem não pôde ser incorporada."
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "PDF Dışa Aktar",
+    "print": "Yazdır",
+    "generating": "Oluşturuluyor…"
+  },
+  "footer": {
+    "generated": "{{date}} tarihinde HospitalRun tarafından oluşturuldu",
+    "page": "Sayfa {{page}} / {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Bilinmeyen hasta",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Hasta Özeti",
+    "subtitle": "Hasta No {{mrn}}",
+    "sections": {
+      "demographics": "Kişisel Bilgiler",
+      "diagnoses": "Aktif Tanılar",
+      "medications": "Aktif İlaçlar",
+      "allergies": "Alerjiler",
+      "visits": "Son Ziyaretler"
+    },
+    "fields": {
+      "name": "Ad Soyad",
+      "dateOfBirth": "Doğum tarihi",
+      "sex": "Cinsiyet",
+      "bloodType": "Kan grubu",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "address": "Adres",
+      "preferredLanguage": "Tercih edilen dil",
+      "status": "Durum"
+    },
+    "empty": {
+      "diagnoses": "Kayıtlı aktif tanı bulunmuyor.",
+      "medications": "Kayıtlı aktif ilaç bulunmuyor.",
+      "allergies": "Kayıtlı alerji bulunmuyor.",
+      "visits": "Son ziyaret bulunmuyor."
+    }
+  },
+  "labReport": {
+    "title": "Laboratuvar Raporu",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Hasta",
+      "order": "İstem detayları",
+      "result": "Sonuç"
+    },
+    "fields": {
+      "patient": "Hasta",
+      "mrn": "Hasta No",
+      "type": "Test",
+      "code": "Kod",
+      "status": "Durum",
+      "requestedBy": "İsteyen",
+      "requestedAt": "İstem tarihi",
+      "completedAt": "Tamamlanma tarihi",
+      "notes": "Notlar"
+    },
+    "empty": {
+      "result": "Henüz sonuç kaydedilmedi."
+    }
+  },
+  "imagingReport": {
+    "title": "Görüntüleme Raporu",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Hasta",
+      "study": "Tetkik detayları",
+      "image": "Görüntü"
+    },
+    "fields": {
+      "patient": "Hasta",
+      "mrn": "Hasta No",
+      "type": "Modalite",
+      "code": "Kod",
+      "status": "Durum",
+      "requestedBy": "İsteyen",
+      "requestedOn": "İstem tarihi",
+      "completedOn": "Tamamlanma tarihi",
+      "notes": "Bulgular"
+    },
+    "empty": {
+      "image": "Bu tetkike ait görüntü eklenmemiş.",
+      "imageUnavailable": "Görüntü yerleştirilemedi."
+    }
+  }
+}

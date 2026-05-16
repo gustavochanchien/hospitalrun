@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "تصدير PDF",
+    "print": "طباعة",
+    "generating": "جارٍ الإنشاء…"
+  },
+  "footer": {
+    "generated": "تم الإنشاء بواسطة HospitalRun في {{date}}",
+    "page": "صفحة {{page}} من {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "مريض غير معروف",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "ملخص المريض",
+    "subtitle": "رقم السجل الطبي {{mrn}}",
+    "sections": {
+      "demographics": "البيانات الديموغرافية",
+      "diagnoses": "التشخيصات النشطة",
+      "medications": "الأدوية النشطة",
+      "allergies": "الحساسية",
+      "visits": "الزيارات الأخيرة"
+    },
+    "fields": {
+      "name": "الاسم",
+      "dateOfBirth": "تاريخ الميلاد",
+      "sex": "الجنس",
+      "bloodType": "فصيلة الدم",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "address": "العنوان",
+      "preferredLanguage": "اللغة المفضلة",
+      "status": "الحالة"
+    },
+    "empty": {
+      "diagnoses": "لا توجد تشخيصات نشطة مسجلة.",
+      "medications": "لا توجد أدوية نشطة مسجلة.",
+      "allergies": "لا توجد حساسية مسجلة.",
+      "visits": "لا توجد زيارات أخيرة."
+    }
+  },
+  "labReport": {
+    "title": "تقرير المختبر",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "المريض",
+      "order": "تفاصيل الطلب",
+      "result": "النتيجة"
+    },
+    "fields": {
+      "patient": "المريض",
+      "mrn": "رقم السجل الطبي",
+      "type": "الفحص",
+      "code": "الرمز",
+      "status": "الحالة",
+      "requestedBy": "طُلب بواسطة",
+      "requestedAt": "تاريخ الطلب",
+      "completedAt": "تاريخ الاكتمال",
+      "notes": "الملاحظات"
+    },
+    "empty": {
+      "result": "لم يتم تسجيل أي نتيجة بعد."
+    }
+  },
+  "imagingReport": {
+    "title": "تقرير التصوير",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "المريض",
+      "study": "تفاصيل الدراسة",
+      "image": "الصورة"
+    },
+    "fields": {
+      "patient": "المريض",
+      "mrn": "رقم السجل الطبي",
+      "type": "طريقة التصوير",
+      "code": "الرمز",
+      "status": "الحالة",
+      "requestedBy": "طُلب بواسطة",
+      "requestedOn": "تاريخ الطلب",
+      "completedOn": "تاريخ الاكتمال",
+      "notes": "النتائج"
+    },
+    "empty": {
+      "image": "لا توجد صورة مرفقة بهذه الدراسة.",
+      "imageUnavailable": "تعذّر تضمين الصورة."
+    }
+  }
+}

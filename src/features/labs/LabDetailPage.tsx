@@ -4,6 +4,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
+import i18n from 'i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -19,8 +20,12 @@ import {
 } from '@/components/ui/dialog'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { PermissionGuard } from '@/components/ui/permission-guard'
+import { PdfExportButton } from '@/components/pdf-export-button'
+import { PrintButton } from '@/components/print-button'
+import { resolveOrgName } from '@/lib/pdf/org'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
+import { useAuthStore } from '@/features/auth/auth.store'
 
 interface LabDetailPageProps {
   labId: string
@@ -29,6 +34,7 @@ interface LabDetailPageProps {
 export function LabDetailPage({ labId }: LabDetailPageProps) {
   const { t } = useTranslation('labs')
   const navigate = useNavigate()
+  const orgId = useAuthStore((s) => s.orgId)
   const [resultText, setResultText] = useState('')
   const [completeDialogOpen, setCompleteDialogOpen] = useState(false)
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -233,7 +239,7 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
       </Card>
 
       {/* Actions */}
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3" data-print-actions>
         {lab.status === 'requested' && (
           <>
             <PermissionGuard permission="complete:lab">
@@ -252,6 +258,23 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
             </PermissionGuard>
           </>
         )}
+        <PdfExportButton
+          filename={`lab-${lab.code ?? lab.id}`}
+          buildDocument={async () => {
+            const orgName = await resolveOrgName(orgId)
+            const { LabReportPdf } = await import('./pdf/LabReportPdf')
+            return (
+              <LabReportPdf
+                orgName={orgName}
+                lab={lab}
+                patient={patient ?? null}
+                generatedAt={new Date()}
+                locale={i18n.language}
+              />
+            )
+          }}
+        />
+        <PrintButton />
         <Button variant="destructive" onClick={() => setConfirmOpen(true)}>
           {t('detail.delete')}
         </Button>

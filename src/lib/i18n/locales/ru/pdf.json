@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "Экспорт в PDF",
+    "print": "Печать",
+    "generating": "Формирование…"
+  },
+  "footer": {
+    "generated": "Сформировано HospitalRun {{date}}",
+    "page": "Страница {{page}} из {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Неизвестный пациент",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Сводная карта пациента",
+    "subtitle": "Номер истории болезни {{mrn}}",
+    "sections": {
+      "demographics": "Персональные данные",
+      "diagnoses": "Активные диагнозы",
+      "medications": "Текущие препараты",
+      "allergies": "Аллергии",
+      "visits": "Последние визиты"
+    },
+    "fields": {
+      "name": "ФИО",
+      "dateOfBirth": "Дата рождения",
+      "sex": "Пол",
+      "bloodType": "Группа крови",
+      "phone": "Телефон",
+      "email": "E-mail",
+      "address": "Адрес",
+      "preferredLanguage": "Предпочтительный язык",
+      "status": "Статус"
+    },
+    "empty": {
+      "diagnoses": "Активных диагнозов не зафиксировано.",
+      "medications": "Текущих препаратов не зафиксировано.",
+      "allergies": "Аллергий не зафиксировано.",
+      "visits": "Последних визитов нет."
+    }
+  },
+  "labReport": {
+    "title": "Лабораторное заключение",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Пациент",
+      "order": "Детали назначения",
+      "result": "Результат"
+    },
+    "fields": {
+      "patient": "Пациент",
+      "mrn": "Номер истории болезни",
+      "type": "Анализ",
+      "code": "Код",
+      "status": "Статус",
+      "requestedBy": "Назначил",
+      "requestedAt": "Дата назначения",
+      "completedAt": "Дата выполнения",
+      "notes": "Примечания"
+    },
+    "empty": {
+      "result": "Результат ещё не зафиксирован."
+    }
+  },
+  "imagingReport": {
+    "title": "Заключение по визуализации",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Пациент",
+      "study": "Детали исследования",
+      "image": "Изображение"
+    },
+    "fields": {
+      "patient": "Пациент",
+      "mrn": "Номер истории болезни",
+      "type": "Модальность",
+      "code": "Код",
+      "status": "Статус",
+      "requestedBy": "Назначил",
+      "requestedOn": "Дата назначения",
+      "completedOn": "Дата выполнения",
+      "notes": "Заключение"
+    },
+    "empty": {
+      "image": "К данному исследованию не прикреплено изображение.",
+      "imageUnavailable": "Изображение не удалось встроить."
+    }
+  }
+}

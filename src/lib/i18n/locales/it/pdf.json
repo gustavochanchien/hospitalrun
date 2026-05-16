@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "Esporta PDF",
+    "print": "Stampa",
+    "generating": "Generazione in corso…"
+  },
+  "footer": {
+    "generated": "Generato da HospitalRun il {{date}}",
+    "page": "Pagina {{page}} di {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Paziente sconosciuto",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Riepilogo del paziente",
+    "subtitle": "NRE {{mrn}}",
+    "sections": {
+      "demographics": "Dati anagrafici",
+      "diagnoses": "Diagnosi attive",
+      "medications": "Farmaci attivi",
+      "allergies": "Allergie",
+      "visits": "Visite recenti"
+    },
+    "fields": {
+      "name": "Nome",
+      "dateOfBirth": "Data di nascita",
+      "sex": "Sesso",
+      "bloodType": "Gruppo sanguigno",
+      "phone": "Telefono",
+      "email": "E-mail",
+      "address": "Indirizzo",
+      "preferredLanguage": "Lingua preferita",
+      "status": "Stato"
+    },
+    "empty": {
+      "diagnoses": "Nessuna diagnosi attiva registrata.",
+      "medications": "Nessun farmaco attivo registrato.",
+      "allergies": "Nessuna allergia registrata.",
+      "visits": "Nessuna visita recente."
+    }
+  },
+  "labReport": {
+    "title": "Referto di laboratorio",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Paziente",
+      "order": "Dettagli richiesta",
+      "result": "Risultato"
+    },
+    "fields": {
+      "patient": "Paziente",
+      "mrn": "NRE",
+      "type": "Esame",
+      "code": "Codice",
+      "status": "Stato",
+      "requestedBy": "Richiesto da",
+      "requestedAt": "Richiesto il",
+      "completedAt": "Completato il",
+      "notes": "Note"
+    },
+    "empty": {
+      "result": "Nessun risultato ancora registrato."
+    }
+  },
+  "imagingReport": {
+    "title": "Referto radiologico",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Paziente",
+      "study": "Dettagli dello studio",
+      "image": "Immagine"
+    },
+    "fields": {
+      "patient": "Paziente",
+      "mrn": "NRE",
+      "type": "Modalità",
+      "code": "Codice",
+      "status": "Stato",
+      "requestedBy": "Richiesto da",
+      "requestedOn": "Richiesto il",
+      "completedOn": "Completato il",
+      "notes": "Riscontri"
+    },
+    "empty": {
+      "image": "Nessuna immagine allegata a questo studio.",
+      "imageUnavailable": "Impossibile incorporare l'immagine."
+    }
+  }
+}

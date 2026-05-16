@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { isDemoMode } from '@/lib/demo/seed'
 
 /**
  * Schema version the deployed frontend was built against. Bump this
@@ -18,11 +19,13 @@ type Status = 'checking' | 'ok' | 'stale-db' | 'missing-rpc'
  * expects. Status drives the root guard UI.
  */
 export function useSchemaGuard(): Status {
-  const [status, setStatus] = useState<Status>(() => isHubLocalMode() ? 'ok' : 'checking')
+  const [status, setStatus] = useState<Status>(() =>
+    isHubLocalMode() || isDemoMode() ? 'ok' : 'checking',
+  )
   const session = useAuthStore((s) => s.session)
 
   useEffect(() => {
-    if (!session || isHubLocalMode()) return
+    if (!session || isHubLocalMode() || isDemoMode()) return
     let cancelled = false
 
     void (async () => {

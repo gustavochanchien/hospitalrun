@@ -204,3 +204,55 @@
     @apply font-sans;
     }
 }
+
+@media print {
+  /* Force a printable, light-themed page regardless of the active theme. */
+  :root, .original, .light, .abyss, .cappuccino {
+    --background: #ffffff;
+    --foreground: #111827;
+    --card: #ffffff;
+    --card-foreground: #111827;
+    --muted: #f3f4f6;
+    --muted-foreground: #4b5563;
+    --border: #d1d5db;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  /* Hide chrome that doesn't make sense on paper. */
+  [data-slot="sidebar-wrapper"],
+  [data-slot="sidebar-trigger"],
+  [data-slot="sidebar"],
+  [data-print-hidden],
+  [data-sonner-toaster],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Pages with action toolbars set `data-print-actions` on the row so it
+   * collapses cleanly when printed. */
+  [data-print-actions] {
+    display: none !important;
+  }
+
+  /* Stretch the main content to full width once the sidebar is hidden. */
+  main, [data-slot="sidebar-inset"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Always break long content cleanly at the bottom of pages. */
+  .printable, [data-printable] {
+    break-inside: avoid-page;
+  }
+
+  a[href] {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}

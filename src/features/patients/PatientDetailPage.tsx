@@ -1,11 +1,16 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
+import i18n from 'i18next'
 import { format, parseISO } from 'date-fns'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { PdfExportButton } from '@/components/pdf-export-button'
+import { PrintButton } from '@/components/print-button'
+import { resolveOrgName } from '@/lib/pdf/org'
+import { useAuthStore } from '@/features/auth/auth.store'
 import { db } from '@/lib/db'
 import { PatientAppointments } from './sub-features/PatientAppointments'
 import { PatientDiagnoses } from './sub-features/PatientDiagnoses'
@@ -27,6 +32,7 @@ interface PatientDetailPageProps {
 
 export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
   const { t } = useTranslation('patient')
+  const orgId = useAuthStore((s) => s.orgId)
   const patient = useLiveQuery(() => db.patients.get(patientId), [patientId])
 
   if (patient === undefined) {
@@ -86,7 +92,7 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Badge
               variant={
                 patient.status === 'active'
@@ -98,6 +104,48 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
             >
               {statusKey ? t(statusKey) : patient.status}
             </Badge>
+            <span data-print-actions className="flex flex-wrap items-center gap-2">
+              <PdfExportButton
+                filename={`patient-${patient.familyName.toLowerCase()}-summary`}
+                buildDocument={async () => {
+                  const orgName = await resolveOrgName(orgId)
+                  const [diagnoses, medications, allergies, visits] = await Promise.all([
+                    db.diagnoses
+                      .where({ patientId })
+                      .filter((d) => !d._deleted && d.status !== 'inactive' && d.status !== 'resolved')
+                      .toArray(),
+                    db.medications
+                      .where({ patientId })
+                      .filter((m) => !m._deleted && (m.status === 'active' || m.status === 'draft'))
+                      .toArray(),
+                    db.allergies
+                      .where({ patientId })
+                      .filter((a) => !a._deleted)
+                      .toArray(),
+                    db.visits
+                      .where({ patientId })
+                      .filter((v) => !v._deleted)
+                      .reverse()
+                      .sortBy('startDatetime'),
+                  ])
+                  const recentVisits = visits.slice(0, 5)
+                  const { PatientSummaryPdf } = await import('./pdf/PatientSummaryPdf')
+                  return (
+                    <PatientSummaryPdf
+                      orgName={orgName}
+                      patient={patient}
+                      diagnoses={diagnoses}
+                      medications={medications}
+                      allergies={allergies}
+                      visits={recentVisits}
+                      generatedAt={new Date()}
+                      locale={i18n.language}
+                    />
+                  )
+                }}
+              />
+              <PrintButton />
+            </span>
             <Button variant="outline" size="sm" asChild>
               <Link
                 to="/patients/$patientId"

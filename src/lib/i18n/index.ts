@@ -13,6 +13,7 @@ const NAMESPACES = [
   'dashboard',
   'setup',
   'features',
+  'pdf',
 ] as const
 
 export type Namespace = (typeof NAMESPACES)[number]

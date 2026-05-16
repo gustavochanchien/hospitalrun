@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "导出 PDF",
+    "print": "打印",
+    "generating": "生成中…"
+  },
+  "footer": {
+    "generated": "由 HospitalRun 于 {{date}} 生成",
+    "page": "第 {{page}} 页，共 {{total}} 页"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "未知患者",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "患者摘要",
+    "subtitle": "病历号 {{mrn}}",
+    "sections": {
+      "demographics": "基本信息",
+      "diagnoses": "当前诊断",
+      "medications": "当前用药",
+      "allergies": "过敏史",
+      "visits": "近期就诊"
+    },
+    "fields": {
+      "name": "姓名",
+      "dateOfBirth": "出生日期",
+      "sex": "性别",
+      "bloodType": "血型",
+      "phone": "电话",
+      "email": "电子邮件",
+      "address": "地址",
+      "preferredLanguage": "首选语言",
+      "status": "状态"
+    },
+    "empty": {
+      "diagnoses": "暂无当前诊断记录。",
+      "medications": "暂无当前用药记录。",
+      "allergies": "暂无过敏史记录。",
+      "visits": "暂无近期就诊记录。"
+    }
+  },
+  "labReport": {
+    "title": "检验报告",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "患者",
+      "order": "申请详情",
+      "result": "结果"
+    },
+    "fields": {
+      "patient": "患者",
+      "mrn": "病历号",
+      "type": "检验项目",
+      "code": "代码",
+      "status": "状态",
+      "requestedBy": "申请人",
+      "requestedAt": "申请时间",
+      "completedAt": "完成时间",
+      "notes": "备注"
+    },
+    "empty": {
+      "result": "尚未记录任何结果。"
+    }
+  },
+  "imagingReport": {
+    "title": "影像报告",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "患者",
+      "study": "检查详情",
+      "image": "图像"
+    },
+    "fields": {
+      "patient": "患者",
+      "mrn": "病历号",
+      "type": "成像方式",
+      "code": "代码",
+      "status": "状态",
+      "requestedBy": "申请人",
+      "requestedOn": "申请日期",
+      "completedOn": "完成日期",
+      "notes": "所见"
+    },
+    "empty": {
+      "image": "本次检查未附加图像。",
+      "imageUnavailable": "图像无法嵌入。"
+    }
+  }
+}

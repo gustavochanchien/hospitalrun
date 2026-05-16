@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "PDFエクスポート",
+    "print": "印刷",
+    "generating": "生成中…"
+  },
+  "footer": {
+    "generated": "{{date}} に HospitalRun により生成",
+    "page": "{{page}} / {{total}} ページ"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "不明な患者",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "患者サマリー",
+    "subtitle": "患者番号 {{mrn}}",
+    "sections": {
+      "demographics": "基本情報",
+      "diagnoses": "現在の診断",
+      "medications": "現在の処方",
+      "allergies": "アレルギー",
+      "visits": "最近の来院"
+    },
+    "fields": {
+      "name": "氏名",
+      "dateOfBirth": "生年月日",
+      "sex": "性別",
+      "bloodType": "血液型",
+      "phone": "電話番号",
+      "email": "メール",
+      "address": "住所",
+      "preferredLanguage": "使用言語",
+      "status": "状態"
+    },
+    "empty": {
+      "diagnoses": "現在の診断はありません。",
+      "medications": "現在の処方はありません。",
+      "allergies": "アレルギーの記録はありません。",
+      "visits": "最近の来院はありません。"
+    }
+  },
+  "labReport": {
+    "title": "検査報告書",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "患者",
+      "order": "依頼詳細",
+      "result": "結果"
+    },
+    "fields": {
+      "patient": "患者",
+      "mrn": "患者番号",
+      "type": "検査項目",
+      "code": "コード",
+      "status": "状態",
+      "requestedBy": "依頼者",
+      "requestedAt": "依頼日時",
+      "completedAt": "完了日時",
+      "notes": "メモ"
+    },
+    "empty": {
+      "result": "まだ結果が記録されていません。"
+    }
+  },
+  "imagingReport": {
+    "title": "画像診断報告書",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "患者",
+      "study": "検査詳細",
+      "image": "画像"
+    },
+    "fields": {
+      "patient": "患者",
+      "mrn": "患者番号",
+      "type": "モダリティ",
+      "code": "コード",
+      "status": "状態",
+      "requestedBy": "依頼者",
+      "requestedOn": "依頼日",
+      "completedOn": "完了日",
+      "notes": "所見"
+    },
+    "empty": {
+      "image": "この検査に画像が添付されていません。",
+      "imageUnavailable": "画像を埋め込むことができませんでした。"
+    }
+  }
+}

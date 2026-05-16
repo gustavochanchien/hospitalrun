@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "Exportar PDF",
+    "print": "Imprimir",
+    "generating": "Generando…"
+  },
+  "footer": {
+    "generated": "Generado por HospitalRun el {{date}}",
+    "page": "Página {{page}} de {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Paciente desconocido",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Resumen del paciente",
+    "subtitle": "NHC {{mrn}}",
+    "sections": {
+      "demographics": "Datos personales",
+      "diagnoses": "Diagnósticos activos",
+      "medications": "Medicamentos activos",
+      "allergies": "Alergias",
+      "visits": "Visitas recientes"
+    },
+    "fields": {
+      "name": "Nombre",
+      "dateOfBirth": "Fecha de nacimiento",
+      "sex": "Sexo",
+      "bloodType": "Grupo sanguíneo",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "address": "Dirección",
+      "preferredLanguage": "Idioma preferido",
+      "status": "Estado"
+    },
+    "empty": {
+      "diagnoses": "No hay diagnósticos activos registrados.",
+      "medications": "No hay medicamentos activos registrados.",
+      "allergies": "No hay alergias registradas.",
+      "visits": "No hay visitas recientes."
+    }
+  },
+  "labReport": {
+    "title": "Informe de laboratorio",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Paciente",
+      "order": "Detalles del pedido",
+      "result": "Resultado"
+    },
+    "fields": {
+      "patient": "Paciente",
+      "mrn": "NHC",
+      "type": "Prueba",
+      "code": "Código",
+      "status": "Estado",
+      "requestedBy": "Solicitado por",
+      "requestedAt": "Solicitado el",
+      "completedAt": "Completado el",
+      "notes": "Notas"
+    },
+    "empty": {
+      "result": "Aún no se ha registrado ningún resultado."
+    }
+  },
+  "imagingReport": {
+    "title": "Informe de imagen",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Paciente",
+      "study": "Detalles del estudio",
+      "image": "Imagen"
+    },
+    "fields": {
+      "patient": "Paciente",
+      "mrn": "NHC",
+      "type": "Modalidad",
+      "code": "Código",
+      "status": "Estado",
+      "requestedBy": "Solicitado por",
+      "requestedOn": "Solicitado el",
+      "completedOn": "Completado el",
+      "notes": "Hallazgos"
+    },
+    "empty": {
+      "image": "No hay imagen adjunta a este estudio.",
+      "imageUnavailable": "La imagen no pudo incrustarse."
+    }
+  }
+}

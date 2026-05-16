@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "Ekspor PDF",
+    "print": "Cetak",
+    "generating": "Sedang dibuat…"
+  },
+  "footer": {
+    "generated": "Dibuat oleh HospitalRun pada {{date}}",
+    "page": "Halaman {{page}} dari {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Pasien tidak diketahui",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Ringkasan Pasien",
+    "subtitle": "No. Rekam Medis {{mrn}}",
+    "sections": {
+      "demographics": "Data Demografis",
+      "diagnoses": "Diagnosis Aktif",
+      "medications": "Obat Aktif",
+      "allergies": "Alergi",
+      "visits": "Kunjungan Terbaru"
+    },
+    "fields": {
+      "name": "Nama",
+      "dateOfBirth": "Tanggal lahir",
+      "sex": "Jenis kelamin",
+      "bloodType": "Golongan darah",
+      "phone": "Telepon",
+      "email": "Email",
+      "address": "Alamat",
+      "preferredLanguage": "Bahasa pilihan",
+      "status": "Status"
+    },
+    "empty": {
+      "diagnoses": "Tidak ada diagnosis aktif yang tercatat.",
+      "medications": "Tidak ada obat aktif yang tercatat.",
+      "allergies": "Tidak ada alergi yang tercatat.",
+      "visits": "Tidak ada kunjungan terbaru."
+    }
+  },
+  "labReport": {
+    "title": "Laporan Laboratorium",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Pasien",
+      "order": "Detail permintaan",
+      "result": "Hasil"
+    },
+    "fields": {
+      "patient": "Pasien",
+      "mrn": "No. Rekam Medis",
+      "type": "Pemeriksaan",
+      "code": "Kode",
+      "status": "Status",
+      "requestedBy": "Diminta oleh",
+      "requestedAt": "Diminta pada",
+      "completedAt": "Diselesaikan pada",
+      "notes": "Catatan"
+    },
+    "empty": {
+      "result": "Belum ada hasil yang dicatat."
+    }
+  },
+  "imagingReport": {
+    "title": "Laporan Pencitraan",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Pasien",
+      "study": "Detail studi",
+      "image": "Gambar"
+    },
+    "fields": {
+      "patient": "Pasien",
+      "mrn": "No. Rekam Medis",
+      "type": "Modalitas",
+      "code": "Kode",
+      "status": "Status",
+      "requestedBy": "Diminta oleh",
+      "requestedOn": "Diminta pada",
+      "completedOn": "Diselesaikan pada",
+      "notes": "Temuan"
+    },
+    "empty": {
+      "image": "Tidak ada gambar yang dilampirkan pada studi ini.",
+      "imageUnavailable": "Gambar tidak dapat disematkan."
+    }
+  }
+}

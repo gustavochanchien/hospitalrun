@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "exportPdf": "PDF exportieren",
+    "print": "Drucken",
+    "generating": "Wird erstellt…"
+  },
+  "footer": {
+    "generated": "Erstellt von HospitalRun am {{date}}",
+    "page": "Seite {{page}} von {{total}}"
+  },
+  "common": {
+    "notSpecified": "—",
+    "unknownPatient": "Unbekannter Patient",
+    "noOrgName": "HospitalRun"
+  },
+  "patientSummary": {
+    "title": "Patientenzusammenfassung",
+    "subtitle": "Patientennummer {{mrn}}",
+    "sections": {
+      "demographics": "Stammdaten",
+      "diagnoses": "Aktive Diagnosen",
+      "medications": "Aktive Medikamente",
+      "allergies": "Allergien",
+      "visits": "Letzte Besuche"
+    },
+    "fields": {
+      "name": "Name",
+      "dateOfBirth": "Geburtsdatum",
+      "sex": "Geschlecht",
+      "bloodType": "Blutgruppe",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "address": "Adresse",
+      "preferredLanguage": "Bevorzugte Sprache",
+      "status": "Status"
+    },
+    "empty": {
+      "diagnoses": "Keine aktiven Diagnosen gespeichert.",
+      "medications": "Keine aktiven Medikamente gespeichert.",
+      "allergies": "Keine Allergien gespeichert.",
+      "visits": "Keine aktuellen Besuche."
+    }
+  },
+  "labReport": {
+    "title": "Laborbericht",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Patient",
+      "order": "Auftragsdetails",
+      "result": "Ergebnis"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "Patientennummer",
+      "type": "Untersuchung",
+      "code": "Code",
+      "status": "Status",
+      "requestedBy": "Angefordert von",
+      "requestedAt": "Angefordert am",
+      "completedAt": "Abgeschlossen am",
+      "notes": "Notizen"
+    },
+    "empty": {
+      "result": "Noch kein Ergebnis erfasst."
+    }
+  },
+  "imagingReport": {
+    "title": "Befundbericht",
+    "subtitle": "{{type}}",
+    "sections": {
+      "patient": "Patient",
+      "study": "Untersuchungsdetails",
+      "image": "Bild"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "Patientennummer",
+      "type": "Modalität",
+      "code": "Code",
+      "status": "Status",
+      "requestedBy": "Angefordert von",
+      "requestedOn": "Angefordert am",
+      "completedOn": "Abgeschlossen am",
+      "notes": "Befunde"
+    },
+    "empty": {
+      "image": "Dieser Untersuchung ist kein Bild beigefügt.",
+      "imageUnavailable": "Bild konnte nicht eingebettet werden."
+    }
+  }
+}

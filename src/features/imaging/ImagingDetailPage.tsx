@@ -4,11 +4,16 @@ import { format, parseISO } from 'date-fns'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
+import i18n from 'i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PdfExportButton } from '@/components/pdf-export-button'
+import { PrintButton } from '@/components/print-button'
+import { resolveOrgName } from '@/lib/pdf/org'
+import { fetchImageAsDataUrl } from '@/lib/pdf'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
@@ -294,7 +299,7 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
       </Card>
 
       {/* Actions */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" data-print-actions>
         {imaging.status === 'requested' && (
           <>
             <Button onClick={() => void handleComplete()}>{t('detail.complete')}</Button>
@@ -303,6 +308,27 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
             </Button>
           </>
         )}
+        <PdfExportButton
+          filename={`imaging-${imaging.code ?? imaging.id}`}
+          buildDocument={async () => {
+            const [orgName, imageDataUrl, { ImagingReportPdf }] = await Promise.all([
+              resolveOrgName(orgId),
+              previewUrl ? fetchImageAsDataUrl(previewUrl) : Promise.resolve(null),
+              import('./pdf/ImagingReportPdf'),
+            ])
+            return (
+              <ImagingReportPdf
+                orgName={orgName}
+                imaging={imaging}
+                patient={patient ?? null}
+                imageDataUrl={imageDataUrl}
+                generatedAt={new Date()}
+                locale={i18n.language}
+              />
+            )
+          }}
+        />
+        <PrintButton />
         <Button variant="destructive" onClick={() => setConfirmOpen(true)}>
           {t('detail.delete')}
         </Button>

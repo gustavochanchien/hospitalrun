@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PrintButton } from '@/components/print-button'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
 import { MEDICATION_STATUSES, type MedicationStatus } from './medication.schema'
@@ -215,8 +216,9 @@ export function MedicationDetailPage({
         </CardContent>
       </Card>
 
-      {/* Delete */}
-      <div className="flex justify-end">
+      {/* Actions */}
+      <div className="flex flex-wrap justify-end gap-2" data-print-actions>
+        <PrintButton />
         <Button
           variant="destructive"
           onClick={() => setConfirmOpen(true)}
