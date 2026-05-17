@@ -24,6 +24,10 @@
     "label": "Längsschnitt-Trenddiagramme",
     "description": "Stellen Sie Patientenmesswerte (Vitalzeichen, numerische Laborergebnisse) als mehrzeilige Liniendiagramme über die Zeit dar."
   },
+  "immunizations": {
+    "label": "Impfregister",
+    "description": "Erfassen Sie verabreichte Impfungen je Patient, einschließlich Dosisnummer, Charge, Hersteller und Fälligkeitsdatum der nächsten Dosis."
+  },
   "toggle": {
     "enabled": "{{feature}} aktiviert",
     "disabled": "{{feature}} deaktiviert"

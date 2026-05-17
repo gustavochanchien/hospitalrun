@@ -24,6 +24,10 @@
     "label": "Longitudinal trend charts",
     "description": "Plot patient measurements (vitals, lab numeric results) as multi-series line charts over time."
   },
+  "immunizations": {
+    "label": "Immunization registry",
+    "description": "Track vaccines administered to each patient, including dose number, lot, manufacturer, and next-due dates for follow-up."
+  },
   "toggle": {
     "enabled": "Enabled {{feature}}",
     "disabled": "Disabled {{feature}}"

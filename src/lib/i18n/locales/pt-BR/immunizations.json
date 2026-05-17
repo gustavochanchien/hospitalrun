@@ -1,0 +1,42 @@
+{
+  "title": "Imunizações",
+  "newAction": "Registrar imunização",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "delete": "Excluir",
+  "loading": "Carregando…",
+  "noResults": "Nenhuma imunização registrada ainda.",
+  "permissionDenied": "Você não tem permissão para visualizar imunizações.",
+  "fields": {
+    "vaccine": "Vacina",
+    "vaccineCode": "Código da vacina",
+    "vaccineName": "Nome da vacina",
+    "doseNumber": "Dose nº",
+    "lotNumber": "Número do lote",
+    "manufacturer": "Fabricante",
+    "administeredAt": "Administrada em",
+    "site": "Local de aplicação",
+    "route": "Via de administração",
+    "nextDueAt": "Próxima dose",
+    "notes": "Notas"
+  },
+  "placeholders": {
+    "site": "ex.: Deltoide esquerdo",
+    "route": "ex.: IM, oral"
+  },
+  "codePicker": {
+    "placeholder": "Buscar códigos de vacina…",
+    "noResults": "Nenhum código de vacina encontrado",
+    "useAsIs": "Usar \"{{code}}\" como está"
+  },
+  "errors": {
+    "missingVaccineName": "O nome da vacina é obrigatório.",
+    "missingAdministeredAt": "A data de administração é obrigatória.",
+    "invalidDoseNumber": "O número da dose deve ser um inteiro não negativo.",
+    "nextDueBeforeAdministered": "A data da próxima dose deve ser posterior à data de administração."
+  },
+  "confirmDelete": {
+    "title": "Excluir imunização?",
+    "description": "Este registro será removido. Você pode reinserí-lo se necessário."
+  }
+}

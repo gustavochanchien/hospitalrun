@@ -301,20 +301,18 @@ Multi-series trend plots over vitals (Stage 18) + labs. Gated by `trends` featur
 
 ---
 
-## Stage 20 — Immunization registry
+## Stage 20 — Immunization registry ✅
 
 Dedicated table separate from medications. Gated by `immunizations` feature flag.
 
-**Agents:** `supabase-dexie-table-wiring` for `immunizations`; sub-tab and gating by hand; `i18n-translator` for 11 locales.
-
-- [ ] Supabase migration `00008_immunizations.sql` + Dexie + columns + hydrate — `supabase-dexie-table-wiring`. Fields: `patientId`, `visitId`, `vaccineCode`, `vaccineName`, `doseNumber`, `lotNumber`, `manufacturer`, `administeredAt`, `administeredBy`, `site`, `route`, `nextDueAt`, `notes`.
-- [ ] Add `immunizations` to `PHI_TABLES` + `PHI_TABLE_TO_RESOURCE`.
-- [ ] [features.ts](src/lib/features.ts): add `'immunizations'`.
-- [ ] [permissions.ts](src/lib/permissions.ts): `read:immunizations`, `write:immunizations`.
-- [ ] New patient sub-tab `PatientImmunizations.tsx` (gated) — list + "Record immunization" dialog. Vaccine code picker reuses Stage 17 `CodeSearchCombobox` seeded with a bundled WHO EPI vaccine list (`public/code-sets/who-epi-vaccines.json`).
-- [ ] `nextDueAt` populates Stage 24 recall board (no edit needed here — Stage 24 reads from this column).
-- [ ] i18n: new `immunizations` namespace; English by hand, `i18n-translator` for the rest.
-- [ ] Tests: form, save round-trip, due-date computation, gate, permission guard.
+- [x] Supabase schema + Dexie + columns + hydrate. Per pre-deploy policy, the `immunizations` table was merged directly into [00001_initial_schema.sql](supabase/migrations/00001_initial_schema.sql) (no new migration file): table + triggers + RLS + grants + built-in role seeds for `read:immunizations` / `write:immunizations`. Dexie v10 store registered in [index.ts](src/lib/db/index.ts) with indexes on `patientId`, `visitId`, `administeredAt`, `nextDueAt`, and `[patientId+administeredAt]`. Snake_case map added in [columns.ts](src/lib/db/columns.ts). Hydrate list updated in [hydrate.ts](src/lib/sync/hydrate.ts). Fields: `patientId`, `visitId`, `vaccineCode`, `vaccineName`, `doseNumber`, `lotNumber`, `manufacturer`, `administeredAt`, `administeredBy`, `site`, `route`, `nextDueAt`, `notes`.
+- [x] [schema.ts](src/lib/db/schema.ts): `immunizations` added to `PHI_TABLES`; `'immunization'` added to `ACCESS_RESOURCE_TYPES`. [access-log.ts](src/lib/db/access-log.ts): `immunizations: 'immunization'` mapping added to `PHI_TABLE_TO_RESOURCE`.
+- [x] [features.ts](src/lib/features.ts): added `'immunizations'` to `FEATURES` + `FEATURE_METADATA`.
+- [x] [permissions.ts](src/lib/permissions.ts): added `read:immunizations` + `write:immunizations` to `PERMISSIONS`, `CLINICAL_PERMISSIONS`, and `READ_PERMISSIONS`. SQL bootstrap role seeds in [00001_initial_schema.sql](supabase/migrations/00001_initial_schema.sql) updated to match.
+- [x] New patient sub-tab [PatientImmunizations.tsx](src/features/patients/sub-features/PatientImmunizations.tsx) — list + "Record immunization" dialog with vaccine code, dose #, lot, manufacturer, site, route, administered date, and next-due date. Vaccine picker reuses Stage 17 [CodeSearchCombobox](src/components/code-search-combobox.tsx) — the `system` union now includes `'vaccine'`; [loader.ts](src/lib/code-systems/loader.ts) + [search.ts](src/lib/code-systems/search.ts) extended in lockstep. Bundled WHO EPI vaccine list at [public/code-sets/who-epi-vaccines.json](public/code-sets/who-epi-vaccines.json) (46 entries; CVX/EPI-aligned codes). Wired as the 16th tab in [PatientDetailPage.tsx](src/features/patients/PatientDetailPage.tsx), `<FeatureGate feature="immunizations">`-wrapped on the trigger and "All" section.
+- [x] `nextDueAt` persisted on save (when supplied); Stage 24 recall board will read directly from this column.
+- [x] i18n: new `immunizations` namespace registered in [i18n/index.ts](src/lib/i18n/index.ts). English by hand; `i18n-translator` agent populated the other 11 locales — 33 file writes (11× new `immunizations.json` + 11× `patient.json` (`tabs.immunizations`) + 11× `features.json` (`immunizations` block)).
+- [x] Tests: 8 cases in [PatientImmunizations.test.tsx](src/features/patients/sub-features/PatientImmunizations.test.tsx) (empty state, missing vaccine name, save round-trip + UI, next-due before administered rejection, `nextDueAt` persistence for recall, read permission denial, `FeatureGate` hide/show, write permission hides button). 545/545 tests pass — the previously-noted `_auth.test.tsx` redirect flake is stabilized in this commit by mocking `isDemoMode`.
 
 ---
 

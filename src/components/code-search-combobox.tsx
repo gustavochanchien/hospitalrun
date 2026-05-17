@@ -10,7 +10,7 @@ import type { CodeSystem } from '@/lib/db/schema'
 type LoadState = 'idle' | 'loading' | 'ready' | 'error'
 
 interface CodeSearchComboboxProps {
-  system: 'icd10' | 'snomed'
+  system: 'icd10' | 'snomed' | 'vaccine'
   value: string | null
   displayValue?: string
   onChange: (code: string | null, display: string) => void

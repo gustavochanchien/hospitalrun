@@ -75,7 +75,8 @@
     "history": "Geçmiş",
     "billing": "Faturalama",
     "vitals": "Vital Bulgular",
-    "trends": "Eğilimler"
+    "trends": "Eğilimler",
+    "immunizations": "Aşılamalar"
   },
   "list": {
     "statusPlaceholder": "Durum",

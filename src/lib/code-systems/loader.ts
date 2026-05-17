@@ -1,11 +1,12 @@
 import { db } from '../db'
 import type { CodeSystem } from '../db/schema'
 
-type CodeSystemType = 'icd10' | 'snomed'
+type CodeSystemType = 'icd10' | 'snomed' | 'vaccine'
 
 const FILE_MAP: Record<CodeSystemType, string> = {
   icd10: '/code-sets/icd10-who.json',
   snomed: '/code-sets/snomed-core.json',
+  vaccine: '/code-sets/who-epi-vaccines.json',
 }
 
 interface RawCodeEntry {

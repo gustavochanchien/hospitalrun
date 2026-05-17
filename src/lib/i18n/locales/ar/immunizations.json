@@ -1,0 +1,42 @@
+{
+  "title": "التطعيمات",
+  "newAction": "تسجيل تطعيم",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "loading": "جارٍ التحميل…",
+  "noResults": "لم يُسجَّل أي تطعيم بعد.",
+  "permissionDenied": "ليس لديك صلاحية عرض التطعيمات.",
+  "fields": {
+    "vaccine": "اللقاح",
+    "vaccineCode": "رمز اللقاح",
+    "vaccineName": "اسم اللقاح",
+    "doseNumber": "الجرعة رقم",
+    "lotNumber": "رقم التشغيلة",
+    "manufacturer": "الشركة المصنّعة",
+    "administeredAt": "تاريخ التطعيم",
+    "site": "موضع الحقن",
+    "route": "طريق الإعطاء",
+    "nextDueAt": "موعد الجرعة التالية",
+    "notes": "ملاحظات"
+  },
+  "placeholders": {
+    "site": "مثال: دالية الذراع اليسرى",
+    "route": "مثال: عضلي، فموي"
+  },
+  "codePicker": {
+    "placeholder": "ابحث عن رموز اللقاحات…",
+    "noResults": "لم يتم العثور على رموز لقاحات",
+    "useAsIs": "استخدم \"{{code}}\" كما هو"
+  },
+  "errors": {
+    "missingVaccineName": "اسم اللقاح مطلوب.",
+    "missingAdministeredAt": "تاريخ التطعيم مطلوب.",
+    "invalidDoseNumber": "يجب أن يكون رقم الجرعة عدداً صحيحاً غير سالب.",
+    "nextDueBeforeAdministered": "يجب أن يكون موعد الجرعة التالية بعد تاريخ التطعيم."
+  },
+  "confirmDelete": {
+    "title": "حذف التطعيم؟",
+    "description": "سيتم حذف هذا السجل. يمكنك إعادة إدخاله إذا لزم الأمر."
+  }
+}

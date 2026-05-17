@@ -83,6 +83,7 @@ export const PHI_TABLE_TO_RESOURCE: Record<PhiTable, AccessResourceType> = {
   diagnoses: 'diagnosis',
   allergies: 'allergy',
   vitals: 'vital',
+  immunizations: 'immunization',
   notes: 'note',
   relatedPersons: 'related_person',
   careGoals: 'care_goal',

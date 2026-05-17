@@ -75,7 +75,8 @@
     "history": "Cronologia",
     "billing": "Fatturazione",
     "vitals": "Parametri vitali",
-    "trends": "Tendenze"
+    "trends": "Tendenze",
+    "immunizations": "Vaccinazioni"
   },
   "list": {
     "statusPlaceholder": "Stato",

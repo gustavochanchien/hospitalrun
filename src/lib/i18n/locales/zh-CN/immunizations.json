@@ -1,0 +1,42 @@
+{
+  "title": "疫苗接种",
+  "newAction": "记录接种",
+  "save": "保存",
+  "cancel": "取消",
+  "delete": "删除",
+  "loading": "加载中…",
+  "noResults": "暂无接种记录。",
+  "permissionDenied": "您没有查看接种记录的权限。",
+  "fields": {
+    "vaccine": "疫苗",
+    "vaccineCode": "疫苗编码",
+    "vaccineName": "疫苗名称",
+    "doseNumber": "剂次",
+    "lotNumber": "批号",
+    "manufacturer": "生产厂家",
+    "administeredAt": "接种日期",
+    "site": "接种部位",
+    "route": "给药途径",
+    "nextDueAt": "下次接种日期",
+    "notes": "备注"
+  },
+  "placeholders": {
+    "site": "例如：左侧三角肌",
+    "route": "例如：肌肉注射、口服"
+  },
+  "codePicker": {
+    "placeholder": "搜索疫苗编码…",
+    "noResults": "未找到疫苗编码",
+    "useAsIs": "直接使用「{{code}}」"
+  },
+  "errors": {
+    "missingVaccineName": "疫苗名称为必填项。",
+    "missingAdministeredAt": "接种日期为必填项。",
+    "invalidDoseNumber": "剂次必须为非负整数。",
+    "nextDueBeforeAdministered": "下次接种日期必须晚于本次接种日期。"
+  },
+  "confirmDelete": {
+    "title": "删除接种记录？",
+    "description": "该记录将被移除。如有需要，您可以重新录入。"
+  }
+}

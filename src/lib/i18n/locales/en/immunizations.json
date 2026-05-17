@@ -1,0 +1,42 @@
+{
+  "title": "Immunizations",
+  "newAction": "Record immunization",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "loading": "Loading…",
+  "noResults": "No immunizations recorded yet.",
+  "permissionDenied": "You do not have permission to view immunizations.",
+  "fields": {
+    "vaccine": "Vaccine",
+    "vaccineCode": "Vaccine code",
+    "vaccineName": "Vaccine name",
+    "doseNumber": "Dose #",
+    "lotNumber": "Lot number",
+    "manufacturer": "Manufacturer",
+    "administeredAt": "Administered on",
+    "site": "Site",
+    "route": "Route",
+    "nextDueAt": "Next dose due",
+    "notes": "Notes"
+  },
+  "placeholders": {
+    "site": "e.g. Left deltoid",
+    "route": "e.g. IM, oral"
+  },
+  "codePicker": {
+    "placeholder": "Search vaccine codes…",
+    "noResults": "No vaccine codes found",
+    "useAsIs": "Use \"{{code}}\" as-is"
+  },
+  "errors": {
+    "missingVaccineName": "Vaccine name is required.",
+    "missingAdministeredAt": "Administration date is required.",
+    "invalidDoseNumber": "Dose number must be a non-negative integer.",
+    "nextDueBeforeAdministered": "Next-due date must be after the administration date."
+  },
+  "confirmDelete": {
+    "title": "Delete immunization?",
+    "description": "This record will be removed. You can re-enter it if needed."
+  }
+}

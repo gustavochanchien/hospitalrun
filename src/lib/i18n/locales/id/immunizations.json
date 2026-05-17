@@ -1,0 +1,42 @@
+{
+  "title": "Imunisasi",
+  "newAction": "Catat imunisasi",
+  "save": "Simpan",
+  "cancel": "Batal",
+  "delete": "Hapus",
+  "loading": "Memuat…",
+  "noResults": "Belum ada imunisasi yang dicatat.",
+  "permissionDenied": "Anda tidak memiliki izin untuk melihat imunisasi.",
+  "fields": {
+    "vaccine": "Vaksin",
+    "vaccineCode": "Kode vaksin",
+    "vaccineName": "Nama vaksin",
+    "doseNumber": "Dosis ke-",
+    "lotNumber": "Nomor lot",
+    "manufacturer": "Produsen",
+    "administeredAt": "Diberikan pada",
+    "site": "Lokasi suntikan",
+    "route": "Cara pemberian",
+    "nextDueAt": "Jadwal dosis berikutnya",
+    "notes": "Catatan"
+  },
+  "placeholders": {
+    "site": "mis. Deltoid kiri",
+    "route": "mis. IM, oral"
+  },
+  "codePicker": {
+    "placeholder": "Cari kode vaksin…",
+    "noResults": "Kode vaksin tidak ditemukan",
+    "useAsIs": "Gunakan \"{{code}}\" apa adanya"
+  },
+  "errors": {
+    "missingVaccineName": "Nama vaksin wajib diisi.",
+    "missingAdministeredAt": "Tanggal pemberian wajib diisi.",
+    "invalidDoseNumber": "Nomor dosis harus berupa bilangan bulat non-negatif.",
+    "nextDueBeforeAdministered": "Tanggal dosis berikutnya harus setelah tanggal pemberian."
+  },
+  "confirmDelete": {
+    "title": "Hapus imunisasi?",
+    "description": "Catatan ini akan dihapus. Anda dapat memasukkannya kembali jika diperlukan."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Vaccinations",
+  "newAction": "Enregistrer une vaccination",
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "loading": "Chargement…",
+  "noResults": "Aucune vaccination enregistrée pour le moment.",
+  "permissionDenied": "Vous n'avez pas la permission de consulter les vaccinations.",
+  "fields": {
+    "vaccine": "Vaccin",
+    "vaccineCode": "Code du vaccin",
+    "vaccineName": "Nom du vaccin",
+    "doseNumber": "Dose n°",
+    "lotNumber": "Numéro de lot",
+    "manufacturer": "Fabricant",
+    "administeredAt": "Administré le",
+    "site": "Site d'injection",
+    "route": "Voie d'administration",
+    "nextDueAt": "Prochaine dose prévue",
+    "notes": "Notes"
+  },
+  "placeholders": {
+    "site": "ex. Deltoïde gauche",
+    "route": "ex. IM, oral"
+  },
+  "codePicker": {
+    "placeholder": "Rechercher des codes vaccin…",
+    "noResults": "Aucun code vaccin trouvé",
+    "useAsIs": "Utiliser \"{{code}}\" tel quel"
+  },
+  "errors": {
+    "missingVaccineName": "Le nom du vaccin est obligatoire.",
+    "missingAdministeredAt": "La date d'administration est obligatoire.",
+    "invalidDoseNumber": "Le numéro de dose doit être un entier non négatif.",
+    "nextDueBeforeAdministered": "La date de la prochaine dose doit être postérieure à la date d'administration."
+  },
+  "confirmDelete": {
+    "title": "Supprimer la vaccination ?",
+    "description": "Cet enregistrement sera supprimé. Vous pouvez le ressaisir si nécessaire."
+  }
+}

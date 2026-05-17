@@ -24,6 +24,10 @@
     "label": "Graphiques de tendances longitudinales",
     "description": "Représentez les mesures du patient (constantes vitales, résultats numériques de laboratoire) sous forme de graphiques en courbes multi-séries dans le temps."
   },
+  "immunizations": {
+    "label": "Registre vaccinal",
+    "description": "Suivez les vaccins administrés à chaque patient, y compris le numéro de dose, le lot, le fabricant et les dates de rappel."
+  },
   "toggle": {
     "enabled": "{{feature}} activée",
     "disabled": "{{feature}} désactivée"

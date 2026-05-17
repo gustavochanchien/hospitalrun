@@ -24,6 +24,10 @@
     "label": "Grafici di tendenza longitudinale",
     "description": "Rappresenta le misurazioni del paziente (parametri vitali, risultati numerici di laboratorio) come grafici a linee multi-serie nel tempo."
   },
+  "immunizations": {
+    "label": "Registro vaccinazioni",
+    "description": "Tieni traccia dei vaccini somministrati a ciascun paziente, inclusi numero di dose, lotto, produttore e date delle dosi successive."
+  },
   "toggle": {
     "enabled": "{{feature}} attivata",
     "disabled": "{{feature}} disattivata"

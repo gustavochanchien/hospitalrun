@@ -24,6 +24,10 @@
     "label": "Gráficos de tendências longitudinais",
     "description": "Plote as medições do paciente (sinais vitais, resultados numéricos de laboratório) como gráficos de linhas com múltiplas séries ao longo do tempo."
   },
+  "immunizations": {
+    "label": "Registro de imunizações",
+    "description": "Acompanhe as vacinas administradas a cada paciente, incluindo número da dose, lote, fabricante e datas de retorno."
+  },
   "toggle": {
     "enabled": "{{feature}} ativado",
     "disabled": "{{feature}} desativado"

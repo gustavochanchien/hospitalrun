@@ -24,6 +24,10 @@
     "label": "Boylamsal eğilim grafikleri",
     "description": "Hasta ölçümlerini (vital bulgular, laboratuvar sayısal sonuçları) zaman içinde çok serili çizgi grafikleri olarak gösterin."
   },
+  "immunizations": {
+    "label": "Aşılama kaydı",
+    "description": "Her hastaya uygulanan aşıları; doz numarası, lot, üretici ve sonraki doz tarihleriyle birlikte takip edin."
+  },
   "toggle": {
     "enabled": "{{feature}} etkinleştirildi",
     "disabled": "{{feature}} devre dışı bırakıldı"

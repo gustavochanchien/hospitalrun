@@ -16,6 +16,16 @@ vi.mock('@/lib/supabase/client', () => ({
   clearBackendConfig: vi.fn(),
 }))
 
+vi.mock('@/lib/demo/seed', async () => {
+  const actual = await vi.importActual<typeof import('@/lib/demo/seed')>(
+    '@/lib/demo/seed',
+  )
+  return {
+    ...actual,
+    isDemoMode: () => false,
+  }
+})
+
 const { Route } = await import('./_auth')
 
 function setAuthState(session: unknown, isLoading = false) {

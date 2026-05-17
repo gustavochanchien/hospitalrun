@@ -10,6 +10,7 @@ import type {
   Diagnosis,
   Allergy,
   Vital,
+  Immunization,
   Note,
   RelatedPerson,
   CareGoal,
@@ -40,6 +41,7 @@ export class HospitalRunDB extends Dexie {
   diagnoses!: Dexie.Table<Diagnosis, string>
   allergies!: Dexie.Table<Allergy, string>
   vitals!: Dexie.Table<Vital, string>
+  immunizations!: Dexie.Table<Immunization, string>
   notes!: Dexie.Table<Note, string>
   relatedPersons!: Dexie.Table<RelatedPerson, string>
   careGoals!: Dexie.Table<CareGoal, string>
@@ -151,6 +153,12 @@ export class HospitalRunDB extends Dexie {
     // v9: vitals (per-patient clinical readings, optionally per-visit).
     this.version(9).stores({
       vitals: 'id, orgId, patientId, visitId, recordedAt, [patientId+recordedAt], _synced',
+    })
+
+    // v10: immunizations (per-patient vaccine administration records).
+    this.version(10).stores({
+      immunizations:
+        'id, orgId, patientId, visitId, administeredAt, nextDueAt, [patientId+administeredAt], _synced',
     })
   }
 }

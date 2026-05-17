@@ -1,0 +1,42 @@
+{
+  "title": "Impfungen",
+  "newAction": "Impfung erfassen",
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "loading": "Wird geladen…",
+  "noResults": "Noch keine Impfungen erfasst.",
+  "permissionDenied": "Sie haben keine Berechtigung, Impfungen anzuzeigen.",
+  "fields": {
+    "vaccine": "Impfstoff",
+    "vaccineCode": "Impfstoffcode",
+    "vaccineName": "Impfstoffname",
+    "doseNumber": "Dosis Nr.",
+    "lotNumber": "Chargennummer",
+    "manufacturer": "Hersteller",
+    "administeredAt": "Verabreicht am",
+    "site": "Applikationsort",
+    "route": "Applikationsweg",
+    "nextDueAt": "Nächste Dosis fällig",
+    "notes": "Notizen"
+  },
+  "placeholders": {
+    "site": "z. B. Linker Deltamuskel",
+    "route": "z. B. i.m., oral"
+  },
+  "codePicker": {
+    "placeholder": "Impfstoffcodes suchen…",
+    "noResults": "Keine Impfstoffcodes gefunden",
+    "useAsIs": "\"{{code}}\" unverändert verwenden"
+  },
+  "errors": {
+    "missingVaccineName": "Impfstoffname ist erforderlich.",
+    "missingAdministeredAt": "Verabreichungsdatum ist erforderlich.",
+    "invalidDoseNumber": "Die Dosisnummer muss eine nicht-negative ganze Zahl sein.",
+    "nextDueBeforeAdministered": "Das Fälligkeitsdatum der nächsten Dosis muss nach dem Verabreichungsdatum liegen."
+  },
+  "confirmDelete": {
+    "title": "Impfung löschen?",
+    "description": "Dieser Eintrag wird entfernt. Sie können ihn bei Bedarf erneut eingeben."
+  }
+}

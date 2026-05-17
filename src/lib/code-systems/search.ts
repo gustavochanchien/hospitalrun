@@ -2,7 +2,7 @@ import { db } from '../db'
 import type { CodeSystem } from '../db/schema'
 
 export async function searchCodes(
-  system: 'icd10' | 'snomed',
+  system: 'icd10' | 'snomed' | 'vaccine',
   query: string,
   limit = 20,
 ): Promise<CodeSystem[]> {

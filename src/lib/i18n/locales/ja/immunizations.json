@@ -1,0 +1,42 @@
+{
+  "title": "予防接種",
+  "newAction": "予防接種を記録",
+  "save": "保存",
+  "cancel": "キャンセル",
+  "delete": "削除",
+  "loading": "読み込み中…",
+  "noResults": "予防接種の記録はまだありません。",
+  "permissionDenied": "予防接種を表示する権限がありません。",
+  "fields": {
+    "vaccine": "ワクチン",
+    "vaccineCode": "ワクチンコード",
+    "vaccineName": "ワクチン名",
+    "doseNumber": "接種回数",
+    "lotNumber": "ロット番号",
+    "manufacturer": "製造会社",
+    "administeredAt": "接種日",
+    "site": "接種部位",
+    "route": "投与経路",
+    "nextDueAt": "次回接種予定日",
+    "notes": "メモ"
+  },
+  "placeholders": {
+    "site": "例: 左三角筋",
+    "route": "例: 筋肉内、経口"
+  },
+  "codePicker": {
+    "placeholder": "ワクチンコードを検索…",
+    "noResults": "ワクチンコードが見つかりません",
+    "useAsIs": "\"{{code}}\" をそのまま使用"
+  },
+  "errors": {
+    "missingVaccineName": "ワクチン名は必須です。",
+    "missingAdministeredAt": "接種日は必須です。",
+    "invalidDoseNumber": "接種回数は0以上の整数である必要があります。",
+    "nextDueBeforeAdministered": "次回接種予定日は接種日より後の日付である必要があります。"
+  },
+  "confirmDelete": {
+    "title": "予防接種を削除しますか？",
+    "description": "この記録が削除されます。必要に応じて再入力できます。"
+  }
+}

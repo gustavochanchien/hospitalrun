@@ -24,6 +24,10 @@
     "label": "纵向趋势图",
     "description": "将患者测量数据（生命体征、检验数值结果）绘制为随时间变化的多系列折线图。"
   },
+  "immunizations": {
+    "label": "疫苗接种登记",
+    "description": "追踪每位患者的疫苗接种记录，包括剂次、批号、生产厂家及下次接种日期。"
+  },
   "toggle": {
     "enabled": "已启用 {{feature}}",
     "disabled": "已禁用 {{feature}}"

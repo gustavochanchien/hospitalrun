@@ -75,7 +75,8 @@
     "history": "السجل",
     "billing": "الفوترة",
     "vitals": "العلامات الحيوية",
-    "trends": "الاتجاهات"
+    "trends": "الاتجاهات",
+    "immunizations": "التطعيمات"
   },
   "list": {
     "statusPlaceholder": "الحالة",

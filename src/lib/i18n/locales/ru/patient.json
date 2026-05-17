@@ -75,7 +75,8 @@
     "history": "История",
     "billing": "Биллинг",
     "vitals": "Показатели жизнедеятельности",
-    "trends": "Тренды"
+    "trends": "Тренды",
+    "immunizations": "Вакцинация"
   },
   "list": {
     "statusPlaceholder": "Статус",

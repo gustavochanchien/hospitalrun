@@ -75,7 +75,8 @@
     "history": "Histórico",
     "billing": "Faturamento",
     "vitals": "Sinais vitais",
-    "trends": "Tendências"
+    "trends": "Tendências",
+    "immunizations": "Imunizações"
   },
   "list": {
     "statusPlaceholder": "Status",

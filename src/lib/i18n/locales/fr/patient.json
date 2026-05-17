@@ -75,7 +75,8 @@
     "history": "Historique",
     "billing": "Facturation",
     "vitals": "Constantes vitales",
-    "trends": "Tendances"
+    "trends": "Tendances",
+    "immunizations": "Vaccinations"
   },
   "list": {
     "statusPlaceholder": "Statut",

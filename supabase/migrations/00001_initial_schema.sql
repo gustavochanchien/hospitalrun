@@ -252,6 +252,31 @@ create table vitals (
 create index idx_vitals_org_patient on vitals (org_id, patient_id);
 create index idx_vitals_patient_recorded_at on vitals (patient_id, recorded_at desc);
 
+create table immunizations (
+  id              uuid primary key default gen_random_uuid(),
+  org_id          uuid not null references organizations on delete cascade,
+  patient_id      uuid not null references patients on delete cascade,
+  visit_id        uuid references visits on delete set null,
+  vaccine_code    text,
+  vaccine_name    text not null,
+  dose_number     integer check (dose_number is null or dose_number >= 0),
+  lot_number      text,
+  manufacturer    text,
+  administered_at timestamptz not null,
+  administered_by uuid references profiles,
+  site            text,
+  route           text,
+  next_due_at     timestamptz,
+  notes           text,
+  deleted_at      timestamptz,
+  created_at      timestamptz not null default now(),
+  updated_at      timestamptz not null default now()
+);
+
+create index idx_immunizations_org_patient on immunizations (org_id, patient_id);
+create index idx_immunizations_patient_admin on immunizations (patient_id, administered_at desc);
+create index idx_immunizations_org_next_due on immunizations (org_id, next_due_at);
+
 create table notes (
   id              uuid primary key default gen_random_uuid(),
   org_id          uuid not null references organizations on delete cascade,
@@ -623,6 +648,7 @@ create trigger trg_imaging_updated_at             before update on imaging      
 create trigger trg_diagnoses_updated_at           before update on diagnoses           for each row execute function update_updated_at();
 create trigger trg_allergies_updated_at           before update on allergies           for each row execute function update_updated_at();
 create trigger trg_vitals_updated_at              before update on vitals              for each row execute function update_updated_at();
+create trigger trg_immunizations_updated_at       before update on immunizations       for each row execute function update_updated_at();
 create trigger trg_notes_updated_at               before update on notes               for each row execute function update_updated_at();
 create trigger trg_related_persons_updated_at     before update on related_persons     for each row execute function update_updated_at();
 create trigger trg_care_goals_updated_at          before update on care_goals          for each row execute function update_updated_at();
@@ -875,6 +901,7 @@ begin
       'read:billing','write:billing','void:invoice','record:payment','manage:charge_items',
       'read:inventory','write:inventory','adjust:stock','receive:stock',
       'read:vitals','write:vitals',
+      'read:immunizations','write:immunizations',
       'read:audit_log','export:audit_log','manage:roles'
     ], true, true),
     (new_org_id, 'doctor', 'Doctor', array[
@@ -886,7 +913,8 @@ begin
       'write:visit','read:visit','write:note','write:related_person',
       'read:billing','write:billing','record:payment',
       'read:inventory','write:inventory','receive:stock',
-      'read:vitals','write:vitals'
+      'read:vitals','write:vitals',
+      'read:immunizations','write:immunizations'
     ], true, false),
     (new_org_id, 'nurse', 'Nurse', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
@@ -897,12 +925,13 @@ begin
       'write:visit','read:visit','write:note','write:related_person',
       'read:billing','write:billing','record:payment',
       'read:inventory','write:inventory','receive:stock',
-      'read:vitals','write:vitals'
+      'read:vitals','write:vitals',
+      'read:immunizations','write:immunizations'
     ], true, false),
     (new_org_id, 'user', 'Viewer', array[
       'read:patients','read:appointments','read:labs','read:medications','read:imaging',
       'read:incidents','read:care_plan','read:care_goal','read:visit','read:billing','read:inventory',
-      'read:vitals'
+      'read:vitals','read:immunizations'
     ], true, false),
     (new_org_id, 'check_in_desk', 'Check-In Desk', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
@@ -947,6 +976,7 @@ grant select, insert, update, delete on
   diagnoses,
   allergies,
   vitals,
+  immunizations,
   notes,
   related_persons,
   care_goals,
@@ -1001,6 +1031,7 @@ alter table imaging             enable row level security;
 alter table diagnoses           enable row level security;
 alter table allergies           enable row level security;
 alter table vitals              enable row level security;
+alter table immunizations       enable row level security;
 alter table notes               enable row level security;
 alter table related_persons     enable row level security;
 alter table care_goals          enable row level security;
@@ -1096,6 +1127,10 @@ create policy "Org isolation update" on allergies       for update using (org_id
 create policy "Org isolation select" on vitals          for select using (org_id = public.org_id());
 create policy "Org isolation insert" on vitals          for insert with check (org_id = public.org_id());
 create policy "Org isolation update" on vitals          for update using (org_id = public.org_id());
+
+create policy "Org isolation select" on immunizations   for select using (org_id = public.org_id());
+create policy "Org isolation insert" on immunizations   for insert with check (org_id = public.org_id());
+create policy "Org isolation update" on immunizations   for update using (org_id = public.org_id());
 
 create policy "Org isolation select" on notes           for select using (org_id = public.org_id());
 create policy "Org isolation insert" on notes           for insert with check (org_id = public.org_id());

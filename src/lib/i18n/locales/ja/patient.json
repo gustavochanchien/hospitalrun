@@ -75,7 +75,8 @@
     "history": "履歴",
     "billing": "請求",
     "vitals": "バイタルサイン",
-    "trends": "トレンド"
+    "trends": "トレンド",
+    "immunizations": "予防接種"
   },
   "list": {
     "statusPlaceholder": "状態",

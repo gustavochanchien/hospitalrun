@@ -1,0 +1,42 @@
+{
+  "title": "Vacunaciones",
+  "newAction": "Registrar vacunación",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "loading": "Cargando…",
+  "noResults": "Aún no se han registrado vacunaciones.",
+  "permissionDenied": "No tienes permiso para ver las vacunaciones.",
+  "fields": {
+    "vaccine": "Vacuna",
+    "vaccineCode": "Código de vacuna",
+    "vaccineName": "Nombre de vacuna",
+    "doseNumber": "Dosis nº",
+    "lotNumber": "Número de lote",
+    "manufacturer": "Fabricante",
+    "administeredAt": "Administrada el",
+    "site": "Sitio de administración",
+    "route": "Vía de administración",
+    "nextDueAt": "Próxima dosis",
+    "notes": "Notas"
+  },
+  "placeholders": {
+    "site": "ej. Deltoides izquierdo",
+    "route": "ej. IM, oral"
+  },
+  "codePicker": {
+    "placeholder": "Buscar códigos de vacuna…",
+    "noResults": "No se encontraron códigos de vacuna",
+    "useAsIs": "Usar \"{{code}}\" tal cual"
+  },
+  "errors": {
+    "missingVaccineName": "El nombre de la vacuna es obligatorio.",
+    "missingAdministeredAt": "La fecha de administración es obligatoria.",
+    "invalidDoseNumber": "El número de dosis debe ser un entero no negativo.",
+    "nextDueBeforeAdministered": "La fecha de la próxima dosis debe ser posterior a la fecha de administración."
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar vacunación?",
+    "description": "Este registro se eliminará. Puedes volver a introducirlo si es necesario."
+  }
+}

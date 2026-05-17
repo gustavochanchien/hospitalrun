@@ -249,6 +249,29 @@ export interface Vital {
   _deleted: boolean
 }
 
+export interface Immunization {
+  id: string
+  orgId: string
+  patientId: string
+  visitId: string | null
+  vaccineCode: string | null
+  vaccineName: string
+  doseNumber: number | null
+  lotNumber: string | null
+  manufacturer: string | null
+  administeredAt: string
+  administeredBy: string | null
+  site: string | null
+  route: string | null
+  nextDueAt: string | null
+  notes: string | null
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
 export interface Note {
   id: string
   orgId: string
@@ -382,6 +405,7 @@ export const ACCESS_RESOURCE_TYPES = [
   'related_person',
   'care_goal',
   'care_plan',
+  'immunization',
   'invoice',
   'payment',
   'inventory_item',
@@ -589,6 +613,7 @@ export type TableMap = {
   diagnoses: Diagnosis
   allergies: Allergy
   vitals: Vital
+  immunizations: Immunization
   notes: Note
   relatedPersons: RelatedPerson
   careGoals: CareGoal
@@ -616,7 +641,7 @@ export type SyncableTable = Exclude<keyof TableMap, 'syncQueue' | 'patientHistor
  */
 export interface CodeSystem {
   id: string       // `${system}:${code}` — stable key
-  system: 'icd10' | 'snomed'
+  system: 'icd10' | 'snomed' | 'vaccine'
   code: string
   display: string
   searchText: string  // `${code} ${display}` lowercased for prefix/contains scan
@@ -633,6 +658,7 @@ export const PHI_TABLES = [
   'diagnoses',
   'allergies',
   'vitals',
+  'immunizations',
   'notes',
   'relatedPersons',
   'careGoals',

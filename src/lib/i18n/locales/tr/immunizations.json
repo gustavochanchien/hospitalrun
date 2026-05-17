@@ -1,0 +1,42 @@
+{
+  "title": "Aşılamalar",
+  "newAction": "Aşılama kaydet",
+  "save": "Kaydet",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "loading": "Yükleniyor…",
+  "noResults": "Henüz aşılama kaydı yok.",
+  "permissionDenied": "Aşılamaları görüntüleme izniniz yok.",
+  "fields": {
+    "vaccine": "Aşı",
+    "vaccineCode": "Aşı kodu",
+    "vaccineName": "Aşı adı",
+    "doseNumber": "Doz no",
+    "lotNumber": "Lot numarası",
+    "manufacturer": "Üretici",
+    "administeredAt": "Uygulandığı tarih",
+    "site": "Uygulama bölgesi",
+    "route": "Uygulama yolu",
+    "nextDueAt": "Sonraki doz tarihi",
+    "notes": "Notlar"
+  },
+  "placeholders": {
+    "site": "örn. Sol deltoid",
+    "route": "örn. IM, oral"
+  },
+  "codePicker": {
+    "placeholder": "Aşı kodlarında ara…",
+    "noResults": "Aşı kodu bulunamadı",
+    "useAsIs": "\"{{code}}\" olduğu gibi kullan"
+  },
+  "errors": {
+    "missingVaccineName": "Aşı adı zorunludur.",
+    "missingAdministeredAt": "Uygulama tarihi zorunludur.",
+    "invalidDoseNumber": "Doz numarası negatif olmayan bir tam sayı olmalıdır.",
+    "nextDueBeforeAdministered": "Sonraki doz tarihi uygulama tarihinden sonra olmalıdır."
+  },
+  "confirmDelete": {
+    "title": "Aşılama silinsin mi?",
+    "description": "Bu kayıt kaldırılacak. Gerekirse yeniden girebilirsiniz."
+  }
+}

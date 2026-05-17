@@ -75,7 +75,8 @@
     "history": "Riwayat",
     "billing": "Penagihan",
     "vitals": "Tanda Vital",
-    "trends": "Tren"
+    "trends": "Tren",
+    "immunizations": "Imunisasi"
   },
   "list": {
     "statusPlaceholder": "Status",

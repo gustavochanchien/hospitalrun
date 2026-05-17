@@ -8,7 +8,14 @@
  * entry guarded with `<FeatureGate feature="...">`.
  */
 
-export const FEATURES = ['pdf-export', 'billing', 'inventory', 'vitals', 'trends'] as const
+export const FEATURES = [
+  'pdf-export',
+  'billing',
+  'inventory',
+  'vitals',
+  'trends',
+  'immunizations',
+] as const
 
 export type Feature = (typeof FEATURES)[number]
 
@@ -45,6 +52,11 @@ export const FEATURE_METADATA: Record<Feature, FeatureMetadata> = {
   trends: {
     labelKey: 'trends.label',
     descriptionKey: 'trends.description',
+    defaultOn: false,
+  },
+  immunizations: {
+    labelKey: 'immunizations.label',
+    descriptionKey: 'immunizations.description',
     defaultOn: false,
   },
 }

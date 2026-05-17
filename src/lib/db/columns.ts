@@ -196,6 +196,27 @@ const vitalColumns = {
   updatedAt: 'updated_at',
 } as const
 
+const immunizationColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  patientId: 'patient_id',
+  visitId: 'visit_id',
+  vaccineCode: 'vaccine_code',
+  vaccineName: 'vaccine_name',
+  doseNumber: 'dose_number',
+  lotNumber: 'lot_number',
+  manufacturer: 'manufacturer',
+  administeredAt: 'administered_at',
+  administeredBy: 'administered_by',
+  site: 'site',
+  route: 'route',
+  nextDueAt: 'next_due_at',
+  notes: 'notes',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
 const noteColumns = {
   id: 'id',
   orgId: 'org_id',
@@ -416,6 +437,7 @@ export const columnMap: Record<SyncableTable, Record<string, string>> = {
   diagnoses: diagnosisColumns,
   allergies: allergyColumns,
   vitals: vitalColumns,
+  immunizations: immunizationColumns,
   notes: noteColumns,
   relatedPersons: relatedPersonColumns,
   careGoals: careGoalColumns,
@@ -444,6 +466,7 @@ export const supabaseTableName: Record<SyncableTable, string> = {
   diagnoses: 'diagnoses',
   allergies: 'allergies',
   vitals: 'vitals',
+  immunizations: 'immunizations',
   notes: 'notes',
   relatedPersons: 'related_persons',
   careGoals: 'care_goals',

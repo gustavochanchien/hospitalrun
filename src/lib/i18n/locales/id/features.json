@@ -24,6 +24,10 @@
     "label": "Grafik tren longitudinal",
     "description": "Tampilkan pengukuran pasien (tanda vital, hasil laboratorium numerik) sebagai grafik garis multi-seri dari waktu ke waktu."
   },
+  "immunizations": {
+    "label": "Registri imunisasi",
+    "description": "Lacak vaksin yang diberikan kepada setiap pasien, termasuk nomor dosis, lot, produsen, dan tanggal dosis berikutnya."
+  },
   "toggle": {
     "enabled": "{{feature}} diaktifkan",
     "disabled": "{{feature}} dinonaktifkan"

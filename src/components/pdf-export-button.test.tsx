@@ -18,19 +18,24 @@ const createObjectURL = vi.fn(() => 'blob:fake')
 const revokeObjectURL = vi.fn()
 const originalCreate = URL.createObjectURL
 const originalRevoke = URL.revokeObjectURL
+const originalAnchorClick = HTMLAnchorElement.prototype.click
+const anchorClickMock = vi.fn()
 
 beforeEach(() => {
   useFeatureEnabledMock.mockReset()
   generatePdfBlobMock.mockReset()
   createObjectURL.mockClear()
   revokeObjectURL.mockClear()
+  anchorClickMock.mockClear()
   URL.createObjectURL = createObjectURL as unknown as typeof URL.createObjectURL
   URL.revokeObjectURL = revokeObjectURL as unknown as typeof URL.revokeObjectURL
+  HTMLAnchorElement.prototype.click = anchorClickMock
 })
 
 afterEach(() => {
   URL.createObjectURL = originalCreate
   URL.revokeObjectURL = originalRevoke
+  HTMLAnchorElement.prototype.click = originalAnchorClick
 })
 
 describe('PdfExportButton', () => {
