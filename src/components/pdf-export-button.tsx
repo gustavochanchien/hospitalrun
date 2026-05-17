@@ -19,6 +19,11 @@ interface PdfExportButtonProps {
   buildDocument: () => Promise<ReactElement<DocumentProps>>
   disabled?: boolean
   label?: string
+  /**
+   * Fires right before the PDF blob is generated. Used to record a
+   * HIPAA `export` audit event scoped to the caller's resource.
+   */
+  onBeforeGenerate?: () => void
 }
 
 function suggestFilename(stem: string): string {
@@ -37,11 +42,14 @@ export function PdfExportButton(props: PdfExportButtonProps) {
   )
 }
 
+export type { PdfExportButtonProps }
+
 function PdfExportButtonInner({
   filename,
   buildDocument,
   disabled,
   label,
+  onBeforeGenerate,
 }: PdfExportButtonProps) {
   const { t } = useTranslation('pdf')
   const [isGenerating, setIsGenerating] = useState(false)
@@ -49,6 +57,7 @@ function PdfExportButtonInner({
   async function handleClick() {
     setIsGenerating(true)
     try {
+      onBeforeGenerate?.()
       const element = await buildDocument()
       const blob = await generatePdfBlob(element)
       const url = URL.createObjectURL(blob)

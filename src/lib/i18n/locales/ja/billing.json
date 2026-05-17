@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "請求",
     "placeholder": "患者請求タブは近日公開予定",
-    "empty": "この患者の請求書はまだありません。",
+    "empty": "なし",
     "loading": "請求書を読み込み中…"
   },
   "disabled": {

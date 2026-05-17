@@ -28,11 +28,38 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { useLiveQuery } from 'dexie-react-hooks'
 import { supabase, isHubLocalMode } from '@/lib/supabase/client'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { db } from '@/lib/db'
 import { isDesktop, getIPC } from '@/lib/desktop/env'
 
-type Role = 'admin' | 'doctor' | 'nurse' | 'user'
+type Role = string
+
+interface RoleOption {
+  roleKey: string
+  label: string
+}
+
+function useOrgRoleOptions(): RoleOption[] {
+  const orgId = useAuthStore((s) => s.orgId)
+  const rows = useLiveQuery(
+    () =>
+      orgId
+        ? db.orgRoles
+            .where('orgId')
+            .equals(orgId)
+            .filter((r) => !r._deleted)
+            .toArray()
+            .then((rs) =>
+              rs.map((r) => ({ roleKey: r.roleKey, label: r.label })),
+            )
+        : [],
+    [orgId],
+    [],
+  )
+  return rows ?? []
+}
 
 interface PendingInvite {
   id: string
@@ -203,6 +230,7 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
   const [newRole, setNewRole] = useState<Role>('user')
   const [working, setWorking] = useState(false)
   const [handoff, setHandoff] = useState<{ email: string; password: string } | null>(null)
+  const roleOptions = useOrgRoleOptions()
 
   async function handleCreate() {
     const trimmedEmail = email.trim().toLowerCase()
@@ -305,15 +333,16 @@ function CreateUserForm({ onCreated }: { onCreated: () => Promise<void> }) {
         </div>
         <div className="space-y-2">
           <Label htmlFor="create-role">{t('team.roleLabel')}</Label>
-          <Select value={newRole} onValueChange={(v) => setNewRole(v as Role)}>
+          <Select value={newRole} onValueChange={setNewRole}>
             <SelectTrigger id="create-role">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="admin">{t('roles.admin')}</SelectItem>
-              <SelectItem value="doctor">{t('roles.doctor')}</SelectItem>
-              <SelectItem value="nurse">{t('roles.nurse')}</SelectItem>
-              <SelectItem value="user">{t('roles.user')}</SelectItem>
+              {roleOptions.map((r) => (
+                <SelectItem key={r.roleKey} value={r.roleKey}>
+                  {r.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -347,6 +376,7 @@ function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
   const [email, setEmail] = useState('')
   const [inviteRole, setInviteRole] = useState<Role>('user')
   const [sending, setSending] = useState(false)
+  const roleOptions = useOrgRoleOptions()
 
   async function handleInvite() {
     const trimmed = email.trim().toLowerCase()
@@ -393,18 +423,16 @@ function InviteByEmailForm({ onInvited }: { onInvited: () => Promise<void> }) {
         </div>
         <div className="w-[140px] space-y-2">
           <Label htmlFor="invite-role">{t('team.roleLabel')}</Label>
-          <Select
-            value={inviteRole}
-            onValueChange={(v) => setInviteRole(v as Role)}
-          >
+          <Select value={inviteRole} onValueChange={setInviteRole}>
             <SelectTrigger id="invite-role">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="admin">{t('roles.admin')}</SelectItem>
-              <SelectItem value="doctor">{t('roles.doctor')}</SelectItem>
-              <SelectItem value="nurse">{t('roles.nurse')}</SelectItem>
-              <SelectItem value="user">{t('roles.user')}</SelectItem>
+              {roleOptions.map((r) => (
+                <SelectItem key={r.roleKey} value={r.roleKey}>
+                  {r.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

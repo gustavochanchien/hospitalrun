@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "المخزون",
+    "newItem": "عنصر جديد",
+    "searchPlaceholder": "بحث بالرمز التعريفي أو الاسم",
+    "allStatuses": "كل العناصر",
+    "activeOnly": "النشطة فقط",
+    "lowStockOnly": "مخزون منخفض",
+    "count": "{{count}} عنصر",
+    "count_other": "{{count}} عناصر",
+    "exportFilename": "inventory",
+    "noMatches": "لا توجد عناصر تطابق عوامل التصفية.",
+    "empty": "لا توجد عناصر مخزون بعد.",
+    "pageOf": "صفحة {{current}} من {{total}}",
+    "previous": "السابق",
+    "next": "التالي",
+    "columns": {
+      "sku": "SKU",
+      "name": "الاسم",
+      "unit": "الوحدة",
+      "onHand": "المتوفر",
+      "reorderLevel": "نقطة إعادة الطلب",
+      "unitCost": "تكلفة الوحدة",
+      "status": "الحالة"
+    },
+    "status": {
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "low": "منخفض"
+    }
+  },
+  "detail": {
+    "title": "عنصر المخزون",
+    "backToList": "العودة إلى المخزون",
+    "notFound": "العنصر غير موجود.",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleted": "تمت إزالة العنصر",
+    "deleteTitle": "إزالة هذا العنصر؟",
+    "deleteDescription": "تبقى المعاملات السابقة مسجلة لكن العنصر يختفي من الإدخالات الجديدة.",
+    "lowStock": "مخزون منخفض — الكمية المتوفرة عند مستوى إعادة الطلب أو أقل.",
+    "summary": {
+      "onHand": "المتوفر",
+      "reorderLevel": "نقطة إعادة الطلب",
+      "unitCost": "تكلفة الوحدة",
+      "value": "قيمة المخزون"
+    },
+    "actions": {
+      "receive": "استلام مخزون",
+      "adjust": "تعديل",
+      "waste": "هدر",
+      "transfer": "تحويل"
+    },
+    "transactions": {
+      "title": "حركات المخزون",
+      "empty": "لا توجد حركات بعد.",
+      "kind": "النوع",
+      "quantity": "الكمية",
+      "balance": "الرصيد الجاري",
+      "reference": "المرجع",
+      "occurredAt": "التاريخ",
+      "notes": "ملاحظات"
+    },
+    "kind": {
+      "receive": "استلام",
+      "dispense": "صرف",
+      "adjust": "تعديل",
+      "transfer": "تحويل",
+      "waste": "هدر"
+    }
+  },
+  "form": {
+    "title": "تفاصيل العنصر",
+    "sku": "SKU",
+    "skuPlaceholder": "مثال: GLOVE-S",
+    "name": "الاسم",
+    "namePlaceholder": "مثال: قفازات نيتريل، صغيرة",
+    "description": "الوصف",
+    "unit": "الوحدة",
+    "unitPlaceholder": "قطعة، صندوق، مل…",
+    "reorderLevel": "مستوى إعادة الطلب",
+    "unitCost": "تكلفة الوحدة",
+    "currency": "العملة",
+    "active": "نشط",
+    "submitCreate": "إنشاء عنصر",
+    "submitUpdate": "حفظ التغييرات",
+    "saving": "جارٍ الحفظ…",
+    "created": "تم إنشاء العنصر",
+    "updated": "تم تحديث العنصر"
+  },
+  "dialog": {
+    "receiveTitle": "استلام مخزون",
+    "adjustTitle": "تعديل المخزون",
+    "wasteTitle": "تسجيل هدر",
+    "transferTitle": "تسجيل تحويل",
+    "quantity": "الكمية",
+    "unitCost": "تكلفة الوحدة",
+    "reference": "المرجع / رقم أمر الشراء",
+    "occurredAt": "التاريخ",
+    "notes": "ملاحظات",
+    "submit": "تسجيل",
+    "recording": "جارٍ التسجيل…",
+    "cancel": "إلغاء",
+    "errorNoOrg": "لا توجد مؤسسة في الجلسة.",
+    "recorded": "تم تسجيل الحركة",
+    "adjustHint": "استخدم رقمًا موجبًا لإضافة مخزون، وسالبًا للخصم."
+  },
+  "lowStock": {
+    "title": "مخزون منخفض",
+    "empty": "جميع العناصر فوق مستوى إعادة الطلب.",
+    "loading": "جارٍ تحميل المخزون المنخفض…",
+    "viewAll": "فتح المخزون",
+    "viewItem": "فتح"
+  },
+  "patientTab": {
+    "title": "المخزون"
+  },
+  "disabled": {
+    "title": "المخزون غير مفعّل",
+    "description": "اطلب من المسؤول تفعيل ميزة المخزون في الإعدادات."
+  },
+  "validation": {
+    "skuRequired": "الرمز التعريفي مطلوب.",
+    "nameRequired": "الاسم مطلوب.",
+    "unitRequired": "الوحدة مطلوبة.",
+    "quantityNonZero": "يجب أن تكون الكمية غير صفرية.",
+    "quantityPositive": "يجب أن تكون الكمية موجبة.",
+    "amountNonNegative": "يجب أن يكون المبلغ صفرًا أو أكثر."
+  }
+}

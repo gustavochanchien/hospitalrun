@@ -1,9 +1,9 @@
--- HospitalRun 3 — Squashed Schema (v3)
+-- HospitalRun 3 — Squashed Schema (v4)
 --
--- Single-file schema covering all tables, RLS, JWT hook, storage, and
--- feature flags, billing & payments. Run this once against a fresh
--- Supabase project. Do not hand-edit once applied to any live database;
--- add new numbered migrations instead.
+-- Single-file schema covering all tables, RLS, JWT hook, storage,
+-- feature flags, billing & payments, and inventory. Run this once
+-- against a fresh Supabase project. Do not hand-edit once applied to
+-- any live database; add new numbered migrations instead.
 
 -- ============================================================
 -- Tables
@@ -19,7 +19,7 @@ create table organizations (
 create table profiles (
   id          uuid primary key references auth.users on delete cascade,
   org_id      uuid not null references organizations on delete cascade,
-  role        text not null default 'user' check (role in ('admin', 'user', 'nurse', 'doctor')),
+  role        text not null default 'user',
   full_name   text not null,
   created_at  timestamptz not null default now()
 );
@@ -296,11 +296,36 @@ create table patient_history (
 create index idx_patient_history_org_patient on patient_history (org_id, patient_id);
 create index idx_patient_history_changed_at on patient_history (patient_id, changed_at desc);
 
+-- HIPAA §164.312(b) audit controls. Append-only: no UPDATE/DELETE policies
+-- below means RLS denies both. Identity columns (user_id, user_role,
+-- user_email, org_id) are sealed by a BEFORE INSERT trigger from auth.uid()
+-- so a client cannot forge them.
+create table access_logs (
+  id              uuid primary key default gen_random_uuid(),
+  org_id          uuid not null references organizations(id) on delete cascade,
+  user_id         uuid references auth.users(id) on delete set null,
+  user_email      text,
+  user_role       text not null,
+  action          text not null check (action in
+                    ('view','list','search','export','print','create','update','delete')),
+  resource_type   text not null,
+  resource_id     uuid,
+  patient_id      uuid,
+  context         jsonb,
+  client_id       text,
+  occurred_at     timestamptz not null default now(),
+  created_at      timestamptz not null default now()
+);
+
+create index idx_access_logs_org_patient on access_logs (org_id, patient_id, occurred_at desc);
+create index idx_access_logs_org_user    on access_logs (org_id, user_id,    occurred_at desc);
+create index idx_access_logs_org_time    on access_logs (org_id, occurred_at desc);
+
 create table org_members (
   id            uuid primary key default gen_random_uuid(),
   org_id        uuid not null references organizations(id) on delete cascade,
   user_id       uuid references auth.users(id) on delete set null,
-  role          text not null check (role in ('admin', 'doctor', 'nurse', 'user')),
+  role          text not null,
   invited_email text not null,
   invited_by    uuid references auth.users(id) on delete set null,
   invited_at    timestamptz not null default now(),
@@ -342,6 +367,55 @@ create table user_features (
 
 create index user_features_user_org_idx on user_features (user_id, org_id);
 create index user_features_org_idx on user_features (org_id);
+
+-- Roles: per-org role definitions with editable permission sets.
+-- The 6 built-in role rows (admin, doctor, nurse, user, check_in_desk,
+-- pharmacist) are seeded by bootstrap_current_user at org creation.
+-- `admin` has is_locked=true and cannot be edited or deleted — RLS checks
+-- role = 'admin' elsewhere, so renaming/removing it would break auth.
+-- `permissions` is an array of permission keys; the TS source of truth is
+-- src/lib/permissions.ts (BUILTIN_ROLE_DEFAULTS). Admin's permissions
+-- column is cosmetic — the client treats admin as "always true".
+create table org_roles (
+  id            uuid primary key default gen_random_uuid(),
+  org_id        uuid not null references organizations(id) on delete cascade,
+  role_key      text not null,
+  label         text not null,
+  permissions   text[] not null default '{}',
+  is_builtin    boolean not null default false,
+  is_locked     boolean not null default false,
+  deleted_at    timestamptz,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now(),
+  unique (org_id, role_key)
+);
+
+create index org_roles_org_idx on org_roles (org_id);
+
+-- Defense in depth: even an admin who bypasses the UI can't mutate
+-- a locked row. Used to protect the admin role.
+create or replace function public.org_roles_guard()
+returns trigger
+language plpgsql
+as $$
+begin
+  if tg_op = 'DELETE' and old.is_locked then
+    raise exception 'role % is locked and cannot be deleted', old.role_key;
+  end if;
+  if tg_op = 'UPDATE' and old.is_locked then
+    if new.role_key <> old.role_key
+       or new.is_locked = false
+       or new.is_builtin <> old.is_builtin then
+      raise exception 'role % is locked and cannot be modified', old.role_key;
+    end if;
+  end if;
+  return coalesce(new, old);
+end;
+$$;
+
+create trigger org_roles_guard_trigger
+  before update or delete on org_roles
+  for each row execute function public.org_roles_guard();
 
 -- Billing: charge item catalog.
 create table charge_items (
@@ -428,6 +502,59 @@ create index payments_org_idx     on payments (org_id);
 create index payments_invoice_idx on payments (invoice_id);
 create index payments_patient_idx on payments (patient_id);
 
+-- Inventory catalog: one row per stockable consumable.
+create table inventory_items (
+  id             uuid primary key default gen_random_uuid(),
+  org_id         uuid not null references organizations(id) on delete cascade,
+  sku            text not null,
+  name           text not null,
+  description    text,
+  unit           text not null default 'each',
+  on_hand        numeric(14,2) not null default 0,
+  reorder_level  numeric(14,2) not null default 0,
+  unit_cost      numeric(12,2) not null default 0,
+  currency       text not null default 'USD',
+  active         boolean not null default true,
+  deleted_at     timestamptz,
+  created_at     timestamptz not null default now(),
+  updated_at     timestamptz not null default now()
+);
+
+create index inventory_items_org_idx on inventory_items (org_id);
+create unique index inventory_items_org_sku_uidx on inventory_items (org_id, sku) where deleted_at is null;
+
+-- Stock movements. `on_hand` on inventory_items is denormalised from the
+-- sum of these transactions and kept fresh by the trigger below.
+create table inventory_transactions (
+  id                  uuid primary key default gen_random_uuid(),
+  org_id              uuid not null references organizations(id) on delete cascade,
+  inventory_item_id   uuid not null references inventory_items(id) on delete cascade,
+  kind                text not null
+                        check (kind in ('receive','dispense','adjust','transfer','waste')),
+  quantity            numeric(14,2) not null,
+  unit_cost           numeric(12,2),
+  reference           text,
+  patient_id          uuid references patients(id) on delete set null,
+  medication_id       uuid references medications(id) on delete set null,
+  occurred_at         timestamptz not null default now(),
+  recorded_by         uuid references profiles(id) on delete set null,
+  notes               text,
+  deleted_at          timestamptz,
+  created_at          timestamptz not null default now(),
+  updated_at          timestamptz not null default now()
+);
+
+create index inventory_transactions_org_idx     on inventory_transactions (org_id);
+create index inventory_transactions_item_idx    on inventory_transactions (inventory_item_id, occurred_at desc);
+create index inventory_transactions_patient_idx on inventory_transactions (org_id, patient_id);
+
+-- Adds an optional link from a medication request to a stock item so a
+-- dispense transaction can be auto-written when the inventory flag is on.
+alter table medications
+  add column inventory_item_id uuid references inventory_items(id) on delete set null;
+
+create index medications_inventory_item_idx on medications (inventory_item_id) where inventory_item_id is not null;
+
 create table schema_meta (
   version    int primary key,
   applied_at timestamptz not null default now()
@@ -463,6 +590,101 @@ create trigger trg_charge_items_updated_at        before update on charge_items 
 create trigger trg_invoices_updated_at            before update on invoices            for each row execute function update_updated_at();
 create trigger trg_invoice_line_items_updated_at  before update on invoice_line_items  for each row execute function update_updated_at();
 create trigger trg_payments_updated_at            before update on payments            for each row execute function update_updated_at();
+create trigger trg_inventory_items_updated_at     before update on inventory_items     for each row execute function update_updated_at();
+create trigger trg_inventory_transactions_updated_at before update on inventory_transactions for each row execute function update_updated_at();
+
+-- ============================================================
+-- Inventory stock-level trigger
+-- ============================================================
+-- Keeps inventory_items.on_hand in sync with the net signed sum of
+-- non-deleted inventory_transactions. `receive` adds; `adjust` is signed
+-- as supplied by the client (positive adds, negative removes); every
+-- other kind subtracts. Soft-delete of a transaction reverses its effect.
+create or replace function public.apply_inventory_transaction()
+returns trigger
+language plpgsql
+as $$
+declare
+  delta numeric(14,2) := 0;
+  signed_old numeric(14,2) := 0;
+  signed_new numeric(14,2) := 0;
+begin
+  if (tg_op = 'INSERT') then
+    if new.deleted_at is null then
+      delta := case when new.kind in ('receive','adjust') then new.quantity else -new.quantity end;
+      update inventory_items
+        set on_hand = on_hand + delta
+        where id = new.inventory_item_id;
+    end if;
+    return new;
+  elsif (tg_op = 'UPDATE') then
+    if old.deleted_at is null then
+      signed_old := case when old.kind in ('receive','adjust') then old.quantity else -old.quantity end;
+    end if;
+    if new.deleted_at is null then
+      signed_new := case when new.kind in ('receive','adjust') then new.quantity else -new.quantity end;
+    end if;
+    if old.inventory_item_id = new.inventory_item_id then
+      update inventory_items
+        set on_hand = on_hand + (signed_new - signed_old)
+        where id = new.inventory_item_id;
+    else
+      update inventory_items set on_hand = on_hand - signed_old where id = old.inventory_item_id;
+      update inventory_items set on_hand = on_hand + signed_new where id = new.inventory_item_id;
+    end if;
+    return new;
+  elsif (tg_op = 'DELETE') then
+    if old.deleted_at is null then
+      delta := case when old.kind in ('receive','adjust') then old.quantity else -old.quantity end;
+      update inventory_items
+        set on_hand = on_hand - delta
+        where id = old.inventory_item_id;
+    end if;
+    return old;
+  end if;
+  return null;
+end;
+$$;
+
+create trigger trg_inventory_transactions_apply
+  after insert or update or delete on inventory_transactions
+  for each row execute function public.apply_inventory_transaction();
+
+-- ============================================================
+-- Access-log sealer
+-- ============================================================
+-- BEFORE INSERT on access_logs: overwrite identity-bearing columns with
+-- values derived from auth.uid() so a malicious client cannot forge who
+-- they are in the audit trail. Combined with the absence of UPDATE/DELETE
+-- policies, this makes access_logs append-only and tamper-resistant.
+create or replace function public.access_logs_seal()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  prof_role  text;
+  prof_email text;
+  prof_org   uuid;
+begin
+  select p.role, u.email, p.org_id
+    into prof_role, prof_email, prof_org
+    from profiles p
+    join auth.users u on u.id = p.id
+    where p.id = auth.uid();
+
+  new.user_id    := auth.uid();
+  new.user_role  := coalesce(prof_role, 'unknown');
+  new.user_email := prof_email;
+  new.org_id     := coalesce(prof_org, new.org_id);
+  return new;
+end;
+$$;
+
+create trigger trg_access_logs_seal
+  before insert on access_logs
+  for each row execute function public.access_logs_seal();
 
 -- ============================================================
 -- Helpers + JWT hook + auth bootstrap
@@ -596,6 +818,54 @@ begin
   insert into profiles (id, org_id, role, full_name)
     values (uid, new_org_id, 'admin', coalesce(user_email, 'Admin'));
 
+  -- Seed the 6 built-in roles. Defaults mirror BUILTIN_ROLE_DEFAULTS
+  -- in src/lib/permissions.ts — keep both in sync. Admin is locked and
+  -- its permissions array is cosmetic (client always returns true).
+  insert into org_roles (org_id, role_key, label, permissions, is_builtin, is_locked) values
+    (new_org_id, 'admin', 'Admin', array[
+      'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
+      'write:allergy','write:diagnosis','read:labs','write:labs','complete:lab','cancel:lab',
+      'read:medications','write:medications','complete:medication','cancel:medication',
+      'read:imaging','write:imaging','read:incidents','write:incident','resolve:incident',
+      'read:incident_widgets','write:care_plan','read:care_plan','write:care_goal','read:care_goal',
+      'write:visit','read:visit','write:note','write:related_person','read:settings','write:settings',
+      'read:billing','write:billing','void:invoice','record:payment','manage:charge_items',
+      'read:inventory','write:inventory','adjust:stock','receive:stock',
+      'read:audit_log','export:audit_log','manage:roles'
+    ], true, true),
+    (new_org_id, 'doctor', 'Doctor', array[
+      'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
+      'write:allergy','write:diagnosis','read:labs','write:labs','complete:lab','cancel:lab',
+      'read:medications','write:medications','complete:medication','cancel:medication',
+      'read:imaging','write:imaging','read:incidents','write:incident','resolve:incident',
+      'read:incident_widgets','write:care_plan','read:care_plan','write:care_goal','read:care_goal',
+      'write:visit','read:visit','write:note','write:related_person',
+      'read:billing','write:billing','record:payment',
+      'read:inventory','write:inventory','receive:stock'
+    ], true, false),
+    (new_org_id, 'nurse', 'Nurse', array[
+      'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
+      'write:allergy','write:diagnosis','read:labs','write:labs','complete:lab','cancel:lab',
+      'read:medications','write:medications','complete:medication','cancel:medication',
+      'read:imaging','write:imaging','read:incidents','write:incident','resolve:incident',
+      'read:incident_widgets','write:care_plan','read:care_plan','write:care_goal','read:care_goal',
+      'write:visit','read:visit','write:note','write:related_person',
+      'read:billing','write:billing','record:payment',
+      'read:inventory','write:inventory','receive:stock'
+    ], true, false),
+    (new_org_id, 'user', 'Viewer', array[
+      'read:patients','read:appointments','read:labs','read:medications','read:imaging',
+      'read:incidents','read:care_plan','read:care_goal','read:visit','read:billing','read:inventory'
+    ], true, false),
+    (new_org_id, 'check_in_desk', 'Check-In Desk', array[
+      'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
+      'write:related_person','read:visit','read:billing'
+    ], true, false),
+    (new_org_id, 'pharmacist', 'Pharmacist', array[
+      'read:patients','read:medications','write:medications','complete:medication','cancel:medication',
+      'read:inventory','write:inventory','adjust:stock','receive:stock','read:visit'
+    ], true, false);
+
   return new_org_id;
 end;
 $$;
@@ -634,13 +904,17 @@ grant select, insert, update, delete on
   care_goals,
   care_plans,
   patient_history,
+  access_logs,
   org_members,
   org_features,
   user_features,
+  org_roles,
   charge_items,
   invoices,
   invoice_line_items,
-  payments
+  payments,
+  inventory_items,
+  inventory_transactions
 to authenticated;
 
 grant usage, select on all sequences in schema public to authenticated;
@@ -683,6 +957,7 @@ alter table related_persons     enable row level security;
 alter table care_goals          enable row level security;
 alter table care_plans          enable row level security;
 alter table patient_history     enable row level security;
+alter table access_logs         enable row level security;
 alter table org_members         enable row level security;
 alter table schema_meta         enable row level security;
 alter table org_features        enable row level security;
@@ -691,6 +966,8 @@ alter table charge_items        enable row level security;
 alter table invoices            enable row level security;
 alter table invoice_line_items  enable row level security;
 alter table payments            enable row level security;
+alter table inventory_items          enable row level security;
+alter table inventory_transactions   enable row level security;
 
 -- Organizations: members read; admins update.
 create policy "Users can view own org"
@@ -786,6 +1063,27 @@ create policy "Org isolation update" on care_plans      for update using (org_id
 -- patient_history is read+insert only (immutable audit log).
 create policy "Org isolation select" on patient_history for select using (org_id = public.org_id());
 create policy "Org isolation insert" on patient_history for insert with check (org_id = public.org_id());
+
+-- access_logs: admin-only SELECT, self-INSERT for any authenticated org
+-- member. No UPDATE/DELETE policies → RLS denies → append-only.
+create policy "access_logs_admin_select"
+  on access_logs for select to authenticated
+  using (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid()
+        and p.role = 'admin'
+        and p.org_id = access_logs.org_id
+    )
+  );
+
+create policy "access_logs_self_insert"
+  on access_logs for insert to authenticated
+  with check (
+    org_id = public.org_id()
+    and user_id = auth.uid()
+  );
 
 -- org_members: only org admins can read/write. Self-select lets a
 -- newly-signed-up user find their pending invite by email.
@@ -907,6 +1205,46 @@ create policy "Admins update user_features"
   )
   with check (org_id = public.org_id());
 
+-- org_roles: everyone in the org reads (so usePermission can resolve any
+-- teammate's role); only admins write. The org_roles_guard trigger above
+-- prevents anyone — admin included — from touching locked rows.
+alter table org_roles enable row level security;
+
+create policy "Org members read org_roles"
+  on org_roles for select
+  using (org_id = public.org_id());
+
+create policy "Admins insert org_roles"
+  on org_roles for insert
+  with check (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = org_roles.org_id
+    )
+  );
+
+create policy "Admins update org_roles"
+  on org_roles for update
+  using (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = org_roles.org_id
+    )
+  )
+  with check (org_id = public.org_id());
+
+create policy "Admins delete org_roles"
+  on org_roles for delete
+  using (
+    org_id = public.org_id()
+    and exists (
+      select 1 from profiles p
+      where p.id = auth.uid() and p.role = 'admin' and p.org_id = org_roles.org_id
+    )
+  );
+
 -- charge_items
 create policy "Org members read charge_items"
   on charge_items for select
@@ -979,6 +1317,42 @@ create policy "Org members delete payments"
   on payments for delete
   using (org_id = public.org_id());
 
+-- inventory_items
+create policy "Org members read inventory_items"
+  on inventory_items for select
+  using (org_id = public.org_id());
+
+create policy "Org members insert inventory_items"
+  on inventory_items for insert
+  with check (org_id = public.org_id());
+
+create policy "Org members update inventory_items"
+  on inventory_items for update
+  using (org_id = public.org_id())
+  with check (org_id = public.org_id());
+
+create policy "Org members delete inventory_items"
+  on inventory_items for delete
+  using (org_id = public.org_id());
+
+-- inventory_transactions
+create policy "Org members read inventory_transactions"
+  on inventory_transactions for select
+  using (org_id = public.org_id());
+
+create policy "Org members insert inventory_transactions"
+  on inventory_transactions for insert
+  with check (org_id = public.org_id());
+
+create policy "Org members update inventory_transactions"
+  on inventory_transactions for update
+  using (org_id = public.org_id())
+  with check (org_id = public.org_id());
+
+create policy "Org members delete inventory_transactions"
+  on inventory_transactions for delete
+  using (org_id = public.org_id());
+
 -- ============================================================
 -- Storage: imaging bucket (private, org-scoped path prefix)
 -- ============================================================
@@ -1022,5 +1396,5 @@ create policy "imaging: delete own org files"
 -- ============================================================
 -- Schema version marker — must be last.
 -- ============================================================
-insert into schema_meta (version) values (3)
+insert into schema_meta (version) values (6)
   on conflict (version) do nothing;

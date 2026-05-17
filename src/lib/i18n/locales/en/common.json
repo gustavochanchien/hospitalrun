@@ -49,8 +49,10 @@
     "medications": "Medications",
     "imaging": "Imaging",
     "billing": "Billing",
+    "inventory": "Inventory",
     "incidents": "Incidents",
-    "settings": "Settings"
+    "settings": "Settings",
+    "auditLog": "Audit Log"
   },
   "network": {
     "offline": "You are offline",

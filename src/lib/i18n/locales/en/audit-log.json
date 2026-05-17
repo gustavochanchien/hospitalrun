@@ -1,0 +1,66 @@
+{
+  "title": "Audit Log",
+  "description": "HIPAA-compliant access log. Every view, search, export, and change to patient data is recorded here.",
+  "filters": {
+    "search": "Search user, patient, or context",
+    "user": "User",
+    "allUsers": "All users",
+    "action": "Action",
+    "allActions": "All actions",
+    "resourceType": "Resource",
+    "allResources": "All resources",
+    "from": "From",
+    "to": "To",
+    "clear": "Clear filters"
+  },
+  "columns": {
+    "occurredAt": "When",
+    "user": "User",
+    "action": "Action",
+    "resource": "Resource",
+    "patient": "Patient",
+    "context": "Details"
+  },
+  "actions": {
+    "view": "Viewed",
+    "list": "Listed",
+    "search": "Searched",
+    "export": "Exported",
+    "print": "Printed",
+    "create": "Created",
+    "update": "Updated",
+    "delete": "Deleted"
+  },
+  "resources": {
+    "patient": "Patient",
+    "visit": "Visit",
+    "appointment": "Appointment",
+    "lab": "Lab",
+    "medication": "Medication",
+    "imaging": "Imaging",
+    "incident": "Incident",
+    "diagnosis": "Diagnosis",
+    "allergy": "Allergy",
+    "note": "Note",
+    "related_person": "Related person",
+    "care_goal": "Care goal",
+    "care_plan": "Care plan",
+    "invoice": "Invoice",
+    "payment": "Payment",
+    "inventory_item": "Inventory item"
+  },
+  "list": {
+    "empty": "No audit events match these filters.",
+    "loading": "Loading audit events…",
+    "loadMore": "Load more",
+    "pageOf": "Showing {{count}} of {{total}}",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Could not load audit events: {{message}}"
+  },
+  "unauthorized": {
+    "title": "Admins only",
+    "description": "You don't have permission to view the audit log."
+  }
+}

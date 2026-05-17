@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Facturación",
     "placeholder": "Pestaña de facturación del paciente próximamente",
-    "empty": "Todavía no hay facturas para este paciente.",
+    "empty": "Ninguno",
     "loading": "Cargando facturas…"
   },
   "disabled": {

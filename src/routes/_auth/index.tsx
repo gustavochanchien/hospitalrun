@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { db } from '@/lib/db'
+import { LowStockWidget } from '@/features/dashboard/LowStockWidget'
 
 export const Route = createFileRoute('/_auth/')({
   component: DashboardPage,
@@ -180,6 +181,8 @@ function DashboardPage() {
             </CardContent>
           </Card>
         </div>
+
+        <LowStockWidget />
       </div>
     </>
   )

@@ -228,6 +228,7 @@ export async function seedFakeData(
         startDate: faker.date.recent({ days: 90 }).toISOString(),
         endDate: null,
         notes: null,
+        inventoryItemId: null,
         deletedAt: null,
         createdAt: '',
         updatedAt: '',

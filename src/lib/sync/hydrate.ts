@@ -21,10 +21,13 @@ const syncableTables: SyncableTable[] = [
   'carePlans',
   'orgFeatures',
   'userFeatures',
+  'orgRoles',
   'chargeItems',
   'invoices',
   'invoiceLineItems',
   'payments',
+  'inventoryItems',
+  'inventoryTransactions',
 ]
 
 /**
@@ -84,4 +87,9 @@ export async function clearLocalData(): Promise<void> {
   }
   await db.syncQueue.clear()
   await db.patientHistory.clear()
+  // Drop access logs along with the user's session so we never push
+  // them up under a different user's auth.uid() (the sealer trigger
+  // would silently re-attribute them). Tradeoff: offline events that
+  // never synced before logout are lost — documented limitation.
+  await db.accessLogs.clear()
 }

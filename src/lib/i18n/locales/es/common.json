@@ -50,7 +50,9 @@
     "imaging": "Imágenes",
     "incidents": "Incidentes",
     "billing": "Facturación",
-    "settings": "Ajustes"
+    "inventory": "Inventario",
+    "settings": "Ajustes",
+    "auditLog": "Registro de auditoría"
   },
   "network": {
     "offline": "Sin conexión",

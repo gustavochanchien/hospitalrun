@@ -38,6 +38,7 @@
     "unknown": "Unknown"
   },
   "tabs": {
+    "all": "All",
     "appointments": "Appointments",
     "diagnoses": "Diagnoses",
     "allergies": "Allergies",

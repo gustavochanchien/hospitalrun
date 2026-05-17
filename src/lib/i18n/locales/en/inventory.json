@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Inventory",
+    "newItem": "New item",
+    "searchPlaceholder": "Search SKU or name",
+    "allStatuses": "All items",
+    "activeOnly": "Active only",
+    "lowStockOnly": "Low stock",
+    "count": "{{count}} item",
+    "count_other": "{{count}} items",
+    "exportFilename": "inventory",
+    "noMatches": "No items match your filters.",
+    "empty": "No inventory items yet.",
+    "pageOf": "Page {{current}} of {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "columns": {
+      "sku": "SKU",
+      "name": "Name",
+      "unit": "Unit",
+      "onHand": "On hand",
+      "reorderLevel": "Reorder at",
+      "unitCost": "Unit cost",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "low": "Low"
+    }
+  },
+  "detail": {
+    "title": "Inventory item",
+    "backToList": "Back to inventory",
+    "notFound": "Item not found.",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleted": "Item removed",
+    "deleteTitle": "Remove this item?",
+    "deleteDescription": "Past transactions stay on record but the item is hidden from new entries.",
+    "lowStock": "Low stock — on hand is at or below reorder level.",
+    "summary": {
+      "onHand": "On hand",
+      "reorderLevel": "Reorder at",
+      "unitCost": "Unit cost",
+      "value": "Stock value"
+    },
+    "actions": {
+      "receive": "Receive stock",
+      "adjust": "Adjust",
+      "waste": "Waste",
+      "transfer": "Transfer"
+    },
+    "transactions": {
+      "title": "Stock movements",
+      "empty": "No movements yet.",
+      "kind": "Kind",
+      "quantity": "Qty",
+      "balance": "Running total",
+      "reference": "Reference",
+      "occurredAt": "When",
+      "notes": "Notes"
+    },
+    "kind": {
+      "receive": "Receive",
+      "dispense": "Dispense",
+      "adjust": "Adjust",
+      "transfer": "Transfer",
+      "waste": "Waste"
+    }
+  },
+  "form": {
+    "title": "Item details",
+    "sku": "SKU",
+    "skuPlaceholder": "e.g. GLOVE-S",
+    "name": "Name",
+    "namePlaceholder": "e.g. Nitrile gloves, small",
+    "description": "Description",
+    "unit": "Unit",
+    "unitPlaceholder": "each, box, ml…",
+    "reorderLevel": "Reorder level",
+    "unitCost": "Unit cost",
+    "currency": "Currency",
+    "active": "Active",
+    "submitCreate": "Create item",
+    "submitUpdate": "Save changes",
+    "saving": "Saving…",
+    "created": "Item created",
+    "updated": "Item updated"
+  },
+  "dialog": {
+    "receiveTitle": "Receive stock",
+    "adjustTitle": "Adjust stock",
+    "wasteTitle": "Record waste",
+    "transferTitle": "Record transfer",
+    "quantity": "Quantity",
+    "unitCost": "Unit cost",
+    "reference": "Reference / PO #",
+    "occurredAt": "When",
+    "notes": "Notes",
+    "submit": "Record",
+    "recording": "Recording…",
+    "cancel": "Cancel",
+    "errorNoOrg": "No organization in session.",
+    "recorded": "Movement recorded",
+    "adjustHint": "Use a positive number to add stock, negative to remove."
+  },
+  "lowStock": {
+    "title": "Low stock",
+    "empty": "All items are above their reorder level.",
+    "loading": "Loading low stock…",
+    "viewAll": "Open inventory",
+    "viewItem": "Open"
+  },
+  "patientTab": {
+    "title": "Inventory"
+  },
+  "disabled": {
+    "title": "Inventory is not enabled",
+    "description": "Ask your administrator to enable the Inventory feature in Settings."
+  },
+  "validation": {
+    "skuRequired": "SKU is required.",
+    "nameRequired": "Name is required.",
+    "unitRequired": "Unit is required.",
+    "quantityNonZero": "Quantity must be non-zero.",
+    "quantityPositive": "Quantity must be positive.",
+    "amountNonNegative": "Amount must be zero or more."
+  }
+}

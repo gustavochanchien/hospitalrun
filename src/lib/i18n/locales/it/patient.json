@@ -38,6 +38,7 @@
     "unknown": "Sconosciuto"
   },
   "tabs": {
+    "all": "Tutti",
     "appointments": "Appuntamenti",
     "diagnoses": "Diagnosi",
     "allergies": "Allergie",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "Caricamento...",
-      "delete": "Elimina"
+      "delete": "Elimina",
+      "none": "Nessuno"
     },
     "allergies": {
       "title": "Allergie",
       "newAction": "Nuova allergia",
       "create": "Crea allergia",
-      "noResults": "Nessuna allergia trovata.",
+      "noResults": "Nessuno",
       "fields": {
         "allergen": "Allergene",
         "reaction": "Reazione",
@@ -132,7 +134,7 @@
       "title": "Diagnosi",
       "newAction": "Nuova diagnosi",
       "create": "Crea diagnosi",
-      "noResults": "Nessuna diagnosi trovata.",
+      "noResults": "Nessuno",
       "fields": {
         "icdCode": "Codice ICD",
         "description": "Descrizione",
@@ -155,7 +157,7 @@
       "title": "Farmaci",
       "newAction": "Nuovo farmaco",
       "create": "Crea farmaco",
-      "noResults": "Nessun farmaco trovato.",
+      "noResults": "Nessuno",
       "fields": {
         "name": "Nome",
         "status": "Stato",
@@ -188,7 +190,7 @@
       "title": "Laboratori",
       "newAction": "Nuovo laboratorio",
       "create": "Crea laboratorio",
-      "noResults": "Nessun laboratorio trovato.",
+      "noResults": "Nessuno",
       "fields": {
         "type": "Tipo",
         "code": "Codice",
@@ -206,7 +208,7 @@
       "title": "Diagnostica per immagini",
       "newAction": "Nuova imaging",
       "create": "Crea imaging",
-      "noResults": "Nessuna richiesta di imaging trovata.",
+      "noResults": "Nessuno",
       "fields": {
         "type": "Tipo",
         "code": "Codice",
@@ -223,7 +225,7 @@
       "title": "Note",
       "newAction": "Nuova nota",
       "create": "Crea nota",
-      "noResults": "Nessuna nota trovata.",
+      "noResults": "Nessuno",
       "fields": {
         "content": "Contenuto"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "Obiettivi di cura",
       "newAction": "Nuovo obiettivo",
-      "noResults": "Nessun obiettivo di cura registrato.",
+      "noResults": "Nessuno",
       "fields": {
         "descriptionRequired": "Descrizione *",
         "achievementStatus": "Stato di raggiungimento",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "Piani di cura",
       "newAction": "Nuovo piano",
-      "noResults": "Nessun piano di cura registrato.",
+      "noResults": "Nessuno",
       "fields": {
         "titleRequired": "Titolo *",
         "description": "Descrizione",
@@ -294,7 +296,7 @@
       "title": "Appuntamenti",
       "newAction": "Nuovo appuntamento",
       "create": "Crea appuntamento",
-      "noResults": "Nessun appuntamento trovato.",
+      "noResults": "Nessuno",
       "fields": {
         "type": "Tipo",
         "startTime": "Ora di inizio",
@@ -313,7 +315,7 @@
       "title": "Visite",
       "newAction": "Nuova visita",
       "create": "Crea visita",
-      "noResults": "Nessuna visita trovata.",
+      "noResults": "Nessuno",
       "fallbackName": "Visita",
       "fields": {
         "type": "Tipo",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "Persone collegate",
       "newAction": "Nuova persona collegata",
-      "noResults": "Nessuna persona collegata registrata.",
+      "noResults": "Nessuno",
       "fields": {
         "givenNameRequired": "Nome *",
         "familyNameRequired": "Cognome *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} voce",
       "count_other": "{{count}} voci",
-      "noResults": "Nessuna voce della cronologia corrisponde a questi filtri.",
+      "noResults": "Nessuno",
       "changeLabel": "<field>{{field}}</field> modificato",
       "fromShort": "Da:",
       "toShort": "A:",

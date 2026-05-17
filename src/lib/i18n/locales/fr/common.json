@@ -50,7 +50,9 @@
     "imaging": "Imagerie",
     "incidents": "Incidents",
     "billing": "Facturation",
-    "settings": "Paramètres"
+    "inventory": "Inventaire",
+    "settings": "Paramètres",
+    "auditLog": "Journal d'audit"
   },
   "network": {
     "offline": "Vous êtes hors ligne",

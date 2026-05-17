@@ -8,9 +8,11 @@ import {
   Pill,
   ScanLine,
   Receipt,
+  Package,
   AlertTriangle,
   Settings,
   HeartPulse,
+  Shield,
 } from 'lucide-react'
 import {
   Sidebar,
@@ -26,7 +28,9 @@ import {
 } from '@/components/ui/sidebar'
 import { useAuthStore } from '@/features/auth/auth.store'
 import { useEnabledFeatures } from '@/hooks/useFeatureEnabled'
+import { usePermission } from '@/hooks/usePermission'
 import type { Feature } from '@/lib/features'
+import type { Permission } from '@/lib/permissions'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,12 +39,32 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { ChevronUp } from 'lucide-react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { isDemoMode, setDemoRole, DEMO_ROLES, type DemoRole } from '@/lib/demo/seed'
 
 type NavItem = {
   key: string
-  to: '/' | '/patients' | '/appointments' | '/labs' | '/medications' | '/imaging' | '/billing' | '/incidents' | '/settings'
+  to:
+    | '/'
+    | '/patients'
+    | '/appointments'
+    | '/labs'
+    | '/medications'
+    | '/imaging'
+    | '/billing'
+    | '/inventory'
+    | '/incidents'
+    | '/audit-log'
+    | '/settings'
   icon: typeof LayoutDashboard
   feature?: Feature
+  permission?: Permission
 }
 
 const navItems: readonly NavItem[] = [
@@ -51,19 +75,32 @@ const navItems: readonly NavItem[] = [
   { key: 'medications', to: '/medications', icon: Pill },
   { key: 'imaging', to: '/imaging', icon: ScanLine },
   { key: 'billing', to: '/billing', icon: Receipt, feature: 'billing' as const },
+  { key: 'inventory', to: '/inventory', icon: Package, feature: 'inventory' as const },
   { key: 'incidents', to: '/incidents', icon: AlertTriangle },
+  { key: 'auditLog', to: '/audit-log', icon: Shield, permission: 'read:audit_log' as const },
   { key: 'settings', to: '/settings', icon: Settings },
 ]
 
+const DEMO_ROLE_LABELS: Record<DemoRole, string> = {
+  admin: 'Admin',
+  doctor: 'Doctor',
+  nurse: 'Nurse',
+  user: 'User (read-only)',
+}
+
 export function AppSidebar() {
-  const { user, signOut } = useAuthStore()
+  const { user, role, signOut } = useAuthStore()
   const navigate = useNavigate()
   const matchRoute = useMatchRoute()
   const { t } = useTranslation('common')
   const enabledFeatures = useEnabledFeatures()
-  const visibleNavItems = navItems.filter(
-    (item) => !item.feature || enabledFeatures.includes(item.feature),
-  )
+  const canViewAuditLog = usePermission('read:audit_log')
+  const demoMode = isDemoMode()
+  const visibleNavItems = navItems.filter((item) => {
+    if (item.feature && !enabledFeatures.includes(item.feature)) return false
+    if (item.permission === 'read:audit_log' && !canViewAuditLog) return false
+    return true
+  })
 
   const initials = user?.email
     ? user.email
@@ -107,6 +144,28 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="border-t">
+        {demoMode && (
+          <div className="px-2 py-2">
+            <div className="mb-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              Demo · Viewing as
+            </div>
+            <Select
+              value={(role as DemoRole | null) ?? 'admin'}
+              onValueChange={(v) => setDemoRole(v as DemoRole)}
+            >
+              <SelectTrigger className="h-8 w-full text-xs">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {DEMO_ROLES.map((r) => (
+                  <SelectItem key={r} value={r} className="text-xs">
+                    {DEMO_ROLE_LABELS[r]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>

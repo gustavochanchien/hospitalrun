@@ -1,0 +1,66 @@
+{
+  "title": "سجل التدقيق",
+  "description": "سجل وصول متوافق مع HIPAA. كل عملية عرض أو بحث أو تصدير أو تعديل على بيانات المريض مسجّلة هنا.",
+  "filters": {
+    "search": "البحث بالمستخدم أو المريض أو السياق",
+    "user": "المستخدم",
+    "allUsers": "جميع المستخدمين",
+    "action": "الإجراء",
+    "allActions": "جميع الإجراءات",
+    "resourceType": "المورد",
+    "allResources": "جميع الموارد",
+    "from": "من",
+    "to": "إلى",
+    "clear": "مسح الفلاتر"
+  },
+  "columns": {
+    "occurredAt": "الوقت",
+    "user": "المستخدم",
+    "action": "الإجراء",
+    "resource": "المورد",
+    "patient": "المريض",
+    "context": "التفاصيل"
+  },
+  "actions": {
+    "view": "تمت المشاهدة",
+    "list": "تم السرد",
+    "search": "تم البحث",
+    "export": "تم التصدير",
+    "print": "تمت الطباعة",
+    "create": "تم الإنشاء",
+    "update": "تم التحديث",
+    "delete": "تم الحذف"
+  },
+  "resources": {
+    "patient": "مريض",
+    "visit": "زيارة",
+    "appointment": "موعد",
+    "lab": "مختبر",
+    "medication": "دواء",
+    "imaging": "أشعة",
+    "incident": "حادثة",
+    "diagnosis": "تشخيص",
+    "allergy": "حساسية",
+    "note": "ملاحظة",
+    "related_person": "شخص مرتبط",
+    "care_goal": "هدف رعاية",
+    "care_plan": "خطة رعاية",
+    "invoice": "فاتورة",
+    "payment": "دفعة",
+    "inventory_item": "عنصر مخزون"
+  },
+  "list": {
+    "empty": "لا توجد أحداث تدقيق تطابق هذه الفلاتر.",
+    "loading": "جارٍ تحميل أحداث التدقيق…",
+    "loadMore": "تحميل المزيد",
+    "pageOf": "عرض {{count}} من {{total}}",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "تعذّر تحميل أحداث التدقيق: {{message}}"
+  },
+  "unauthorized": {
+    "title": "للمديرين فقط",
+    "description": "ليس لديك صلاحية لعرض سجل التدقيق."
+  }
+}

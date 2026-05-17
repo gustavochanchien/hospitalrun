@@ -50,7 +50,9 @@
     "imaging": "الأشعة",
     "incidents": "الحوادث",
     "billing": "الفوترة",
-    "settings": "الإعدادات"
+    "inventory": "المخزون",
+    "settings": "الإعدادات",
+    "auditLog": "سجل التدقيق"
   },
   "network": {
     "offline": "أنت غير متصل",

@@ -23,9 +23,11 @@ import { PermissionGuard } from '@/components/ui/permission-guard'
 import { PdfExportButton } from '@/components/pdf-export-button'
 import { PrintButton } from '@/components/print-button'
 import { resolveOrgName } from '@/lib/pdf/org'
+import { recordAccessEvent } from '@/lib/db/access-log'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { useLogAccess } from '@/hooks/useLogAccess'
 
 interface LabDetailPageProps {
   labId: string
@@ -45,6 +47,13 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
     () => (lab?.patientId ? db.patients.get(lab.patientId) : undefined),
     [lab?.patientId],
   )
+  useLogAccess({
+    action: 'view',
+    resourceType: 'lab',
+    resourceId: labId,
+    patientId: lab?.patientId,
+    enabled: !!lab && !lab._deleted,
+  })
 
   if (lab === undefined) {
     return (
@@ -260,6 +269,15 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
         )}
         <PdfExportButton
           filename={`lab-${lab.code ?? lab.id}`}
+          onBeforeGenerate={() =>
+            void recordAccessEvent({
+              action: 'export',
+              resourceType: 'lab',
+              resourceId: lab.id,
+              patientId: lab.patientId,
+              context: { format: 'pdf' },
+            })
+          }
           buildDocument={async () => {
             const orgName = await resolveOrgName(orgId)
             const { LabReportPdf } = await import('./pdf/LabReportPdf')
@@ -274,7 +292,16 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
             )
           }}
         />
-        <PrintButton />
+        <PrintButton
+          onBeforePrint={() =>
+            void recordAccessEvent({
+              action: 'print',
+              resourceType: 'lab',
+              resourceId: lab.id,
+              patientId: lab.patientId,
+            })
+          }
+        />
         <Button variant="destructive" onClick={() => setConfirmOpen(true)}>
           {t('detail.delete')}
         </Button>

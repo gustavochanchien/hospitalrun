@@ -50,7 +50,9 @@
     "imaging": "Bildgebung",
     "incidents": "Vorfälle",
     "billing": "Abrechnung",
-    "settings": "Einstellungen"
+    "inventory": "Lager",
+    "settings": "Einstellungen",
+    "auditLog": "Prüfprotokoll"
   },
   "network": {
     "offline": "Sie sind offline",

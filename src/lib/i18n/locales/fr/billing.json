@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Facturation",
     "placeholder": "Onglet de facturation patient bientôt disponible",
-    "empty": "Aucune facture pour ce patient pour l'instant.",
+    "empty": "Aucun",
     "loading": "Chargement des factures…"
   },
   "disabled": {

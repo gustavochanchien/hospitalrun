@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Magazzino",
+    "newItem": "Nuovo articolo",
+    "searchPlaceholder": "Cerca per SKU o nome",
+    "allStatuses": "Tutti gli articoli",
+    "activeOnly": "Solo attivi",
+    "lowStockOnly": "Scorte basse",
+    "count": "{{count}} articolo",
+    "count_other": "{{count}} articoli",
+    "exportFilename": "inventory",
+    "noMatches": "Nessun articolo corrisponde ai filtri.",
+    "empty": "Nessun articolo in magazzino.",
+    "pageOf": "Pagina {{current}} di {{total}}",
+    "previous": "Precedente",
+    "next": "Avanti",
+    "columns": {
+      "sku": "SKU",
+      "name": "Nome",
+      "unit": "Unità",
+      "onHand": "Disponibile",
+      "reorderLevel": "Punto di riordino",
+      "unitCost": "Costo unitario",
+      "status": "Stato"
+    },
+    "status": {
+      "active": "Attivo",
+      "inactive": "Inattivo",
+      "low": "Basso"
+    }
+  },
+  "detail": {
+    "title": "Articolo di magazzino",
+    "backToList": "Torna al magazzino",
+    "notFound": "Articolo non trovato.",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "deleted": "Articolo rimosso",
+    "deleteTitle": "Rimuovere questo articolo?",
+    "deleteDescription": "Le transazioni passate rimangono registrate ma l'articolo viene nascosto nelle nuove inserzioni.",
+    "lowStock": "Scorte basse — la quantità disponibile è pari o inferiore al punto di riordino.",
+    "summary": {
+      "onHand": "Disponibile",
+      "reorderLevel": "Punto di riordino",
+      "unitCost": "Costo unitario",
+      "value": "Valore delle scorte"
+    },
+    "actions": {
+      "receive": "Carico merce",
+      "adjust": "Rettifica",
+      "waste": "Scarto",
+      "transfer": "Trasferimento"
+    },
+    "transactions": {
+      "title": "Movimenti di magazzino",
+      "empty": "Nessun movimento registrato.",
+      "kind": "Tipo",
+      "quantity": "Q.tà",
+      "balance": "Totale progressivo",
+      "reference": "Riferimento",
+      "occurredAt": "Data",
+      "notes": "Note"
+    },
+    "kind": {
+      "receive": "Carico",
+      "dispense": "Erogazione",
+      "adjust": "Rettifica",
+      "transfer": "Trasferimento",
+      "waste": "Scarto"
+    }
+  },
+  "form": {
+    "title": "Dettagli articolo",
+    "sku": "SKU",
+    "skuPlaceholder": "es. GLOVE-S",
+    "name": "Nome",
+    "namePlaceholder": "es. Guanti in nitrile, taglia S",
+    "description": "Descrizione",
+    "unit": "Unità",
+    "unitPlaceholder": "pezzo, scatola, ml…",
+    "reorderLevel": "Punto di riordino",
+    "unitCost": "Costo unitario",
+    "currency": "Valuta",
+    "active": "Attivo",
+    "submitCreate": "Crea articolo",
+    "submitUpdate": "Salva modifiche",
+    "saving": "Salvataggio…",
+    "created": "Articolo creato",
+    "updated": "Articolo aggiornato"
+  },
+  "dialog": {
+    "receiveTitle": "Carico merce",
+    "adjustTitle": "Rettifica scorte",
+    "wasteTitle": "Registra scarto",
+    "transferTitle": "Registra trasferimento",
+    "quantity": "Quantità",
+    "unitCost": "Costo unitario",
+    "reference": "Riferimento / N° ordine",
+    "occurredAt": "Data",
+    "notes": "Note",
+    "submit": "Registra",
+    "recording": "Registrazione…",
+    "cancel": "Annulla",
+    "errorNoOrg": "Nessuna organizzazione nella sessione.",
+    "recorded": "Movimento registrato",
+    "adjustHint": "Usa un numero positivo per aggiungere scorte, negativo per rimuoverle."
+  },
+  "lowStock": {
+    "title": "Scorte basse",
+    "empty": "Tutti gli articoli sono sopra il punto di riordino.",
+    "loading": "Caricamento scorte basse…",
+    "viewAll": "Apri magazzino",
+    "viewItem": "Apri"
+  },
+  "patientTab": {
+    "title": "Magazzino"
+  },
+  "disabled": {
+    "title": "Il magazzino non è abilitato",
+    "description": "Chiedi all'amministratore di abilitare la funzione Magazzino nelle Impostazioni."
+  },
+  "validation": {
+    "skuRequired": "Il codice SKU è obbligatorio.",
+    "nameRequired": "Il nome è obbligatorio.",
+    "unitRequired": "L'unità è obbligatoria.",
+    "quantityNonZero": "La quantità deve essere diversa da zero.",
+    "quantityPositive": "La quantità deve essere positiva.",
+    "amountNonNegative": "L'importo deve essere zero o maggiore."
+  }
+}

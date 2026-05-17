@@ -143,6 +143,7 @@ const baseMedication: Medication = {
   startDate: null,
   endDate: null,
   notes: null,
+  inventoryItemId: null,
   deletedAt: null,
   createdAt: '2024-01-01T00:00:00Z',
   updatedAt: '2024-01-01T00:00:00Z',

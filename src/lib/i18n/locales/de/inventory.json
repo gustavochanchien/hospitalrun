@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Lager",
+    "newItem": "Neuer Artikel",
+    "searchPlaceholder": "Artikelnummer oder Name suchen",
+    "allStatuses": "Alle Artikel",
+    "activeOnly": "Nur aktive",
+    "lowStockOnly": "Niedriger Bestand",
+    "count": "{{count}} Artikel",
+    "count_other": "{{count}} Artikel",
+    "exportFilename": "inventory",
+    "noMatches": "Keine Artikel entsprechen Ihren Filtern.",
+    "empty": "Noch keine Lagerartikel vorhanden.",
+    "pageOf": "Seite {{current}} von {{total}}",
+    "previous": "Vorherige",
+    "next": "Weiter",
+    "columns": {
+      "sku": "Artikelnummer",
+      "name": "Name",
+      "unit": "Einheit",
+      "onHand": "Bestand",
+      "reorderLevel": "Nachbestellpunkt",
+      "unitCost": "Stückpreis",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "low": "Niedrig"
+    }
+  },
+  "detail": {
+    "title": "Lagerartikel",
+    "backToList": "Zurück zum Lager",
+    "notFound": "Artikel nicht gefunden.",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "deleted": "Artikel entfernt",
+    "deleteTitle": "Diesen Artikel entfernen?",
+    "deleteDescription": "Vergangene Transaktionen bleiben gespeichert, der Artikel wird jedoch bei neuen Einträgen ausgeblendet.",
+    "lowStock": "Niedriger Bestand — Lagerbestand liegt auf oder unter dem Nachbestellpunkt.",
+    "summary": {
+      "onHand": "Bestand",
+      "reorderLevel": "Nachbestellpunkt",
+      "unitCost": "Stückpreis",
+      "value": "Lagerwert"
+    },
+    "actions": {
+      "receive": "Wareneingang",
+      "adjust": "Korrigieren",
+      "waste": "Ausschuss",
+      "transfer": "Transfer"
+    },
+    "transactions": {
+      "title": "Lagerbewegungen",
+      "empty": "Noch keine Bewegungen vorhanden.",
+      "kind": "Art",
+      "quantity": "Menge",
+      "balance": "Laufender Bestand",
+      "reference": "Referenz",
+      "occurredAt": "Datum",
+      "notes": "Notizen"
+    },
+    "kind": {
+      "receive": "Eingang",
+      "dispense": "Ausgabe",
+      "adjust": "Korrektur",
+      "transfer": "Transfer",
+      "waste": "Ausschuss"
+    }
+  },
+  "form": {
+    "title": "Artikeldetails",
+    "sku": "Artikelnummer",
+    "skuPlaceholder": "z. B. GLOVE-S",
+    "name": "Name",
+    "namePlaceholder": "z. B. Nitrilhandschuhe, klein",
+    "description": "Beschreibung",
+    "unit": "Einheit",
+    "unitPlaceholder": "Stück, Karton, ml…",
+    "reorderLevel": "Nachbestellpunkt",
+    "unitCost": "Stückpreis",
+    "currency": "Währung",
+    "active": "Aktiv",
+    "submitCreate": "Artikel anlegen",
+    "submitUpdate": "Änderungen speichern",
+    "saving": "Wird gespeichert…",
+    "created": "Artikel angelegt",
+    "updated": "Artikel aktualisiert"
+  },
+  "dialog": {
+    "receiveTitle": "Wareneingang",
+    "adjustTitle": "Bestand korrigieren",
+    "wasteTitle": "Ausschuss erfassen",
+    "transferTitle": "Transfer erfassen",
+    "quantity": "Menge",
+    "unitCost": "Stückpreis",
+    "reference": "Referenz / Bestellnummer",
+    "occurredAt": "Datum",
+    "notes": "Notizen",
+    "submit": "Erfassen",
+    "recording": "Wird erfasst…",
+    "cancel": "Abbrechen",
+    "errorNoOrg": "Keine Organisation in der Sitzung.",
+    "recorded": "Bewegung erfasst",
+    "adjustHint": "Positive Zahl zum Hinzufügen, negative Zahl zum Entnehmen von Bestand."
+  },
+  "lowStock": {
+    "title": "Niedriger Bestand",
+    "empty": "Alle Artikel liegen über dem Nachbestellpunkt.",
+    "loading": "Niedriger Bestand wird geladen…",
+    "viewAll": "Lager öffnen",
+    "viewItem": "Öffnen"
+  },
+  "patientTab": {
+    "title": "Lager"
+  },
+  "disabled": {
+    "title": "Lager ist nicht aktiviert",
+    "description": "Bitten Sie Ihren Administrator, die Lagerfunktion in den Einstellungen zu aktivieren."
+  },
+  "validation": {
+    "skuRequired": "Artikelnummer ist erforderlich.",
+    "nameRequired": "Name ist erforderlich.",
+    "unitRequired": "Einheit ist erforderlich.",
+    "quantityNonZero": "Menge darf nicht null sein.",
+    "quantityPositive": "Menge muss positiv sein.",
+    "amountNonNegative": "Betrag muss null oder größer sein."
+  }
+}

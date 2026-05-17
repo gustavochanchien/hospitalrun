@@ -1,0 +1,66 @@
+{
+  "title": "Denetim Günlüğü",
+  "description": "HIPAA uyumlu erişim günlüğü. Hasta verilerine yapılan her görüntüleme, arama, dışa aktarma ve değişiklik burada kaydedilir.",
+  "filters": {
+    "search": "Kullanıcı, hasta veya bağlam ara",
+    "user": "Kullanıcı",
+    "allUsers": "Tüm kullanıcılar",
+    "action": "İşlem",
+    "allActions": "Tüm işlemler",
+    "resourceType": "Kaynak",
+    "allResources": "Tüm kaynaklar",
+    "from": "Başlangıç",
+    "to": "Bitiş",
+    "clear": "Filtreleri temizle"
+  },
+  "columns": {
+    "occurredAt": "Zaman",
+    "user": "Kullanıcı",
+    "action": "İşlem",
+    "resource": "Kaynak",
+    "patient": "Hasta",
+    "context": "Ayrıntılar"
+  },
+  "actions": {
+    "view": "Görüntülendi",
+    "list": "Listelendi",
+    "search": "Arandı",
+    "export": "Dışa aktarıldı",
+    "print": "Yazdırıldı",
+    "create": "Oluşturuldu",
+    "update": "Güncellendi",
+    "delete": "Silindi"
+  },
+  "resources": {
+    "patient": "Hasta",
+    "visit": "Ziyaret",
+    "appointment": "Randevu",
+    "lab": "Laboratuvar",
+    "medication": "İlaç",
+    "imaging": "Görüntüleme",
+    "incident": "Olay",
+    "diagnosis": "Tanı",
+    "allergy": "Alerji",
+    "note": "Not",
+    "related_person": "İlgili kişi",
+    "care_goal": "Bakım hedefi",
+    "care_plan": "Bakım planı",
+    "invoice": "Fatura",
+    "payment": "Ödeme",
+    "inventory_item": "Envanter kalemi"
+  },
+  "list": {
+    "empty": "Bu filtrelere uyan denetim olayı bulunamadı.",
+    "loading": "Denetim olayları yükleniyor…",
+    "loadMore": "Daha fazla yükle",
+    "pageOf": "{{total}} kayıttan {{count}} tanesi gösteriliyor",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Denetim olayları yüklenemedi: {{message}}"
+  },
+  "unauthorized": {
+    "title": "Yalnızca yöneticiler",
+    "description": "Denetim günlüğünü görüntüleme izniniz yok."
+  }
+}

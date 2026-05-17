@@ -6,24 +6,29 @@ import { FeatureGate } from '@/components/ui/feature-gate'
 interface PrintButtonProps {
   disabled?: boolean
   label?: string
+  /** Fires before window.print() — used to record a HIPAA `print` audit event. */
+  onBeforePrint?: () => void
 }
 
-export function PrintButton({ disabled, label }: PrintButtonProps) {
+export function PrintButton(props: PrintButtonProps) {
   return (
     <FeatureGate feature="pdf-export">
-      <PrintButtonInner disabled={disabled} label={label} />
+      <PrintButtonInner {...props} />
     </FeatureGate>
   )
 }
 
-function PrintButtonInner({ disabled, label }: PrintButtonProps) {
+function PrintButtonInner({ disabled, label, onBeforePrint }: PrintButtonProps) {
   const { t } = useTranslation('pdf')
   return (
     <Button
       variant="outline"
       size="sm"
       disabled={disabled}
-      onClick={() => window.print()}
+      onClick={() => {
+        onBeforePrint?.()
+        window.print()
+      }}
     >
       <Printer className="mr-1.5 h-4 w-4" />
       {label ?? t('actions.print')}

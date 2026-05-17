@@ -50,7 +50,9 @@
     "imaging": "Визуализация",
     "incidents": "Инциденты",
     "billing": "Биллинг",
-    "settings": "Настройки"
+    "inventory": "Склад",
+    "settings": "Настройки",
+    "auditLog": "Журнал аудита"
   },
   "network": {
     "offline": "Вы офлайн",

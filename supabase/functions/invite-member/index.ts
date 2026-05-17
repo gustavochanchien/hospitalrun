@@ -9,7 +9,10 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
-type Role = 'admin' | 'doctor' | 'nurse' | 'user'
+// Roles are no longer a closed enum — each org defines its own set in
+// `org_roles`. We validate the role string at runtime by checking that
+// a non-deleted row exists for (inviter's org_id, role).
+type Role = string
 
 interface RequestBody {
   mode?: 'invite' | 'create' | 'disable' | 'enable'
@@ -21,8 +24,6 @@ interface RequestBody {
   // 'disable' / 'enable' mode only:
   userId?: string
 }
-
-const VALID_ROLES: Role[] = ['admin', 'doctor', 'nurse', 'user']
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -70,11 +71,29 @@ Deno.serve(async (req) => {
     }
 
     const email = (body.email ?? '').trim().toLowerCase()
-    const role = body.role as Role | undefined
+    const role = typeof body.role === 'string' ? body.role.trim() : ''
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return json({ error: 'invalid_email' }, 400)
     }
-    if (!role || !VALID_ROLES.includes(role)) {
+    if (!role) {
+      return json({ error: 'invalid_role' }, 400)
+    }
+
+    // Validate the role exists in this org's editable role table.
+    // No caching — staleness is a security concern (deleted role would
+    // be accepted as valid). One extra read per invite is acceptable at
+    // human pace.
+    const { data: roleRow, error: roleErr } = await admin
+      .from('org_roles')
+      .select('role_key')
+      .eq('org_id', profile.org_id)
+      .eq('role_key', role)
+      .is('deleted_at', null)
+      .maybeSingle()
+    if (roleErr) {
+      return json({ error: 'role_lookup_failed', detail: roleErr.message }, 500)
+    }
+    if (!roleRow) {
       return json({ error: 'invalid_role' }, 400)
     }
 

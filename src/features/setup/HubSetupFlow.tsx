@@ -8,12 +8,14 @@ import { getIPC, type HubInfo } from '@/lib/desktop/env'
 import { useAuthStore } from '@/features/auth/auth.store'
 import { CloudConnectForm } from './CloudConnectForm'
 import { ChooseFeaturesForm } from './ChooseFeaturesForm'
+import { ChooseRolesForm } from './ChooseRolesForm'
 
 type Step =
   | 'start'
   | 'starting'
   | 'first-user'
   | 'choose-features'
+  | 'choose-roles'
   | 'cloud-prompt'
   | 'ready'
   | 'error'
@@ -77,7 +79,11 @@ export function HubSetupFlow({ onBack }: HubSetupFlowProps) {
   }
 
   if (step === 'choose-features') {
-    return <ChooseFeaturesForm onDone={() => setStep('cloud-prompt')} />
+    return <ChooseFeaturesForm onDone={() => setStep('choose-roles')} />
+  }
+
+  if (step === 'choose-roles') {
+    return <ChooseRolesForm onDone={() => setStep('cloud-prompt')} />
   }
 
   if (step === 'cloud-prompt') {

@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Estoque",
+    "newItem": "Novo item",
+    "searchPlaceholder": "Buscar por SKU ou nome",
+    "allStatuses": "Todos os itens",
+    "activeOnly": "Somente ativos",
+    "lowStockOnly": "Estoque baixo",
+    "count": "{{count}} item",
+    "count_other": "{{count}} itens",
+    "exportFilename": "inventory",
+    "noMatches": "Nenhum item corresponde aos filtros.",
+    "empty": "Nenhum item no estoque ainda.",
+    "pageOf": "Página {{current}} de {{total}}",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "columns": {
+      "sku": "SKU",
+      "name": "Nome",
+      "unit": "Unidade",
+      "onHand": "Em estoque",
+      "reorderLevel": "Ponto de pedido",
+      "unitCost": "Custo unitário",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "low": "Baixo"
+    }
+  },
+  "detail": {
+    "title": "Item de estoque",
+    "backToList": "Voltar ao estoque",
+    "notFound": "Item não encontrado.",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "deleted": "Item removido",
+    "deleteTitle": "Remover este item?",
+    "deleteDescription": "As transações passadas permanecem registradas, mas o item fica oculto em novas entradas.",
+    "lowStock": "Estoque baixo — a quantidade em estoque está igual ou abaixo do ponto de pedido.",
+    "summary": {
+      "onHand": "Em estoque",
+      "reorderLevel": "Ponto de pedido",
+      "unitCost": "Custo unitário",
+      "value": "Valor do estoque"
+    },
+    "actions": {
+      "receive": "Receber estoque",
+      "adjust": "Ajustar",
+      "waste": "Descarte",
+      "transfer": "Transferir"
+    },
+    "transactions": {
+      "title": "Movimentações",
+      "empty": "Nenhuma movimentação ainda.",
+      "kind": "Tipo",
+      "quantity": "Qtd.",
+      "balance": "Saldo acumulado",
+      "reference": "Referência",
+      "occurredAt": "Quando",
+      "notes": "Observações"
+    },
+    "kind": {
+      "receive": "Recebimento",
+      "dispense": "Dispensação",
+      "adjust": "Ajuste",
+      "transfer": "Transferência",
+      "waste": "Descarte"
+    }
+  },
+  "form": {
+    "title": "Detalhes do item",
+    "sku": "SKU",
+    "skuPlaceholder": "ex. GLOVE-S",
+    "name": "Nome",
+    "namePlaceholder": "ex. Luvas de nitrilo, tamanho P",
+    "description": "Descrição",
+    "unit": "Unidade",
+    "unitPlaceholder": "unidade, caixa, ml…",
+    "reorderLevel": "Ponto de pedido",
+    "unitCost": "Custo unitário",
+    "currency": "Moeda",
+    "active": "Ativo",
+    "submitCreate": "Criar item",
+    "submitUpdate": "Salvar alterações",
+    "saving": "Salvando…",
+    "created": "Item criado",
+    "updated": "Item atualizado"
+  },
+  "dialog": {
+    "receiveTitle": "Receber estoque",
+    "adjustTitle": "Ajustar estoque",
+    "wasteTitle": "Registrar descarte",
+    "transferTitle": "Registrar transferência",
+    "quantity": "Quantidade",
+    "unitCost": "Custo unitário",
+    "reference": "Referência / N° do pedido",
+    "occurredAt": "Quando",
+    "notes": "Observações",
+    "submit": "Registrar",
+    "recording": "Registrando…",
+    "cancel": "Cancelar",
+    "errorNoOrg": "Nenhuma organização na sessão.",
+    "recorded": "Movimentação registrada",
+    "adjustHint": "Use um número positivo para adicionar estoque, negativo para remover."
+  },
+  "lowStock": {
+    "title": "Estoque baixo",
+    "empty": "Todos os itens estão acima do ponto de pedido.",
+    "loading": "Carregando estoque baixo…",
+    "viewAll": "Abrir estoque",
+    "viewItem": "Abrir"
+  },
+  "patientTab": {
+    "title": "Estoque"
+  },
+  "disabled": {
+    "title": "O estoque não está habilitado",
+    "description": "Peça ao administrador para habilitar o recurso de Estoque nas Configurações."
+  },
+  "validation": {
+    "skuRequired": "O SKU é obrigatório.",
+    "nameRequired": "O nome é obrigatório.",
+    "unitRequired": "A unidade é obrigatória.",
+    "quantityNonZero": "A quantidade deve ser diferente de zero.",
+    "quantityPositive": "A quantidade deve ser positiva.",
+    "amountNonNegative": "O valor deve ser zero ou maior."
+  }
+}

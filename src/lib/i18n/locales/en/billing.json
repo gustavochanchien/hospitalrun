@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Billing",
     "placeholder": "Patient billing tab coming soon",
-    "empty": "No invoices for this patient yet.",
+    "empty": "None",
     "loading": "Loading invoices…"
   },
   "disabled": {

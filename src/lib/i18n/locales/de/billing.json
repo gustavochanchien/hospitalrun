@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Abrechnung",
     "placeholder": "Patientenabrechnung demnächst verfügbar",
-    "empty": "Noch keine Rechnungen für diesen Patienten.",
+    "empty": "Keine",
     "loading": "Rechnungen werden geladen…"
   },
   "disabled": {

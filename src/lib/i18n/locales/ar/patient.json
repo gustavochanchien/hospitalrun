@@ -38,6 +38,7 @@
     "unknown": "غير معروف"
   },
   "tabs": {
+    "all": "الكل",
     "appointments": "المواعيد",
     "diagnoses": "التشخيصات",
     "allergies": "الحساسية",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "جارٍ التحميل...",
-      "delete": "حذف"
+      "delete": "حذف",
+      "none": "لا شيء"
     },
     "allergies": {
       "title": "الحساسية",
       "newAction": "حساسية جديدة",
       "create": "إنشاء حساسية",
-      "noResults": "لم يتم العثور على حساسيات.",
+      "noResults": "لا شيء",
       "fields": {
         "allergen": "المُحسّس",
         "reaction": "ردّ الفعل",
@@ -132,7 +134,7 @@
       "title": "التشخيصات",
       "newAction": "تشخيص جديد",
       "create": "إنشاء تشخيص",
-      "noResults": "لم يتم العثور على تشخيصات.",
+      "noResults": "لا شيء",
       "fields": {
         "icdCode": "رمز ICD",
         "description": "الوصف",
@@ -155,7 +157,7 @@
       "title": "الأدوية",
       "newAction": "دواء جديد",
       "create": "إنشاء دواء",
-      "noResults": "لم يتم العثور على أدوية.",
+      "noResults": "لا شيء",
       "fields": {
         "name": "الاسم",
         "status": "الحالة",
@@ -188,7 +190,7 @@
       "title": "المختبرات",
       "newAction": "تحليل جديد",
       "create": "إنشاء تحليل",
-      "noResults": "لم يتم العثور على تحاليل.",
+      "noResults": "لا شيء",
       "fields": {
         "type": "النوع",
         "code": "الرمز",
@@ -206,7 +208,7 @@
       "title": "الأشعة",
       "newAction": "أشعة جديدة",
       "create": "إنشاء طلب أشعة",
-      "noResults": "لم يتم العثور على طلبات أشعة.",
+      "noResults": "لا شيء",
       "fields": {
         "type": "النوع",
         "code": "الرمز",
@@ -223,7 +225,7 @@
       "title": "الملاحظات",
       "newAction": "ملاحظة جديدة",
       "create": "إنشاء ملاحظة",
-      "noResults": "لم يتم العثور على ملاحظات.",
+      "noResults": "لا شيء",
       "fields": {
         "content": "المحتوى"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "أهداف الرعاية",
       "newAction": "هدف رعاية جديد",
-      "noResults": "لا توجد أهداف رعاية مسجلة.",
+      "noResults": "لا شيء",
       "fields": {
         "descriptionRequired": "الوصف *",
         "achievementStatus": "حالة الإنجاز",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "خطط الرعاية",
       "newAction": "خطة رعاية جديدة",
-      "noResults": "لا توجد خطط رعاية مسجلة.",
+      "noResults": "لا شيء",
       "fields": {
         "titleRequired": "العنوان *",
         "description": "الوصف",
@@ -294,7 +296,7 @@
       "title": "المواعيد",
       "newAction": "موعد جديد",
       "create": "إنشاء موعد",
-      "noResults": "لم يتم العثور على مواعيد.",
+      "noResults": "لا شيء",
       "fields": {
         "type": "النوع",
         "startTime": "وقت البدء",
@@ -313,7 +315,7 @@
       "title": "الزيارات",
       "newAction": "زيارة جديدة",
       "create": "إنشاء زيارة",
-      "noResults": "لم يتم العثور على زيارات.",
+      "noResults": "لا شيء",
       "fallbackName": "زيارة",
       "fields": {
         "type": "النوع",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "الأشخاص المرتبطون",
       "newAction": "شخص مرتبط جديد",
-      "noResults": "لا يوجد أشخاص مرتبطون مسجلون.",
+      "noResults": "لا شيء",
       "fields": {
         "givenNameRequired": "الاسم الأول *",
         "familyNameRequired": "اسم العائلة *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} إدخال",
       "count_other": "{{count}} إدخالات",
-      "noResults": "لا توجد إدخالات سجل تطابق هذه المرشحات.",
+      "noResults": "لا شيء",
       "changeLabel": "<field>{{field}}</field> تغيّر",
       "fromShort": "من:",
       "toShort": "إلى:",

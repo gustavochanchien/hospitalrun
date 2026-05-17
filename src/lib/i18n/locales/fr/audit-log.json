@@ -1,0 +1,66 @@
+{
+  "title": "Journal d'audit",
+  "description": "Journal d'accès conforme à la HIPAA. Chaque consultation, recherche, exportation et modification des données patient est enregistrée ici.",
+  "filters": {
+    "search": "Rechercher un utilisateur, un patient ou un contexte",
+    "user": "Utilisateur",
+    "allUsers": "Tous les utilisateurs",
+    "action": "Action",
+    "allActions": "Toutes les actions",
+    "resourceType": "Ressource",
+    "allResources": "Toutes les ressources",
+    "from": "Du",
+    "to": "Au",
+    "clear": "Effacer les filtres"
+  },
+  "columns": {
+    "occurredAt": "Quand",
+    "user": "Utilisateur",
+    "action": "Action",
+    "resource": "Ressource",
+    "patient": "Patient",
+    "context": "Détails"
+  },
+  "actions": {
+    "view": "Consulté",
+    "list": "Listé",
+    "search": "Recherché",
+    "export": "Exporté",
+    "print": "Imprimé",
+    "create": "Créé",
+    "update": "Mis à jour",
+    "delete": "Supprimé"
+  },
+  "resources": {
+    "patient": "Patient",
+    "visit": "Visite",
+    "appointment": "Rendez-vous",
+    "lab": "Laboratoire",
+    "medication": "Médicament",
+    "imaging": "Imagerie",
+    "incident": "Incident",
+    "diagnosis": "Diagnostic",
+    "allergy": "Allergie",
+    "note": "Note",
+    "related_person": "Personne liée",
+    "care_goal": "Objectif de soin",
+    "care_plan": "Plan de soin",
+    "invoice": "Facture",
+    "payment": "Paiement",
+    "inventory_item": "Article d'inventaire"
+  },
+  "list": {
+    "empty": "Aucun événement d'audit ne correspond à ces filtres.",
+    "loading": "Chargement des événements d'audit…",
+    "loadMore": "Charger plus",
+    "pageOf": "Affichage de {{count}} sur {{total}}",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Impossible de charger les événements d'audit : {{message}}"
+  },
+  "unauthorized": {
+    "title": "Administrateurs uniquement",
+    "description": "Vous n'avez pas l'autorisation de consulter le journal d'audit."
+  }
+}

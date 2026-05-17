@@ -11,8 +11,15 @@ import { ModeChooser, type SetupMode } from './ModeChooser'
 import { CloudConnectForm } from './CloudConnectForm'
 import { HubSetupFlow } from './HubSetupFlow'
 import { FirstUserForm } from './FirstUserForm'
+import { ChooseRolesForm } from './ChooseRolesForm'
 
-type Screen = 'chooser' | 'solo' | 'hub' | 'cloud-only-web' | 'first-user'
+type Screen =
+  | 'chooser'
+  | 'solo'
+  | 'hub'
+  | 'cloud-only-web'
+  | 'first-user'
+  | 'choose-roles'
 
 export function SetupPage() {
   const desktop = isDesktop()
@@ -44,6 +51,12 @@ export function SetupPage() {
     goToFirstUser('solo')
   }
 
+  function finishWizard() {
+    // Full reload so main.tsx re-reads the persisted session and the
+    // auth store + sync init cleanly, avoiding races with navigate.
+    window.location.assign('/')
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-8">
       <Card className="w-full max-w-lg">
@@ -54,6 +67,7 @@ export function SetupPage() {
             {screen === 'hub' && 'Set up the clinic hub'}
             {screen === 'cloud-only-web' && 'Connect to your server'}
             {screen === 'first-user' && 'Create your admin account'}
+            {screen === 'choose-roles' && 'Set up team roles'}
           </CardTitle>
           <CardDescription>
             {screen === 'chooser' && 'How would you like to run HospitalRun on this computer?'}
@@ -65,6 +79,8 @@ export function SetupPage() {
               'Enter the address of the HospitalRun server you want this device to use.'}
             {screen === 'first-user' &&
               "You're the first person to connect to this server. Set up your admin account to get started."}
+            {screen === 'choose-roles' &&
+              'Review the default roles and adjust their permissions before inviting your team.'}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -84,8 +100,12 @@ export function SetupPage() {
             />
           )}
           {screen === 'first-user' && (
-            <FirstUserForm onBack={() => setScreen(cloudScreen)} />
+            <FirstUserForm
+              onBack={() => setScreen(cloudScreen)}
+              onSignedUp={() => setScreen('choose-roles')}
+            />
           )}
+          {screen === 'choose-roles' && <ChooseRolesForm onDone={finishWizard} />}
         </CardContent>
       </Card>
     </div>

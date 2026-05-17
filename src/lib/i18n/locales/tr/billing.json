@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Faturalama",
     "placeholder": "Hasta faturalama sekmesi yakında",
-    "empty": "Bu hasta için henüz fatura yok.",
+    "empty": "Yok",
     "loading": "Faturalar yükleniyor…"
   },
   "disabled": {

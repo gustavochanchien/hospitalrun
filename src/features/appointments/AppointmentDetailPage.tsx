@@ -12,6 +12,7 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { PermissionGuard } from '@/components/ui/permission-guard'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
+import { useLogAccess } from '@/hooks/useLogAccess'
 
 interface AppointmentDetailPageProps {
   appointmentId: string
@@ -51,6 +52,13 @@ export function AppointmentDetailPage({
     },
     [appointment?.patientId],
   )
+  useLogAccess({
+    action: 'view',
+    resourceType: 'appointment',
+    resourceId: appointmentId,
+    patientId: appointment?.patientId,
+    enabled: !!appointment && !appointment._deleted,
+  })
 
   if (appointment === undefined) {
     return (

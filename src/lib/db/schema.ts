@@ -8,7 +8,7 @@ export interface Organization {
 export interface Profile {
   id: string
   orgId: string
-  role: 'admin' | 'user' | 'nurse' | 'doctor'
+  role: string
   fullName: string
   createdAt: string
 }
@@ -125,6 +125,7 @@ export interface Medication {
   startDate: string | null
   endDate: string | null
   notes: string | null
+  inventoryItemId: string | null
   deletedAt: string | null
   createdAt: string
   updatedAt: string
@@ -318,6 +319,55 @@ export interface PatientHistory {
   newValue: string | null
 }
 
+export const ACCESS_ACTIONS = [
+  'view',
+  'list',
+  'search',
+  'export',
+  'print',
+  'create',
+  'update',
+  'delete',
+] as const
+export type AccessAction = (typeof ACCESS_ACTIONS)[number]
+
+export const ACCESS_RESOURCE_TYPES = [
+  'patient',
+  'visit',
+  'appointment',
+  'lab',
+  'medication',
+  'imaging',
+  'incident',
+  'diagnosis',
+  'allergy',
+  'note',
+  'related_person',
+  'care_goal',
+  'care_plan',
+  'invoice',
+  'payment',
+  'inventory_item',
+] as const
+export type AccessResourceType = (typeof ACCESS_RESOURCE_TYPES)[number]
+
+export interface AccessLog {
+  id: string
+  orgId: string
+  userId: string | null
+  userEmail: string | null
+  userRole: string
+  action: AccessAction
+  resourceType: AccessResourceType
+  resourceId: string | null
+  patientId: string | null
+  context: Record<string, unknown> | null
+  clientId: string | null
+  occurredAt: string
+  createdAt: string
+  _synced: boolean
+}
+
 export interface OrgFeature {
   id: string
   orgId: string
@@ -336,6 +386,27 @@ export interface UserFeature {
   orgId: string
   feature: string
   granted: boolean
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
+/**
+ * Per-org role definition. Built-in rows are seeded by
+ * `bootstrap_current_user`; admin has `isLocked = true` and cannot be
+ * edited or deleted. `roleKey` is unique within an org (auto-slugged
+ * from the label on create, immutable thereafter).
+ */
+export interface OrgRole {
+  id: string
+  orgId: string
+  roleKey: string
+  label: string
+  permissions: string[]
+  isBuiltin: boolean
+  isLocked: boolean
   deletedAt: string | null
   createdAt: string
   updatedAt: string
@@ -415,6 +486,52 @@ export interface Payment {
   _deleted: boolean
 }
 
+export interface InventoryItem {
+  id: string
+  orgId: string
+  sku: string
+  name: string
+  description: string | null
+  unit: string
+  onHand: number
+  reorderLevel: number
+  unitCost: number
+  currency: string
+  active: boolean
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
+export type InventoryTransactionKind =
+  | 'receive'
+  | 'dispense'
+  | 'adjust'
+  | 'transfer'
+  | 'waste'
+
+export interface InventoryTransaction {
+  id: string
+  orgId: string
+  inventoryItemId: string
+  kind: InventoryTransactionKind
+  quantity: number
+  unitCost: number | null
+  reference: string | null
+  patientId: string | null
+  medicationId: string | null
+  occurredAt: string
+  recordedBy: string | null
+  notes: string | null
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
 export interface SyncQueueEntry {
   seq?: number
   tableName: string
@@ -439,13 +556,39 @@ export type TableMap = {
   careGoals: CareGoal
   carePlans: CarePlan
   patientHistory: PatientHistory
+  accessLogs: AccessLog
   orgFeatures: OrgFeature
   userFeatures: UserFeature
+  orgRoles: OrgRole
   chargeItems: ChargeItem
   invoices: Invoice
   invoiceLineItems: InvoiceLineItem
   payments: Payment
+  inventoryItems: InventoryItem
+  inventoryTransactions: InventoryTransaction
   syncQueue: SyncQueueEntry
 }
 
 export type SyncableTable = Exclude<keyof TableMap, 'syncQueue' | 'patientHistory'>
+
+/**
+ * Tables whose records carry PHI. Writes through `dbPut`/`dbDelete` to
+ * these tables auto-emit an `access_logs` audit entry. Keep in sync with
+ * the HIPAA-protected resource types in `ACCESS_RESOURCE_TYPES`.
+ */
+export const PHI_TABLES = [
+  'patients',
+  'visits',
+  'appointments',
+  'labs',
+  'medications',
+  'imaging',
+  'incidents',
+  'diagnoses',
+  'allergies',
+  'notes',
+  'relatedPersons',
+  'careGoals',
+  'carePlans',
+] as const satisfies readonly SyncableTable[]
+export type PhiTable = (typeof PHI_TABLES)[number]

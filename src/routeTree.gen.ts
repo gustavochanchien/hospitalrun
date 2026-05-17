@@ -17,9 +17,11 @@ import { Route as AuthSettingsIndexRouteImport } from './routes/_auth/settings/i
 import { Route as AuthPatientsIndexRouteImport } from './routes/_auth/patients/index'
 import { Route as AuthMedicationsIndexRouteImport } from './routes/_auth/medications/index'
 import { Route as AuthLabsIndexRouteImport } from './routes/_auth/labs/index'
+import { Route as AuthInventoryIndexRouteImport } from './routes/_auth/inventory/index'
 import { Route as AuthIncidentsIndexRouteImport } from './routes/_auth/incidents/index'
 import { Route as AuthImagingIndexRouteImport } from './routes/_auth/imaging/index'
 import { Route as AuthBillingIndexRouteImport } from './routes/_auth/billing/index'
+import { Route as AuthAuditLogIndexRouteImport } from './routes/_auth/audit-log/index'
 import { Route as AuthAppointmentsIndexRouteImport } from './routes/_auth/appointments/index'
 import { Route as AuthVisitsVisitIdRouteImport } from './routes/_auth/visits/$visitId'
 import { Route as AuthPatientsNewRouteImport } from './routes/_auth/patients/new'
@@ -28,6 +30,8 @@ import { Route as AuthMedicationsNewRouteImport } from './routes/_auth/medicatio
 import { Route as AuthMedicationsMedicationIdRouteImport } from './routes/_auth/medications/$medicationId'
 import { Route as AuthLabsNewRouteImport } from './routes/_auth/labs/new'
 import { Route as AuthLabsLabIdRouteImport } from './routes/_auth/labs/$labId'
+import { Route as AuthInventoryNewRouteImport } from './routes/_auth/inventory/new'
+import { Route as AuthInventoryItemIdRouteImport } from './routes/_auth/inventory/$itemId'
 import { Route as AuthIncidentsVisualizeRouteImport } from './routes/_auth/incidents/visualize'
 import { Route as AuthIncidentsNewRouteImport } from './routes/_auth/incidents/new'
 import { Route as AuthIncidentsIncidentIdRouteImport } from './routes/_auth/incidents/$incidentId'
@@ -78,6 +82,11 @@ const AuthLabsIndexRoute = AuthLabsIndexRouteImport.update({
   path: '/labs/',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthInventoryIndexRoute = AuthInventoryIndexRouteImport.update({
+  id: '/inventory/',
+  path: '/inventory/',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthIncidentsIndexRoute = AuthIncidentsIndexRouteImport.update({
   id: '/incidents/',
   path: '/incidents/',
@@ -91,6 +100,11 @@ const AuthImagingIndexRoute = AuthImagingIndexRouteImport.update({
 const AuthBillingIndexRoute = AuthBillingIndexRouteImport.update({
   id: '/billing/',
   path: '/billing/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthAuditLogIndexRoute = AuthAuditLogIndexRouteImport.update({
+  id: '/audit-log/',
+  path: '/audit-log/',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthAppointmentsIndexRoute = AuthAppointmentsIndexRouteImport.update({
@@ -132,6 +146,16 @@ const AuthLabsNewRoute = AuthLabsNewRouteImport.update({
 const AuthLabsLabIdRoute = AuthLabsLabIdRouteImport.update({
   id: '/labs/$labId',
   path: '/labs/$labId',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthInventoryNewRoute = AuthInventoryNewRouteImport.update({
+  id: '/inventory/new',
+  path: '/inventory/new',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthInventoryItemIdRoute = AuthInventoryItemIdRouteImport.update({
+  id: '/inventory/$itemId',
+  path: '/inventory/$itemId',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthIncidentsVisualizeRoute = AuthIncidentsVisualizeRouteImport.update({
@@ -201,6 +225,8 @@ export interface FileRoutesByFullPath {
   '/incidents/$incidentId': typeof AuthIncidentsIncidentIdRoute
   '/incidents/new': typeof AuthIncidentsNewRoute
   '/incidents/visualize': typeof AuthIncidentsVisualizeRoute
+  '/inventory/$itemId': typeof AuthInventoryItemIdRoute
+  '/inventory/new': typeof AuthInventoryNewRoute
   '/labs/$labId': typeof AuthLabsLabIdRoute
   '/labs/new': typeof AuthLabsNewRoute
   '/medications/$medicationId': typeof AuthMedicationsMedicationIdRoute
@@ -209,9 +235,11 @@ export interface FileRoutesByFullPath {
   '/patients/new': typeof AuthPatientsNewRoute
   '/visits/$visitId': typeof AuthVisitsVisitIdRoute
   '/appointments/': typeof AuthAppointmentsIndexRoute
+  '/audit-log/': typeof AuthAuditLogIndexRoute
   '/billing/': typeof AuthBillingIndexRoute
   '/imaging/': typeof AuthImagingIndexRoute
   '/incidents/': typeof AuthIncidentsIndexRoute
+  '/inventory/': typeof AuthInventoryIndexRoute
   '/labs/': typeof AuthLabsIndexRoute
   '/medications/': typeof AuthMedicationsIndexRoute
   '/patients/': typeof AuthPatientsIndexRoute
@@ -231,6 +259,8 @@ export interface FileRoutesByTo {
   '/incidents/$incidentId': typeof AuthIncidentsIncidentIdRoute
   '/incidents/new': typeof AuthIncidentsNewRoute
   '/incidents/visualize': typeof AuthIncidentsVisualizeRoute
+  '/inventory/$itemId': typeof AuthInventoryItemIdRoute
+  '/inventory/new': typeof AuthInventoryNewRoute
   '/labs/$labId': typeof AuthLabsLabIdRoute
   '/labs/new': typeof AuthLabsNewRoute
   '/medications/$medicationId': typeof AuthMedicationsMedicationIdRoute
@@ -239,9 +269,11 @@ export interface FileRoutesByTo {
   '/patients/new': typeof AuthPatientsNewRoute
   '/visits/$visitId': typeof AuthVisitsVisitIdRoute
   '/appointments': typeof AuthAppointmentsIndexRoute
+  '/audit-log': typeof AuthAuditLogIndexRoute
   '/billing': typeof AuthBillingIndexRoute
   '/imaging': typeof AuthImagingIndexRoute
   '/incidents': typeof AuthIncidentsIndexRoute
+  '/inventory': typeof AuthInventoryIndexRoute
   '/labs': typeof AuthLabsIndexRoute
   '/medications': typeof AuthMedicationsIndexRoute
   '/patients': typeof AuthPatientsIndexRoute
@@ -263,6 +295,8 @@ export interface FileRoutesById {
   '/_auth/incidents/$incidentId': typeof AuthIncidentsIncidentIdRoute
   '/_auth/incidents/new': typeof AuthIncidentsNewRoute
   '/_auth/incidents/visualize': typeof AuthIncidentsVisualizeRoute
+  '/_auth/inventory/$itemId': typeof AuthInventoryItemIdRoute
+  '/_auth/inventory/new': typeof AuthInventoryNewRoute
   '/_auth/labs/$labId': typeof AuthLabsLabIdRoute
   '/_auth/labs/new': typeof AuthLabsNewRoute
   '/_auth/medications/$medicationId': typeof AuthMedicationsMedicationIdRoute
@@ -271,9 +305,11 @@ export interface FileRoutesById {
   '/_auth/patients/new': typeof AuthPatientsNewRoute
   '/_auth/visits/$visitId': typeof AuthVisitsVisitIdRoute
   '/_auth/appointments/': typeof AuthAppointmentsIndexRoute
+  '/_auth/audit-log/': typeof AuthAuditLogIndexRoute
   '/_auth/billing/': typeof AuthBillingIndexRoute
   '/_auth/imaging/': typeof AuthImagingIndexRoute
   '/_auth/incidents/': typeof AuthIncidentsIndexRoute
+  '/_auth/inventory/': typeof AuthInventoryIndexRoute
   '/_auth/labs/': typeof AuthLabsIndexRoute
   '/_auth/medications/': typeof AuthMedicationsIndexRoute
   '/_auth/patients/': typeof AuthPatientsIndexRoute
@@ -295,6 +331,8 @@ export interface FileRouteTypes {
     | '/incidents/$incidentId'
     | '/incidents/new'
     | '/incidents/visualize'
+    | '/inventory/$itemId'
+    | '/inventory/new'
     | '/labs/$labId'
     | '/labs/new'
     | '/medications/$medicationId'
@@ -303,9 +341,11 @@ export interface FileRouteTypes {
     | '/patients/new'
     | '/visits/$visitId'
     | '/appointments/'
+    | '/audit-log/'
     | '/billing/'
     | '/imaging/'
     | '/incidents/'
+    | '/inventory/'
     | '/labs/'
     | '/medications/'
     | '/patients/'
@@ -325,6 +365,8 @@ export interface FileRouteTypes {
     | '/incidents/$incidentId'
     | '/incidents/new'
     | '/incidents/visualize'
+    | '/inventory/$itemId'
+    | '/inventory/new'
     | '/labs/$labId'
     | '/labs/new'
     | '/medications/$medicationId'
@@ -333,9 +375,11 @@ export interface FileRouteTypes {
     | '/patients/new'
     | '/visits/$visitId'
     | '/appointments'
+    | '/audit-log'
     | '/billing'
     | '/imaging'
     | '/incidents'
+    | '/inventory'
     | '/labs'
     | '/medications'
     | '/patients'
@@ -356,6 +400,8 @@ export interface FileRouteTypes {
     | '/_auth/incidents/$incidentId'
     | '/_auth/incidents/new'
     | '/_auth/incidents/visualize'
+    | '/_auth/inventory/$itemId'
+    | '/_auth/inventory/new'
     | '/_auth/labs/$labId'
     | '/_auth/labs/new'
     | '/_auth/medications/$medicationId'
@@ -364,9 +410,11 @@ export interface FileRouteTypes {
     | '/_auth/patients/new'
     | '/_auth/visits/$visitId'
     | '/_auth/appointments/'
+    | '/_auth/audit-log/'
     | '/_auth/billing/'
     | '/_auth/imaging/'
     | '/_auth/incidents/'
+    | '/_auth/inventory/'
     | '/_auth/labs/'
     | '/_auth/medications/'
     | '/_auth/patients/'
@@ -437,6 +485,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLabsIndexRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/inventory/': {
+      id: '/_auth/inventory/'
+      path: '/inventory'
+      fullPath: '/inventory/'
+      preLoaderRoute: typeof AuthInventoryIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_auth/incidents/': {
       id: '/_auth/incidents/'
       path: '/incidents'
@@ -456,6 +511,13 @@ declare module '@tanstack/react-router' {
       path: '/billing'
       fullPath: '/billing/'
       preLoaderRoute: typeof AuthBillingIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/audit-log/': {
+      id: '/_auth/audit-log/'
+      path: '/audit-log'
+      fullPath: '/audit-log/'
+      preLoaderRoute: typeof AuthAuditLogIndexRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/appointments/': {
@@ -512,6 +574,20 @@ declare module '@tanstack/react-router' {
       path: '/labs/$labId'
       fullPath: '/labs/$labId'
       preLoaderRoute: typeof AuthLabsLabIdRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/inventory/new': {
+      id: '/_auth/inventory/new'
+      path: '/inventory/new'
+      fullPath: '/inventory/new'
+      preLoaderRoute: typeof AuthInventoryNewRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/inventory/$itemId': {
+      id: '/_auth/inventory/$itemId'
+      path: '/inventory/$itemId'
+      fullPath: '/inventory/$itemId'
+      preLoaderRoute: typeof AuthInventoryItemIdRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/incidents/visualize': {
@@ -599,6 +675,8 @@ interface AuthRouteChildren {
   AuthIncidentsIncidentIdRoute: typeof AuthIncidentsIncidentIdRoute
   AuthIncidentsNewRoute: typeof AuthIncidentsNewRoute
   AuthIncidentsVisualizeRoute: typeof AuthIncidentsVisualizeRoute
+  AuthInventoryItemIdRoute: typeof AuthInventoryItemIdRoute
+  AuthInventoryNewRoute: typeof AuthInventoryNewRoute
   AuthLabsLabIdRoute: typeof AuthLabsLabIdRoute
   AuthLabsNewRoute: typeof AuthLabsNewRoute
   AuthMedicationsMedicationIdRoute: typeof AuthMedicationsMedicationIdRoute
@@ -607,9 +685,11 @@ interface AuthRouteChildren {
   AuthPatientsNewRoute: typeof AuthPatientsNewRoute
   AuthVisitsVisitIdRoute: typeof AuthVisitsVisitIdRoute
   AuthAppointmentsIndexRoute: typeof AuthAppointmentsIndexRoute
+  AuthAuditLogIndexRoute: typeof AuthAuditLogIndexRoute
   AuthBillingIndexRoute: typeof AuthBillingIndexRoute
   AuthImagingIndexRoute: typeof AuthImagingIndexRoute
   AuthIncidentsIndexRoute: typeof AuthIncidentsIndexRoute
+  AuthInventoryIndexRoute: typeof AuthInventoryIndexRoute
   AuthLabsIndexRoute: typeof AuthLabsIndexRoute
   AuthMedicationsIndexRoute: typeof AuthMedicationsIndexRoute
   AuthPatientsIndexRoute: typeof AuthPatientsIndexRoute
@@ -628,6 +708,8 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthIncidentsIncidentIdRoute: AuthIncidentsIncidentIdRoute,
   AuthIncidentsNewRoute: AuthIncidentsNewRoute,
   AuthIncidentsVisualizeRoute: AuthIncidentsVisualizeRoute,
+  AuthInventoryItemIdRoute: AuthInventoryItemIdRoute,
+  AuthInventoryNewRoute: AuthInventoryNewRoute,
   AuthLabsLabIdRoute: AuthLabsLabIdRoute,
   AuthLabsNewRoute: AuthLabsNewRoute,
   AuthMedicationsMedicationIdRoute: AuthMedicationsMedicationIdRoute,
@@ -636,9 +718,11 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthPatientsNewRoute: AuthPatientsNewRoute,
   AuthVisitsVisitIdRoute: AuthVisitsVisitIdRoute,
   AuthAppointmentsIndexRoute: AuthAppointmentsIndexRoute,
+  AuthAuditLogIndexRoute: AuthAuditLogIndexRoute,
   AuthBillingIndexRoute: AuthBillingIndexRoute,
   AuthImagingIndexRoute: AuthImagingIndexRoute,
   AuthIncidentsIndexRoute: AuthIncidentsIndexRoute,
+  AuthInventoryIndexRoute: AuthInventoryIndexRoute,
   AuthLabsIndexRoute: AuthLabsIndexRoute,
   AuthMedicationsIndexRoute: AuthMedicationsIndexRoute,
   AuthPatientsIndexRoute: AuthPatientsIndexRoute,

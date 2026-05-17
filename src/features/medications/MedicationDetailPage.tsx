@@ -19,7 +19,10 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { PrintButton } from '@/components/print-button'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
+import { recordAccessEvent } from '@/lib/db/access-log'
+import { useLogAccess } from '@/hooks/useLogAccess'
 import { MEDICATION_STATUSES, type MedicationStatus } from './medication.schema'
+import { MedicationInventoryCard } from '@/features/inventory/MedicationInventoryCard'
 
 interface MedicationDetailPageProps {
   medicationId: string
@@ -75,6 +78,13 @@ export function MedicationDetailPage({
         : undefined,
     [medication?.patientId],
   )
+  useLogAccess({
+    action: 'view',
+    resourceType: 'medication',
+    resourceId: medicationId,
+    patientId: medication?.patientId,
+    enabled: !!medication && !medication._deleted,
+  })
 
   if (medication === undefined) {
     return (
@@ -184,6 +194,8 @@ export function MedicationDetailPage({
         </CardContent>
       </Card>
 
+      <MedicationInventoryCard medication={medication} />
+
       {/* Status Transition */}
       <Card>
         <CardHeader>
@@ -218,7 +230,16 @@ export function MedicationDetailPage({
 
       {/* Actions */}
       <div className="flex flex-wrap justify-end gap-2" data-print-actions>
-        <PrintButton />
+        <PrintButton
+          onBeforePrint={() =>
+            void recordAccessEvent({
+              action: 'print',
+              resourceType: 'medication',
+              resourceId: medication.id,
+              patientId: medication.patientId,
+            })
+          }
+        />
         <Button
           variant="destructive"
           onClick={() => setConfirmOpen(true)}

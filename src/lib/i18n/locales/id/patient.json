@@ -38,6 +38,7 @@
     "unknown": "Tidak diketahui"
   },
   "tabs": {
+    "all": "Semua",
     "appointments": "Janji temu",
     "diagnoses": "Diagnosis",
     "allergies": "Alergi",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "Memuat...",
-      "delete": "Hapus"
+      "delete": "Hapus",
+      "none": "Tidak ada"
     },
     "allergies": {
       "title": "Alergi",
       "newAction": "Alergi baru",
       "create": "Buat alergi",
-      "noResults": "Tidak ada alergi ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "allergen": "Alergen",
         "reaction": "Reaksi",
@@ -132,7 +134,7 @@
       "title": "Diagnosis",
       "newAction": "Diagnosis baru",
       "create": "Buat diagnosis",
-      "noResults": "Tidak ada diagnosis ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "icdCode": "Kode ICD",
         "description": "Deskripsi",
@@ -155,7 +157,7 @@
       "title": "Obat",
       "newAction": "Obat baru",
       "create": "Buat obat",
-      "noResults": "Tidak ada obat ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "name": "Nama",
         "status": "Status",
@@ -188,7 +190,7 @@
       "title": "Laboratorium",
       "newAction": "Lab baru",
       "create": "Buat lab",
-      "noResults": "Tidak ada lab ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "type": "Tipe",
         "code": "Kode",
@@ -206,7 +208,7 @@
       "title": "Pencitraan",
       "newAction": "Pencitraan baru",
       "create": "Buat pencitraan",
-      "noResults": "Tidak ada permintaan pencitraan ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "type": "Tipe",
         "code": "Kode",
@@ -223,7 +225,7 @@
       "title": "Catatan",
       "newAction": "Catatan baru",
       "create": "Buat catatan",
-      "noResults": "Tidak ada catatan ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "content": "Isi"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "Tujuan perawatan",
       "newAction": "Tujuan baru",
-      "noResults": "Tidak ada tujuan perawatan tercatat.",
+      "noResults": "Tidak ada",
       "fields": {
         "descriptionRequired": "Deskripsi *",
         "achievementStatus": "Status pencapaian",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "Rencana perawatan",
       "newAction": "Rencana baru",
-      "noResults": "Tidak ada rencana perawatan tercatat.",
+      "noResults": "Tidak ada",
       "fields": {
         "titleRequired": "Judul *",
         "description": "Deskripsi",
@@ -294,7 +296,7 @@
       "title": "Janji temu",
       "newAction": "Janji temu baru",
       "create": "Buat janji temu",
-      "noResults": "Tidak ada janji temu ditemukan.",
+      "noResults": "Tidak ada",
       "fields": {
         "type": "Tipe",
         "startTime": "Waktu mulai",
@@ -313,7 +315,7 @@
       "title": "Kunjungan",
       "newAction": "Kunjungan baru",
       "create": "Buat kunjungan",
-      "noResults": "Tidak ada kunjungan ditemukan.",
+      "noResults": "Tidak ada",
       "fallbackName": "Kunjungan",
       "fields": {
         "type": "Tipe",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "Orang terkait",
       "newAction": "Orang terkait baru",
-      "noResults": "Tidak ada orang terkait tercatat.",
+      "noResults": "Tidak ada",
       "fields": {
         "givenNameRequired": "Nama depan *",
         "familyNameRequired": "Nama belakang *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} entri",
       "count_other": "{{count}} entri",
-      "noResults": "Tidak ada entri riwayat yang cocok dengan filter ini.",
+      "noResults": "Tidak ada",
       "changeLabel": "<field>{{field}}</field> berubah",
       "fromShort": "Dari:",
       "toShort": "Ke:",

@@ -1,17 +1,79 @@
 import { faker } from '@faker-js/faker'
 import { db } from '@/lib/db'
 import { useAuthStore } from '@/features/auth/auth.store'
-import type { Patient, Appointment, Diagnosis, Allergy, Medication } from '@/lib/db/schema'
+import type {
+  Patient,
+  Appointment,
+  Diagnosis,
+  Allergy,
+  Medication,
+  OrgRole,
+} from '@/lib/db/schema'
 import type { Session, User } from '@supabase/supabase-js'
+import { BUILTIN_ROLE_DEFAULTS, BUILTIN_ROLE_KEYS } from '@/lib/permissions'
 
 export const DEMO_ORG_ID = 'demo-org-00000000-0000-0000-0000-000000000001'
 const SEED_FLAG_KEY = 'hospitalrun-demo-seeded-v1'
+const DEMO_ROLE_KEY = 'hospitalrun-demo-role-v1'
+
+export const DEMO_ROLES = ['admin', 'doctor', 'nurse', 'user'] as const
+export type DemoRole = (typeof DEMO_ROLES)[number]
 
 export function isDemoMode(): boolean {
   return import.meta.env.VITE_DEMO_MODE === 'true'
 }
 
+export function getDemoRole(): DemoRole {
+  const stored = localStorage.getItem(DEMO_ROLE_KEY)
+  return (DEMO_ROLES as readonly string[]).includes(stored ?? '')
+    ? (stored as DemoRole)
+    : 'admin'
+}
+
+export function setDemoRole(role: DemoRole): void {
+  localStorage.setItem(DEMO_ROLE_KEY, role)
+  useAuthStore.setState({ role })
+}
+
+/**
+ * Seed the 6 built-in role rows into Dexie for the demo org. Idempotent
+ * — safe to call on every load. Runs outside the SEED_FLAG_KEY gate so
+ * existing demo users get the rows added when the feature ships.
+ */
+export async function seedDemoRoles(): Promise<void> {
+  const now = new Date().toISOString()
+  const orgRoles: OrgRole[] = BUILTIN_ROLE_KEYS.map((key) => ({
+    id: `${DEMO_ORG_ID}:${key}`,
+    orgId: DEMO_ORG_ID,
+    roleKey: key,
+    label: BUILTIN_ROLE_DEFAULTS[key].label,
+    permissions: [...BUILTIN_ROLE_DEFAULTS[key].permissions],
+    isBuiltin: true,
+    isLocked: key === 'admin',
+    deletedAt: null,
+    createdAt: now,
+    updatedAt: now,
+    _synced: true,
+    _deleted: false,
+  }))
+  // Merge: keep permission edits the admin made, but always sync the
+  // built-in label (so default-label renames in code propagate to
+  // existing demo users). Inserts missing rows.
+  await db.transaction('rw', db.orgRoles, async () => {
+    for (const row of orgRoles) {
+      const existing = await db.orgRoles.get(row.id)
+      if (!existing) {
+        await db.orgRoles.put(row)
+      } else if (existing.label !== row.label) {
+        await db.orgRoles.update(row.id, { label: row.label, updatedAt: now })
+      }
+    }
+  })
+}
+
 export async function seedDemoData(patientCount = 25): Promise<void> {
+  // Role seeding runs every time — see seedDemoRoles.
+  await seedDemoRoles()
   if (localStorage.getItem(SEED_FLAG_KEY)) return
 
   faker.seed(42)
@@ -138,6 +200,7 @@ export async function seedDemoData(patientCount = 25): Promise<void> {
       startDate: faker.date.recent({ days: 90 }).toISOString(),
       endDate: null,
       notes: null,
+      inventoryItemId: null,
       deletedAt: null,
       createdAt: now,
       updatedAt: now,
@@ -166,7 +229,7 @@ export function applyDemoAuth(): void {
     user: { id: 'demo-user', email: 'demo@hospitalrun.app' } as unknown as User,
     session: { user: { id: 'demo-user' } } as unknown as Session,
     orgId: DEMO_ORG_ID,
-    role: 'admin',
+    role: getDemoRole(),
     isLoading: false,
   })
 }

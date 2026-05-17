@@ -3,6 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { db } from '@/lib/db'
+import { useLogAccess } from '@/hooks/useLogAccess'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -25,6 +26,13 @@ export function VisitDetailPage({ visitId }: VisitDetailPageProps) {
     () => (visit?.patientId ? db.patients.get(visit.patientId) : undefined),
     [visit?.patientId],
   )
+  useLogAccess({
+    action: 'view',
+    resourceType: 'visit',
+    resourceId: visitId,
+    patientId: visit?.patientId,
+    enabled: !!visit && !visit._deleted,
+  })
 
   if (visit === undefined) {
     return (

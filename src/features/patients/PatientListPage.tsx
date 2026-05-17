@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
@@ -25,6 +25,8 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import { db } from '@/lib/db'
 import { ExportButton } from '@/components/export-button'
+import { recordAccessEvent } from '@/lib/db/access-log'
+import { useLogAccess } from '@/hooks/useLogAccess'
 
 const PAGE_SIZE = 20
 
@@ -38,6 +40,21 @@ export function PatientListPage() {
     () => db.patients.filter((p) => !p._deleted).toArray(),
     [],
   )
+
+  useLogAccess({ action: 'list', resourceType: 'patient' })
+
+  useEffect(() => {
+    const query = search.trim()
+    if (query.length < 2) return
+    const handle = window.setTimeout(() => {
+      void recordAccessEvent({
+        action: 'search',
+        resourceType: 'patient',
+        context: { query, statusFilter },
+      })
+    }, 1000)
+    return () => window.clearTimeout(handle)
+  }, [search, statusFilter])
 
   if (patients === undefined) {
     return (

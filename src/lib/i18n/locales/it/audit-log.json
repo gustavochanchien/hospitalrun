@@ -1,0 +1,66 @@
+{
+  "title": "Registro di audit",
+  "description": "Registro degli accessi conforme a HIPAA. Ogni visualizzazione, ricerca, esportazione e modifica dei dati del paziente viene registrata qui.",
+  "filters": {
+    "search": "Cerca utente, paziente o contesto",
+    "user": "Utente",
+    "allUsers": "Tutti gli utenti",
+    "action": "Azione",
+    "allActions": "Tutte le azioni",
+    "resourceType": "Risorsa",
+    "allResources": "Tutte le risorse",
+    "from": "Dal",
+    "to": "Al",
+    "clear": "Cancella filtri"
+  },
+  "columns": {
+    "occurredAt": "Quando",
+    "user": "Utente",
+    "action": "Azione",
+    "resource": "Risorsa",
+    "patient": "Paziente",
+    "context": "Dettagli"
+  },
+  "actions": {
+    "view": "Visualizzato",
+    "list": "Elencato",
+    "search": "Cercato",
+    "export": "Esportato",
+    "print": "Stampato",
+    "create": "Creato",
+    "update": "Aggiornato",
+    "delete": "Eliminato"
+  },
+  "resources": {
+    "patient": "Paziente",
+    "visit": "Visita",
+    "appointment": "Appuntamento",
+    "lab": "Laboratorio",
+    "medication": "Farmaco",
+    "imaging": "Diagnostica per immagini",
+    "incident": "Incidente",
+    "diagnosis": "Diagnosi",
+    "allergy": "Allergia",
+    "note": "Nota",
+    "related_person": "Persona correlata",
+    "care_goal": "Obiettivo di cura",
+    "care_plan": "Piano di cura",
+    "invoice": "Fattura",
+    "payment": "Pagamento",
+    "inventory_item": "Articolo di magazzino"
+  },
+  "list": {
+    "empty": "Nessun evento di audit corrisponde a questi filtri.",
+    "loading": "Caricamento eventi di audit…",
+    "loadMore": "Carica altri",
+    "pageOf": "Visualizzazione di {{count}} su {{total}}",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Impossibile caricare gli eventi di audit: {{message}}"
+  },
+  "unauthorized": {
+    "title": "Solo amministratori",
+    "description": "Non hai il permesso di visualizzare il registro di audit."
+  }
+}

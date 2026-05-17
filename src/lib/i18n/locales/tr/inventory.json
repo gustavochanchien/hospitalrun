@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Envanter",
+    "newItem": "Yeni öğe",
+    "searchPlaceholder": "SKU veya adla ara",
+    "allStatuses": "Tüm öğeler",
+    "activeOnly": "Yalnızca aktif",
+    "lowStockOnly": "Düşük stok",
+    "count": "{{count}} öğe",
+    "count_other": "{{count}} öğe",
+    "exportFilename": "inventory",
+    "noMatches": "Filtrelerle eşleşen öğe yok.",
+    "empty": "Henüz envanter öğesi yok.",
+    "pageOf": "Sayfa {{current}} / {{total}}",
+    "previous": "Önceki",
+    "next": "İleri",
+    "columns": {
+      "sku": "SKU",
+      "name": "Ad",
+      "unit": "Birim",
+      "onHand": "Mevcut stok",
+      "reorderLevel": "Yeniden sipariş noktası",
+      "unitCost": "Birim maliyet",
+      "status": "Durum"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "low": "Düşük"
+    }
+  },
+  "detail": {
+    "title": "Envanter öğesi",
+    "backToList": "Envantere dön",
+    "notFound": "Öğe bulunamadı.",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "deleted": "Öğe kaldırıldı",
+    "deleteTitle": "Bu öğe kaldırılsın mı?",
+    "deleteDescription": "Geçmiş işlemler kayıtta kalır ancak öğe yeni girişlerden gizlenir.",
+    "lowStock": "Düşük stok — mevcut stok, yeniden sipariş noktasında veya altında.",
+    "summary": {
+      "onHand": "Mevcut stok",
+      "reorderLevel": "Yeniden sipariş noktası",
+      "unitCost": "Birim maliyet",
+      "value": "Stok değeri"
+    },
+    "actions": {
+      "receive": "Stok al",
+      "adjust": "Düzelt",
+      "waste": "Fire",
+      "transfer": "Transfer"
+    },
+    "transactions": {
+      "title": "Stok hareketleri",
+      "empty": "Henüz hareket yok.",
+      "kind": "Tür",
+      "quantity": "Adet",
+      "balance": "Kümülatif toplam",
+      "reference": "Referans",
+      "occurredAt": "Tarih",
+      "notes": "Notlar"
+    },
+    "kind": {
+      "receive": "Alım",
+      "dispense": "Dağıtım",
+      "adjust": "Düzeltme",
+      "transfer": "Transfer",
+      "waste": "Fire"
+    }
+  },
+  "form": {
+    "title": "Öğe ayrıntıları",
+    "sku": "SKU",
+    "skuPlaceholder": "örn. GLOVE-S",
+    "name": "Ad",
+    "namePlaceholder": "örn. Nitril eldiven, küçük",
+    "description": "Açıklama",
+    "unit": "Birim",
+    "unitPlaceholder": "adet, kutu, ml…",
+    "reorderLevel": "Yeniden sipariş noktası",
+    "unitCost": "Birim maliyet",
+    "currency": "Para birimi",
+    "active": "Aktif",
+    "submitCreate": "Öğe oluştur",
+    "submitUpdate": "Değişiklikleri kaydet",
+    "saving": "Kaydediliyor…",
+    "created": "Öğe oluşturuldu",
+    "updated": "Öğe güncellendi"
+  },
+  "dialog": {
+    "receiveTitle": "Stok al",
+    "adjustTitle": "Stok düzelt",
+    "wasteTitle": "Fire kaydet",
+    "transferTitle": "Transfer kaydet",
+    "quantity": "Miktar",
+    "unitCost": "Birim maliyet",
+    "reference": "Referans / Sipariş no.",
+    "occurredAt": "Tarih",
+    "notes": "Notlar",
+    "submit": "Kaydet",
+    "recording": "Kaydediliyor…",
+    "cancel": "İptal",
+    "errorNoOrg": "Oturumda kuruluş bulunamadı.",
+    "recorded": "Hareket kaydedildi",
+    "adjustHint": "Stok eklemek için pozitif, çıkarmak için negatif sayı girin."
+  },
+  "lowStock": {
+    "title": "Düşük stok",
+    "empty": "Tüm öğeler yeniden sipariş noktasının üzerinde.",
+    "loading": "Düşük stok yükleniyor…",
+    "viewAll": "Envanteri aç",
+    "viewItem": "Aç"
+  },
+  "patientTab": {
+    "title": "Envanter"
+  },
+  "disabled": {
+    "title": "Envanter etkin değil",
+    "description": "Yöneticinizden Ayarlar'da Envanter özelliğini etkinleştirmesini isteyin."
+  },
+  "validation": {
+    "skuRequired": "SKU zorunludur.",
+    "nameRequired": "Ad zorunludur.",
+    "unitRequired": "Birim zorunludur.",
+    "quantityNonZero": "Miktar sıfır olmamalıdır.",
+    "quantityPositive": "Miktar pozitif olmalıdır.",
+    "amountNonNegative": "Tutar sıfır veya daha fazla olmalıdır."
+  }
+}

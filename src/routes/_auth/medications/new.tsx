@@ -33,6 +33,7 @@ function NewMedicationPage() {
         startDate: data.startDate || null,
         endDate: data.endDate || null,
         notes: data.notes || null,
+        inventoryItemId: null,
         deletedAt: null,
         createdAt: '',
         updatedAt: '',

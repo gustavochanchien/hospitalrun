@@ -38,6 +38,7 @@
     "unknown": "Bilinmiyor"
   },
   "tabs": {
+    "all": "Tümü",
     "appointments": "Randevular",
     "diagnoses": "Tanılar",
     "allergies": "Alerjiler",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "Yükleniyor...",
-      "delete": "Sil"
+      "delete": "Sil",
+      "none": "Yok"
     },
     "allergies": {
       "title": "Alerjiler",
       "newAction": "Yeni alerji",
       "create": "Alerji oluştur",
-      "noResults": "Alerji bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "allergen": "Alerjen",
         "reaction": "Reaksiyon",
@@ -132,7 +134,7 @@
       "title": "Tanılar",
       "newAction": "Yeni tanı",
       "create": "Tanı oluştur",
-      "noResults": "Tanı bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "icdCode": "ICD kodu",
         "description": "Açıklama",
@@ -155,7 +157,7 @@
       "title": "İlaçlar",
       "newAction": "Yeni ilaç",
       "create": "İlaç oluştur",
-      "noResults": "İlaç bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "name": "Ad",
         "status": "Durum",
@@ -188,7 +190,7 @@
       "title": "Laboratuvar",
       "newAction": "Yeni laboratuvar",
       "create": "Laboratuvar oluştur",
-      "noResults": "Laboratuvar bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "type": "Tür",
         "code": "Kod",
@@ -206,7 +208,7 @@
       "title": "Görüntüleme",
       "newAction": "Yeni görüntüleme",
       "create": "Görüntüleme oluştur",
-      "noResults": "Görüntüleme isteği bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "type": "Tür",
         "code": "Kod",
@@ -223,7 +225,7 @@
       "title": "Notlar",
       "newAction": "Yeni not",
       "create": "Not oluştur",
-      "noResults": "Not bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "content": "İçerik"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "Bakım hedefleri",
       "newAction": "Yeni hedef",
-      "noResults": "Bakım hedefi kaydedilmedi.",
+      "noResults": "Yok",
       "fields": {
         "descriptionRequired": "Açıklama *",
         "achievementStatus": "Ulaşma durumu",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "Bakım planları",
       "newAction": "Yeni plan",
-      "noResults": "Bakım planı kaydedilmedi.",
+      "noResults": "Yok",
       "fields": {
         "titleRequired": "Başlık *",
         "description": "Açıklama",
@@ -294,7 +296,7 @@
       "title": "Randevular",
       "newAction": "Yeni randevu",
       "create": "Randevu oluştur",
-      "noResults": "Randevu bulunamadı.",
+      "noResults": "Yok",
       "fields": {
         "type": "Tür",
         "startTime": "Başlangıç saati",
@@ -313,7 +315,7 @@
       "title": "Ziyaretler",
       "newAction": "Yeni ziyaret",
       "create": "Ziyaret oluştur",
-      "noResults": "Ziyaret bulunamadı.",
+      "noResults": "Yok",
       "fallbackName": "Ziyaret",
       "fields": {
         "type": "Tür",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "İlgili kişiler",
       "newAction": "Yeni ilgili kişi",
-      "noResults": "İlgili kişi kaydedilmedi.",
+      "noResults": "Yok",
       "fields": {
         "givenNameRequired": "Ad *",
         "familyNameRequired": "Soyad *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} kayıt",
       "count_other": "{{count}} kayıt",
-      "noResults": "Bu filtrelerle eşleşen geçmiş kaydı yok.",
+      "noResults": "Yok",
       "changeLabel": "<field>{{field}}</field> değişti",
       "fromShort": "Eski:",
       "toShort": "Yeni:",

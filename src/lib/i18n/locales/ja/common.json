@@ -50,7 +50,9 @@
     "imaging": "画像診断",
     "incidents": "インシデント",
     "billing": "請求",
-    "settings": "設定"
+    "inventory": "在庫",
+    "settings": "設定",
+    "auditLog": "監査ログ"
   },
   "network": {
     "offline": "オフラインです",

@@ -16,7 +16,9 @@ import { resolveOrgName } from '@/lib/pdf/org'
 import { fetchImageAsDataUrl } from '@/lib/pdf'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
+import { recordAccessEvent } from '@/lib/db/access-log'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { useLogAccess } from '@/hooks/useLogAccess'
 import {
   getImagingSignedUrl,
   removeImagingFile,
@@ -55,6 +57,13 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
     () => (imaging?.patientId ? db.patients.get(imaging.patientId) : undefined),
     [imaging?.patientId],
   )
+  useLogAccess({
+    action: 'view',
+    resourceType: 'imaging',
+    resourceId: imagingId,
+    patientId: imaging?.patientId,
+    enabled: !!imaging && !imaging._deleted,
+  })
 
   const storagePath = imaging?.storagePath ?? null
 
@@ -310,6 +319,15 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
         )}
         <PdfExportButton
           filename={`imaging-${imaging.code ?? imaging.id}`}
+          onBeforeGenerate={() =>
+            void recordAccessEvent({
+              action: 'export',
+              resourceType: 'imaging',
+              resourceId: imaging.id,
+              patientId: imaging.patientId,
+              context: { format: 'pdf' },
+            })
+          }
           buildDocument={async () => {
             const [orgName, imageDataUrl, { ImagingReportPdf }] = await Promise.all([
               resolveOrgName(orgId),
@@ -328,7 +346,16 @@ export function ImagingDetailPage({ imagingId }: ImagingDetailPageProps) {
             )
           }}
         />
-        <PrintButton />
+        <PrintButton
+          onBeforePrint={() =>
+            void recordAccessEvent({
+              action: 'print',
+              resourceType: 'imaging',
+              resourceId: imaging.id,
+              patientId: imaging.patientId,
+            })
+          }
+        />
         <Button variant="destructive" onClick={() => setConfirmOpen(true)}>
           {t('detail.delete')}
         </Button>

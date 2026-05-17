@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Penagihan",
     "placeholder": "Tab penagihan pasien segera hadir",
-    "empty": "Belum ada faktur untuk pasien ini.",
+    "empty": "Tidak ada",
     "loading": "Memuat faktur…"
   },
   "disabled": {

@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Fatturazione",
     "placeholder": "Scheda fatturazione paziente disponibile a breve",
-    "empty": "Nessuna fattura per questo paziente ancora.",
+    "empty": "Nessuno",
     "loading": "Caricamento fatture…"
   },
   "disabled": {

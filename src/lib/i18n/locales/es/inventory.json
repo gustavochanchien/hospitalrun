@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Inventario",
+    "newItem": "Nuevo artículo",
+    "searchPlaceholder": "Buscar por SKU o nombre",
+    "allStatuses": "Todos los artículos",
+    "activeOnly": "Solo activos",
+    "lowStockOnly": "Stock bajo",
+    "count": "{{count}} artículo",
+    "count_other": "{{count}} artículos",
+    "exportFilename": "inventory",
+    "noMatches": "Ningún artículo coincide con los filtros.",
+    "empty": "Aún no hay artículos en el inventario.",
+    "pageOf": "Página {{current}} de {{total}}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "columns": {
+      "sku": "SKU",
+      "name": "Nombre",
+      "unit": "Unidad",
+      "onHand": "En existencia",
+      "reorderLevel": "Punto de pedido",
+      "unitCost": "Costo unitario",
+      "status": "Estado"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "low": "Bajo"
+    }
+  },
+  "detail": {
+    "title": "Artículo de inventario",
+    "backToList": "Volver al inventario",
+    "notFound": "Artículo no encontrado.",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "deleted": "Artículo eliminado",
+    "deleteTitle": "¿Eliminar este artículo?",
+    "deleteDescription": "Las transacciones pasadas quedan registradas pero el artículo se oculta en nuevas entradas.",
+    "lowStock": "Stock bajo — la cantidad en existencia está en el punto de pedido o por debajo.",
+    "summary": {
+      "onHand": "En existencia",
+      "reorderLevel": "Punto de pedido",
+      "unitCost": "Costo unitario",
+      "value": "Valor del stock"
+    },
+    "actions": {
+      "receive": "Recibir stock",
+      "adjust": "Ajustar",
+      "waste": "Merma",
+      "transfer": "Transferir"
+    },
+    "transactions": {
+      "title": "Movimientos de stock",
+      "empty": "Aún no hay movimientos.",
+      "kind": "Tipo",
+      "quantity": "Cant.",
+      "balance": "Total acumulado",
+      "reference": "Referencia",
+      "occurredAt": "Cuándo",
+      "notes": "Notas"
+    },
+    "kind": {
+      "receive": "Recepción",
+      "dispense": "Dispensación",
+      "adjust": "Ajuste",
+      "transfer": "Transferencia",
+      "waste": "Merma"
+    }
+  },
+  "form": {
+    "title": "Detalles del artículo",
+    "sku": "SKU",
+    "skuPlaceholder": "p. ej. GLOVE-S",
+    "name": "Nombre",
+    "namePlaceholder": "p. ej. Guantes de nitrilo, talla S",
+    "description": "Descripción",
+    "unit": "Unidad",
+    "unitPlaceholder": "unidad, caja, ml…",
+    "reorderLevel": "Punto de pedido",
+    "unitCost": "Costo unitario",
+    "currency": "Moneda",
+    "active": "Activo",
+    "submitCreate": "Crear artículo",
+    "submitUpdate": "Guardar cambios",
+    "saving": "Guardando…",
+    "created": "Artículo creado",
+    "updated": "Artículo actualizado"
+  },
+  "dialog": {
+    "receiveTitle": "Recibir stock",
+    "adjustTitle": "Ajustar stock",
+    "wasteTitle": "Registrar merma",
+    "transferTitle": "Registrar transferencia",
+    "quantity": "Cantidad",
+    "unitCost": "Costo unitario",
+    "reference": "Referencia / N.º de orden",
+    "occurredAt": "Cuándo",
+    "notes": "Notas",
+    "submit": "Registrar",
+    "recording": "Registrando…",
+    "cancel": "Cancelar",
+    "errorNoOrg": "No hay organización en la sesión.",
+    "recorded": "Movimiento registrado",
+    "adjustHint": "Usa un número positivo para agregar stock, negativo para retirarlo."
+  },
+  "lowStock": {
+    "title": "Stock bajo",
+    "empty": "Todos los artículos están por encima del punto de pedido.",
+    "loading": "Cargando stock bajo…",
+    "viewAll": "Abrir inventario",
+    "viewItem": "Abrir"
+  },
+  "patientTab": {
+    "title": "Inventario"
+  },
+  "disabled": {
+    "title": "El inventario no está habilitado",
+    "description": "Pide a tu administrador que habilite la función de Inventario en Ajustes."
+  },
+  "validation": {
+    "skuRequired": "El SKU es obligatorio.",
+    "nameRequired": "El nombre es obligatorio.",
+    "unitRequired": "La unidad es obligatoria.",
+    "quantityNonZero": "La cantidad debe ser distinta de cero.",
+    "quantityPositive": "La cantidad debe ser positiva.",
+    "amountNonNegative": "El monto debe ser cero o mayor."
+  }
+}

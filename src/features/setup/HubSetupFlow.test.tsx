@@ -152,6 +152,9 @@ describe('HubSetupFlow', () => {
 
     await userEvent.click(await screen.findByRole('button', { name: /Skip — all off/i }))
 
+    // Now on the choose-roles step.
+    await userEvent.click(await screen.findByRole('button', { name: /Skip — use defaults/i }))
+
     expect(
       await screen.findByRole('button', { name: /Skip for now/i }),
     ).toBeInTheDocument()

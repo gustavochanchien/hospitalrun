@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "账单",
     "placeholder": "患者账单标签页即将上线",
-    "empty": "该患者暂无发票。",
+    "empty": "无",
     "loading": "加载发票中…"
   },
   "disabled": {

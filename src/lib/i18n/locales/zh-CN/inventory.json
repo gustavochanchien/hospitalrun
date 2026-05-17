@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "库存",
+    "newItem": "新建品项",
+    "searchPlaceholder": "按 SKU 或名称搜索",
+    "allStatuses": "所有品项",
+    "activeOnly": "仅在用",
+    "lowStockOnly": "库存不足",
+    "count": "{{count}} 项",
+    "count_other": "{{count}} 项",
+    "exportFilename": "inventory",
+    "noMatches": "没有符合筛选条件的品项。",
+    "empty": "暂无库存品项。",
+    "pageOf": "第 {{current}} 页，共 {{total}} 页",
+    "previous": "上一页",
+    "next": "下一页",
+    "columns": {
+      "sku": "SKU",
+      "name": "名称",
+      "unit": "单位",
+      "onHand": "库存数量",
+      "reorderLevel": "再订购点",
+      "unitCost": "单价",
+      "status": "状态"
+    },
+    "status": {
+      "active": "在用",
+      "inactive": "停用",
+      "low": "不足"
+    }
+  },
+  "detail": {
+    "title": "库存品项",
+    "backToList": "返回库存",
+    "notFound": "品项不存在。",
+    "edit": "编辑",
+    "delete": "删除",
+    "deleted": "品项已删除",
+    "deleteTitle": "删除此品项？",
+    "deleteDescription": "历史交易记录保留，但该品项将在新条目中隐藏。",
+    "lowStock": "库存不足 — 库存数量等于或低于再订购点。",
+    "summary": {
+      "onHand": "库存数量",
+      "reorderLevel": "再订购点",
+      "unitCost": "单价",
+      "value": "库存价值"
+    },
+    "actions": {
+      "receive": "入库",
+      "adjust": "调整",
+      "waste": "报废",
+      "transfer": "调拨"
+    },
+    "transactions": {
+      "title": "库存流水",
+      "empty": "暂无流水记录。",
+      "kind": "类型",
+      "quantity": "数量",
+      "balance": "累计库存",
+      "reference": "参考单号",
+      "occurredAt": "时间",
+      "notes": "备注"
+    },
+    "kind": {
+      "receive": "入库",
+      "dispense": "出库",
+      "adjust": "调整",
+      "transfer": "调拨",
+      "waste": "报废"
+    }
+  },
+  "form": {
+    "title": "品项详情",
+    "sku": "SKU",
+    "skuPlaceholder": "例：GLOVE-S",
+    "name": "名称",
+    "namePlaceholder": "例：丁腈手套（小号）",
+    "description": "描述",
+    "unit": "单位",
+    "unitPlaceholder": "个、箱、毫升…",
+    "reorderLevel": "再订购点",
+    "unitCost": "单价",
+    "currency": "货币",
+    "active": "在用",
+    "submitCreate": "创建品项",
+    "submitUpdate": "保存更改",
+    "saving": "保存中…",
+    "created": "品项已创建",
+    "updated": "品项已更新"
+  },
+  "dialog": {
+    "receiveTitle": "入库",
+    "adjustTitle": "库存调整",
+    "wasteTitle": "报废记录",
+    "transferTitle": "调拨记录",
+    "quantity": "数量",
+    "unitCost": "单价",
+    "reference": "参考 / 采购单号",
+    "occurredAt": "时间",
+    "notes": "备注",
+    "submit": "记录",
+    "recording": "记录中…",
+    "cancel": "取消",
+    "errorNoOrg": "会话中无组织信息。",
+    "recorded": "流水已记录",
+    "adjustHint": "正数表示增加库存，负数表示减少库存。"
+  },
+  "lowStock": {
+    "title": "库存不足",
+    "empty": "所有品项均高于再订购点。",
+    "loading": "正在加载库存不足数据…",
+    "viewAll": "打开库存",
+    "viewItem": "打开"
+  },
+  "patientTab": {
+    "title": "库存"
+  },
+  "disabled": {
+    "title": "库存功能未启用",
+    "description": "请联系管理员在设置中启用库存功能。"
+  },
+  "validation": {
+    "skuRequired": "SKU 不能为空。",
+    "nameRequired": "名称不能为空。",
+    "unitRequired": "单位不能为空。",
+    "quantityNonZero": "数量不能为零。",
+    "quantityPositive": "数量必须为正数。",
+    "amountNonNegative": "金额必须为零或正数。"
+  }
+}

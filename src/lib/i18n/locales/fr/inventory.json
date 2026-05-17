@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Inventaire",
+    "newItem": "Nouvel article",
+    "searchPlaceholder": "Rechercher par SKU ou nom",
+    "allStatuses": "Tous les articles",
+    "activeOnly": "Actifs uniquement",
+    "lowStockOnly": "Stock faible",
+    "count": "{{count}} article",
+    "count_other": "{{count}} articles",
+    "exportFilename": "inventory",
+    "noMatches": "Aucun article ne correspond aux filtres.",
+    "empty": "Aucun article en inventaire pour l'instant.",
+    "pageOf": "Page {{current}} sur {{total}}",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "columns": {
+      "sku": "SKU",
+      "name": "Nom",
+      "unit": "Unité",
+      "onHand": "En stock",
+      "reorderLevel": "Seuil de réapprovisionnement",
+      "unitCost": "Coût unitaire",
+      "status": "Statut"
+    },
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif",
+      "low": "Faible"
+    }
+  },
+  "detail": {
+    "title": "Article d'inventaire",
+    "backToList": "Retour à l'inventaire",
+    "notFound": "Article introuvable.",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "deleted": "Article supprimé",
+    "deleteTitle": "Supprimer cet article ?",
+    "deleteDescription": "Les transactions passées restent enregistrées mais l'article est masqué dans les nouvelles saisies.",
+    "lowStock": "Stock faible — la quantité en stock est inférieure ou égale au seuil de réapprovisionnement.",
+    "summary": {
+      "onHand": "En stock",
+      "reorderLevel": "Seuil de réapprovisionnement",
+      "unitCost": "Coût unitaire",
+      "value": "Valeur du stock"
+    },
+    "actions": {
+      "receive": "Réceptionner",
+      "adjust": "Ajuster",
+      "waste": "Perte",
+      "transfer": "Transfert"
+    },
+    "transactions": {
+      "title": "Mouvements de stock",
+      "empty": "Aucun mouvement pour l'instant.",
+      "kind": "Type",
+      "quantity": "Qté",
+      "balance": "Total cumulé",
+      "reference": "Référence",
+      "occurredAt": "Date",
+      "notes": "Notes"
+    },
+    "kind": {
+      "receive": "Réception",
+      "dispense": "Distribution",
+      "adjust": "Ajustement",
+      "transfer": "Transfert",
+      "waste": "Perte"
+    }
+  },
+  "form": {
+    "title": "Détails de l'article",
+    "sku": "SKU",
+    "skuPlaceholder": "ex. GLOVE-S",
+    "name": "Nom",
+    "namePlaceholder": "ex. Gants nitrile, taille S",
+    "description": "Description",
+    "unit": "Unité",
+    "unitPlaceholder": "unité, boîte, ml…",
+    "reorderLevel": "Seuil de réapprovisionnement",
+    "unitCost": "Coût unitaire",
+    "currency": "Devise",
+    "active": "Actif",
+    "submitCreate": "Créer l'article",
+    "submitUpdate": "Enregistrer les modifications",
+    "saving": "Enregistrement…",
+    "created": "Article créé",
+    "updated": "Article mis à jour"
+  },
+  "dialog": {
+    "receiveTitle": "Réceptionner du stock",
+    "adjustTitle": "Ajuster le stock",
+    "wasteTitle": "Enregistrer une perte",
+    "transferTitle": "Enregistrer un transfert",
+    "quantity": "Quantité",
+    "unitCost": "Coût unitaire",
+    "reference": "Référence / N° de commande",
+    "occurredAt": "Date",
+    "notes": "Notes",
+    "submit": "Enregistrer",
+    "recording": "Enregistrement…",
+    "cancel": "Annuler",
+    "errorNoOrg": "Aucune organisation dans la session.",
+    "recorded": "Mouvement enregistré",
+    "adjustHint": "Utilisez un nombre positif pour ajouter du stock, négatif pour en retirer."
+  },
+  "lowStock": {
+    "title": "Stock faible",
+    "empty": "Tous les articles sont au-dessus du seuil de réapprovisionnement.",
+    "loading": "Chargement du stock faible…",
+    "viewAll": "Ouvrir l'inventaire",
+    "viewItem": "Ouvrir"
+  },
+  "patientTab": {
+    "title": "Inventaire"
+  },
+  "disabled": {
+    "title": "L'inventaire n'est pas activé",
+    "description": "Demandez à votre administrateur d'activer la fonctionnalité Inventaire dans les Paramètres."
+  },
+  "validation": {
+    "skuRequired": "Le SKU est obligatoire.",
+    "nameRequired": "Le nom est obligatoire.",
+    "unitRequired": "L'unité est obligatoire.",
+    "quantityNonZero": "La quantité doit être non nulle.",
+    "quantityPositive": "La quantité doit être positive.",
+    "amountNonNegative": "Le montant doit être zéro ou plus."
+  }
+}

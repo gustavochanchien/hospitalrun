@@ -50,7 +50,9 @@
     "imaging": "Görüntüleme",
     "incidents": "Olaylar",
     "billing": "Faturalama",
-    "settings": "Ayarlar"
+    "inventory": "Envanter",
+    "settings": "Ayarlar",
+    "auditLog": "Denetim Günlüğü"
   },
   "network": {
     "offline": "Çevrimdışısınız",

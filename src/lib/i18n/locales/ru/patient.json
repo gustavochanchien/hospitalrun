@@ -38,6 +38,7 @@
     "unknown": "Неизвестно"
   },
   "tabs": {
+    "all": "Все",
     "appointments": "Приёмы",
     "diagnoses": "Диагнозы",
     "allergies": "Аллергии",
@@ -107,13 +108,14 @@
   "subFeatures": {
     "common": {
       "loading": "Загрузка...",
-      "delete": "Удалить"
+      "delete": "Удалить",
+      "none": "Нет"
     },
     "allergies": {
       "title": "Аллергии",
       "newAction": "Новая аллергия",
       "create": "Создать аллергию",
-      "noResults": "Аллергии не найдены.",
+      "noResults": "Нет",
       "fields": {
         "allergen": "Аллерген",
         "reaction": "Реакция",
@@ -134,7 +136,7 @@
       "title": "Диагнозы",
       "newAction": "Новый диагноз",
       "create": "Создать диагноз",
-      "noResults": "Диагнозы не найдены.",
+      "noResults": "Нет",
       "fields": {
         "icdCode": "Код МКБ",
         "description": "Описание",
@@ -157,7 +159,7 @@
       "title": "Лекарства",
       "newAction": "Новое лекарство",
       "create": "Создать лекарство",
-      "noResults": "Лекарства не найдены.",
+      "noResults": "Нет",
       "fields": {
         "name": "Название",
         "status": "Статус",
@@ -190,7 +192,7 @@
       "title": "Лаборатория",
       "newAction": "Новый анализ",
       "create": "Создать анализ",
-      "noResults": "Анализы не найдены.",
+      "noResults": "Нет",
       "fields": {
         "type": "Тип",
         "code": "Код",
@@ -208,7 +210,7 @@
       "title": "Визуализация",
       "newAction": "Новый снимок",
       "create": "Создать запрос",
-      "noResults": "Запросы на визуализацию не найдены.",
+      "noResults": "Нет",
       "fields": {
         "type": "Тип",
         "code": "Код",
@@ -225,7 +227,7 @@
       "title": "Заметки",
       "newAction": "Новая заметка",
       "create": "Создать заметку",
-      "noResults": "Заметки не найдены.",
+      "noResults": "Нет",
       "fields": {
         "content": "Содержание"
       },
@@ -237,7 +239,7 @@
     "careGoals": {
       "title": "Цели лечения",
       "newAction": "Новая цель",
-      "noResults": "Цели лечения не записаны.",
+      "noResults": "Нет",
       "fields": {
         "descriptionRequired": "Описание *",
         "achievementStatus": "Статус достижения",
@@ -265,7 +267,7 @@
     "carePlans": {
       "title": "Планы лечения",
       "newAction": "Новый план",
-      "noResults": "Планы лечения не записаны.",
+      "noResults": "Нет",
       "fields": {
         "titleRequired": "Название *",
         "description": "Описание",
@@ -296,7 +298,7 @@
       "title": "Приёмы",
       "newAction": "Новый приём",
       "create": "Создать приём",
-      "noResults": "Приёмы не найдены.",
+      "noResults": "Нет",
       "fields": {
         "type": "Тип",
         "startTime": "Время начала",
@@ -315,7 +317,7 @@
       "title": "Визиты",
       "newAction": "Новый визит",
       "create": "Создать визит",
-      "noResults": "Визиты не найдены.",
+      "noResults": "Нет",
       "fallbackName": "Визит",
       "fields": {
         "type": "Тип",
@@ -354,7 +356,7 @@
     "relatedPersons": {
       "title": "Связанные лица",
       "newAction": "Новое связанное лицо",
-      "noResults": "Связанные лица не записаны.",
+      "noResults": "Нет",
       "fields": {
         "givenNameRequired": "Имя *",
         "familyNameRequired": "Фамилия *",
@@ -381,7 +383,7 @@
       "count_few": "{{count}} записи",
       "count_many": "{{count}} записей",
       "count_other": "{{count}} записей",
-      "noResults": "Нет записей истории, соответствующих этим фильтрам.",
+      "noResults": "Нет",
       "changeLabel": "<field>{{field}}</field> изменено",
       "fromShort": "Было:",
       "toShort": "Стало:",

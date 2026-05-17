@@ -38,6 +38,7 @@
     "unknown": "Inconnu"
   },
   "tabs": {
+    "all": "Tout",
     "appointments": "Rendez-vous",
     "diagnoses": "Diagnostics",
     "allergies": "Allergies",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "Chargement...",
-      "delete": "Supprimer"
+      "delete": "Supprimer",
+      "none": "Aucun"
     },
     "allergies": {
       "title": "Allergies",
       "newAction": "Nouvelle allergie",
       "create": "Créer l'allergie",
-      "noResults": "Aucune allergie trouvée.",
+      "noResults": "Aucun",
       "fields": {
         "allergen": "Allergène",
         "reaction": "Réaction",
@@ -132,7 +134,7 @@
       "title": "Diagnostics",
       "newAction": "Nouveau diagnostic",
       "create": "Créer le diagnostic",
-      "noResults": "Aucun diagnostic trouvé.",
+      "noResults": "Aucun",
       "fields": {
         "icdCode": "Code CIM",
         "description": "Description",
@@ -155,7 +157,7 @@
       "title": "Médicaments",
       "newAction": "Nouveau médicament",
       "create": "Créer le médicament",
-      "noResults": "Aucun médicament trouvé.",
+      "noResults": "Aucun",
       "fields": {
         "name": "Nom",
         "status": "Statut",
@@ -188,7 +190,7 @@
       "title": "Laboratoires",
       "newAction": "Nouveau laboratoire",
       "create": "Créer le laboratoire",
-      "noResults": "Aucun laboratoire trouvé.",
+      "noResults": "Aucun",
       "fields": {
         "type": "Type",
         "code": "Code",
@@ -206,7 +208,7 @@
       "title": "Imagerie",
       "newAction": "Nouvelle imagerie",
       "create": "Créer l'imagerie",
-      "noResults": "Aucune demande d'imagerie trouvée.",
+      "noResults": "Aucun",
       "fields": {
         "type": "Type",
         "code": "Code",
@@ -223,7 +225,7 @@
       "title": "Notes",
       "newAction": "Nouvelle note",
       "create": "Créer la note",
-      "noResults": "Aucune note trouvée.",
+      "noResults": "Aucun",
       "fields": {
         "content": "Contenu"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "Objectifs de soins",
       "newAction": "Nouvel objectif",
-      "noResults": "Aucun objectif de soins enregistré.",
+      "noResults": "Aucun",
       "fields": {
         "descriptionRequired": "Description *",
         "achievementStatus": "Statut d'atteinte",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "Plans de soins",
       "newAction": "Nouveau plan",
-      "noResults": "Aucun plan de soins enregistré.",
+      "noResults": "Aucun",
       "fields": {
         "titleRequired": "Titre *",
         "description": "Description",
@@ -294,7 +296,7 @@
       "title": "Rendez-vous",
       "newAction": "Nouveau rendez-vous",
       "create": "Créer le rendez-vous",
-      "noResults": "Aucun rendez-vous trouvé.",
+      "noResults": "Aucun",
       "fields": {
         "type": "Type",
         "startTime": "Heure de début",
@@ -313,7 +315,7 @@
       "title": "Visites",
       "newAction": "Nouvelle visite",
       "create": "Créer la visite",
-      "noResults": "Aucune visite trouvée.",
+      "noResults": "Aucun",
       "fallbackName": "Visite",
       "fields": {
         "type": "Type",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "Proches",
       "newAction": "Nouveau proche",
-      "noResults": "Aucun proche enregistré.",
+      "noResults": "Aucun",
       "fields": {
         "givenNameRequired": "Prénom *",
         "familyNameRequired": "Nom *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} entrée",
       "count_other": "{{count}} entrées",
-      "noResults": "Aucune entrée d'historique ne correspond à ces filtres.",
+      "noResults": "Aucun",
       "changeLabel": "<field>{{field}}</field> modifié",
       "fromShort": "De :",
       "toShort": "À :",

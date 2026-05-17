@@ -5,11 +5,23 @@ import type { SyncableTable } from '@/lib/db/schema'
 import { applyInboundDelete, applyInboundRecord } from './apply-inbound'
 import type { SyncableRecord } from './lan-transport'
 
+// Tables that are write-only from the client's perspective. Admin
+// viewer reads these directly from Supabase; we never apply inbound
+// realtime updates locally (and the LAN transport should never push
+// these records down either).
+const WRITE_ONLY_TABLES = new Set<SyncableTable>(['accessLogs'])
+
 const reverseLookup = Object.fromEntries(
-  Object.entries(supabaseTableName).map(([dexie, sb]) => [sb, dexie as SyncableTable]),
+  Object.entries(supabaseTableName)
+    .filter(([dexie]) => !WRITE_ONLY_TABLES.has(dexie as SyncableTable))
+    .map(([dexie, sb]) => [sb, dexie as SyncableTable]),
 )
 
-const SYNCABLE_TABLE_NAMES = new Set<string>(Object.keys(supabaseTableName))
+const SYNCABLE_TABLE_NAMES = new Set<string>(
+  Object.keys(supabaseTableName).filter(
+    (dexie) => !WRITE_ONLY_TABLES.has(dexie as SyncableTable),
+  ),
+)
 
 /**
  * Subscribe to Supabase Realtime for all syncable tables.

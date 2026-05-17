@@ -132,7 +132,7 @@
   "patientTab": {
     "title": "Faturamento",
     "placeholder": "Aba de faturamento do paciente em breve",
-    "empty": "Nenhuma fatura para este paciente ainda.",
+    "empty": "Nenhum",
     "loading": "Carregando faturas…"
   },
   "disabled": {

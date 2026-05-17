@@ -50,7 +50,9 @@
     "imaging": "Diagnostica per immagini",
     "incidents": "Incidenti",
     "billing": "Fatturazione",
-    "settings": "Impostazioni"
+    "inventory": "Magazzino",
+    "settings": "Impostazioni",
+    "auditLog": "Registro di audit"
   },
   "network": {
     "offline": "Sei offline",

@@ -11,7 +11,13 @@ vi.mock('@tanstack/react-router', () => ({
 }))
 
 vi.mock('@/features/auth/auth.store', () => ({
-  useAuthStore: () => ({ user: null, signOut: vi.fn() }),
+  useAuthStore: () => ({ user: null, role: null, signOut: vi.fn() }),
+}))
+
+vi.mock('@/lib/demo/seed', () => ({
+  isDemoMode: () => false,
+  setDemoRole: vi.fn(),
+  DEMO_ROLES: ['admin', 'doctor', 'nurse', 'user'] as const,
 }))
 
 const mockEnabledFeatures = vi.fn(() => [] as string[])
@@ -68,5 +74,23 @@ describe('AppSidebar — billing entry', () => {
     mockEnabledFeatures.mockReturnValue(['billing'])
     render(<AppSidebar />)
     expect(screen.getByText('Billing')).toBeInTheDocument()
+  })
+})
+
+describe('AppSidebar — inventory entry', () => {
+  beforeEach(() => {
+    mockEnabledFeatures.mockReset()
+    mockEnabledFeatures.mockReturnValue([])
+  })
+
+  it('hides the Inventory nav item when inventory feature is off', () => {
+    render(<AppSidebar />)
+    expect(screen.queryByText('Inventory')).not.toBeInTheDocument()
+  })
+
+  it('shows the Inventory nav item when inventory feature is enabled', () => {
+    mockEnabledFeatures.mockReturnValue(['inventory'])
+    render(<AppSidebar />)
+    expect(screen.getByText('Inventory')).toBeInTheDocument()
   })
 })

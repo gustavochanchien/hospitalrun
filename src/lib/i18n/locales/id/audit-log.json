@@ -1,0 +1,66 @@
+{
+  "title": "Log Audit",
+  "description": "Log akses sesuai HIPAA. Setiap tampilan, pencarian, ekspor, dan perubahan pada data pasien dicatat di sini.",
+  "filters": {
+    "search": "Cari pengguna, pasien, atau konteks",
+    "user": "Pengguna",
+    "allUsers": "Semua pengguna",
+    "action": "Tindakan",
+    "allActions": "Semua tindakan",
+    "resourceType": "Sumber daya",
+    "allResources": "Semua sumber daya",
+    "from": "Dari",
+    "to": "Sampai",
+    "clear": "Hapus filter"
+  },
+  "columns": {
+    "occurredAt": "Waktu",
+    "user": "Pengguna",
+    "action": "Tindakan",
+    "resource": "Sumber daya",
+    "patient": "Pasien",
+    "context": "Detail"
+  },
+  "actions": {
+    "view": "Dilihat",
+    "list": "Didaftar",
+    "search": "Dicari",
+    "export": "Diekspor",
+    "print": "Dicetak",
+    "create": "Dibuat",
+    "update": "Diperbarui",
+    "delete": "Dihapus"
+  },
+  "resources": {
+    "patient": "Pasien",
+    "visit": "Kunjungan",
+    "appointment": "Janji temu",
+    "lab": "Laboratorium",
+    "medication": "Obat",
+    "imaging": "Pencitraan",
+    "incident": "Insiden",
+    "diagnosis": "Diagnosis",
+    "allergy": "Alergi",
+    "note": "Catatan",
+    "related_person": "Orang terkait",
+    "care_goal": "Tujuan perawatan",
+    "care_plan": "Rencana perawatan",
+    "invoice": "Faktur",
+    "payment": "Pembayaran",
+    "inventory_item": "Item inventaris"
+  },
+  "list": {
+    "empty": "Tidak ada peristiwa audit yang sesuai dengan filter ini.",
+    "loading": "Memuat peristiwa audit…",
+    "loadMore": "Muat lebih banyak",
+    "pageOf": "Menampilkan {{count}} dari {{total}}",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Gagal memuat peristiwa audit: {{message}}"
+  },
+  "unauthorized": {
+    "title": "Khusus administrator",
+    "description": "Anda tidak memiliki izin untuk melihat log audit."
+  }
+}

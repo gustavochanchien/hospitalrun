@@ -1,0 +1,66 @@
+{
+  "title": "Log de auditoria",
+  "description": "Registro de acesso em conformidade com a HIPAA. Cada visualização, pesquisa, exportação e alteração nos dados do paciente é registrada aqui.",
+  "filters": {
+    "search": "Buscar usuário, paciente ou contexto",
+    "user": "Usuário",
+    "allUsers": "Todos os usuários",
+    "action": "Ação",
+    "allActions": "Todas as ações",
+    "resourceType": "Recurso",
+    "allResources": "Todos os recursos",
+    "from": "De",
+    "to": "Até",
+    "clear": "Limpar filtros"
+  },
+  "columns": {
+    "occurredAt": "Quando",
+    "user": "Usuário",
+    "action": "Ação",
+    "resource": "Recurso",
+    "patient": "Paciente",
+    "context": "Detalhes"
+  },
+  "actions": {
+    "view": "Visualizado",
+    "list": "Listado",
+    "search": "Pesquisado",
+    "export": "Exportado",
+    "print": "Impresso",
+    "create": "Criado",
+    "update": "Atualizado",
+    "delete": "Excluído"
+  },
+  "resources": {
+    "patient": "Paciente",
+    "visit": "Consulta",
+    "appointment": "Agendamento",
+    "lab": "Laboratório",
+    "medication": "Medicamento",
+    "imaging": "Imagem",
+    "incident": "Incidente",
+    "diagnosis": "Diagnóstico",
+    "allergy": "Alergia",
+    "note": "Nota",
+    "related_person": "Pessoa relacionada",
+    "care_goal": "Meta de cuidado",
+    "care_plan": "Plano de cuidado",
+    "invoice": "Fatura",
+    "payment": "Pagamento",
+    "inventory_item": "Item de estoque"
+  },
+  "list": {
+    "empty": "Nenhum evento de auditoria corresponde a estes filtros.",
+    "loading": "Carregando eventos de auditoria…",
+    "loadMore": "Carregar mais",
+    "pageOf": "Exibindo {{count}} de {{total}}",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Não foi possível carregar os eventos de auditoria: {{message}}"
+  },
+  "unauthorized": {
+    "title": "Somente administradores",
+    "description": "Você não tem permissão para visualizar o log de auditoria."
+  }
+}

@@ -1,5 +1,20 @@
 import { db } from './index'
-import type { PatientHistory, SyncableTable } from './schema'
+import { PHI_TABLES, type PatientHistory, type PhiTable, type SyncableTable } from './schema'
+import { PHI_TABLE_TO_RESOURCE, recordAccessEvent } from './access-log'
+
+const PHI_TABLE_SET = new Set<SyncableTable>(PHI_TABLES)
+
+function isPhiTable(t: SyncableTable): t is PhiTable {
+  return PHI_TABLE_SET.has(t)
+}
+
+export interface DbWriteOptions {
+  /**
+   * Skip HIPAA audit-log emission. Set true for system-internal writes
+   * (e.g. applying inbound sync records) that aren't user-initiated.
+   */
+  skipAudit?: boolean
+}
 
 export interface FieldChange {
   fieldName: string
@@ -60,11 +75,15 @@ export function diffFields<T extends Record<string, unknown>>(
 /**
  * Write a record to Dexie and enqueue it for sync to Supabase.
  * All writes to syncable tables MUST go through this helper.
+ *
+ * For PHI tables, also emits a HIPAA audit-log entry unless
+ * `options.skipAudit` is set.
  */
-export async function dbPut<T extends { id: string }>(
+export async function dbPut<T extends { id: string; patientId?: string | null }>(
   tableName: SyncableTable,
   record: T,
   operation: 'insert' | 'update' = 'update',
+  options: DbWriteOptions = {},
 ): Promise<void> {
   const now = new Date().toISOString()
   const enriched = {
@@ -84,15 +103,41 @@ export async function dbPut<T extends { id: string }>(
       createdAt: now,
     })
   })
+
+  if (!options.skipAudit && isPhiTable(tableName)) {
+    const patientId =
+      tableName === 'patients' ? record.id : (record.patientId ?? null)
+    await recordAccessEvent({
+      action: operation === 'insert' ? 'create' : 'update',
+      resourceType: PHI_TABLE_TO_RESOURCE[tableName],
+      resourceId: record.id,
+      patientId,
+    })
+  }
 }
 
 /**
  * Soft-delete a record: set _deleted = true, enqueue for sync.
+ *
+ * For PHI tables, also emits a HIPAA audit-log entry unless
+ * `options.skipAudit` is set. The pre-update patientId is read inside
+ * the transaction so the audit entry is correctly scoped.
  */
-export async function dbDelete(tableName: SyncableTable, recordId: string): Promise<void> {
+export async function dbDelete(
+  tableName: SyncableTable,
+  recordId: string,
+  options: DbWriteOptions = {},
+): Promise<void> {
   const now = new Date().toISOString()
+  let patientId: string | null = null
 
   await db.transaction('rw', db.table(tableName), db.syncQueue, async () => {
+    if (isPhiTable(tableName)) {
+      const existing = (await db.table(tableName).get(recordId)) as
+        | { patientId?: string | null }
+        | undefined
+      patientId = tableName === 'patients' ? recordId : (existing?.patientId ?? null)
+    }
     await db.table(tableName).update(recordId, {
       _synced: false,
       _deleted: true,
@@ -106,4 +151,13 @@ export async function dbDelete(tableName: SyncableTable, recordId: string): Prom
       createdAt: now,
     })
   })
+
+  if (!options.skipAudit && isPhiTable(tableName)) {
+    await recordAccessEvent({
+      action: 'delete',
+      resourceType: PHI_TABLE_TO_RESOURCE[tableName],
+      resourceId: recordId,
+      patientId,
+    })
+  }
 }

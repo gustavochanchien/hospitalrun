@@ -1,0 +1,66 @@
+{
+  "title": "审计日志",
+  "description": "符合 HIPAA 的访问日志。对患者数据的每次查看、搜索、导出和变更均记录于此。",
+  "filters": {
+    "search": "搜索用户、患者或上下文",
+    "user": "用户",
+    "allUsers": "所有用户",
+    "action": "操作",
+    "allActions": "所有操作",
+    "resourceType": "资源",
+    "allResources": "所有资源",
+    "from": "从",
+    "to": "至",
+    "clear": "清除筛选"
+  },
+  "columns": {
+    "occurredAt": "时间",
+    "user": "用户",
+    "action": "操作",
+    "resource": "资源",
+    "patient": "患者",
+    "context": "详情"
+  },
+  "actions": {
+    "view": "已查看",
+    "list": "已列出",
+    "search": "已搜索",
+    "export": "已导出",
+    "print": "已打印",
+    "create": "已创建",
+    "update": "已更新",
+    "delete": "已删除"
+  },
+  "resources": {
+    "patient": "患者",
+    "visit": "就诊",
+    "appointment": "预约",
+    "lab": "实验室",
+    "medication": "药物",
+    "imaging": "影像",
+    "incident": "事件",
+    "diagnosis": "诊断",
+    "allergy": "过敏",
+    "note": "备注",
+    "related_person": "关联人员",
+    "care_goal": "护理目标",
+    "care_plan": "护理计划",
+    "invoice": "发票",
+    "payment": "付款",
+    "inventory_item": "库存项目"
+  },
+  "list": {
+    "empty": "没有与这些筛选条件匹配的审计事件。",
+    "loading": "正在加载审计事件…",
+    "loadMore": "加载更多",
+    "pageOf": "共 {{total}} 条，显示 {{count}} 条",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "无法加载审计事件：{{message}}"
+  },
+  "unauthorized": {
+    "title": "仅限管理员",
+    "description": "您没有查看审计日志的权限。"
+  }
+}

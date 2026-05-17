@@ -14,12 +14,16 @@ import type {
   CareGoal,
   CarePlan,
   PatientHistory,
+  AccessLog,
   OrgFeature,
   UserFeature,
+  OrgRole,
   ChargeItem,
   Invoice,
   InvoiceLineItem,
   Payment,
+  InventoryItem,
+  InventoryTransaction,
   SyncQueueEntry,
 } from './schema'
 
@@ -38,12 +42,16 @@ export class HospitalRunDB extends Dexie {
   careGoals!: Dexie.Table<CareGoal, string>
   carePlans!: Dexie.Table<CarePlan, string>
   patientHistory!: Dexie.Table<PatientHistory, string>
+  accessLogs!: Dexie.Table<AccessLog, string>
   orgFeatures!: Dexie.Table<OrgFeature, string>
   userFeatures!: Dexie.Table<UserFeature, string>
+  orgRoles!: Dexie.Table<OrgRole, string>
   chargeItems!: Dexie.Table<ChargeItem, string>
   invoices!: Dexie.Table<Invoice, string>
   invoiceLineItems!: Dexie.Table<InvoiceLineItem, string>
   payments!: Dexie.Table<Payment, string>
+  inventoryItems!: Dexie.Table<InventoryItem, string>
+  inventoryTransactions!: Dexie.Table<InventoryTransaction, string>
   syncQueue!: Dexie.Table<SyncQueueEntry, number>
 
   constructor() {
@@ -100,6 +108,35 @@ export class HospitalRunDB extends Dexie {
       invoices: 'id, orgId, patientId, visitId, status, invoiceNumber, _synced',
       invoiceLineItems: 'id, orgId, invoiceId, chargeItemId, _synced',
       payments: 'id, orgId, invoiceId, patientId, receivedAt, _synced',
+    })
+
+    // v5: inventory (items + transactions) + medications.inventoryItemId index.
+    this.version(5)
+      .stores({
+        inventoryItems: 'id, orgId, sku, active, _synced',
+        inventoryTransactions:
+          'id, orgId, inventoryItemId, [inventoryItemId+occurredAt], kind, occurredAt, _synced',
+        medications: 'id, orgId, patientId, visitId, status, inventoryItemId, _synced',
+      })
+      .upgrade(async (tx) => {
+        await tx
+          .table('medications')
+          .toCollection()
+          .modify((row) => {
+            if (row.inventoryItemId === undefined) row.inventoryItemId = null
+          })
+      })
+
+    // v6: HIPAA access logging (append-only, write-only locally; admin
+    // viewer queries Supabase directly so this table is not hydrated).
+    this.version(6).stores({
+      accessLogs:
+        'id, orgId, userId, patientId, action, resourceType, occurredAt, [orgId+occurredAt], [orgId+patientId+occurredAt], [orgId+userId+occurredAt], _synced',
+    })
+
+    // v7: per-org editable roles.
+    this.version(7).stores({
+      orgRoles: 'id, orgId, roleKey, [orgId+roleKey], isBuiltin, _synced',
     })
   }
 }

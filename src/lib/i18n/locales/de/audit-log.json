@@ -1,0 +1,66 @@
+{
+  "title": "Prüfprotokoll",
+  "description": "HIPAA-konformes Zugriffsprotokoll. Jeder Abruf, jede Suche, jeder Export und jede Änderung an Patientendaten wird hier aufgezeichnet.",
+  "filters": {
+    "search": "Benutzer, Patient oder Kontext suchen",
+    "user": "Benutzer",
+    "allUsers": "Alle Benutzer",
+    "action": "Aktion",
+    "allActions": "Alle Aktionen",
+    "resourceType": "Ressource",
+    "allResources": "Alle Ressourcen",
+    "from": "Von",
+    "to": "Bis",
+    "clear": "Filter zurücksetzen"
+  },
+  "columns": {
+    "occurredAt": "Zeitpunkt",
+    "user": "Benutzer",
+    "action": "Aktion",
+    "resource": "Ressource",
+    "patient": "Patient",
+    "context": "Details"
+  },
+  "actions": {
+    "view": "Angezeigt",
+    "list": "Aufgelistet",
+    "search": "Gesucht",
+    "export": "Exportiert",
+    "print": "Gedruckt",
+    "create": "Erstellt",
+    "update": "Aktualisiert",
+    "delete": "Gelöscht"
+  },
+  "resources": {
+    "patient": "Patient",
+    "visit": "Besuch",
+    "appointment": "Termin",
+    "lab": "Labor",
+    "medication": "Medikament",
+    "imaging": "Bildgebung",
+    "incident": "Vorfall",
+    "diagnosis": "Diagnose",
+    "allergy": "Allergie",
+    "note": "Notiz",
+    "related_person": "Bezugsperson",
+    "care_goal": "Pflegeziel",
+    "care_plan": "Pflegeplan",
+    "invoice": "Rechnung",
+    "payment": "Zahlung",
+    "inventory_item": "Lagerelement"
+  },
+  "list": {
+    "empty": "Keine Prüfereignisse entsprechen diesen Filtern.",
+    "loading": "Prüfereignisse werden geladen…",
+    "loadMore": "Mehr laden",
+    "pageOf": "{{count}} von {{total}} angezeigt",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "Prüfereignisse konnten nicht geladen werden: {{message}}"
+  },
+  "unauthorized": {
+    "title": "Nur für Administratoren",
+    "description": "Sie haben keine Berechtigung, das Prüfprotokoll einzusehen."
+  }
+}

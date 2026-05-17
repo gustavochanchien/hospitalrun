@@ -50,7 +50,9 @@
     "imaging": "Pencitraan",
     "incidents": "Insiden",
     "billing": "Penagihan",
-    "settings": "Pengaturan"
+    "inventory": "Inventaris",
+    "settings": "Pengaturan",
+    "auditLog": "Log Audit"
   },
   "network": {
     "offline": "Anda offline",

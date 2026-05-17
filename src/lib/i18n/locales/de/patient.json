@@ -38,6 +38,7 @@
     "unknown": "Unbekannt"
   },
   "tabs": {
+    "all": "Alle",
     "appointments": "Termine",
     "diagnoses": "Diagnosen",
     "allergies": "Allergien",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "Wird geladen...",
-      "delete": "Löschen"
+      "delete": "Löschen",
+      "none": "Keine"
     },
     "allergies": {
       "title": "Allergien",
       "newAction": "Neue Allergie",
       "create": "Allergie anlegen",
-      "noResults": "Keine Allergien gefunden.",
+      "noResults": "Keine",
       "fields": {
         "allergen": "Allergen",
         "reaction": "Reaktion",
@@ -132,7 +134,7 @@
       "title": "Diagnosen",
       "newAction": "Neue Diagnose",
       "create": "Diagnose anlegen",
-      "noResults": "Keine Diagnosen gefunden.",
+      "noResults": "Keine",
       "fields": {
         "icdCode": "ICD-Code",
         "description": "Beschreibung",
@@ -155,7 +157,7 @@
       "title": "Medikamente",
       "newAction": "Neues Medikament",
       "create": "Medikament anlegen",
-      "noResults": "Keine Medikamente gefunden.",
+      "noResults": "Keine",
       "fields": {
         "name": "Name",
         "status": "Status",
@@ -188,7 +190,7 @@
       "title": "Labor",
       "newAction": "Neues Labor",
       "create": "Labor anlegen",
-      "noResults": "Keine Laborergebnisse gefunden.",
+      "noResults": "Keine",
       "fields": {
         "type": "Typ",
         "code": "Code",
@@ -206,7 +208,7 @@
       "title": "Bildgebung",
       "newAction": "Neue Bildgebung",
       "create": "Bildgebung anlegen",
-      "noResults": "Keine Bildgebungsanfragen gefunden.",
+      "noResults": "Keine",
       "fields": {
         "type": "Typ",
         "code": "Code",
@@ -223,7 +225,7 @@
       "title": "Notizen",
       "newAction": "Neue Notiz",
       "create": "Notiz anlegen",
-      "noResults": "Keine Notizen gefunden.",
+      "noResults": "Keine",
       "fields": {
         "content": "Inhalt"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "Pflegeziele",
       "newAction": "Neues Pflegeziel",
-      "noResults": "Keine Pflegeziele erfasst.",
+      "noResults": "Keine",
       "fields": {
         "descriptionRequired": "Beschreibung *",
         "achievementStatus": "Erreichungsstatus",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "Pflegepläne",
       "newAction": "Neuer Pflegeplan",
-      "noResults": "Keine Pflegepläne erfasst.",
+      "noResults": "Keine",
       "fields": {
         "titleRequired": "Titel *",
         "description": "Beschreibung",
@@ -294,7 +296,7 @@
       "title": "Termine",
       "newAction": "Neuer Termin",
       "create": "Termin anlegen",
-      "noResults": "Keine Termine gefunden.",
+      "noResults": "Keine",
       "fields": {
         "type": "Typ",
         "startTime": "Startzeit",
@@ -313,7 +315,7 @@
       "title": "Besuche",
       "newAction": "Neuer Besuch",
       "create": "Besuch anlegen",
-      "noResults": "Keine Besuche gefunden.",
+      "noResults": "Keine",
       "fallbackName": "Besuch",
       "fields": {
         "type": "Typ",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "Bezugspersonen",
       "newAction": "Neue Bezugsperson",
-      "noResults": "Keine Bezugspersonen erfasst.",
+      "noResults": "Keine",
       "fields": {
         "givenNameRequired": "Vorname *",
         "familyNameRequired": "Nachname *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} Eintrag",
       "count_other": "{{count}} Einträge",
-      "noResults": "Keine Verlaufseinträge entsprechen diesen Filtern.",
+      "noResults": "Keine",
       "changeLabel": "<field>{{field}}</field> geändert",
       "fromShort": "Von:",
       "toShort": "Nach:",

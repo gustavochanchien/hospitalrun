@@ -92,6 +92,7 @@ const medicationColumns = {
   startDate: 'start_date',
   endDate: 'end_date',
   notes: 'notes',
+  inventoryItemId: 'inventory_item_id',
   deletedAt: 'deleted_at',
   createdAt: 'created_at',
   updatedAt: 'updated_at',
@@ -242,6 +243,19 @@ const userFeatureColumns = {
   updatedAt: 'updated_at',
 } as const
 
+const orgRoleColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  roleKey: 'role_key',
+  label: 'label',
+  permissions: 'permissions',
+  isBuiltin: 'is_builtin',
+  isLocked: 'is_locked',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
 const chargeItemColumns = {
   id: 'id',
   orgId: 'org_id',
@@ -306,6 +320,57 @@ const paymentColumns = {
   updatedAt: 'updated_at',
 } as const
 
+const inventoryItemColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  sku: 'sku',
+  name: 'name',
+  description: 'description',
+  unit: 'unit',
+  onHand: 'on_hand',
+  reorderLevel: 'reorder_level',
+  unitCost: 'unit_cost',
+  currency: 'currency',
+  active: 'active',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
+const accessLogColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  userId: 'user_id',
+  userEmail: 'user_email',
+  userRole: 'user_role',
+  action: 'action',
+  resourceType: 'resource_type',
+  resourceId: 'resource_id',
+  patientId: 'patient_id',
+  context: 'context',
+  clientId: 'client_id',
+  occurredAt: 'occurred_at',
+  createdAt: 'created_at',
+} as const
+
+const inventoryTransactionColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  inventoryItemId: 'inventory_item_id',
+  kind: 'kind',
+  quantity: 'quantity',
+  unitCost: 'unit_cost',
+  reference: 'reference',
+  patientId: 'patient_id',
+  medicationId: 'medication_id',
+  occurredAt: 'occurred_at',
+  recordedBy: 'recorded_by',
+  notes: 'notes',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
 export const columnMap: Record<SyncableTable, Record<string, string>> = {
   patients: patientColumns,
   visits: visitColumns,
@@ -322,10 +387,14 @@ export const columnMap: Record<SyncableTable, Record<string, string>> = {
   carePlans: carePlanColumns,
   orgFeatures: orgFeatureColumns,
   userFeatures: userFeatureColumns,
+  orgRoles: orgRoleColumns,
   chargeItems: chargeItemColumns,
   invoices: invoiceColumns,
   invoiceLineItems: invoiceLineItemColumns,
   payments: paymentColumns,
+  inventoryItems: inventoryItemColumns,
+  inventoryTransactions: inventoryTransactionColumns,
+  accessLogs: accessLogColumns,
 }
 
 /** Dexie table name → Supabase table name */
@@ -345,10 +414,14 @@ export const supabaseTableName: Record<SyncableTable, string> = {
   carePlans: 'care_plans',
   orgFeatures: 'org_features',
   userFeatures: 'user_features',
+  orgRoles: 'org_roles',
   chargeItems: 'charge_items',
   invoices: 'invoices',
   invoiceLineItems: 'invoice_line_items',
   payments: 'payments',
+  inventoryItems: 'inventory_items',
+  inventoryTransactions: 'inventory_transactions',
+  accessLogs: 'access_logs',
 }
 
 /** Convert a Dexie record (camelCase) to a Supabase row (snake_case) */

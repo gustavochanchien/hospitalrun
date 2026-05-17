@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "Inventaris",
+    "newItem": "Barang baru",
+    "searchPlaceholder": "Cari SKU atau nama",
+    "allStatuses": "Semua barang",
+    "activeOnly": "Hanya aktif",
+    "lowStockOnly": "Stok rendah",
+    "count": "{{count}} barang",
+    "count_other": "{{count}} barang",
+    "exportFilename": "inventory",
+    "noMatches": "Tidak ada barang yang sesuai filter.",
+    "empty": "Belum ada barang inventaris.",
+    "pageOf": "Halaman {{current}} dari {{total}}",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya",
+    "columns": {
+      "sku": "SKU",
+      "name": "Nama",
+      "unit": "Satuan",
+      "onHand": "Tersedia",
+      "reorderLevel": "Titik pesan ulang",
+      "unitCost": "Harga satuan",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Tidak aktif",
+      "low": "Rendah"
+    }
+  },
+  "detail": {
+    "title": "Barang inventaris",
+    "backToList": "Kembali ke inventaris",
+    "notFound": "Barang tidak ditemukan.",
+    "edit": "Ubah",
+    "delete": "Hapus",
+    "deleted": "Barang dihapus",
+    "deleteTitle": "Hapus barang ini?",
+    "deleteDescription": "Transaksi sebelumnya tetap tercatat tetapi barang disembunyikan dari entri baru.",
+    "lowStock": "Stok rendah — stok tersedia berada di titik pesan ulang atau di bawahnya.",
+    "summary": {
+      "onHand": "Tersedia",
+      "reorderLevel": "Titik pesan ulang",
+      "unitCost": "Harga satuan",
+      "value": "Nilai stok"
+    },
+    "actions": {
+      "receive": "Terima stok",
+      "adjust": "Sesuaikan",
+      "waste": "Limbah",
+      "transfer": "Transfer"
+    },
+    "transactions": {
+      "title": "Pergerakan stok",
+      "empty": "Belum ada pergerakan.",
+      "kind": "Jenis",
+      "quantity": "Jml",
+      "balance": "Total berjalan",
+      "reference": "Referensi",
+      "occurredAt": "Waktu",
+      "notes": "Catatan"
+    },
+    "kind": {
+      "receive": "Penerimaan",
+      "dispense": "Pengeluaran",
+      "adjust": "Penyesuaian",
+      "transfer": "Transfer",
+      "waste": "Limbah"
+    }
+  },
+  "form": {
+    "title": "Detail barang",
+    "sku": "SKU",
+    "skuPlaceholder": "cth. GLOVE-S",
+    "name": "Nama",
+    "namePlaceholder": "cth. Sarung tangan nitril, ukuran S",
+    "description": "Deskripsi",
+    "unit": "Satuan",
+    "unitPlaceholder": "buah, kotak, ml…",
+    "reorderLevel": "Titik pesan ulang",
+    "unitCost": "Harga satuan",
+    "currency": "Mata uang",
+    "active": "Aktif",
+    "submitCreate": "Buat barang",
+    "submitUpdate": "Simpan perubahan",
+    "saving": "Menyimpan…",
+    "created": "Barang dibuat",
+    "updated": "Barang diperbarui"
+  },
+  "dialog": {
+    "receiveTitle": "Terima stok",
+    "adjustTitle": "Sesuaikan stok",
+    "wasteTitle": "Catat limbah",
+    "transferTitle": "Catat transfer",
+    "quantity": "Jumlah",
+    "unitCost": "Harga satuan",
+    "reference": "Referensi / No. PO",
+    "occurredAt": "Waktu",
+    "notes": "Catatan",
+    "submit": "Catat",
+    "recording": "Mencatat…",
+    "cancel": "Batal",
+    "errorNoOrg": "Tidak ada organisasi dalam sesi.",
+    "recorded": "Pergerakan dicatat",
+    "adjustHint": "Gunakan angka positif untuk menambah stok, negatif untuk mengurangi."
+  },
+  "lowStock": {
+    "title": "Stok rendah",
+    "empty": "Semua barang berada di atas titik pesan ulang.",
+    "loading": "Memuat stok rendah…",
+    "viewAll": "Buka inventaris",
+    "viewItem": "Buka"
+  },
+  "patientTab": {
+    "title": "Inventaris"
+  },
+  "disabled": {
+    "title": "Inventaris tidak diaktifkan",
+    "description": "Minta administrator untuk mengaktifkan fitur Inventaris di Pengaturan."
+  },
+  "validation": {
+    "skuRequired": "SKU wajib diisi.",
+    "nameRequired": "Nama wajib diisi.",
+    "unitRequired": "Satuan wajib diisi.",
+    "quantityNonZero": "Jumlah tidak boleh nol.",
+    "quantityPositive": "Jumlah harus positif.",
+    "amountNonNegative": "Jumlah harus nol atau lebih."
+  }
+}

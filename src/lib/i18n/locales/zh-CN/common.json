@@ -50,7 +50,9 @@
     "imaging": "影像",
     "incidents": "事件",
     "billing": "计费",
-    "settings": "设置"
+    "inventory": "库存",
+    "settings": "设置",
+    "auditLog": "审计日志"
   },
   "network": {
     "offline": "您已离线",

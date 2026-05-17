@@ -23,9 +23,17 @@ type FormData = z.infer<typeof schema>
 
 interface Props {
   onBack: () => void
+  /**
+   * Called when signup succeeds and a session is issued immediately
+   * (i.e. email confirmation is disabled). The parent should advance
+   * the wizard to its next step instead of redirecting. If email
+   * confirmation is enabled, this callback is not invoked — the form
+   * shows the "check your email" message instead.
+   */
+  onSignedUp?: () => void
 }
 
-export function FirstUserForm({ onBack }: Props) {
+export function FirstUserForm({ onBack, onSignedUp }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [emailSent, setEmailSent] = useState(false)
 
@@ -47,9 +55,14 @@ export function FirstUserForm({ onBack }: Props) {
     }
     if (authData.session) {
       // Email confirmation is disabled — session issued immediately.
-      // Full reload so main.tsx re-reads the persisted session and the
-      // auth store initialises cleanly, avoiding any race with navigate.
-      window.location.assign('/')
+      // Hand off to the parent wizard (which advances to the "Choose
+      // Roles" step). Falls back to a full reload if no handler is
+      // provided so the legacy behavior is preserved.
+      if (onSignedUp) {
+        onSignedUp()
+      } else {
+        window.location.assign('/')
+      }
     } else {
       // Project requires email confirmation.
       setEmailSent(true)

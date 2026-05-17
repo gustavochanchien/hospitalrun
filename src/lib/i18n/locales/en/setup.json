@@ -38,6 +38,17 @@
     "saving": "Saving…",
     "errNoOrg": "No organization in your session. Sign back in and try again."
   },
+  "chooseRoles": {
+    "intro": "Roles control what each teammate can see and do. Review the defaults and tailor them before inviting your team.",
+    "permissionCount": "{{count}} permissions",
+    "customize": "Customize",
+    "view": "View",
+    "locked": "Locked",
+    "addCustom": "+ Add custom role",
+    "changeLater": "You can edit roles anytime in Settings → Roles.",
+    "skip": "Skip — use defaults",
+    "continue": "Continue"
+  },
   "cloudConnect": {
     "needProject": "Need a Supabase project?",
     "needProjectHelp": "Create a free one, then copy the Project URL and anon key from Project Settings → API.",

@@ -1,0 +1,130 @@
+{
+  "list": {
+    "title": "在庫",
+    "newItem": "新規品目",
+    "searchPlaceholder": "SKUまたは名称で検索",
+    "allStatuses": "すべての品目",
+    "activeOnly": "有効のみ",
+    "lowStockOnly": "在庫不足",
+    "count": "{{count}} 品目",
+    "count_other": "{{count}} 品目",
+    "exportFilename": "inventory",
+    "noMatches": "フィルターに一致する品目がありません。",
+    "empty": "在庫品目がまだありません。",
+    "pageOf": "{{current}} / {{total}} ページ",
+    "previous": "前へ",
+    "next": "次へ",
+    "columns": {
+      "sku": "SKU",
+      "name": "名称",
+      "unit": "単位",
+      "onHand": "在庫数",
+      "reorderLevel": "発注点",
+      "unitCost": "単価",
+      "status": "状態"
+    },
+    "status": {
+      "active": "有効",
+      "inactive": "無効",
+      "low": "不足"
+    }
+  },
+  "detail": {
+    "title": "在庫品目",
+    "backToList": "在庫一覧へ戻る",
+    "notFound": "品目が見つかりません。",
+    "edit": "編集",
+    "delete": "削除",
+    "deleted": "品目を削除しました",
+    "deleteTitle": "この品目を削除しますか？",
+    "deleteDescription": "過去の取引履歴は保存されますが、この品目は新規入力から非表示になります。",
+    "lowStock": "在庫不足 — 在庫数が発注点以下です。",
+    "summary": {
+      "onHand": "在庫数",
+      "reorderLevel": "発注点",
+      "unitCost": "単価",
+      "value": "在庫金額"
+    },
+    "actions": {
+      "receive": "入荷",
+      "adjust": "調整",
+      "waste": "廃棄",
+      "transfer": "移転"
+    },
+    "transactions": {
+      "title": "在庫移動",
+      "empty": "移動履歴がありません。",
+      "kind": "種別",
+      "quantity": "数量",
+      "balance": "残高",
+      "reference": "参照番号",
+      "occurredAt": "日時",
+      "notes": "備考"
+    },
+    "kind": {
+      "receive": "入荷",
+      "dispense": "払出",
+      "adjust": "調整",
+      "transfer": "移転",
+      "waste": "廃棄"
+    }
+  },
+  "form": {
+    "title": "品目詳細",
+    "sku": "SKU",
+    "skuPlaceholder": "例: GLOVE-S",
+    "name": "名称",
+    "namePlaceholder": "例: ニトリル手袋（小）",
+    "description": "説明",
+    "unit": "単位",
+    "unitPlaceholder": "個、箱、ml…",
+    "reorderLevel": "発注点",
+    "unitCost": "単価",
+    "currency": "通貨",
+    "active": "有効",
+    "submitCreate": "品目を作成",
+    "submitUpdate": "変更を保存",
+    "saving": "保存中…",
+    "created": "品目を作成しました",
+    "updated": "品目を更新しました"
+  },
+  "dialog": {
+    "receiveTitle": "入荷登録",
+    "adjustTitle": "在庫調整",
+    "wasteTitle": "廃棄記録",
+    "transferTitle": "移転記録",
+    "quantity": "数量",
+    "unitCost": "単価",
+    "reference": "参照 / 発注番号",
+    "occurredAt": "日時",
+    "notes": "備考",
+    "submit": "記録",
+    "recording": "記録中…",
+    "cancel": "キャンセル",
+    "errorNoOrg": "セッションに組織が設定されていません。",
+    "recorded": "移動を記録しました",
+    "adjustHint": "正の数で在庫を追加、負の数で在庫を減らします。"
+  },
+  "lowStock": {
+    "title": "在庫不足",
+    "empty": "すべての品目が発注点を上回っています。",
+    "loading": "在庫不足を読み込み中…",
+    "viewAll": "在庫を開く",
+    "viewItem": "開く"
+  },
+  "patientTab": {
+    "title": "在庫"
+  },
+  "disabled": {
+    "title": "在庫機能が有効になっていません",
+    "description": "管理者に設定で在庫機能を有効にするよう依頼してください。"
+  },
+  "validation": {
+    "skuRequired": "SKUは必須です。",
+    "nameRequired": "名称は必須です。",
+    "unitRequired": "単位は必須です。",
+    "quantityNonZero": "数量はゼロ以外である必要があります。",
+    "quantityPositive": "数量は正の値である必要があります。",
+    "amountNonNegative": "金額はゼロ以上である必要があります。"
+  }
+}

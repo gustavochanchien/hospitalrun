@@ -33,6 +33,7 @@ import { SwitchServerCard } from './SwitchServerCard'
 import { HubCard } from './HubCard'
 import { CloudBackupCard } from './CloudBackupCard'
 import { FeaturesCard } from './FeaturesCard'
+import { RolesCard } from './RolesCard'
 import { UserFeaturesPopover } from './UserFeaturesPopover'
 import { seedFakeData } from '@/lib/demo/seed-org'
 import { SUPPORTED_LANGUAGES, type LanguageCode } from '@/lib/i18n'
@@ -55,6 +56,7 @@ export function SettingsPage() {
     <div className="space-y-6 p-6">
       <OrgSettingsCard orgId={orgId} isAdmin={isAdmin} />
       <FeaturesCard />
+      <RolesCard />
       <LanguageCard />
       <ThemeCard />
       <UserListCard profiles={profiles} isAdmin={isAdmin} />
@@ -387,6 +389,22 @@ function UserListCard({
   isAdmin: boolean
 }) {
   const currentUserId = useAuthStore((s) => s.user?.id)
+  const orgId = useAuthStore((s) => s.orgId)
+  const orgRoles = useLiveQuery(
+    () =>
+      orgId
+        ? db.orgRoles
+            .where('orgId')
+            .equals(orgId)
+            .filter((r) => !r._deleted)
+            .toArray()
+            .then((rows) =>
+              rows.map((r) => ({ roleKey: r.roleKey, label: r.label })),
+            )
+        : [],
+    [orgId],
+    [],
+  )
 
   if (profiles === undefined) {
     return (
@@ -433,6 +451,7 @@ function UserListCard({
                     profile={profile}
                     isAdmin={isAdmin}
                     isCurrentUser={profile.id === currentUserId}
+                    orgRoles={orgRoles ?? []}
                   />
                 ))}
               </TableBody>
@@ -448,10 +467,12 @@ function UserRow({
   profile,
   isAdmin,
   isCurrentUser,
+  orgRoles,
 }: {
   profile: { id: string; fullName: string; role: string }
   isAdmin: boolean
   isCurrentUser: boolean
+  orgRoles: { roleKey: string; label: string }[]
 }) {
   const [newRole, setNewRole] = useState(profile.role)
   const [disabled, setDisabled] = useState(false)
@@ -516,14 +537,15 @@ function UserRow({
         {isAdmin && !isCurrentUser ? (
           <div className="flex items-center gap-2">
             <Select value={newRole} onValueChange={setNewRole} disabled={disabled}>
-              <SelectTrigger className="w-[130px]">
+              <SelectTrigger className="w-[180px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="admin">Admin</SelectItem>
-                <SelectItem value="doctor">Doctor</SelectItem>
-                <SelectItem value="nurse">Nurse</SelectItem>
-                <SelectItem value="user">User</SelectItem>
+                {(orgRoles ?? []).map((r) => (
+                  <SelectItem key={r.roleKey} value={r.roleKey}>
+                    {r.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
             {newRole !== profile.role && !disabled && (
@@ -533,7 +555,9 @@ function UserRow({
             )}
           </div>
         ) : (
-          <Badge variant={roleBadgeVariant}>{profile.role}</Badge>
+          <Badge variant={roleBadgeVariant}>
+            {(orgRoles ?? []).find((r) => r.roleKey === profile.role)?.label ?? profile.role}
+          </Badge>
         )}
       </TableCell>
       <TableCell>

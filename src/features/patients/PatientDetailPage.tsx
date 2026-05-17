@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
 import i18n from 'i18next'
@@ -10,8 +11,11 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { PdfExportButton } from '@/components/pdf-export-button'
 import { PrintButton } from '@/components/print-button'
 import { resolveOrgName } from '@/lib/pdf/org'
+import { recordAccessEvent } from '@/lib/db/access-log'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { useLogAccess } from '@/hooks/useLogAccess'
 import { db } from '@/lib/db'
+import type { AccessResourceType } from '@/lib/db/schema'
 import { PatientAppointments } from './sub-features/PatientAppointments'
 import { PatientDiagnoses } from './sub-features/PatientDiagnoses'
 import { PatientAllergies } from './sub-features/PatientAllergies'
@@ -32,10 +36,47 @@ interface PatientDetailPageProps {
   patientId: string
 }
 
+const TAB_TO_RESOURCE: Record<string, AccessResourceType> = {
+  appointments: 'appointment',
+  diagnoses: 'diagnosis',
+  allergies: 'allergy',
+  medications: 'medication',
+  labs: 'lab',
+  imaging: 'imaging',
+  notes: 'note',
+  visits: 'visit',
+  related: 'related_person',
+  goals: 'care_goal',
+  plans: 'care_plan',
+}
+
 export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
   const { t } = useTranslation('patient')
   const orgId = useAuthStore((s) => s.orgId)
   const patient = useLiveQuery(() => db.patients.get(patientId), [patientId])
+  useLogAccess({
+    action: 'view',
+    resourceType: 'patient',
+    resourceId: patientId,
+    patientId,
+    enabled: !!patient && !patient._deleted,
+  })
+  const loggedTabs = useRef<Set<string>>(new Set())
+  function handleTabChange(value: string) {
+    const resource = TAB_TO_RESOURCE[value]
+    if (!resource) return
+    const key = `${patientId}:${value}`
+    if (loggedTabs.current.has(key)) return
+    loggedTabs.current.add(key)
+    void recordAccessEvent({
+      action: 'view',
+      resourceType: resource,
+      patientId,
+      context: { tab: value, parentPatientId: patientId },
+    })
+  }
+  const tabTriggerClass =
+    'h-auto rounded-full px-4 py-2 text-sm font-medium border border-transparent data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md data-[state=active]:ring-2 data-[state=active]:ring-primary/30 dark:data-[state=active]:bg-primary dark:data-[state=active]:text-primary-foreground dark:data-[state=active]:border-transparent'
 
   if (patient === undefined) {
     return (
@@ -109,6 +150,15 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
             <span data-print-actions className="flex flex-wrap items-center gap-2">
               <PdfExportButton
                 filename={`patient-${patient.familyName.toLowerCase()}-summary`}
+                onBeforeGenerate={() =>
+                  void recordAccessEvent({
+                    action: 'export',
+                    resourceType: 'patient',
+                    resourceId: patientId,
+                    patientId,
+                    context: { format: 'pdf', document: 'patient-summary' },
+                  })
+                }
                 buildDocument={async () => {
                   const orgName = await resolveOrgName(orgId)
                   const [diagnoses, medications, allergies, visits] = await Promise.all([
@@ -146,7 +196,16 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
                   )
                 }}
               />
-              <PrintButton />
+              <PrintButton
+                onBeforePrint={() =>
+                  void recordAccessEvent({
+                    action: 'print',
+                    resourceType: 'patient',
+                    resourceId: patientId,
+                    patientId,
+                  })
+                }
+              />
             </span>
             <Button variant="outline" size="sm" asChild>
               <Link
@@ -197,25 +256,29 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
       </Card>
 
       {/* Sub-feature Tabs */}
-      <Tabs defaultValue="appointments">
-        <TabsList className="flex flex-wrap h-auto gap-1">
-          <TabsTrigger value="appointments">{t('tabs.appointments')}</TabsTrigger>
-          <TabsTrigger value="diagnoses">{t('tabs.diagnoses')}</TabsTrigger>
-          <TabsTrigger value="allergies">{t('tabs.allergies')}</TabsTrigger>
-          <TabsTrigger value="medications">{t('tabs.medications')}</TabsTrigger>
-          <TabsTrigger value="labs">{t('tabs.labs')}</TabsTrigger>
-          <TabsTrigger value="imaging">{t('tabs.imaging')}</TabsTrigger>
-          <TabsTrigger value="notes">{t('tabs.notes')}</TabsTrigger>
-          <TabsTrigger value="visits">{t('tabs.visits')}</TabsTrigger>
-          <TabsTrigger value="related">{t('tabs.relatedPersons')}</TabsTrigger>
-          <TabsTrigger value="goals">{t('tabs.careGoals')}</TabsTrigger>
-          <TabsTrigger value="plans">{t('tabs.carePlans')}</TabsTrigger>
-          <TabsTrigger value="history">{t('tabs.history')}</TabsTrigger>
+      <Tabs defaultValue="appointments" onValueChange={handleTabChange}>
+        <TabsList className="flex flex-wrap group-data-horizontal/tabs:h-auto gap-2 rounded-full bg-muted/50 p-2">
+          <TabsTrigger value="all" className={tabTriggerClass}>{t('tabs.all')}</TabsTrigger>
+          <TabsTrigger value="appointments" className={tabTriggerClass}>{t('tabs.appointments')}</TabsTrigger>
+          <TabsTrigger value="diagnoses" className={tabTriggerClass}>{t('tabs.diagnoses')}</TabsTrigger>
+          <TabsTrigger value="allergies" className={tabTriggerClass}>{t('tabs.allergies')}</TabsTrigger>
+          <TabsTrigger value="medications" className={tabTriggerClass}>{t('tabs.medications')}</TabsTrigger>
+          <TabsTrigger value="labs" className={tabTriggerClass}>{t('tabs.labs')}</TabsTrigger>
+          <TabsTrigger value="imaging" className={tabTriggerClass}>{t('tabs.imaging')}</TabsTrigger>
+          <TabsTrigger value="notes" className={tabTriggerClass}>{t('tabs.notes')}</TabsTrigger>
+          <TabsTrigger value="visits" className={tabTriggerClass}>{t('tabs.visits')}</TabsTrigger>
+          <TabsTrigger value="related" className={tabTriggerClass}>{t('tabs.relatedPersons')}</TabsTrigger>
+          <TabsTrigger value="goals" className={tabTriggerClass}>{t('tabs.careGoals')}</TabsTrigger>
+          <TabsTrigger value="plans" className={tabTriggerClass}>{t('tabs.carePlans')}</TabsTrigger>
+          <TabsTrigger value="history" className={tabTriggerClass}>{t('tabs.history')}</TabsTrigger>
           <FeatureGate feature="billing">
-            <TabsTrigger value="billing">{t('tabs.billing')}</TabsTrigger>
+            <TabsTrigger value="billing" className={tabTriggerClass}>{t('tabs.billing')}</TabsTrigger>
           </FeatureGate>
         </TabsList>
 
+        <TabsContent value="all">
+          <PatientAllView patientId={patientId} />
+        </TabsContent>
         <TabsContent value="appointments">
           <PatientAppointments patientId={patientId} />
         </TabsContent>
@@ -256,6 +319,32 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
           <PatientBilling patientId={patientId} />
         </TabsContent>
       </Tabs>
+    </div>
+  )
+}
+
+interface PatientAllViewProps {
+  patientId: string
+}
+
+function PatientAllView({ patientId }: PatientAllViewProps) {
+  return (
+    <div className="space-y-8">
+      <section><PatientAllergies patientId={patientId} /></section>
+      <section><PatientDiagnoses patientId={patientId} /></section>
+      <section><PatientMedications patientId={patientId} /></section>
+      <section><PatientCarePlans patientId={patientId} /></section>
+      <section><PatientCareGoals patientId={patientId} /></section>
+      <section><PatientVisits patientId={patientId} /></section>
+      <section><PatientAppointments patientId={patientId} /></section>
+      <section><PatientLabs patientId={patientId} /></section>
+      <section><PatientImaging patientId={patientId} /></section>
+      <section><PatientNotes patientId={patientId} /></section>
+      <section><PatientHistory patientId={patientId} /></section>
+      <section><PatientRelatedPersons patientId={patientId} /></section>
+      <FeatureGate feature="billing">
+        <section><PatientBilling patientId={patientId} /></section>
+      </FeatureGate>
     </div>
   )
 }

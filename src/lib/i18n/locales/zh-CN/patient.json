@@ -38,6 +38,7 @@
     "unknown": "未知"
   },
   "tabs": {
+    "all": "全部",
     "appointments": "预约",
     "diagnoses": "诊断",
     "allergies": "过敏",
@@ -105,13 +106,14 @@
   "subFeatures": {
     "common": {
       "loading": "加载中...",
-      "delete": "删除"
+      "delete": "删除",
+      "none": "无"
     },
     "allergies": {
       "title": "过敏",
       "newAction": "新建过敏",
       "create": "创建过敏",
-      "noResults": "未找到过敏记录。",
+      "noResults": "无",
       "fields": {
         "allergen": "过敏原",
         "reaction": "反应",
@@ -132,7 +134,7 @@
       "title": "诊断",
       "newAction": "新建诊断",
       "create": "创建诊断",
-      "noResults": "未找到诊断。",
+      "noResults": "无",
       "fields": {
         "icdCode": "ICD 编码",
         "description": "描述",
@@ -155,7 +157,7 @@
       "title": "药物",
       "newAction": "新建药物",
       "create": "创建药物",
-      "noResults": "未找到药物。",
+      "noResults": "无",
       "fields": {
         "name": "名称",
         "status": "状态",
@@ -188,7 +190,7 @@
       "title": "实验室",
       "newAction": "新建检验",
       "create": "创建检验",
-      "noResults": "未找到检验。",
+      "noResults": "无",
       "fields": {
         "type": "类型",
         "code": "编码",
@@ -206,7 +208,7 @@
       "title": "影像",
       "newAction": "新建影像",
       "create": "创建影像",
-      "noResults": "未找到影像申请。",
+      "noResults": "无",
       "fields": {
         "type": "类型",
         "code": "编码",
@@ -223,7 +225,7 @@
       "title": "记录",
       "newAction": "新建记录",
       "create": "创建记录",
-      "noResults": "未找到记录。",
+      "noResults": "无",
       "fields": {
         "content": "内容"
       },
@@ -235,7 +237,7 @@
     "careGoals": {
       "title": "护理目标",
       "newAction": "新建目标",
-      "noResults": "尚未记录护理目标。",
+      "noResults": "无",
       "fields": {
         "descriptionRequired": "描述 *",
         "achievementStatus": "达成状态",
@@ -263,7 +265,7 @@
     "carePlans": {
       "title": "护理计划",
       "newAction": "新建计划",
-      "noResults": "尚未记录护理计划。",
+      "noResults": "无",
       "fields": {
         "titleRequired": "标题 *",
         "description": "描述",
@@ -294,7 +296,7 @@
       "title": "预约",
       "newAction": "新建预约",
       "create": "创建预约",
-      "noResults": "未找到预约。",
+      "noResults": "无",
       "fields": {
         "type": "类型",
         "startTime": "开始时间",
@@ -313,7 +315,7 @@
       "title": "就诊",
       "newAction": "新建就诊",
       "create": "创建就诊",
-      "noResults": "未找到就诊记录。",
+      "noResults": "无",
       "fallbackName": "就诊",
       "fields": {
         "type": "类型",
@@ -352,7 +354,7 @@
     "relatedPersons": {
       "title": "相关人员",
       "newAction": "新建相关人员",
-      "noResults": "尚未记录相关人员。",
+      "noResults": "无",
       "fields": {
         "givenNameRequired": "名 *",
         "familyNameRequired": "姓 *",
@@ -377,7 +379,7 @@
       },
       "count_one": "{{count}} 条记录",
       "count_other": "{{count}} 条记录",
-      "noResults": "没有符合这些筛选条件的历史记录。",
+      "noResults": "无",
       "changeLabel": "<field>{{field}}</field> 已更改",
       "fromShort": "从：",
       "toShort": "到：",

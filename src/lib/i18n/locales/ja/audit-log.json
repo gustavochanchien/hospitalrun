@@ -1,0 +1,66 @@
+{
+  "title": "監査ログ",
+  "description": "HIPAA準拠のアクセスログ。患者データへのすべての閲覧・検索・エクスポート・変更がここに記録されます。",
+  "filters": {
+    "search": "ユーザー、患者、またはコンテキストを検索",
+    "user": "ユーザー",
+    "allUsers": "すべてのユーザー",
+    "action": "操作",
+    "allActions": "すべての操作",
+    "resourceType": "リソース",
+    "allResources": "すべてのリソース",
+    "from": "開始日",
+    "to": "終了日",
+    "clear": "フィルターをクリア"
+  },
+  "columns": {
+    "occurredAt": "発生日時",
+    "user": "ユーザー",
+    "action": "操作",
+    "resource": "リソース",
+    "patient": "患者",
+    "context": "詳細"
+  },
+  "actions": {
+    "view": "閲覧",
+    "list": "一覧表示",
+    "search": "検索",
+    "export": "エクスポート",
+    "print": "印刷",
+    "create": "作成",
+    "update": "更新",
+    "delete": "削除"
+  },
+  "resources": {
+    "patient": "患者",
+    "visit": "受診",
+    "appointment": "予約",
+    "lab": "検査",
+    "medication": "薬剤",
+    "imaging": "画像診断",
+    "incident": "インシデント",
+    "diagnosis": "診断",
+    "allergy": "アレルギー",
+    "note": "メモ",
+    "related_person": "関係者",
+    "care_goal": "ケア目標",
+    "care_plan": "ケアプラン",
+    "invoice": "請求書",
+    "payment": "支払い",
+    "inventory_item": "在庫品目"
+  },
+  "list": {
+    "empty": "このフィルターに一致する監査イベントはありません。",
+    "loading": "監査イベントを読み込んでいます…",
+    "loadMore": "さらに読み込む",
+    "pageOf": "{{total}} 件中 {{count}} 件を表示",
+    "exportFilename": "audit-log"
+  },
+  "errors": {
+    "loadFailed": "監査イベントを読み込めませんでした: {{message}}"
+  },
+  "unauthorized": {
+    "title": "管理者専用",
+    "description": "監査ログを閲覧する権限がありません。"
+  }
+}
