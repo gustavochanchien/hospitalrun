@@ -27,6 +27,18 @@ Things that landed under unit tests / type-checks but were never exercised in a 
   - Sign in as a non-clinical role with no `read:documents` → the "Documents" tab does not render.
   - `npm run build && npm run preview` → PWA build succeeds and the new sub-feature bundle is precached.
 
+- [ ] **Stage 22 — In-house pharmacy dispensary** (uncommitted as of 2026-05-17):
+  - Toggle `pharmacy` feature in Settings → sidebar `Pharmacy` entry (PillBottle icon) appears; navigating to `/pharmacy` renders the tabbed page.
+  - Queue tab as a pharmacist: an `active` medication with a linked inventory item appears; Dispense → fill quantity + dosage instructions + route + frequency → after submit, the medication leaves the queue, on-hand decrements by the dispensed quantity, status flips to `completed`, and a receipt PDF downloads.
+  - Walk-in tab: pick a patient via the popover, select an inventory item, set quantity, optionally fill dosage fields → submit. Verify (a) a new `medications` row appears in the patient's medications tab with `status='completed'`, (b) on-hand decremented, (c) the post-submit screen shows the print-receipt button, (d) "Record another" resets the form cleanly.
+  - Sign in as a viewer (no `read:pharmacy_queue`, no `dispense:medication`) → both tab bodies show the "not authorized" fallback rather than the queue/form.
+  - Sign in as a doctor (has `read:pharmacy_queue` but not `dispense:medication`) → queue tab renders rows but the Dispense buttons are hidden; walk-in tab shows the not-authorized fallback.
+  - From a patient detail page's existing `MedicationInventoryCard` (Stage 15), dispense and verify dosage_instructions/route/frequency persist on the medication record AND the status flips to `completed` (so it disappears from the active list).
+  - Disable `pdf-export` feature → dispense still works, but the print-receipt button no longer appears.
+  - Toggle `pharmacy` feature off → `/pharmacy` shows the disabled-fallback message; sidebar entry disappears.
+  - Switch locale to `ar` (RTL) and re-do a walk-in dispense → form labels, validation toasts, and receipt PDF all render in Arabic; layout is RTL-correct.
+  - `npm run build && npm run preview` → PWA build succeeds and the `PharmacyReceiptPdf` lazy chunk is precached.
+
 ---
 
 ## Stage 1 — Global UX Foundations ✅
@@ -353,22 +365,33 @@ Parallels imaging for arbitrary documents (consents, referrals, scans, faxes). G
 
 ---
 
-## Stage 22 — In-house pharmacy dispensary
+## Stage 22 — In-house pharmacy dispensary ✅
 
-Pharmacy POS UX on top of inventory (Stage 15) + medications. Gated by `pharmacy` feature flag.
+Pharmacy POS UX on top of inventory (Stage 15) + medications. Gated by `pharmacy` feature flag. Landed locally (2026-05-17). Per the pre-deploy migration strategy the schema additions were merged into `00001_initial_schema.sql` instead of a new `00010_*.sql` file.
 
-**Agents:** `feature-slice-scaffolder` for the new top-level route + sidebar + settings card stub; `pdf-document-author` for `PharmacyReceiptPdf`; `i18n-translator` for 11 locales. Schema additions to existing `medications` table are by hand.
+- [x] Schema in [supabase/migrations/00001_initial_schema.sql](supabase/migrations/00001_initial_schema.sql) — added optional `dosage_instructions text`, `route text`, `frequency text` to the `medications` table CREATE block. Mirrored in [schema.ts](src/lib/db/schema.ts) `Medication` interface + [columns.ts](src/lib/db/columns.ts) `medicationColumns`. **No Dexie version bump** — these are nullable column additions, not index changes; existing rows hydrate the new fields as `null` on next sync.
+- [x] [features.ts](src/lib/features.ts): added `'pharmacy'` + `FEATURE_METADATA` entry.
+- [x] [permissions.ts](src/lib/permissions.ts): added `dispense:medication` (admin + pharmacist only) and `read:pharmacy_queue` (admin + doctor + nurse + pharmacist). Mirrored into the SQL `bootstrap_current_user` seed for all four roles.
+- [x] Route [src/routes/_auth/pharmacy/index.tsx](src/routes/_auth/pharmacy/index.tsx) — `FeatureGate feature="pharmacy"` wrapping a tabbed [PharmacyPage.tsx](src/features/pharmacy/PharmacyPage.tsx) (Dispense queue / Walk-in). Each tab has its own `<PermissionGuard>`: queue gated by `read:pharmacy_queue`, walk-in gated by `dispense:medication`.
+- [x] [PharmacyQueue.tsx](src/features/pharmacy/PharmacyQueue.tsx) — `useLiveQuery` over `medications` filtered to `status === 'active' && inventoryItemId !== null && !_deleted`. Joins patients + inventory items for display. Per-row Dispense button gated by `dispense:medication` opens [DispenseDialog.tsx](src/features/pharmacy/DispenseDialog.tsx).
+- [x] [DispenseDialog.tsx](src/features/pharmacy/DispenseDialog.tsx) — captures quantity + dosage instructions + route (oral/topical/inhaled/injection/rectal/ophthalmic/otic) + frequency. After successful dispense, shows `<PdfExportButton>` to print [PharmacyReceiptPdf](src/features/pharmacy/pdf/PharmacyReceiptPdf.tsx). Reused dynamic-import pattern from `InvoiceDetailPage`.
+- [x] [WalkInDispenseForm.tsx](src/features/pharmacy/WalkInDispenseForm.tsx) — patient combobox (copied from [LabForm.tsx](src/features/labs/LabForm.tsx)), inventory item Select (filters to `!_deleted && active`), quantity, optional dosage/route/frequency. Submits via `dispenseMedication({ kind: 'walkIn', … })` which creates a `medications` row (`status='completed'`, `intent='order'`) AND records a `dispense` `inventoryTransaction`. Post-submit screen offers receipt print + "Record another".
+- [x] Shared write helper [dispense.ts](src/features/pharmacy/dispense.ts) — `dispenseMedication()` with two `kind` modes (`'queue'` flips an existing med to `'completed'` and persists dosage fields; `'walkIn'` inserts a new med row). Both paths call `recordStockMovement({ kind: 'dispense', … })` from [stock-write.ts](src/features/inventory/stock-write.ts).
+- [x] Extended [MedicationInventoryCard.tsx](src/features/inventory/MedicationInventoryCard.tsx) — dispense dialog now also captures dosage instructions / route / frequency; persists them through `dispenseMedication({ kind: 'queue', … })`. The previous direct `recordStockMovement` call was replaced — every queue-style dispense now flips status to `'completed'`.
+- [x] [PharmacyReceiptPdf.tsx](src/features/pharmacy/pdf/PharmacyReceiptPdf.tsx) (via `pdf-document-author`) — single-A4 receipt using the shared `pdfTheme` + `PdfHeader/PdfFooter`. Sections: receipt #, patient block, medication block, directions (dosage/route/frequency, with `t('pharmacy.empty.directions')` fallback when all three are null), dispensed-by. Lazy-loaded so it doesn't bloat the initial bundle.
+- [x] Sidebar entry in [AppSidebar.tsx](src/components/layout/AppSidebar.tsx): `{ key: 'pharmacy', to: '/pharmacy', icon: PillBottle, feature: 'pharmacy' }`. `Pill` was already taken by Medications, so the pharmacy entry uses `PillBottle` from `lucide-react`.
+- [x] i18n: new `pharmacy` namespace registered in [src/lib/i18n/index.ts](src/lib/i18n/index.ts). English by hand; `i18n-translator` agent populated the other 11 locales — 33 file writes (11× new `pharmacy.json` + 11× `features.json` (`pharmacy` block) + 11× `pdf.json` (`pharmacy` block for the receipt)). Also added `nav.pharmacy` to `common.json` for the sidebar label.
+- [x] Test infrastructure: added guarded jsdom polyfills (`hasPointerCapture`, `releasePointerCapture`, `scrollIntoView`) to [src/test/setup.ts](src/test/setup.ts) so Radix Select interactions work in RTL tests. Guarded with `typeof Element !== 'undefined'` so the node-environment electron/lan suites stay green.
+- [x] Tests: 10 new cases across [dispense.test.ts](src/features/pharmacy/dispense.test.ts) (3), [PharmacyQueue.test.tsx](src/features/pharmacy/PharmacyQueue.test.tsx) (2), [WalkInDispenseForm.test.tsx](src/features/pharmacy/WalkInDispenseForm.test.tsx) (1), [pharmacy.test.tsx](src/routes/_auth/pharmacy/pharmacy.test.tsx) (2), [PharmacyReceiptPdf.test.tsx](src/features/pharmacy/pdf/PharmacyReceiptPdf.test.tsx) (2). Full suite **562/562** passing.
 
-- [ ] Migration `00010_pharmacy.sql`: add optional `dosage_instructions text`, `route text`, `frequency text` to `medications`. Mirror in [schema.ts](src/lib/db/schema.ts) `Medication` interface + [columns.ts](src/lib/db/columns.ts).
-- [ ] [features.ts](src/lib/features.ts): add `'pharmacy'`.
-- [ ] [permissions.ts](src/lib/permissions.ts): `dispense:medication`, `read:pharmacy_queue`.
-- [ ] Routes under [src/routes/_auth/pharmacy/](src/routes/_auth/pharmacy/): `index.tsx` (dispense queue + walk-in tabs). Both gated. `feature-slice-scaffolder` scaffolds; fill internals after.
-- [ ] Components (by hand): `PharmacyQueue.tsx` (active `medications` with linked `inventoryItemId`, click to dispense), `WalkInDispenseForm.tsx` (patient + inventory item + qty → `recordStockMovement({ kind: 'dispense', ... })` from [stock-write.ts:40](src/features/inventory/stock-write.ts#L40)), `DispenseDialog.tsx` (captures dosage instructions, prints receipt).
-- [ ] Extend [MedicationInventoryCard.tsx](src/features/inventory/MedicationInventoryCard.tsx) dispense flow to surface dosage instructions input.
-- [ ] `PharmacyReceiptPdf` via Stage 13 infra — `pdf-document-author`.
-- [ ] Sidebar entry `{ key: 'pharmacy', feature: 'pharmacy', icon: Pill }` — `feature-slice-scaffolder`.
-- [ ] i18n: new `pharmacy` namespace; English by hand, `i18n-translator` for the rest.
-- [ ] Tests: queue lists eligible meds, dispense decrements `onHand`, walk-in flow, receipt PDF, permission guard, feature gate.
+**Stage 22 contract notes for downstream consumers:**
+
+- **Queue eligibility** is `status === 'active' && inventoryItemId !== null`. Dispensing flips status to `'completed'`, so the row leaves the queue naturally. **No refills in v1** — if a script needs to be dispensed again, the prescriber must create a new `medications` row. Don't filter the queue on a join against `inventoryTransactions` to find "undispensed"; the status invariant is the source of truth.
+- **Walk-in writes two rows**: a new `medications` row AND an `inventoryTransaction`. The medication is what shows up in patient history; the transaction is what decrements stock. The two writes are sequential (`dbPut` opens its own Dexie tx), not atomic. If the medication insert succeeds and the transaction insert fails, you'd get a phantom "completed" medication with no stock movement. Out-of-scope for v1; document if Stage 27 audit catches it.
+- **`dispenseMedication()` is the only sanctioned dispense path now** — both the pharmacy queue and `MedicationInventoryCard` route through it. Don't call `recordStockMovement({ kind: 'dispense' })` directly from new feature code; it'll bypass the medication-status flip and the dosage-field persistence.
+- **`PharmacyReceiptPdf` keys translations off `i18next.t(key, { lng: locale })`**, not `useTranslation()`. PDFs render outside React's hook scope. Same pattern as `InvoicePdf`. Don't introduce a `useTranslation()` call to a PDF component — the global i18n state may not match the caller's locale.
+- **Receipt print is feature-gated by `pdf-export`** (not `pharmacy`). `PdfExportButton` short-circuits when `pdf-export` is off. Orgs that want printable receipts must enable both flags. The dispense itself still succeeds either way.
+- **`MedicationInventoryCard` now flips status to `'completed'` on dispense** — this is a behavior change from Stage 15, where dispensing only decremented stock. Any future caller that expects an active-status medication to remain active post-dispense will need to revisit this.
 
 ---
 
