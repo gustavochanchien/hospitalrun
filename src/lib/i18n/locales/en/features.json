@@ -32,6 +32,10 @@
     "label": "Patient documents",
     "description": "Upload and store arbitrary documents (consents, referrals, scans, faxes) against any patient with category tags and previews."
   },
+  "pharmacy": {
+    "label": "Pharmacy dispensary",
+    "description": "Run an in-house pharmacy: dispense prescribed medications from a queue or record over-the-counter walk-in sales, deducting stock and printing receipts."
+  },
   "toggle": {
     "enabled": "Enabled {{feature}}",
     "disabled": "Disabled {{feature}}"

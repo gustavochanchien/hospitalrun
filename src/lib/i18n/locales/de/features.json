@@ -32,6 +32,10 @@
     "label": "Patientendokumente",
     "description": "Laden Sie beliebige Dokumente (Einwilligungen, Überweisungen, Scans, Faxe) hoch und speichern Sie diese patientenbezogen mit Kategorie-Tags und Vorschaufunktion."
   },
+  "pharmacy": {
+    "label": "Krankenhausapotheke",
+    "description": "Betreiben Sie eine interne Apotheke: Medikamente aus einer Warteliste abgeben oder Laufkundschaftsverkäufe erfassen, Lagerbestand abziehen und Quittungen drucken."
+  },
   "toggle": {
     "enabled": "{{feature}} aktiviert",
     "disabled": "{{feature}} deaktiviert"

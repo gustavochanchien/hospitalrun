@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "药房"
+  },
+  "disabled": {
+    "title": "药房功能已禁用",
+    "description": "请联系管理员在设置中启用药房功能。"
+  },
+  "tabs": {
+    "queue": "发药队列",
+    "walkIn": "窗口自取"
+  },
+  "queue": {
+    "empty": "暂无待发药物。",
+    "unknownPatient": "未知患者",
+    "dispense": "发药",
+    "notAuthorized": "您无权查看发药队列。",
+    "columns": {
+      "patient": "患者",
+      "medication": "药物",
+      "item": "库存品目",
+      "onHand": "库存量",
+      "actions": "操作"
+    }
+  },
+  "dispense": {
+    "title": "发药",
+    "medication": "药物",
+    "patient": "患者",
+    "onHand": "库存量",
+    "quantity": "数量",
+    "dosageInstructions": "用药说明",
+    "route": "给药途径",
+    "routePlaceholder": "选择给药途径",
+    "frequency": "用药频率",
+    "frequencyPlaceholder": "例如：每日两次",
+    "submit": "发药",
+    "submitting": "发药中…",
+    "cancel": "取消",
+    "done": "完成",
+    "printReceipt": "打印收据",
+    "success": "发药成功。",
+    "routes": {
+      "oral": "口服",
+      "topical": "外用",
+      "inhaled": "吸入",
+      "injection": "注射",
+      "rectal": "直肠",
+      "ophthalmic": "眼用",
+      "otic": "耳用"
+    }
+  },
+  "walkIn": {
+    "patient": "患者",
+    "patientPlaceholder": "搜索患者…",
+    "noPatients": "未找到患者。",
+    "item": "库存品目",
+    "itemPlaceholder": "选择品目",
+    "name": "药物名称",
+    "submit": "记录发药",
+    "another": "继续记录",
+    "recorded": "窗口自取发药已记录。",
+    "recordedDetail": "已向 {{patient}} 发放 {{item}} {{quantity}} {{unit}}。",
+    "notAuthorized": "您无权记录窗口自取发药。"
+  },
+  "validation": {
+    "patientRequired": "请选择患者。",
+    "itemRequired": "请选择库存品目。",
+    "nameRequired": "请输入药物名称。",
+    "quantityPositive": "数量必须大于零。"
+  }
+}

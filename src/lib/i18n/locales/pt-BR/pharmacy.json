@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Farmácia"
+  },
+  "disabled": {
+    "title": "A farmácia está desativada",
+    "description": "Solicite a um administrador que ative o recurso de farmácia nas Configurações."
+  },
+  "tabs": {
+    "queue": "Fila de dispensação",
+    "walkIn": "Balcão"
+  },
+  "queue": {
+    "empty": "Nenhum medicamento pronto para dispensação.",
+    "unknownPatient": "Paciente desconhecido",
+    "dispense": "Dispensar",
+    "notAuthorized": "Você não tem permissão para visualizar a fila de dispensação.",
+    "columns": {
+      "patient": "Paciente",
+      "medication": "Medicamento",
+      "item": "Item de estoque",
+      "onHand": "Em estoque",
+      "actions": "Ações"
+    }
+  },
+  "dispense": {
+    "title": "Dispensar medicamento",
+    "medication": "Medicamento",
+    "patient": "Paciente",
+    "onHand": "Em estoque",
+    "quantity": "Quantidade",
+    "dosageInstructions": "Instruções de dosagem",
+    "route": "Via de administração",
+    "routePlaceholder": "Selecionar via",
+    "frequency": "Frequência",
+    "frequencyPlaceholder": "ex.: duas vezes ao dia",
+    "submit": "Dispensar",
+    "submitting": "Dispensando…",
+    "cancel": "Cancelar",
+    "done": "Concluído",
+    "printReceipt": "Imprimir recibo",
+    "success": "Medicamento dispensado.",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Tópica",
+      "inhaled": "Inalatória",
+      "injection": "Injeção",
+      "rectal": "Retal",
+      "ophthalmic": "Oftálmica",
+      "otic": "Ótica"
+    }
+  },
+  "walkIn": {
+    "patient": "Paciente",
+    "patientPlaceholder": "Buscar pacientes…",
+    "noPatients": "Nenhum paciente encontrado.",
+    "item": "Item de estoque",
+    "itemPlaceholder": "Selecionar item",
+    "name": "Nome do medicamento",
+    "submit": "Registrar dispensação",
+    "another": "Registrar outra",
+    "recorded": "Dispensação de balcão registrada.",
+    "recordedDetail": "Dispensados {{quantity}} {{unit}} de {{item}} para {{patient}}.",
+    "notAuthorized": "Você não tem permissão para registrar dispensações de balcão."
+  },
+  "validation": {
+    "patientRequired": "Selecione um paciente.",
+    "itemRequired": "Selecione um item de estoque.",
+    "nameRequired": "Informe o nome do medicamento.",
+    "quantityPositive": "A quantidade deve ser maior que zero."
+  }
+}

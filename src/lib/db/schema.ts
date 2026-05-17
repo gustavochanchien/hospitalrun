@@ -135,6 +135,9 @@ export interface Medication {
   endDate: string | null
   notes: string | null
   inventoryItemId: string | null
+  dosageInstructions: string | null
+  route: string | null
+  frequency: string | null
   deletedAt: string | null
   createdAt: string
   updatedAt: string

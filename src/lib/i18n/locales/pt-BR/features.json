@@ -32,6 +32,10 @@
     "label": "Documentos do paciente",
     "description": "Envie e armazene documentos variados (consentimentos, encaminhamentos, digitalizações, faxes) vinculados a qualquer paciente, com etiquetas de categoria e visualização prévia."
   },
+  "pharmacy": {
+    "label": "Farmácia interna",
+    "description": "Gerencie uma farmácia interna: dispense medicamentos prescritos por uma fila ou registre vendas de balcão, baixando o estoque e imprimindo recibos."
+  },
   "toggle": {
     "enabled": "{{feature}} ativado",
     "disabled": "{{feature}} desativado"

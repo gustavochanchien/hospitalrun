@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AuthIndexRouteImport } from './routes/_auth/index'
 import { Route as AuthSettingsIndexRouteImport } from './routes/_auth/settings/index'
+import { Route as AuthPharmacyIndexRouteImport } from './routes/_auth/pharmacy/index'
 import { Route as AuthPatientsIndexRouteImport } from './routes/_auth/patients/index'
 import { Route as AuthMedicationsIndexRouteImport } from './routes/_auth/medications/index'
 import { Route as AuthLabsIndexRouteImport } from './routes/_auth/labs/index'
@@ -65,6 +66,11 @@ const AuthIndexRoute = AuthIndexRouteImport.update({
 const AuthSettingsIndexRoute = AuthSettingsIndexRouteImport.update({
   id: '/settings/',
   path: '/settings/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthPharmacyIndexRoute = AuthPharmacyIndexRouteImport.update({
+  id: '/pharmacy/',
+  path: '/pharmacy/',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthPatientsIndexRoute = AuthPatientsIndexRouteImport.update({
@@ -243,6 +249,7 @@ export interface FileRoutesByFullPath {
   '/labs/': typeof AuthLabsIndexRoute
   '/medications/': typeof AuthMedicationsIndexRoute
   '/patients/': typeof AuthPatientsIndexRoute
+  '/pharmacy/': typeof AuthPharmacyIndexRoute
   '/settings/': typeof AuthSettingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -277,6 +284,7 @@ export interface FileRoutesByTo {
   '/labs': typeof AuthLabsIndexRoute
   '/medications': typeof AuthMedicationsIndexRoute
   '/patients': typeof AuthPatientsIndexRoute
+  '/pharmacy': typeof AuthPharmacyIndexRoute
   '/settings': typeof AuthSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -313,6 +321,7 @@ export interface FileRoutesById {
   '/_auth/labs/': typeof AuthLabsIndexRoute
   '/_auth/medications/': typeof AuthMedicationsIndexRoute
   '/_auth/patients/': typeof AuthPatientsIndexRoute
+  '/_auth/pharmacy/': typeof AuthPharmacyIndexRoute
   '/_auth/settings/': typeof AuthSettingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -349,6 +358,7 @@ export interface FileRouteTypes {
     | '/labs/'
     | '/medications/'
     | '/patients/'
+    | '/pharmacy/'
     | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -383,6 +393,7 @@ export interface FileRouteTypes {
     | '/labs'
     | '/medications'
     | '/patients'
+    | '/pharmacy'
     | '/settings'
   id:
     | '__root__'
@@ -418,6 +429,7 @@ export interface FileRouteTypes {
     | '/_auth/labs/'
     | '/_auth/medications/'
     | '/_auth/patients/'
+    | '/_auth/pharmacy/'
     | '/_auth/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -462,6 +474,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings/'
       preLoaderRoute: typeof AuthSettingsIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/pharmacy/': {
+      id: '/_auth/pharmacy/'
+      path: '/pharmacy'
+      fullPath: '/pharmacy/'
+      preLoaderRoute: typeof AuthPharmacyIndexRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_auth/patients/': {
@@ -693,6 +712,7 @@ interface AuthRouteChildren {
   AuthLabsIndexRoute: typeof AuthLabsIndexRoute
   AuthMedicationsIndexRoute: typeof AuthMedicationsIndexRoute
   AuthPatientsIndexRoute: typeof AuthPatientsIndexRoute
+  AuthPharmacyIndexRoute: typeof AuthPharmacyIndexRoute
   AuthSettingsIndexRoute: typeof AuthSettingsIndexRoute
 }
 
@@ -726,6 +746,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthLabsIndexRoute: AuthLabsIndexRoute,
   AuthMedicationsIndexRoute: AuthMedicationsIndexRoute,
   AuthPatientsIndexRoute: AuthPatientsIndexRoute,
+  AuthPharmacyIndexRoute: AuthPharmacyIndexRoute,
   AuthSettingsIndexRoute: AuthSettingsIndexRoute,
 }
 

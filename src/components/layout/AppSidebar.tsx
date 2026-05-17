@@ -6,6 +6,7 @@ import {
   CalendarDays,
   TestTubes,
   Pill,
+  PillBottle,
   ScanLine,
   Receipt,
   Package,
@@ -59,6 +60,7 @@ type NavItem = {
     | '/imaging'
     | '/billing'
     | '/inventory'
+    | '/pharmacy'
     | '/incidents'
     | '/audit-log'
     | '/settings'
@@ -76,6 +78,7 @@ const navItems: readonly NavItem[] = [
   { key: 'imaging', to: '/imaging', icon: ScanLine },
   { key: 'billing', to: '/billing', icon: Receipt, feature: 'billing' as const },
   { key: 'inventory', to: '/inventory', icon: Package, feature: 'inventory' as const },
+  { key: 'pharmacy', to: '/pharmacy', icon: PillBottle, feature: 'pharmacy' as const },
   { key: 'incidents', to: '/incidents', icon: AlertTriangle },
   { key: 'auditLog', to: '/audit-log', icon: Shield, permission: 'read:audit_log' as const },
   { key: 'settings', to: '/settings', icon: Settings },

@@ -64,6 +64,30 @@
       "result": "Henüz sonuç kaydedilmedi."
     }
   },
+  "pharmacy": {
+    "title": "Eczane Fişi",
+    "receiptNumber": "Fiş No",
+    "sections": {
+      "patient": "Hasta",
+      "medication": "İlaç",
+      "directions": "Kullanım talimatları"
+    },
+    "fields": {
+      "patient": "Hasta",
+      "mrn": "Hasta No",
+      "item": "Kalem",
+      "quantity": "Miktar",
+      "unit": "Birim",
+      "dispensedBy": "Dağıtan",
+      "dispensedAt": "Dağıtım tarihi",
+      "dosage": "Doz",
+      "route": "Uygulama yolu",
+      "frequency": "Kullanım sıklığı"
+    },
+    "empty": {
+      "directions": "Kullanım talimatı kaydedilmedi."
+    }
+  },
   "imagingReport": {
     "title": "Görüntüleme Raporu",
     "subtitle": "{{type}}",

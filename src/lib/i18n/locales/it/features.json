@@ -32,6 +32,10 @@
     "label": "Documenti del paziente",
     "description": "Carica e archivia documenti di qualsiasi tipo (consensi, referti di invio, scansioni, fax) associati a qualsiasi paziente, con tag di categoria e anteprima."
   },
+  "pharmacy": {
+    "label": "Farmacia interna",
+    "description": "Gestisci una farmacia interna: dispensa i farmaci prescritti da una coda o registra le vendite ad accesso diretto, scalando le scorte e stampando le ricevute."
+  },
   "toggle": {
     "enabled": "{{feature}} attivata",
     "disabled": "{{feature}} disattivata"

@@ -64,6 +64,30 @@
       "result": "Aún no se ha registrado ningún resultado."
     }
   },
+  "pharmacy": {
+    "title": "Recibo de farmacia",
+    "receiptNumber": "Recibo n.º",
+    "sections": {
+      "patient": "Paciente",
+      "medication": "Medicamento",
+      "directions": "Instrucciones de uso"
+    },
+    "fields": {
+      "patient": "Paciente",
+      "mrn": "NHC",
+      "item": "Artículo",
+      "quantity": "Cantidad",
+      "unit": "Unidad",
+      "dispensedBy": "Dispensado por",
+      "dispensedAt": "Dispensado el",
+      "dosage": "Dosificación",
+      "route": "Vía de administración",
+      "frequency": "Frecuencia"
+    },
+    "empty": {
+      "directions": "No se han registrado instrucciones."
+    }
+  },
   "imagingReport": {
     "title": "Informe de imagen",
     "subtitle": "{{type}}",

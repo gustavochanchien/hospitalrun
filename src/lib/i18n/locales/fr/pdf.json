@@ -64,6 +64,30 @@
       "result": "Aucun résultat n'a encore été enregistré."
     }
   },
+  "pharmacy": {
+    "title": "Reçu de pharmacie",
+    "receiptNumber": "Reçu n°",
+    "sections": {
+      "patient": "Patient",
+      "medication": "Médicament",
+      "directions": "Instructions d'utilisation"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "IPP",
+      "item": "Article",
+      "quantity": "Quantité",
+      "unit": "Unité",
+      "dispensedBy": "Dispensé par",
+      "dispensedAt": "Dispensé le",
+      "dosage": "Posologie",
+      "route": "Voie d'administration",
+      "frequency": "Fréquence"
+    },
+    "empty": {
+      "directions": "Aucune instruction enregistrée."
+    }
+  },
   "imagingReport": {
     "title": "Compte rendu d'imagerie",
     "subtitle": "{{type}}",

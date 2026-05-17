@@ -64,6 +64,30 @@
       "result": "まだ結果が記録されていません。"
     }
   },
+  "pharmacy": {
+    "title": "薬局領収書",
+    "receiptNumber": "領収書番号",
+    "sections": {
+      "patient": "患者",
+      "medication": "薬剤",
+      "directions": "用法・用量"
+    },
+    "fields": {
+      "patient": "患者",
+      "mrn": "患者番号",
+      "item": "品目",
+      "quantity": "数量",
+      "unit": "単位",
+      "dispensedBy": "払い出し担当者",
+      "dispensedAt": "払い出し日時",
+      "dosage": "用量",
+      "route": "投与経路",
+      "frequency": "服用頻度"
+    },
+    "empty": {
+      "directions": "用法・用量の記録はありません。"
+    }
+  },
   "imagingReport": {
     "title": "画像診断報告書",
     "subtitle": "{{type}}",

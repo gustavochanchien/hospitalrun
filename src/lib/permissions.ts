@@ -46,6 +46,8 @@ export const PERMISSIONS = [
   'read:documents',
   'write:documents',
   'delete:document',
+  'dispense:medication',
+  'read:pharmacy_queue',
   'read:audit_log',
   'export:audit_log',
   'manage:roles',
@@ -118,6 +120,7 @@ const CLINICAL_PERMISSIONS: Permission[] = [
   'read:documents',
   'write:documents',
   'delete:document',
+  'read:pharmacy_queue',
 ]
 
 const READ_PERMISSIONS: Permission[] = [
@@ -159,6 +162,8 @@ const PHARMACIST_PERMISSIONS: Permission[] = [
   'write:inventory',
   'adjust:stock',
   'receive:stock',
+  'dispense:medication',
+  'read:pharmacy_queue',
   'read:visit',
 ]
 

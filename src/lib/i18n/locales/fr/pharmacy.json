@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Pharmacie"
+  },
+  "disabled": {
+    "title": "La pharmacie est désactivée",
+    "description": "Demandez à un administrateur d'activer la fonctionnalité pharmacie dans les Paramètres."
+  },
+  "tabs": {
+    "queue": "File de dispensation",
+    "walkIn": "Accueil direct"
+  },
+  "queue": {
+    "empty": "Aucun médicament prêt à être dispensé.",
+    "unknownPatient": "Patient inconnu",
+    "dispense": "Dispenser",
+    "notAuthorized": "Vous n'avez pas la permission de consulter la file de dispensation.",
+    "columns": {
+      "patient": "Patient",
+      "medication": "Médicament",
+      "item": "Article en stock",
+      "onHand": "En stock",
+      "actions": "Actions"
+    }
+  },
+  "dispense": {
+    "title": "Dispenser un médicament",
+    "medication": "Médicament",
+    "patient": "Patient",
+    "onHand": "En stock",
+    "quantity": "Quantité",
+    "dosageInstructions": "Instructions posologiques",
+    "route": "Voie d'administration",
+    "routePlaceholder": "Sélectionner une voie",
+    "frequency": "Fréquence",
+    "frequencyPlaceholder": "ex. deux fois par jour",
+    "submit": "Dispenser",
+    "submitting": "Dispensation en cours…",
+    "cancel": "Annuler",
+    "done": "Terminé",
+    "printReceipt": "Imprimer le reçu",
+    "success": "Médicament dispensé.",
+    "routes": {
+      "oral": "Orale",
+      "topical": "Topique",
+      "inhaled": "Inhalée",
+      "injection": "Injection",
+      "rectal": "Rectale",
+      "ophthalmic": "Ophtalmique",
+      "otic": "Otique"
+    }
+  },
+  "walkIn": {
+    "patient": "Patient",
+    "patientPlaceholder": "Rechercher des patients…",
+    "noPatients": "Aucun patient trouvé.",
+    "item": "Article en stock",
+    "itemPlaceholder": "Sélectionner un article",
+    "name": "Nom du médicament",
+    "submit": "Enregistrer la dispensation",
+    "another": "Enregistrer une autre",
+    "recorded": "Dispensation en accueil direct enregistrée.",
+    "recordedDetail": "Dispensé {{quantity}} {{unit}} de {{item}} à {{patient}}.",
+    "notAuthorized": "Vous n'avez pas la permission d'enregistrer des dispensations en accueil direct."
+  },
+  "validation": {
+    "patientRequired": "Sélectionnez un patient.",
+    "itemRequired": "Sélectionnez un article en stock.",
+    "nameRequired": "Saisissez le nom du médicament.",
+    "quantityPositive": "La quantité doit être supérieure à zéro."
+  }
+}

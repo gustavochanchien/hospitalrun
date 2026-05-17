@@ -64,6 +64,30 @@
       "result": "Noch kein Ergebnis erfasst."
     }
   },
+  "pharmacy": {
+    "title": "Apothekenquittung",
+    "receiptNumber": "Quittung Nr.",
+    "sections": {
+      "patient": "Patient",
+      "medication": "Medikament",
+      "directions": "Anwendungshinweise"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "Patientennummer",
+      "item": "Artikel",
+      "quantity": "Menge",
+      "unit": "Einheit",
+      "dispensedBy": "Abgegeben von",
+      "dispensedAt": "Abgegeben am",
+      "dosage": "Dosierung",
+      "route": "Verabreichungsweg",
+      "frequency": "Einnahmehäufigkeit"
+    },
+    "empty": {
+      "directions": "Keine Anwendungshinweise erfasst."
+    }
+  },
   "imagingReport": {
     "title": "Befundbericht",
     "subtitle": "{{type}}",

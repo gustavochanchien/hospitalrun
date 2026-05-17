@@ -64,6 +64,30 @@
       "result": "No result has been recorded yet."
     }
   },
+  "pharmacy": {
+    "title": "Pharmacy Receipt",
+    "receiptNumber": "Receipt #",
+    "sections": {
+      "patient": "Patient",
+      "medication": "Medication",
+      "directions": "Directions for use"
+    },
+    "fields": {
+      "patient": "Patient",
+      "mrn": "MRN",
+      "item": "Item",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "dispensedBy": "Dispensed by",
+      "dispensedAt": "Dispensed at",
+      "dosage": "Dosage",
+      "route": "Route",
+      "frequency": "Frequency"
+    },
+    "empty": {
+      "directions": "No directions recorded."
+    }
+  },
   "imagingReport": {
     "title": "Imaging Report",
     "subtitle": "{{type}}",

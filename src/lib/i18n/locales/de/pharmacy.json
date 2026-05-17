@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Apotheke"
+  },
+  "disabled": {
+    "title": "Apotheke ist deaktiviert",
+    "description": "Bitten Sie einen Administrator, die Apotheken-Funktion in den Einstellungen zu aktivieren."
+  },
+  "tabs": {
+    "queue": "Abgabeliste",
+    "walkIn": "Laufkundschaft"
+  },
+  "queue": {
+    "empty": "Keine Medikamente zur Abgabe bereit.",
+    "unknownPatient": "Unbekannter Patient",
+    "dispense": "Abgeben",
+    "notAuthorized": "Sie haben keine Berechtigung, die Abgabeliste einzusehen.",
+    "columns": {
+      "patient": "Patient",
+      "medication": "Medikament",
+      "item": "Lagerartikel",
+      "onHand": "Lagerbestand",
+      "actions": "Aktionen"
+    }
+  },
+  "dispense": {
+    "title": "Medikament abgeben",
+    "medication": "Medikament",
+    "patient": "Patient",
+    "onHand": "Lagerbestand",
+    "quantity": "Menge",
+    "dosageInstructions": "Dosierungsanweisung",
+    "route": "Verabreichungsweg",
+    "routePlaceholder": "Verabreichungsweg auswählen",
+    "frequency": "Einnahmehäufigkeit",
+    "frequencyPlaceholder": "z. B. zweimal täglich",
+    "submit": "Abgeben",
+    "submitting": "Wird abgegeben…",
+    "cancel": "Abbrechen",
+    "done": "Fertig",
+    "printReceipt": "Quittung drucken",
+    "success": "Medikament abgegeben.",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Topisch",
+      "inhaled": "Inhalativ",
+      "injection": "Injektion",
+      "rectal": "Rektal",
+      "ophthalmic": "Ophthalmisch",
+      "otic": "Otisch"
+    }
+  },
+  "walkIn": {
+    "patient": "Patient",
+    "patientPlaceholder": "Patienten suchen…",
+    "noPatients": "Keine Patienten gefunden.",
+    "item": "Lagerartikel",
+    "itemPlaceholder": "Artikel auswählen",
+    "name": "Medikamentenname",
+    "submit": "Abgabe erfassen",
+    "another": "Weiteren erfassen",
+    "recorded": "Laufkundschaftsabgabe erfasst.",
+    "recordedDetail": "{{quantity}} {{unit}} von {{item}} an {{patient}} abgegeben.",
+    "notAuthorized": "Sie haben keine Berechtigung, Laufkundschaftsabgaben zu erfassen."
+  },
+  "validation": {
+    "patientRequired": "Bitte wählen Sie einen Patienten aus.",
+    "itemRequired": "Bitte wählen Sie einen Lagerartikel aus.",
+    "nameRequired": "Bitte geben Sie einen Medikamentennamen ein.",
+    "quantityPositive": "Die Menge muss größer als null sein."
+  }
+}

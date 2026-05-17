@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 import {
   Dialog,
   DialogContent,
@@ -33,7 +34,9 @@ import { db } from '@/lib/db'
 import { dbPut } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
 import type { Medication } from '@/lib/db/schema'
-import { recordStockMovement } from './stock-write'
+import { dispenseMedication } from '@/features/pharmacy/dispense'
+
+const ROUTES = ['oral', 'topical', 'inhaled', 'injection', 'rectal', 'ophthalmic', 'otic'] as const
 
 interface MedicationInventoryCardProps {
   medication: Medication
@@ -45,8 +48,14 @@ export function MedicationInventoryCard({
   medication,
 }: MedicationInventoryCardProps) {
   const { t } = useTranslation('inventory')
+  const { t: tPharm } = useTranslation('pharmacy')
   const [dispenseOpen, setDispenseOpen] = useState(false)
   const [dispenseQty, setDispenseQty] = useState('1')
+  const [dosageInstructions, setDosageInstructions] = useState(
+    medication.dosageInstructions ?? '',
+  )
+  const [route, setRoute] = useState(medication.route ?? '')
+  const [frequency, setFrequency] = useState(medication.frequency ?? '')
   const [submitting, setSubmitting] = useState(false)
 
   const items = useLiveQuery(
@@ -82,14 +91,14 @@ export function MedicationInventoryCard({
 
     setSubmitting(true)
     try {
-      await recordStockMovement({
+      await dispenseMedication({
+        kind: 'queue',
         orgId,
-        inventoryItemId: medication.inventoryItemId,
-        kind: 'dispense',
+        medication,
         quantity: qty,
-        patientId: medication.patientId,
-        medicationId: medication.id,
-        reference: medication.name,
+        dosageInstructions: dosageInstructions.trim() || null,
+        route: route || null,
+        frequency: frequency.trim() || null,
       })
       toast.success(t('dialog.recorded'))
       setDispenseOpen(false)
@@ -155,20 +164,61 @@ export function MedicationInventoryCard({
       </Card>
 
       <Dialog open={dispenseOpen} onOpenChange={setDispenseOpen}>
-        <DialogContent className="sm:max-w-sm">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>{t('detail.kind.dispense')}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-2">
-            <Label htmlFor="dispense-qty">{t('dialog.quantity')}</Label>
-            <Input
-              id="dispense-qty"
-              type="number"
-              step="0.01"
-              min="0"
-              value={dispenseQty}
-              onChange={(e) => setDispenseQty(e.target.value)}
-            />
+          <div className="space-y-3">
+            <div className="space-y-1">
+              <Label htmlFor="dispense-qty">{t('dialog.quantity')}</Label>
+              <Input
+                id="dispense-qty"
+                type="number"
+                step="0.01"
+                min="0"
+                value={dispenseQty}
+                onChange={(e) => setDispenseQty(e.target.value)}
+              />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="dispense-dosage">
+                {tPharm('dispense.dosageInstructions')}
+              </Label>
+              <Textarea
+                id="dispense-dosage"
+                rows={2}
+                value={dosageInstructions}
+                onChange={(e) => setDosageInstructions(e.target.value)}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label htmlFor="dispense-route">{tPharm('dispense.route')}</Label>
+                <Select value={route} onValueChange={setRoute}>
+                  <SelectTrigger id="dispense-route">
+                    <SelectValue placeholder={tPharm('dispense.routePlaceholder')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ROUTES.map((r) => (
+                      <SelectItem key={r} value={r}>
+                        {tPharm(`dispense.routes.${r}`)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="dispense-frequency">
+                  {tPharm('dispense.frequency')}
+                </Label>
+                <Input
+                  id="dispense-frequency"
+                  value={frequency}
+                  onChange={(e) => setFrequency(e.target.value)}
+                  placeholder={tPharm('dispense.frequencyPlaceholder')}
+                />
+              </div>
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setDispenseOpen(false)}>

@@ -124,22 +124,25 @@ create index idx_labs_org on labs (org_id);
 create index idx_labs_patient on labs (org_id, patient_id);
 
 create table medications (
-  id              uuid primary key default gen_random_uuid(),
-  org_id          uuid not null references organizations on delete cascade,
-  patient_id      uuid not null references patients on delete cascade,
-  visit_id        uuid references visits,
-  name            text not null,
-  status          text not null default 'draft' check (status in ('draft', 'active', 'on hold', 'canceled', 'completed', 'entered in error', 'stopped', 'unknown')),
-  intent          text,
-  priority        text,
-  quantity        text,
-  requested_by    uuid references profiles,
-  start_date      date,
-  end_date        date,
-  notes           text,
-  deleted_at      timestamptz,
-  created_at      timestamptz not null default now(),
-  updated_at      timestamptz not null default now()
+  id                  uuid primary key default gen_random_uuid(),
+  org_id              uuid not null references organizations on delete cascade,
+  patient_id          uuid not null references patients on delete cascade,
+  visit_id            uuid references visits,
+  name                text not null,
+  status              text not null default 'draft' check (status in ('draft', 'active', 'on hold', 'canceled', 'completed', 'entered in error', 'stopped', 'unknown')),
+  intent              text,
+  priority            text,
+  quantity            text,
+  requested_by        uuid references profiles,
+  start_date          date,
+  end_date            date,
+  notes               text,
+  dosage_instructions text,
+  route               text,
+  frequency           text,
+  deleted_at          timestamptz,
+  created_at          timestamptz not null default now(),
+  updated_at          timestamptz not null default now()
 );
 
 create index idx_medications_org on medications (org_id);
@@ -924,6 +927,7 @@ begin
       'read:vitals','write:vitals',
       'read:immunizations','write:immunizations',
       'read:documents','write:documents','delete:document',
+      'dispense:medication','read:pharmacy_queue',
       'read:audit_log','export:audit_log','manage:roles'
     ], true, true),
     (new_org_id, 'doctor', 'Doctor', array[
@@ -937,7 +941,8 @@ begin
       'read:inventory','write:inventory','receive:stock',
       'read:vitals','write:vitals',
       'read:immunizations','write:immunizations',
-      'read:documents','write:documents','delete:document'
+      'read:documents','write:documents','delete:document',
+      'read:pharmacy_queue'
     ], true, false),
     (new_org_id, 'nurse', 'Nurse', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
@@ -950,7 +955,8 @@ begin
       'read:inventory','write:inventory','receive:stock',
       'read:vitals','write:vitals',
       'read:immunizations','write:immunizations',
-      'read:documents','write:documents','delete:document'
+      'read:documents','write:documents','delete:document',
+      'read:pharmacy_queue'
     ], true, false),
     (new_org_id, 'user', 'Viewer', array[
       'read:patients','read:appointments','read:labs','read:medications','read:imaging',
@@ -963,7 +969,8 @@ begin
     ], true, false),
     (new_org_id, 'pharmacist', 'Pharmacist', array[
       'read:patients','read:medications','write:medications','complete:medication','cancel:medication',
-      'read:inventory','write:inventory','adjust:stock','receive:stock','read:visit'
+      'read:inventory','write:inventory','adjust:stock','receive:stock',
+      'dispense:medication','read:pharmacy_queue','read:visit'
     ], true, false);
 
   return new_org_id;

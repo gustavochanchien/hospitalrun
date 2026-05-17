@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Eczane"
+  },
+  "disabled": {
+    "title": "Eczane devre dışı",
+    "description": "Eczane özelliğini etkinleştirmek için bir yöneticiden Ayarlar'dan yapmasını isteyin."
+  },
+  "tabs": {
+    "queue": "Dağıtım kuyruğu",
+    "walkIn": "Doğrudan başvuru"
+  },
+  "queue": {
+    "empty": "Dağıtıma hazır ilaç bulunmuyor.",
+    "unknownPatient": "Bilinmeyen hasta",
+    "dispense": "Dağıt",
+    "notAuthorized": "Dağıtım kuyruğunu görüntüleme yetkiniz yok.",
+    "columns": {
+      "patient": "Hasta",
+      "medication": "İlaç",
+      "item": "Stok kalemi",
+      "onHand": "Mevcut stok",
+      "actions": "İşlemler"
+    }
+  },
+  "dispense": {
+    "title": "İlaç dağıt",
+    "medication": "İlaç",
+    "patient": "Hasta",
+    "onHand": "Mevcut stok",
+    "quantity": "Miktar",
+    "dosageInstructions": "Doz talimatları",
+    "route": "Uygulama yolu",
+    "routePlaceholder": "Uygulama yolu seçin",
+    "frequency": "Kullanım sıklığı",
+    "frequencyPlaceholder": "örn. günde iki kez",
+    "submit": "Dağıt",
+    "submitting": "Dağıtılıyor…",
+    "cancel": "İptal",
+    "done": "Tamam",
+    "printReceipt": "Fiş yazdır",
+    "success": "İlaç dağıtıldı.",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Topikal",
+      "inhaled": "İnhalasyon",
+      "injection": "Enjeksiyon",
+      "rectal": "Rektal",
+      "ophthalmic": "Oftalmik",
+      "otic": "Otik"
+    }
+  },
+  "walkIn": {
+    "patient": "Hasta",
+    "patientPlaceholder": "Hasta ara…",
+    "noPatients": "Hasta bulunamadı.",
+    "item": "Stok kalemi",
+    "itemPlaceholder": "Kalem seçin",
+    "name": "İlaç adı",
+    "submit": "Dağıtımı kaydet",
+    "another": "Başka birini kaydet",
+    "recorded": "Doğrudan başvuru dağıtımı kaydedildi.",
+    "recordedDetail": "{{patient}} hastasına {{item}} kaleminden {{quantity}} {{unit}} dağıtıldı.",
+    "notAuthorized": "Doğrudan başvuru dağıtımlarını kaydetme yetkiniz yok."
+  },
+  "validation": {
+    "patientRequired": "Bir hasta seçin.",
+    "itemRequired": "Bir stok kalemi seçin.",
+    "nameRequired": "İlaç adını girin.",
+    "quantityPositive": "Miktar sıfırdan büyük olmalıdır."
+  }
+}

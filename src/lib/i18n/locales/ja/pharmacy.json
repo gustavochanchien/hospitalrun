@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "薬局"
+  },
+  "disabled": {
+    "title": "薬局機能は無効です",
+    "description": "管理者に依頼して、設定から薬局機能を有効にしてください。"
+  },
+  "tabs": {
+    "queue": "払い出しキュー",
+    "walkIn": "窓口受付"
+  },
+  "queue": {
+    "empty": "払い出し可能な薬剤はありません。",
+    "unknownPatient": "不明な患者",
+    "dispense": "払い出す",
+    "notAuthorized": "払い出しキューを閲覧する権限がありません。",
+    "columns": {
+      "patient": "患者",
+      "medication": "薬剤",
+      "item": "在庫品目",
+      "onHand": "在庫数",
+      "actions": "操作"
+    }
+  },
+  "dispense": {
+    "title": "薬剤を払い出す",
+    "medication": "薬剤",
+    "patient": "患者",
+    "onHand": "在庫数",
+    "quantity": "数量",
+    "dosageInstructions": "用法・用量",
+    "route": "投与経路",
+    "routePlaceholder": "投与経路を選択",
+    "frequency": "服用頻度",
+    "frequencyPlaceholder": "例：1日2回",
+    "submit": "払い出す",
+    "submitting": "払い出し中…",
+    "cancel": "キャンセル",
+    "done": "完了",
+    "printReceipt": "領収書を印刷",
+    "success": "薬剤を払い出しました。",
+    "routes": {
+      "oral": "経口",
+      "topical": "外用",
+      "inhaled": "吸入",
+      "injection": "注射",
+      "rectal": "直腸",
+      "ophthalmic": "点眼",
+      "otic": "点耳"
+    }
+  },
+  "walkIn": {
+    "patient": "患者",
+    "patientPlaceholder": "患者を検索…",
+    "noPatients": "患者が見つかりません。",
+    "item": "在庫品目",
+    "itemPlaceholder": "品目を選択",
+    "name": "薬剤名",
+    "submit": "払い出しを記録",
+    "another": "続けて記録",
+    "recorded": "窓口受付の払い出しを記録しました。",
+    "recordedDetail": "{{patient}} に {{item}} を {{quantity}} {{unit}} 払い出しました。",
+    "notAuthorized": "窓口受付の払い出しを記録する権限がありません。"
+  },
+  "validation": {
+    "patientRequired": "患者を選択してください。",
+    "itemRequired": "在庫品目を選択してください。",
+    "nameRequired": "薬剤名を入力してください。",
+    "quantityPositive": "数量は0より大きい値を入力してください。"
+  }
+}

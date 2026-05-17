@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Pharmacy"
+  },
+  "disabled": {
+    "title": "Pharmacy is disabled",
+    "description": "Ask an administrator to enable the pharmacy feature in Settings."
+  },
+  "tabs": {
+    "queue": "Dispense queue",
+    "walkIn": "Walk-in"
+  },
+  "queue": {
+    "empty": "No medications are ready to dispense.",
+    "unknownPatient": "Unknown patient",
+    "dispense": "Dispense",
+    "notAuthorized": "You don't have permission to view the dispense queue.",
+    "columns": {
+      "patient": "Patient",
+      "medication": "Medication",
+      "item": "Inventory item",
+      "onHand": "On hand",
+      "actions": "Actions"
+    }
+  },
+  "dispense": {
+    "title": "Dispense medication",
+    "medication": "Medication",
+    "patient": "Patient",
+    "onHand": "On hand",
+    "quantity": "Quantity",
+    "dosageInstructions": "Dosage instructions",
+    "route": "Route",
+    "routePlaceholder": "Select route",
+    "frequency": "Frequency",
+    "frequencyPlaceholder": "e.g. twice daily",
+    "submit": "Dispense",
+    "submitting": "Dispensing…",
+    "cancel": "Cancel",
+    "done": "Done",
+    "printReceipt": "Print receipt",
+    "success": "Medication dispensed.",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Topical",
+      "inhaled": "Inhaled",
+      "injection": "Injection",
+      "rectal": "Rectal",
+      "ophthalmic": "Ophthalmic",
+      "otic": "Otic"
+    }
+  },
+  "walkIn": {
+    "patient": "Patient",
+    "patientPlaceholder": "Search patients…",
+    "noPatients": "No patients found.",
+    "item": "Inventory item",
+    "itemPlaceholder": "Select an item",
+    "name": "Medication name",
+    "submit": "Record dispense",
+    "another": "Record another",
+    "recorded": "Walk-in dispense recorded.",
+    "recordedDetail": "Dispensed {{quantity}} {{unit}} of {{item}} to {{patient}}.",
+    "notAuthorized": "You don't have permission to record walk-in dispenses."
+  },
+  "validation": {
+    "patientRequired": "Select a patient.",
+    "itemRequired": "Select an inventory item.",
+    "nameRequired": "Enter a medication name.",
+    "quantityPositive": "Quantity must be greater than zero."
+  }
+}

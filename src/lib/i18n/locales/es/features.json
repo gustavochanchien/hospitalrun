@@ -32,6 +32,10 @@
     "label": "Documentos del paciente",
     "description": "Suba y almacene documentos arbitrarios (consentimientos, derivaciones, escaneos, faxes) asociados a cualquier paciente con etiquetas de categoría y vista previa."
   },
+  "pharmacy": {
+    "label": "Farmacia interna",
+    "description": "Gestione una farmacia interna: dispense medicamentos prescritos desde una cola o registre ventas directas en mostrador, descontando el inventario e imprimiendo recibos."
+  },
   "toggle": {
     "enabled": "{{feature}} activada",
     "disabled": "{{feature}} desactivada"

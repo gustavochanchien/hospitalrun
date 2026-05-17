@@ -64,6 +64,30 @@
       "result": "لم يتم تسجيل أي نتيجة بعد."
     }
   },
+  "pharmacy": {
+    "title": "إيصال الصيدلية",
+    "receiptNumber": "رقم الإيصال #",
+    "sections": {
+      "patient": "المريض",
+      "medication": "الدواء",
+      "directions": "تعليمات الاستخدام"
+    },
+    "fields": {
+      "patient": "المريض",
+      "mrn": "رقم السجل الطبي",
+      "item": "الصنف",
+      "quantity": "الكمية",
+      "unit": "الوحدة",
+      "dispensedBy": "صُرف بواسطة",
+      "dispensedAt": "تاريخ الصرف",
+      "dosage": "الجرعة",
+      "route": "طريقة التناول",
+      "frequency": "التكرار"
+    },
+    "empty": {
+      "directions": "لم يتم تسجيل أي تعليمات."
+    }
+  },
   "imagingReport": {
     "title": "تقرير التصوير",
     "subtitle": "{{type}}",

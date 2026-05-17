@@ -32,6 +32,10 @@
     "label": "Documents patient",
     "description": "Téléversez et stockez des documents variés (consentements, adressages, numérisations, télécopies) associés à chaque patient, avec étiquettes de catégorie et aperçu."
   },
+  "pharmacy": {
+    "label": "Pharmacie interne",
+    "description": "Gérez une pharmacie interne : dispensez les médicaments prescrits depuis une file d'attente ou enregistrez les ventes en accueil direct, en déduisant le stock et en imprimant les reçus."
+  },
   "toggle": {
     "enabled": "{{feature}} activée",
     "disabled": "{{feature}} désactivée"

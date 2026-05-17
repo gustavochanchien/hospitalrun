@@ -32,6 +32,10 @@
     "label": "Dokumen pasien",
     "description": "Unggah dan simpan dokumen apa pun (persetujuan, rujukan, pindaian, faks) yang terkait dengan pasien mana pun, lengkap dengan label kategori dan pratinjau."
   },
+  "pharmacy": {
+    "label": "Apotek internal",
+    "description": "Jalankan apotek internal: dispensasi obat resep dari antrean atau catat penjualan kunjungan langsung, dengan pengurangan stok otomatis dan pencetakan struk."
+  },
   "toggle": {
     "enabled": "{{feature}} diaktifkan",
     "disabled": "{{feature}} dinonaktifkan"

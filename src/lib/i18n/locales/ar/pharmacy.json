@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "الصيدلية"
+  },
+  "disabled": {
+    "title": "الصيدلية معطّلة",
+    "description": "اطلب من مسؤول تفعيل ميزة الصيدلية في الإعدادات."
+  },
+  "tabs": {
+    "queue": "قائمة الصرف",
+    "walkIn": "مراجع مباشر"
+  },
+  "queue": {
+    "empty": "لا توجد أدوية جاهزة للصرف.",
+    "unknownPatient": "مريض غير معروف",
+    "dispense": "صرف",
+    "notAuthorized": "ليس لديك صلاحية لعرض قائمة الصرف.",
+    "columns": {
+      "patient": "المريض",
+      "medication": "الدواء",
+      "item": "عنصر المخزون",
+      "onHand": "المتوفر",
+      "actions": "الإجراءات"
+    }
+  },
+  "dispense": {
+    "title": "صرف دواء",
+    "medication": "الدواء",
+    "patient": "المريض",
+    "onHand": "المتوفر",
+    "quantity": "الكمية",
+    "dosageInstructions": "تعليمات الجرعة",
+    "route": "طريقة التناول",
+    "routePlaceholder": "اختر طريقة التناول",
+    "frequency": "التكرار",
+    "frequencyPlaceholder": "مثل: مرتين يوميًا",
+    "submit": "صرف",
+    "submitting": "جارٍ الصرف…",
+    "cancel": "إلغاء",
+    "done": "تم",
+    "printReceipt": "طباعة الإيصال",
+    "success": "تم صرف الدواء.",
+    "routes": {
+      "oral": "فموي",
+      "topical": "موضعي",
+      "inhaled": "استنشاقي",
+      "injection": "حقن",
+      "rectal": "شرجي",
+      "ophthalmic": "عيني",
+      "otic": "أذني"
+    }
+  },
+  "walkIn": {
+    "patient": "المريض",
+    "patientPlaceholder": "ابحث عن مريض…",
+    "noPatients": "لم يتم العثور على مرضى.",
+    "item": "عنصر المخزون",
+    "itemPlaceholder": "اختر عنصرًا",
+    "name": "اسم الدواء",
+    "submit": "تسجيل الصرف",
+    "another": "تسجيل آخر",
+    "recorded": "تم تسجيل صرف المراجع المباشر.",
+    "recordedDetail": "تم صرف {{quantity}} {{unit}} من {{item}} إلى {{patient}}.",
+    "notAuthorized": "ليس لديك صلاحية لتسجيل صرف المراجعين المباشرين."
+  },
+  "validation": {
+    "patientRequired": "اختر مريضًا.",
+    "itemRequired": "اختر عنصرًا من المخزون.",
+    "nameRequired": "أدخل اسم الدواء.",
+    "quantityPositive": "يجب أن تكون الكمية أكبر من الصفر."
+  }
+}

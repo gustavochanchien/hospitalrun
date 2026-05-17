@@ -32,6 +32,10 @@
     "label": "Hasta belgeleri",
     "description": "Herhangi bir hasta için kategori etiketleri ve önizleme özelliğiyle birlikte isteğe bağlı belgeleri (onamlar, sevkler, taramalar, fakslar) yükleyin ve saklayın."
   },
+  "pharmacy": {
+    "label": "Kurum içi eczane",
+    "description": "Kurum içi bir eczane işletin: kuyruktan reçeteli ilaçları dağıtın veya doğrudan başvuru satışlarını kaydedin; stoktan otomatik düşüm yapın ve fiş yazdırın."
+  },
   "toggle": {
     "enabled": "{{feature}} etkinleştirildi",
     "disabled": "{{feature}} devre dışı bırakıldı"

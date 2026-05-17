@@ -64,6 +64,30 @@
       "result": "Nessun risultato ancora registrato."
     }
   },
+  "pharmacy": {
+    "title": "Ricevuta farmacia",
+    "receiptNumber": "Ricevuta n.",
+    "sections": {
+      "patient": "Paziente",
+      "medication": "Farmaco",
+      "directions": "Istruzioni per l'uso"
+    },
+    "fields": {
+      "patient": "Paziente",
+      "mrn": "NRE",
+      "item": "Articolo",
+      "quantity": "Quantità",
+      "unit": "Unità",
+      "dispensedBy": "Dispensato da",
+      "dispensedAt": "Dispensato il",
+      "dosage": "Dosaggio",
+      "route": "Via di somministrazione",
+      "frequency": "Frequenza"
+    },
+    "empty": {
+      "directions": "Nessuna istruzione registrata."
+    }
+  },
   "imagingReport": {
     "title": "Referto radiologico",
     "subtitle": "{{type}}",

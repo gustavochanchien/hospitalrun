@@ -64,6 +64,30 @@
       "result": "Nenhum resultado foi registrado ainda."
     }
   },
+  "pharmacy": {
+    "title": "Recibo de Farmácia",
+    "receiptNumber": "Recibo n.º",
+    "sections": {
+      "patient": "Paciente",
+      "medication": "Medicamento",
+      "directions": "Instruções de uso"
+    },
+    "fields": {
+      "patient": "Paciente",
+      "mrn": "Prontuário",
+      "item": "Item",
+      "quantity": "Quantidade",
+      "unit": "Unidade",
+      "dispensedBy": "Dispensado por",
+      "dispensedAt": "Dispensado em",
+      "dosage": "Dosagem",
+      "route": "Via de administração",
+      "frequency": "Frequência"
+    },
+    "empty": {
+      "directions": "Nenhuma instrução registrada."
+    }
+  },
   "imagingReport": {
     "title": "Laudo de Imagem",
     "subtitle": "{{type}}",

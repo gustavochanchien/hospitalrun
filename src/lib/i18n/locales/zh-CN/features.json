@@ -32,6 +32,10 @@
     "label": "患者文档",
     "description": "为任意患者上传并存储各类文档（知情同意书、转诊单、扫描件、传真），支持类别标签和在线预览。"
   },
+  "pharmacy": {
+    "label": "院内药房",
+    "description": "运营院内药房：从队列中发放处方药，或记录窗口自取销售，自动扣减库存并打印收据。"
+  },
   "toggle": {
     "enabled": "已启用 {{feature}}",
     "disabled": "已禁用 {{feature}}"

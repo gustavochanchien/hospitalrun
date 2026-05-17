@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Farmacia"
+  },
+  "disabled": {
+    "title": "La farmacia è disabilitata",
+    "description": "Chiedi a un amministratore di abilitare la funzionalità farmacia nelle Impostazioni."
+  },
+  "tabs": {
+    "queue": "Coda di dispensazione",
+    "walkIn": "Accesso diretto"
+  },
+  "queue": {
+    "empty": "Nessun farmaco pronto per la dispensazione.",
+    "unknownPatient": "Paziente sconosciuto",
+    "dispense": "Dispensa",
+    "notAuthorized": "Non hai l'autorizzazione per visualizzare la coda di dispensazione.",
+    "columns": {
+      "patient": "Paziente",
+      "medication": "Farmaco",
+      "item": "Articolo di magazzino",
+      "onHand": "Disponibile",
+      "actions": "Azioni"
+    }
+  },
+  "dispense": {
+    "title": "Dispensa farmaco",
+    "medication": "Farmaco",
+    "patient": "Paziente",
+    "onHand": "Disponibile",
+    "quantity": "Quantità",
+    "dosageInstructions": "Istruzioni posologiche",
+    "route": "Via di somministrazione",
+    "routePlaceholder": "Seleziona via",
+    "frequency": "Frequenza",
+    "frequencyPlaceholder": "es. due volte al giorno",
+    "submit": "Dispensa",
+    "submitting": "Dispensazione in corso…",
+    "cancel": "Annulla",
+    "done": "Fine",
+    "printReceipt": "Stampa ricevuta",
+    "success": "Farmaco dispensato.",
+    "routes": {
+      "oral": "Orale",
+      "topical": "Topica",
+      "inhaled": "Inalatoria",
+      "injection": "Iniezione",
+      "rectal": "Rettale",
+      "ophthalmic": "Oftalmica",
+      "otic": "Otica"
+    }
+  },
+  "walkIn": {
+    "patient": "Paziente",
+    "patientPlaceholder": "Cerca pazienti…",
+    "noPatients": "Nessun paziente trovato.",
+    "item": "Articolo di magazzino",
+    "itemPlaceholder": "Seleziona articolo",
+    "name": "Nome del farmaco",
+    "submit": "Registra dispensazione",
+    "another": "Registra un'altra",
+    "recorded": "Dispensazione ad accesso diretto registrata.",
+    "recordedDetail": "Dispensati {{quantity}} {{unit}} di {{item}} a {{patient}}.",
+    "notAuthorized": "Non hai l'autorizzazione per registrare dispensazioni ad accesso diretto."
+  },
+  "validation": {
+    "patientRequired": "Seleziona un paziente.",
+    "itemRequired": "Seleziona un articolo di magazzino.",
+    "nameRequired": "Inserisci il nome del farmaco.",
+    "quantityPositive": "La quantità deve essere maggiore di zero."
+  }
+}

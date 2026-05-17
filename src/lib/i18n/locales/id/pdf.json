@@ -64,6 +64,30 @@
       "result": "Belum ada hasil yang dicatat."
     }
   },
+  "pharmacy": {
+    "title": "Struk Farmasi",
+    "receiptNumber": "No. Struk",
+    "sections": {
+      "patient": "Pasien",
+      "medication": "Obat",
+      "directions": "Petunjuk penggunaan"
+    },
+    "fields": {
+      "patient": "Pasien",
+      "mrn": "No. Rekam Medis",
+      "item": "Item",
+      "quantity": "Jumlah",
+      "unit": "Satuan",
+      "dispensedBy": "Didispensasi oleh",
+      "dispensedAt": "Waktu dispensasi",
+      "dosage": "Dosis",
+      "route": "Rute pemberian",
+      "frequency": "Frekuensi"
+    },
+    "empty": {
+      "directions": "Tidak ada petunjuk yang dicatat."
+    }
+  },
   "imagingReport": {
     "title": "Laporan Pencitraan",
     "subtitle": "{{type}}",

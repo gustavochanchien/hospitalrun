@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Farmasi"
+  },
+  "disabled": {
+    "title": "Farmasi dinonaktifkan",
+    "description": "Minta administrator untuk mengaktifkan fitur farmasi di Pengaturan."
+  },
+  "tabs": {
+    "queue": "Antrean dispensasi",
+    "walkIn": "Kunjungan langsung"
+  },
+  "queue": {
+    "empty": "Tidak ada obat yang siap untuk didispensasi.",
+    "unknownPatient": "Pasien tidak diketahui",
+    "dispense": "Dispensasi",
+    "notAuthorized": "Anda tidak memiliki izin untuk melihat antrean dispensasi.",
+    "columns": {
+      "patient": "Pasien",
+      "medication": "Obat",
+      "item": "Item inventaris",
+      "onHand": "Stok tersedia",
+      "actions": "Tindakan"
+    }
+  },
+  "dispense": {
+    "title": "Dispensasi obat",
+    "medication": "Obat",
+    "patient": "Pasien",
+    "onHand": "Stok tersedia",
+    "quantity": "Jumlah",
+    "dosageInstructions": "Petunjuk dosis",
+    "route": "Rute pemberian",
+    "routePlaceholder": "Pilih rute",
+    "frequency": "Frekuensi",
+    "frequencyPlaceholder": "mis. dua kali sehari",
+    "submit": "Dispensasi",
+    "submitting": "Sedang mendispensasi…",
+    "cancel": "Batal",
+    "done": "Selesai",
+    "printReceipt": "Cetak struk",
+    "success": "Obat berhasil didispensasi.",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Topikal",
+      "inhaled": "Inhalasi",
+      "injection": "Injeksi",
+      "rectal": "Rektal",
+      "ophthalmic": "Oftalmik",
+      "otic": "Otik"
+    }
+  },
+  "walkIn": {
+    "patient": "Pasien",
+    "patientPlaceholder": "Cari pasien…",
+    "noPatients": "Pasien tidak ditemukan.",
+    "item": "Item inventaris",
+    "itemPlaceholder": "Pilih item",
+    "name": "Nama obat",
+    "submit": "Catat dispensasi",
+    "another": "Catat yang lain",
+    "recorded": "Dispensasi kunjungan langsung dicatat.",
+    "recordedDetail": "Didispensasi {{quantity}} {{unit}} dari {{item}} kepada {{patient}}.",
+    "notAuthorized": "Anda tidak memiliki izin untuk mencatat dispensasi kunjungan langsung."
+  },
+  "validation": {
+    "patientRequired": "Pilih pasien.",
+    "itemRequired": "Pilih item inventaris.",
+    "nameRequired": "Masukkan nama obat.",
+    "quantityPositive": "Jumlah harus lebih besar dari nol."
+  }
+}

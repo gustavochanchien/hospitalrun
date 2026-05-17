@@ -1,0 +1,72 @@
+{
+  "page": {
+    "title": "Farmacia"
+  },
+  "disabled": {
+    "title": "La farmacia está desactivada",
+    "description": "Solicite a un administrador que active la función de farmacia en Ajustes."
+  },
+  "tabs": {
+    "queue": "Cola de dispensación",
+    "walkIn": "Mostrador"
+  },
+  "queue": {
+    "empty": "No hay medicamentos listos para dispensar.",
+    "unknownPatient": "Paciente desconocido",
+    "dispense": "Dispensar",
+    "notAuthorized": "No tiene permiso para ver la cola de dispensación.",
+    "columns": {
+      "patient": "Paciente",
+      "medication": "Medicamento",
+      "item": "Artículo de inventario",
+      "onHand": "Existencias",
+      "actions": "Acciones"
+    }
+  },
+  "dispense": {
+    "title": "Dispensar medicamento",
+    "medication": "Medicamento",
+    "patient": "Paciente",
+    "onHand": "Existencias",
+    "quantity": "Cantidad",
+    "dosageInstructions": "Instrucciones de dosificación",
+    "route": "Vía de administración",
+    "routePlaceholder": "Seleccionar vía",
+    "frequency": "Frecuencia",
+    "frequencyPlaceholder": "p. ej. dos veces al día",
+    "submit": "Dispensar",
+    "submitting": "Dispensando…",
+    "cancel": "Cancelar",
+    "done": "Listo",
+    "printReceipt": "Imprimir recibo",
+    "success": "Medicamento dispensado.",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Tópico",
+      "inhaled": "Inhalado",
+      "injection": "Inyección",
+      "rectal": "Rectal",
+      "ophthalmic": "Oftálmico",
+      "otic": "Ótico"
+    }
+  },
+  "walkIn": {
+    "patient": "Paciente",
+    "patientPlaceholder": "Buscar pacientes…",
+    "noPatients": "No se encontraron pacientes.",
+    "item": "Artículo de inventario",
+    "itemPlaceholder": "Seleccionar artículo",
+    "name": "Nombre del medicamento",
+    "submit": "Registrar dispensación",
+    "another": "Registrar otra",
+    "recorded": "Dispensación en mostrador registrada.",
+    "recordedDetail": "Se dispensaron {{quantity}} {{unit}} de {{item}} a {{patient}}.",
+    "notAuthorized": "No tiene permiso para registrar dispensaciones en mostrador."
+  },
+  "validation": {
+    "patientRequired": "Seleccione un paciente.",
+    "itemRequired": "Seleccione un artículo de inventario.",
+    "nameRequired": "Introduzca el nombre del medicamento.",
+    "quantityPositive": "La cantidad debe ser mayor que cero."
+  }
+}

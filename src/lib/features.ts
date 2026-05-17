@@ -16,6 +16,7 @@ export const FEATURES = [
   'trends',
   'immunizations',
   'documents',
+  'pharmacy',
 ] as const
 
 export type Feature = (typeof FEATURES)[number]
@@ -63,6 +64,11 @@ export const FEATURE_METADATA: Record<Feature, FeatureMetadata> = {
   documents: {
     labelKey: 'documents.label',
     descriptionKey: 'documents.description',
+    defaultOn: false,
+  },
+  pharmacy: {
+    labelKey: 'pharmacy.label',
+    descriptionKey: 'pharmacy.description',
     defaultOn: false,
   },
 }

@@ -64,6 +64,30 @@
       "result": "尚未记录任何结果。"
     }
   },
+  "pharmacy": {
+    "title": "药房收据",
+    "receiptNumber": "收据编号",
+    "sections": {
+      "patient": "患者",
+      "medication": "药物",
+      "directions": "用药说明"
+    },
+    "fields": {
+      "patient": "患者",
+      "mrn": "病历号",
+      "item": "品目",
+      "quantity": "数量",
+      "unit": "单位",
+      "dispensedBy": "发药人",
+      "dispensedAt": "发药时间",
+      "dosage": "剂量",
+      "route": "给药途径",
+      "frequency": "用药频率"
+    },
+    "empty": {
+      "directions": "暂无用药说明记录。"
+    }
+  },
   "imagingReport": {
     "title": "影像报告",
     "subtitle": "{{type}}",

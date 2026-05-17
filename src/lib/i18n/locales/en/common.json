@@ -50,6 +50,7 @@
     "imaging": "Imaging",
     "billing": "Billing",
     "inventory": "Inventory",
+    "pharmacy": "Pharmacy",
     "incidents": "Incidents",
     "settings": "Settings",
     "auditLog": "Audit Log"
