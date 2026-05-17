@@ -76,7 +76,8 @@
     "billing": "Billing",
     "vitals": "Vitals",
     "trends": "Trends",
-    "immunizations": "Immunizations"
+    "immunizations": "Immunizations",
+    "documents": "Documents"
   },
   "list": {
     "statusPlaceholder": "Status",

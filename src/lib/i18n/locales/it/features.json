@@ -28,6 +28,10 @@
     "label": "Registro vaccinazioni",
     "description": "Tieni traccia dei vaccini somministrati a ciascun paziente, inclusi numero di dose, lotto, produttore e date delle dosi successive."
   },
+  "documents": {
+    "label": "Documenti del paziente",
+    "description": "Carica e archivia documenti di qualsiasi tipo (consensi, referti di invio, scansioni, fax) associati a qualsiasi paziente, con tag di categoria e anteprima."
+  },
   "toggle": {
     "enabled": "{{feature}} attivata",
     "disabled": "{{feature}} disattivata"

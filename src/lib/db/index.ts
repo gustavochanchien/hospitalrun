@@ -11,6 +11,7 @@ import type {
   Allergy,
   Vital,
   Immunization,
+  PatientDocument,
   Note,
   RelatedPerson,
   CareGoal,
@@ -42,6 +43,7 @@ export class HospitalRunDB extends Dexie {
   allergies!: Dexie.Table<Allergy, string>
   vitals!: Dexie.Table<Vital, string>
   immunizations!: Dexie.Table<Immunization, string>
+  patientDocuments!: Dexie.Table<PatientDocument, string>
   notes!: Dexie.Table<Note, string>
   relatedPersons!: Dexie.Table<RelatedPerson, string>
   careGoals!: Dexie.Table<CareGoal, string>
@@ -159,6 +161,12 @@ export class HospitalRunDB extends Dexie {
     this.version(10).stores({
       immunizations:
         'id, orgId, patientId, visitId, administeredAt, nextDueAt, [patientId+administeredAt], _synced',
+    })
+
+    // v11: generic patient document repository (consents, referrals, scans, etc.)
+    this.version(11).stores({
+      patientDocuments:
+        'id, orgId, patientId, visitId, uploadedAt, [patientId+uploadedAt], _synced',
     })
   }
 }

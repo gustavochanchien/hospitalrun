@@ -28,6 +28,10 @@
     "label": "Registre vaccinal",
     "description": "Suivez les vaccins administrés à chaque patient, y compris le numéro de dose, le lot, le fabricant et les dates de rappel."
   },
+  "documents": {
+    "label": "Documents patient",
+    "description": "Téléversez et stockez des documents variés (consentements, adressages, numérisations, télécopies) associés à chaque patient, avec étiquettes de catégorie et aperçu."
+  },
   "toggle": {
     "enabled": "{{feature}} activée",
     "disabled": "{{feature}} désactivée"

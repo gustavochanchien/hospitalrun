@@ -1,0 +1,53 @@
+{
+  "title": "ドキュメント",
+  "save": "保存",
+  "cancel": "キャンセル",
+  "delete": "削除",
+  "uploading": "アップロード中…",
+  "loading": "読み込み中…",
+  "noResults": "まだドキュメントがアップロードされていません。",
+  "permissionDenied": "ドキュメントを表示する権限がありません。",
+  "upload": {
+    "button": "ドキュメントをアップロード",
+    "title": "ドキュメントをアップロード",
+    "description": "この患者の記録にファイルを添付します。"
+  },
+  "fields": {
+    "file": "ファイル",
+    "title": "タイトル",
+    "category": "カテゴリ",
+    "description": "説明"
+  },
+  "categories": {
+    "consent": "同意書",
+    "referral": "紹介状",
+    "scan": "スキャン",
+    "other": "その他"
+  },
+  "table": {
+    "uploadedAt": "アップロード日",
+    "title": "タイトル",
+    "category": "カテゴリ",
+    "size": "サイズ"
+  },
+  "preview": {
+    "action": "プレビュー",
+    "title": "ドキュメントプレビュー",
+    "download": "ダウンロード",
+    "unsupported": "このファイル形式はブラウザでプレビューできません。別のアプリで開くにはダウンロードしてください。",
+    "error": "ドキュメントの読み込みに失敗しました。"
+  },
+  "confirmDelete": {
+    "title": "このドキュメントを削除しますか？",
+    "description": "ファイルはストレージから削除されます。この操作は元に戻せません。"
+  },
+  "localHub": {
+    "uploadDisabled": "ローカルハブモードではドキュメントのアップロードが無効です。アップロードを有効にするには、クラウドバックアップを設定してください。"
+  },
+  "errors": {
+    "fileRequired": "アップロードするファイルを選択してください。",
+    "titleRequired": "タイトルは必須です。",
+    "missingOrg": "組織を特定できませんでした。再度サインインしてください。",
+    "uploadFailed": "ドキュメントのアップロードに失敗しました。"
+  }
+}

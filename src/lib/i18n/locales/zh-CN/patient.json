@@ -76,7 +76,8 @@
     "billing": "账单",
     "vitals": "生命体征",
     "trends": "趋势",
-    "immunizations": "疫苗接种"
+    "immunizations": "疫苗接种",
+    "documents": "文档"
   },
   "list": {
     "statusPlaceholder": "状态",

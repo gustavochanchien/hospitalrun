@@ -1,0 +1,53 @@
+{
+  "title": "Dokumente",
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "uploading": "Wird hochgeladen…",
+  "loading": "Wird geladen…",
+  "noResults": "Es wurden noch keine Dokumente hochgeladen.",
+  "permissionDenied": "Sie haben keine Berechtigung, Dokumente anzuzeigen.",
+  "upload": {
+    "button": "Dokument hochladen",
+    "title": "Dokument hochladen",
+    "description": "Hängen Sie eine Datei an die Akte dieses Patienten an."
+  },
+  "fields": {
+    "file": "Datei",
+    "title": "Titel",
+    "category": "Kategorie",
+    "description": "Beschreibung"
+  },
+  "categories": {
+    "consent": "Einwilligung",
+    "referral": "Überweisung",
+    "scan": "Scan",
+    "other": "Sonstiges"
+  },
+  "table": {
+    "uploadedAt": "Hochgeladen",
+    "title": "Titel",
+    "category": "Kategorie",
+    "size": "Größe"
+  },
+  "preview": {
+    "action": "Vorschau",
+    "title": "Dokumentvorschau",
+    "download": "Herunterladen",
+    "unsupported": "Dieser Dateityp kann im Browser nicht vorschaut werden. Laden Sie ihn herunter, um ihn in einer anderen App zu öffnen.",
+    "error": "Das Dokument konnte nicht geladen werden."
+  },
+  "confirmDelete": {
+    "title": "Dieses Dokument löschen?",
+    "description": "Die Datei wird aus dem Speicher entfernt. Diese Aktion kann nicht rückgängig gemacht werden."
+  },
+  "localHub": {
+    "uploadDisabled": "Dokumentuploads sind im Local-Hub-Modus deaktiviert. Konfigurieren Sie ein Cloud-Backup, um Uploads zu aktivieren."
+  },
+  "errors": {
+    "fileRequired": "Bitte wählen Sie eine Datei zum Hochladen aus.",
+    "titleRequired": "Titel ist erforderlich.",
+    "missingOrg": "Ihre Organisation konnte nicht ermittelt werden. Bitte melden Sie sich erneut an.",
+    "uploadFailed": "Das Dokument konnte nicht hochgeladen werden."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Dokumen",
+  "save": "Simpan",
+  "cancel": "Batal",
+  "delete": "Hapus",
+  "uploading": "Mengunggah…",
+  "loading": "Memuat…",
+  "noResults": "Belum ada dokumen yang diunggah.",
+  "permissionDenied": "Anda tidak memiliki izin untuk melihat dokumen.",
+  "upload": {
+    "button": "Unggah dokumen",
+    "title": "Unggah dokumen",
+    "description": "Lampirkan file ke rekam medis pasien ini."
+  },
+  "fields": {
+    "file": "File",
+    "title": "Judul",
+    "category": "Kategori",
+    "description": "Deskripsi"
+  },
+  "categories": {
+    "consent": "Persetujuan",
+    "referral": "Rujukan",
+    "scan": "Pindaian",
+    "other": "Lainnya"
+  },
+  "table": {
+    "uploadedAt": "Diunggah",
+    "title": "Judul",
+    "category": "Kategori",
+    "size": "Ukuran"
+  },
+  "preview": {
+    "action": "Pratinjau",
+    "title": "Pratinjau dokumen",
+    "download": "Unduh",
+    "unsupported": "Jenis file ini tidak dapat dipratinjau di browser. Unduh untuk membukanya di aplikasi lain.",
+    "error": "Gagal memuat dokumen."
+  },
+  "confirmDelete": {
+    "title": "Hapus dokumen ini?",
+    "description": "File akan dihapus dari penyimpanan. Tindakan ini tidak dapat dibatalkan."
+  },
+  "localHub": {
+    "uploadDisabled": "Pengunggahan dokumen dinonaktifkan dalam mode local-hub. Konfigurasikan pencadangan cloud untuk mengaktifkan pengunggahan."
+  },
+  "errors": {
+    "fileRequired": "Silakan pilih file untuk diunggah.",
+    "titleRequired": "Judul wajib diisi.",
+    "missingOrg": "Tidak dapat menentukan organisasi Anda. Silakan masuk kembali.",
+    "uploadFailed": "Gagal mengunggah dokumen."
+  }
+}

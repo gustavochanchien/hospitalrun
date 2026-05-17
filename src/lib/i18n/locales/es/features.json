@@ -28,6 +28,10 @@
     "label": "Registro de vacunaciones",
     "description": "Registre las vacunas administradas a cada paciente, incluyendo número de dosis, lote, fabricante y fechas de la próxima cita de seguimiento."
   },
+  "documents": {
+    "label": "Documentos del paciente",
+    "description": "Suba y almacene documentos arbitrarios (consentimientos, derivaciones, escaneos, faxes) asociados a cualquier paciente con etiquetas de categoría y vista previa."
+  },
   "toggle": {
     "enabled": "{{feature}} activada",
     "disabled": "{{feature}} desactivada"

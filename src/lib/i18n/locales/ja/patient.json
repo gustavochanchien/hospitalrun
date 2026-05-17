@@ -76,7 +76,8 @@
     "billing": "請求",
     "vitals": "バイタルサイン",
     "trends": "トレンド",
-    "immunizations": "予防接種"
+    "immunizations": "予防接種",
+    "documents": "ドキュメント"
   },
   "list": {
     "statusPlaceholder": "状態",

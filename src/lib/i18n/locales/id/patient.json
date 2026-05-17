@@ -76,7 +76,8 @@
     "billing": "Penagihan",
     "vitals": "Tanda Vital",
     "trends": "Tren",
-    "immunizations": "Imunisasi"
+    "immunizations": "Imunisasi",
+    "documents": "Dokumen"
   },
   "list": {
     "statusPlaceholder": "Status",

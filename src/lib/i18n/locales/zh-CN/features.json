@@ -28,6 +28,10 @@
     "label": "疫苗接种登记",
     "description": "追踪每位患者的疫苗接种记录，包括剂次、批号、生产厂家及下次接种日期。"
   },
+  "documents": {
+    "label": "患者文档",
+    "description": "为任意患者上传并存储各类文档（知情同意书、转诊单、扫描件、传真），支持类别标签和在线预览。"
+  },
   "toggle": {
     "enabled": "已启用 {{feature}}",
     "disabled": "已禁用 {{feature}}"

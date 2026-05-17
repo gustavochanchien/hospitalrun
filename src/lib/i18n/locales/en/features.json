@@ -28,6 +28,10 @@
     "label": "Immunization registry",
     "description": "Track vaccines administered to each patient, including dose number, lot, manufacturer, and next-due dates for follow-up."
   },
+  "documents": {
+    "label": "Patient documents",
+    "description": "Upload and store arbitrary documents (consents, referrals, scans, faxes) against any patient with category tags and previews."
+  },
   "toggle": {
     "enabled": "Enabled {{feature}}",
     "disabled": "Disabled {{feature}}"

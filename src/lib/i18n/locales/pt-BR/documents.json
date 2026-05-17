@@ -1,0 +1,53 @@
+{
+  "title": "Documentos",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "delete": "Excluir",
+  "uploading": "Enviando…",
+  "loading": "Carregando…",
+  "noResults": "Nenhum documento enviado ainda.",
+  "permissionDenied": "Você não tem permissão para visualizar documentos.",
+  "upload": {
+    "button": "Enviar documento",
+    "title": "Enviar documento",
+    "description": "Anexe um arquivo ao prontuário deste paciente."
+  },
+  "fields": {
+    "file": "Arquivo",
+    "title": "Título",
+    "category": "Categoria",
+    "description": "Descrição"
+  },
+  "categories": {
+    "consent": "Consentimento",
+    "referral": "Encaminhamento",
+    "scan": "Digitalização",
+    "other": "Outro"
+  },
+  "table": {
+    "uploadedAt": "Enviado em",
+    "title": "Título",
+    "category": "Categoria",
+    "size": "Tamanho"
+  },
+  "preview": {
+    "action": "Visualizar",
+    "title": "Visualização do documento",
+    "download": "Baixar",
+    "unsupported": "Este tipo de arquivo não pode ser visualizado no navegador. Baixe-o para abrir em outro aplicativo.",
+    "error": "Falha ao carregar o documento."
+  },
+  "confirmDelete": {
+    "title": "Excluir este documento?",
+    "description": "O arquivo será removido do armazenamento. Esta ação não pode ser desfeita."
+  },
+  "localHub": {
+    "uploadDisabled": "O envio de documentos está desabilitado no modo local-hub. Configure um backup em nuvem para habilitar os envios."
+  },
+  "errors": {
+    "fileRequired": "Por favor, escolha um arquivo para enviar.",
+    "titleRequired": "O título é obrigatório.",
+    "missingOrg": "Não foi possível determinar sua organização. Por favor, entre novamente.",
+    "uploadFailed": "Falha ao enviar o documento."
+  }
+}

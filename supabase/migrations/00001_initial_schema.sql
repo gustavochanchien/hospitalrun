@@ -277,6 +277,26 @@ create index idx_immunizations_org_patient on immunizations (org_id, patient_id)
 create index idx_immunizations_patient_admin on immunizations (patient_id, administered_at desc);
 create index idx_immunizations_org_next_due on immunizations (org_id, next_due_at);
 
+create table patient_documents (
+  id              uuid primary key default gen_random_uuid(),
+  org_id          uuid not null references organizations on delete cascade,
+  patient_id      uuid not null references patients on delete cascade,
+  visit_id        uuid references visits on delete set null,
+  category        text not null check (category in ('consent', 'referral', 'scan', 'other')),
+  title           text not null,
+  description     text,
+  storage_path    text not null,
+  mime_type       text not null,
+  size_bytes      bigint not null check (size_bytes >= 0),
+  uploaded_by     uuid references profiles,
+  uploaded_at     timestamptz not null default now(),
+  deleted_at      timestamptz,
+  created_at      timestamptz not null default now(),
+  updated_at      timestamptz not null default now()
+);
+
+create index idx_patient_documents_org_patient on patient_documents (org_id, patient_id, uploaded_at desc);
+
 create table notes (
   id              uuid primary key default gen_random_uuid(),
   org_id          uuid not null references organizations on delete cascade,
@@ -649,6 +669,7 @@ create trigger trg_diagnoses_updated_at           before update on diagnoses    
 create trigger trg_allergies_updated_at           before update on allergies           for each row execute function update_updated_at();
 create trigger trg_vitals_updated_at              before update on vitals              for each row execute function update_updated_at();
 create trigger trg_immunizations_updated_at       before update on immunizations       for each row execute function update_updated_at();
+create trigger trg_patient_documents_updated_at   before update on patient_documents   for each row execute function update_updated_at();
 create trigger trg_notes_updated_at               before update on notes               for each row execute function update_updated_at();
 create trigger trg_related_persons_updated_at     before update on related_persons     for each row execute function update_updated_at();
 create trigger trg_care_goals_updated_at          before update on care_goals          for each row execute function update_updated_at();
@@ -902,6 +923,7 @@ begin
       'read:inventory','write:inventory','adjust:stock','receive:stock',
       'read:vitals','write:vitals',
       'read:immunizations','write:immunizations',
+      'read:documents','write:documents','delete:document',
       'read:audit_log','export:audit_log','manage:roles'
     ], true, true),
     (new_org_id, 'doctor', 'Doctor', array[
@@ -914,7 +936,8 @@ begin
       'read:billing','write:billing','record:payment',
       'read:inventory','write:inventory','receive:stock',
       'read:vitals','write:vitals',
-      'read:immunizations','write:immunizations'
+      'read:immunizations','write:immunizations',
+      'read:documents','write:documents','delete:document'
     ], true, false),
     (new_org_id, 'nurse', 'Nurse', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
@@ -926,12 +949,13 @@ begin
       'read:billing','write:billing','record:payment',
       'read:inventory','write:inventory','receive:stock',
       'read:vitals','write:vitals',
-      'read:immunizations','write:immunizations'
+      'read:immunizations','write:immunizations',
+      'read:documents','write:documents','delete:document'
     ], true, false),
     (new_org_id, 'user', 'Viewer', array[
       'read:patients','read:appointments','read:labs','read:medications','read:imaging',
       'read:incidents','read:care_plan','read:care_goal','read:visit','read:billing','read:inventory',
-      'read:vitals','read:immunizations'
+      'read:vitals','read:immunizations','read:documents'
     ], true, false),
     (new_org_id, 'check_in_desk', 'Check-In Desk', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
@@ -977,6 +1001,7 @@ grant select, insert, update, delete on
   allergies,
   vitals,
   immunizations,
+  patient_documents,
   notes,
   related_persons,
   care_goals,
@@ -1032,6 +1057,7 @@ alter table diagnoses           enable row level security;
 alter table allergies           enable row level security;
 alter table vitals              enable row level security;
 alter table immunizations       enable row level security;
+alter table patient_documents   enable row level security;
 alter table notes               enable row level security;
 alter table related_persons     enable row level security;
 alter table care_goals          enable row level security;
@@ -1131,6 +1157,10 @@ create policy "Org isolation update" on vitals          for update using (org_id
 create policy "Org isolation select" on immunizations   for select using (org_id = public.org_id());
 create policy "Org isolation insert" on immunizations   for insert with check (org_id = public.org_id());
 create policy "Org isolation update" on immunizations   for update using (org_id = public.org_id());
+
+create policy "Org isolation select" on patient_documents for select using (org_id = public.org_id());
+create policy "Org isolation insert" on patient_documents for insert with check (org_id = public.org_id());
+create policy "Org isolation update" on patient_documents for update using (org_id = public.org_id());
 
 create policy "Org isolation select" on notes           for select using (org_id = public.org_id());
 create policy "Org isolation insert" on notes           for insert with check (org_id = public.org_id());
@@ -1478,6 +1508,46 @@ create policy "imaging: delete own org files"
   on storage.objects for delete
   using (
     bucket_id = 'imaging'
+    and (storage.foldername(name))[1] = public.org_id()::text
+  );
+
+-- ============================================================
+-- Storage: patient-documents bucket (private, org-scoped path prefix)
+-- ============================================================
+insert into storage.buckets (id, name, public)
+values ('patient-documents', 'patient-documents', false)
+on conflict (id) do nothing;
+
+create policy "patient-documents: read own org files"
+  on storage.objects for select
+  using (
+    bucket_id = 'patient-documents'
+    and (storage.foldername(name))[1] = public.org_id()::text
+  );
+
+create policy "patient-documents: insert own org files"
+  on storage.objects for insert
+  with check (
+    bucket_id = 'patient-documents'
+    and (storage.foldername(name))[1] = public.org_id()::text
+    and auth.uid() = owner
+  );
+
+create policy "patient-documents: update own org files"
+  on storage.objects for update
+  using (
+    bucket_id = 'patient-documents'
+    and (storage.foldername(name))[1] = public.org_id()::text
+  )
+  with check (
+    bucket_id = 'patient-documents'
+    and (storage.foldername(name))[1] = public.org_id()::text
+  );
+
+create policy "patient-documents: delete own org files"
+  on storage.objects for delete
+  using (
+    bucket_id = 'patient-documents'
     and (storage.foldername(name))[1] = public.org_id()::text
   );
 

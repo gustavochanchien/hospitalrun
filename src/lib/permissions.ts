@@ -43,6 +43,9 @@ export const PERMISSIONS = [
   'write:vitals',
   'read:immunizations',
   'write:immunizations',
+  'read:documents',
+  'write:documents',
+  'delete:document',
   'read:audit_log',
   'export:audit_log',
   'manage:roles',
@@ -112,6 +115,9 @@ const CLINICAL_PERMISSIONS: Permission[] = [
   'write:vitals',
   'read:immunizations',
   'write:immunizations',
+  'read:documents',
+  'write:documents',
+  'delete:document',
 ]
 
 const READ_PERMISSIONS: Permission[] = [
@@ -128,6 +134,7 @@ const READ_PERMISSIONS: Permission[] = [
   'read:inventory',
   'read:vitals',
   'read:immunizations',
+  'read:documents',
 ]
 
 const CHECK_IN_DESK_PERMISSIONS: Permission[] = [

@@ -1,0 +1,53 @@
+{
+  "title": "Belgeler",
+  "save": "Kaydet",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "uploading": "Yükleniyor…",
+  "loading": "Yükleniyor…",
+  "noResults": "Henüz belge yüklenmedi.",
+  "permissionDenied": "Belgeleri görüntüleme yetkiniz yok.",
+  "upload": {
+    "button": "Belge yükle",
+    "title": "Belge yükle",
+    "description": "Bu hastanın kaydına bir dosya ekleyin."
+  },
+  "fields": {
+    "file": "Dosya",
+    "title": "Başlık",
+    "category": "Kategori",
+    "description": "Açıklama"
+  },
+  "categories": {
+    "consent": "Onam",
+    "referral": "Sevk",
+    "scan": "Tarama",
+    "other": "Diğer"
+  },
+  "table": {
+    "uploadedAt": "Yüklenme tarihi",
+    "title": "Başlık",
+    "category": "Kategori",
+    "size": "Boyut"
+  },
+  "preview": {
+    "action": "Önizleme",
+    "title": "Belge önizlemesi",
+    "download": "İndir",
+    "unsupported": "Bu dosya türü tarayıcıda önizlenemiyor. Başka bir uygulamada açmak için indirin.",
+    "error": "Belge yüklenemedi."
+  },
+  "confirmDelete": {
+    "title": "Bu belge silinsin mi?",
+    "description": "Dosya depolamadan kaldırılacak. Bu işlem geri alınamaz."
+  },
+  "localHub": {
+    "uploadDisabled": "Yerel hub modunda belge yükleme devre dışıdır. Yüklemeyi etkinleştirmek için bir bulut yedeklemesi yapılandırın."
+  },
+  "errors": {
+    "fileRequired": "Lütfen yüklenecek bir dosya seçin.",
+    "titleRequired": "Başlık zorunludur.",
+    "missingOrg": "Kuruluşunuz belirlenemedi. Lütfen tekrar oturum açın.",
+    "uploadFailed": "Belge yüklenemedi."
+  }
+}

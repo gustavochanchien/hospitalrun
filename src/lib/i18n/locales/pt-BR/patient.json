@@ -76,7 +76,8 @@
     "billing": "Faturamento",
     "vitals": "Sinais vitais",
     "trends": "Tendências",
-    "immunizations": "Imunizações"
+    "immunizations": "Imunizações",
+    "documents": "Documentos"
   },
   "list": {
     "statusPlaceholder": "Status",

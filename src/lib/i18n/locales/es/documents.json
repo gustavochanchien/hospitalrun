@@ -1,0 +1,53 @@
+{
+  "title": "Documentos",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "uploading": "Subiendo…",
+  "loading": "Cargando…",
+  "noResults": "Todavía no se han subido documentos.",
+  "permissionDenied": "No tienes permiso para ver los documentos.",
+  "upload": {
+    "button": "Subir documento",
+    "title": "Subir documento",
+    "description": "Adjunta un archivo al historial de este paciente."
+  },
+  "fields": {
+    "file": "Archivo",
+    "title": "Título",
+    "category": "Categoría",
+    "description": "Descripción"
+  },
+  "categories": {
+    "consent": "Consentimiento",
+    "referral": "Derivación",
+    "scan": "Escaneo",
+    "other": "Otro"
+  },
+  "table": {
+    "uploadedAt": "Subido",
+    "title": "Título",
+    "category": "Categoría",
+    "size": "Tamaño"
+  },
+  "preview": {
+    "action": "Vista previa",
+    "title": "Vista previa del documento",
+    "download": "Descargar",
+    "unsupported": "Este tipo de archivo no puede previsualizarse en el navegador. Descárgalo para abrirlo en otra aplicación.",
+    "error": "No se pudo cargar el documento."
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar este documento?",
+    "description": "El archivo se eliminará del almacenamiento. Esta acción no se puede deshacer."
+  },
+  "localHub": {
+    "uploadDisabled": "La subida de documentos está deshabilitada en el modo de concentrador local. Configura una copia de seguridad en la nube para habilitar las subidas."
+  },
+  "errors": {
+    "fileRequired": "Por favor, elige un archivo para subir.",
+    "titleRequired": "El título es obligatorio.",
+    "missingOrg": "No se puede determinar tu organización. Por favor, inicia sesión de nuevo.",
+    "uploadFailed": "No se pudo subir el documento."
+  }
+}

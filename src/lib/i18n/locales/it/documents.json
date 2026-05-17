@@ -1,0 +1,53 @@
+{
+  "title": "Documenti",
+  "save": "Salva",
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "uploading": "Caricamento in corso…",
+  "loading": "Caricamento…",
+  "noResults": "Nessun documento ancora caricato.",
+  "permissionDenied": "Non hai i permessi per visualizzare i documenti.",
+  "upload": {
+    "button": "Carica documento",
+    "title": "Carica documento",
+    "description": "Allega un file alla cartella clinica di questo paziente."
+  },
+  "fields": {
+    "file": "File",
+    "title": "Titolo",
+    "category": "Categoria",
+    "description": "Descrizione"
+  },
+  "categories": {
+    "consent": "Consenso",
+    "referral": "Referto di invio",
+    "scan": "Scansione",
+    "other": "Altro"
+  },
+  "table": {
+    "uploadedAt": "Caricato il",
+    "title": "Titolo",
+    "category": "Categoria",
+    "size": "Dimensione"
+  },
+  "preview": {
+    "action": "Anteprima",
+    "title": "Anteprima documento",
+    "download": "Scarica",
+    "unsupported": "Questo tipo di file non può essere visualizzato in anteprima nel browser. Scaricalo per aprirlo in un'altra applicazione.",
+    "error": "Impossibile caricare il documento."
+  },
+  "confirmDelete": {
+    "title": "Eliminare questo documento?",
+    "description": "Il file verrà rimosso dalla memoria. Questa azione non può essere annullata."
+  },
+  "localHub": {
+    "uploadDisabled": "Il caricamento di documenti è disabilitato in modalità local-hub. Configura un backup cloud per abilitare i caricamenti."
+  },
+  "errors": {
+    "fileRequired": "Seleziona un file da caricare.",
+    "titleRequired": "Il titolo è obbligatorio.",
+    "missingOrg": "Impossibile determinare la tua organizzazione. Accedi nuovamente.",
+    "uploadFailed": "Caricamento del documento non riuscito."
+  }
+}

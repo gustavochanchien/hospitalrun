@@ -28,6 +28,10 @@
     "label": "Registri imunisasi",
     "description": "Lacak vaksin yang diberikan kepada setiap pasien, termasuk nomor dosis, lot, produsen, dan tanggal dosis berikutnya."
   },
+  "documents": {
+    "label": "Dokumen pasien",
+    "description": "Unggah dan simpan dokumen apa pun (persetujuan, rujukan, pindaian, faks) yang terkait dengan pasien mana pun, lengkap dengan label kategori dan pratinjau."
+  },
   "toggle": {
     "enabled": "{{feature}} diaktifkan",
     "disabled": "{{feature}} dinonaktifkan"

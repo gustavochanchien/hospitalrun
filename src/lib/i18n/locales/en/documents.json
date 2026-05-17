@@ -1,0 +1,53 @@
+{
+  "title": "Documents",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "uploading": "Uploading…",
+  "loading": "Loading…",
+  "noResults": "No documents uploaded yet.",
+  "permissionDenied": "You do not have permission to view documents.",
+  "upload": {
+    "button": "Upload document",
+    "title": "Upload document",
+    "description": "Attach a file to this patient's record."
+  },
+  "fields": {
+    "file": "File",
+    "title": "Title",
+    "category": "Category",
+    "description": "Description"
+  },
+  "categories": {
+    "consent": "Consent",
+    "referral": "Referral",
+    "scan": "Scan",
+    "other": "Other"
+  },
+  "table": {
+    "uploadedAt": "Uploaded",
+    "title": "Title",
+    "category": "Category",
+    "size": "Size"
+  },
+  "preview": {
+    "action": "Preview",
+    "title": "Document preview",
+    "download": "Download",
+    "unsupported": "This file type can't be previewed in the browser. Download it to open in another app.",
+    "error": "Failed to load the document."
+  },
+  "confirmDelete": {
+    "title": "Delete this document?",
+    "description": "The file will be removed from storage. This action cannot be undone."
+  },
+  "localHub": {
+    "uploadDisabled": "Document uploads are disabled in local-hub mode. Configure a cloud backup to enable uploads."
+  },
+  "errors": {
+    "fileRequired": "Please choose a file to upload.",
+    "titleRequired": "Title is required.",
+    "missingOrg": "Unable to determine your organization. Please sign in again.",
+    "uploadFailed": "Failed to upload the document."
+  }
+}

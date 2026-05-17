@@ -76,7 +76,8 @@
     "billing": "Abrechnung",
     "vitals": "Vitalzeichen",
     "trends": "Trends",
-    "immunizations": "Impfungen"
+    "immunizations": "Impfungen",
+    "documents": "Dokumente"
   },
   "list": {
     "statusPlaceholder": "Status",

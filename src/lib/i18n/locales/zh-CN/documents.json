@@ -1,0 +1,53 @@
+{
+  "title": "文档",
+  "save": "保存",
+  "cancel": "取消",
+  "delete": "删除",
+  "uploading": "上传中…",
+  "loading": "加载中…",
+  "noResults": "尚未上传任何文档。",
+  "permissionDenied": "您没有权限查看文档。",
+  "upload": {
+    "button": "上传文档",
+    "title": "上传文档",
+    "description": "将文件附加到该患者的病历。"
+  },
+  "fields": {
+    "file": "文件",
+    "title": "标题",
+    "category": "类别",
+    "description": "描述"
+  },
+  "categories": {
+    "consent": "知情同意书",
+    "referral": "转诊单",
+    "scan": "扫描件",
+    "other": "其他"
+  },
+  "table": {
+    "uploadedAt": "上传时间",
+    "title": "标题",
+    "category": "类别",
+    "size": "大小"
+  },
+  "preview": {
+    "action": "预览",
+    "title": "文档预览",
+    "download": "下载",
+    "unsupported": "此文件类型无法在浏览器中预览。请下载后使用其他应用程序打开。",
+    "error": "文档加载失败。"
+  },
+  "confirmDelete": {
+    "title": "删除此文档？",
+    "description": "该文件将从存储中删除。此操作无法撤销。"
+  },
+  "localHub": {
+    "uploadDisabled": "本地枢纽模式下文档上传已禁用。请配置云备份以启用上传功能。"
+  },
+  "errors": {
+    "fileRequired": "请选择要上传的文件。",
+    "titleRequired": "标题为必填项。",
+    "missingOrg": "无法确定您的组织。请重新登录。",
+    "uploadFailed": "文档上传失败。"
+  }
+}

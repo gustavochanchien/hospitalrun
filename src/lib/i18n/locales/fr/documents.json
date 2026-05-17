@@ -1,0 +1,53 @@
+{
+  "title": "Documents",
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "uploading": "Chargement…",
+  "loading": "Chargement…",
+  "noResults": "Aucun document téléversé pour l'instant.",
+  "permissionDenied": "Vous n'avez pas l'autorisation de consulter les documents.",
+  "upload": {
+    "button": "Téléverser un document",
+    "title": "Téléverser un document",
+    "description": "Joignez un fichier au dossier de ce patient."
+  },
+  "fields": {
+    "file": "Fichier",
+    "title": "Titre",
+    "category": "Catégorie",
+    "description": "Description"
+  },
+  "categories": {
+    "consent": "Consentement",
+    "referral": "Adressage",
+    "scan": "Numérisation",
+    "other": "Autre"
+  },
+  "table": {
+    "uploadedAt": "Téléversé",
+    "title": "Titre",
+    "category": "Catégorie",
+    "size": "Taille"
+  },
+  "preview": {
+    "action": "Aperçu",
+    "title": "Aperçu du document",
+    "download": "Télécharger",
+    "unsupported": "Ce type de fichier ne peut pas être prévisualisé dans le navigateur. Téléchargez-le pour l'ouvrir dans une autre application.",
+    "error": "Impossible de charger le document."
+  },
+  "confirmDelete": {
+    "title": "Supprimer ce document ?",
+    "description": "Le fichier sera supprimé du stockage. Cette action est irréversible."
+  },
+  "localHub": {
+    "uploadDisabled": "Le téléversement de documents est désactivé en mode concentrateur local. Configurez une sauvegarde cloud pour activer les téléversements."
+  },
+  "errors": {
+    "fileRequired": "Veuillez choisir un fichier à téléverser.",
+    "titleRequired": "Le titre est obligatoire.",
+    "missingOrg": "Impossible de déterminer votre organisation. Veuillez vous reconnecter.",
+    "uploadFailed": "Échec du téléversement du document."
+  }
+}

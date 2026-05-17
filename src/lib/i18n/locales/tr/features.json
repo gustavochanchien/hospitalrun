@@ -28,6 +28,10 @@
     "label": "Aşılama kaydı",
     "description": "Her hastaya uygulanan aşıları; doz numarası, lot, üretici ve sonraki doz tarihleriyle birlikte takip edin."
   },
+  "documents": {
+    "label": "Hasta belgeleri",
+    "description": "Herhangi bir hasta için kategori etiketleri ve önizleme özelliğiyle birlikte isteğe bağlı belgeleri (onamlar, sevkler, taramalar, fakslar) yükleyin ve saklayın."
+  },
   "toggle": {
     "enabled": "{{feature}} etkinleştirildi",
     "disabled": "{{feature}} devre dışı bırakıldı"

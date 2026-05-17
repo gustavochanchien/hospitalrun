@@ -272,6 +272,28 @@ export interface Immunization {
   _deleted: boolean
 }
 
+export type PatientDocumentCategory = 'consent' | 'referral' | 'scan' | 'other'
+
+export interface PatientDocument {
+  id: string
+  orgId: string
+  patientId: string
+  visitId: string | null
+  category: PatientDocumentCategory
+  title: string
+  description: string | null
+  storagePath: string
+  mimeType: string
+  sizeBytes: number
+  uploadedBy: string | null
+  uploadedAt: string
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
 export interface Note {
   id: string
   orgId: string
@@ -406,6 +428,7 @@ export const ACCESS_RESOURCE_TYPES = [
   'care_goal',
   'care_plan',
   'immunization',
+  'document',
   'invoice',
   'payment',
   'inventory_item',
@@ -614,6 +637,7 @@ export type TableMap = {
   allergies: Allergy
   vitals: Vital
   immunizations: Immunization
+  patientDocuments: PatientDocument
   notes: Note
   relatedPersons: RelatedPerson
   careGoals: CareGoal
@@ -659,6 +683,7 @@ export const PHI_TABLES = [
   'allergies',
   'vitals',
   'immunizations',
+  'patientDocuments',
   'notes',
   'relatedPersons',
   'careGoals',

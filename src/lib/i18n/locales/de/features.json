@@ -28,6 +28,10 @@
     "label": "Impfregister",
     "description": "Erfassen Sie verabreichte Impfungen je Patient, einschließlich Dosisnummer, Charge, Hersteller und Fälligkeitsdatum der nächsten Dosis."
   },
+  "documents": {
+    "label": "Patientendokumente",
+    "description": "Laden Sie beliebige Dokumente (Einwilligungen, Überweisungen, Scans, Faxe) hoch und speichern Sie diese patientenbezogen mit Kategorie-Tags und Vorschaufunktion."
+  },
   "toggle": {
     "enabled": "{{feature}} aktiviert",
     "disabled": "{{feature}} deaktiviert"
