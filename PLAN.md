@@ -253,17 +253,18 @@ Scope shifted at planning time: dropped OpenEMR's employer block (over-fit to US
 
 ---
 
-## Stage 17 — ICD-10 / SNOMED code lookup
+## Stage 17 — ICD-10 / SNOMED code lookup + medication interaction warnings ✅
 
 Replace free-text `diagnoses.icdCode` with a coded-value picker. No new server tables.
 
-- [ ] Bundle static reference data: `public/code-sets/icd10-who.json`, `public/code-sets/snomed-core.json` (CSV-to-JSON convert from public WHO ICD-10 + SNOMED CT Core subset). Workbox precaches via `vite-plugin-pwa`.
-- [ ] Dexie-only `codeSystems` table for fuzzy-index after first load (avoid re-parsing JSON every keystroke). Lazy-load on first picker open.
-- [ ] `CodeSearchCombobox` component (shadcn `Command` pattern) with `system: 'icd10' | 'snomed'`, debounced search, "use as-is" free-text fallback for codes not in the dataset.
-- [ ] Wire into [PatientDiagnoses.tsx](src/features/patients/sub-features/PatientDiagnoses.tsx) — replace the free-text `icdCode` input. Editing an existing diagnosis with a free-text code still works.
-- [ ] No new feature flag — improves an existing module.
-- [ ] i18n: `codePicker.*` keys in the `patient` namespace (search placeholder, "no results", "use as-is").
-- [ ] Tests: combobox renders, search filters, select sets value, free-text fallback works, existing diagnoses with non-coded values still render.
+- [x] Bundle static reference data: `public/code-sets/icd10-who.json`, `public/code-sets/snomed-core.json`. Workbox runtime-caches on first fetch.
+- [x] Dexie-only `codeSystems` table (v8) for indexed search after first load. Lazy-load on first picker open.
+- [x] `CodeSearchCombobox` component (Popover + Input pattern) with `system: 'icd10' | 'snomed'`, 300 ms debounced search, "use as-is" free-text fallback.
+- [x] Wire into [PatientDiagnoses.tsx](src/features/patients/sub-features/PatientDiagnoses.tsx) — replaced free-text `icdCode` input; auto-fills description from selected display.
+- [x] No new feature flag — patient-safety infrastructure.
+- [x] i18n: `codePicker.*` keys in the `patient` namespace; `drugInteraction.*` keys in the `medications` namespace. All 11 non-English locales translated.
+- [x] Drug interaction warnings: bundled `public/code-sets/drug-interactions.json` (~150+ pairs, WHO / DDInter 2.0), `normalize` + `checker` + `openfda` (7-day localStorage cache). `DrugInteractionAlert` wired into `PatientMedications` and `MedicationDetailPage`.
+- [x] Tests: 26 new tests across 8 test files, all passing.
 
 ---
 
