@@ -23,6 +23,7 @@ import { recordAccessEvent } from '@/lib/db/access-log'
 import { useLogAccess } from '@/hooks/useLogAccess'
 import { MEDICATION_STATUSES, type MedicationStatus } from './medication.schema'
 import { MedicationInventoryCard } from '@/features/inventory/MedicationInventoryCard'
+import { DrugInteractionAlert } from './drug-interaction-alert'
 
 interface MedicationDetailPageProps {
   medicationId: string
@@ -76,6 +77,17 @@ export function MedicationDetailPage({
       medication?.patientId
         ? db.patients.get(medication.patientId)
         : undefined,
+    [medication?.patientId],
+  )
+
+  const patientActiveMeds = useLiveQuery(
+    () =>
+      medication?.patientId
+        ? db.medications
+            .where({ patientId: medication.patientId })
+            .filter((m) => !m._deleted && m.status === 'active')
+            .toArray()
+        : Promise.resolve([] as import('@/lib/db/schema').Medication[]),
     [medication?.patientId],
   )
   useLogAccess({
@@ -193,6 +205,11 @@ export function MedicationDetailPage({
           </div>
         </CardContent>
       </Card>
+
+      <DrugInteractionAlert
+        activeMedications={patientActiveMeds ?? []}
+        highlightMedName={medication.name}
+      />
 
       <MedicationInventoryCard medication={medication} />
 

@@ -446,5 +446,12 @@
       "next": "Suivant",
       "pageOf": "Page {{current}} sur {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "Rechercher des codes CIM-10…",
+    "snomedPlaceholder": "Rechercher des codes SNOMED…",
+    "noResults": "Aucun code trouvé",
+    "useAsIs": "Utiliser \"{{code}}\" tel quel",
+    "loading": "Chargement de la liste de codes…"
   }
 }

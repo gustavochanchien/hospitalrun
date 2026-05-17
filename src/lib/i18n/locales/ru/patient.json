@@ -450,5 +450,12 @@
       "next": "Далее",
       "pageOf": "Страница {{current}} из {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "Поиск кодов МКБ-10…",
+    "snomedPlaceholder": "Поиск кодов SNOMED…",
+    "noResults": "Коды не найдены",
+    "useAsIs": "Использовать «{{code}}» как есть",
+    "loading": "Загрузка списка кодов…"
   }
 }

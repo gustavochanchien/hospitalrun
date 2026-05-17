@@ -585,6 +585,14 @@ export type SyncableTable = Exclude<keyof TableMap, 'syncQueue' | 'patientHistor
  * these tables auto-emit an `access_logs` audit entry. Keep in sync with
  * the HIPAA-protected resource types in `ACCESS_RESOURCE_TYPES`.
  */
+export interface CodeSystem {
+  id: string       // `${system}:${code}` — stable key
+  system: 'icd10' | 'snomed'
+  code: string
+  display: string
+  searchText: string  // `${code} ${display}` lowercased for prefix/contains scan
+}
+
 export const PHI_TABLES = [
   'patients',
   'visits',

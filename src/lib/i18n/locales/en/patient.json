@@ -445,5 +445,12 @@
       "next": "Next",
       "pageOf": "Page {{current}} of {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "Search ICD-10 codes…",
+    "snomedPlaceholder": "Search SNOMED codes…",
+    "noResults": "No codes found",
+    "useAsIs": "Use \"{{code}}\" as-is",
+    "loading": "Loading code list…"
   }
 }

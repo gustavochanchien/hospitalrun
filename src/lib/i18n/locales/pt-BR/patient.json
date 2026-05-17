@@ -446,5 +446,12 @@
       "next": "Próximo",
       "pageOf": "Página {{current}} de {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "Buscar códigos CID-10…",
+    "snomedPlaceholder": "Buscar códigos SNOMED…",
+    "noResults": "Nenhum código encontrado",
+    "useAsIs": "Usar \"{{code}}\" como está",
+    "loading": "Carregando lista de códigos…"
   }
 }

@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { CodeSearchCombobox } from '@/components/code-search-combobox'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
@@ -118,11 +119,20 @@ export function PatientDiagnoses({ patientId, visitId = null }: PatientDiagnoses
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="dx-icd">{t('subFeatures.diagnoses.fields.icdCode')}</Label>
-                <Input
+                <CodeSearchCombobox
                   id="dx-icd"
-                  value={icdCode}
-                  onChange={(e) => setIcdCode(e.target.value)}
-                  placeholder={t('subFeatures.diagnoses.placeholders.icdCode')}
+                  system="icd10"
+                  value={icdCode || null}
+                  displayValue={icdCode || undefined}
+                  onChange={(code, display) => {
+                    setIcdCode(code ?? '')
+                    if (display && display !== code && !description) {
+                      setDescription(display)
+                    }
+                  }}
+                  placeholder={t('codePicker.icd10Placeholder')}
+                  noResultsLabel={t('codePicker.noResults')}
+                  useAsIsLabel={icdCode ? t('codePicker.useAsIs', { code: icdCode }) : undefined}
                 />
               </div>
               <div className="space-y-2">

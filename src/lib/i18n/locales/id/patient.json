@@ -446,5 +446,12 @@
       "next": "Berikutnya",
       "pageOf": "Halaman {{current}} dari {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "Cari kode ICD-10…",
+    "snomedPlaceholder": "Cari kode SNOMED…",
+    "noResults": "Kode tidak ditemukan",
+    "useAsIs": "Gunakan \"{{code}}\" apa adanya",
+    "loading": "Memuat daftar kode…"
   }
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
@@ -6,6 +6,7 @@ import { Link } from '@tanstack/react-router'
 import { db } from '@/lib/db'
 import { dbPut, dbDelete } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
+import { DrugInteractionAlert } from '@/features/medications/drug-interaction-alert'
 import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { Badge } from '@/components/ui/badge'
@@ -152,12 +153,18 @@ export function PatientMedications({ patientId, visitId = null }: PatientMedicat
     setPendingDeleteId(null)
   }
 
+  const activeMeds = useMemo(
+    () => (medications ?? []).filter((m) => m.status === 'active'),
+    [medications],
+  )
+
   if (medications === undefined) {
     return <p className="p-4 text-sm text-muted-foreground">{t('subFeatures.common.loading')}</p>
   }
 
   return (
     <div className="space-y-4">
+      <DrugInteractionAlert activeMedications={activeMeds} />
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-medium">{t('subFeatures.medications.title')}</h3>
         <Dialog open={open} onOpenChange={setOpen}>

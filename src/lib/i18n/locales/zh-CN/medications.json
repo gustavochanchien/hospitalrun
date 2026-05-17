@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "患者为必填项",
     "nameRequired": "药物名称为必填项"
+  },
+  "drugInteraction": {
+    "warningTitle": "药物相互作用警告",
+    "interactionWith": "与以下药物存在相互作用",
+    "viewLabel": "查看处方信息",
+    "offlineNote": "请连接网络以获取完整处方信息",
+    "dataSource": "来源：WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "禁忌",
+      "major": "严重",
+      "moderate": "中度",
+      "minor": "轻度"
+    }
   }
 }

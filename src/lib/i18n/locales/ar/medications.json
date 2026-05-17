@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "المريض مطلوب",
     "nameRequired": "اسم الدواء مطلوب"
+  },
+  "drugInteraction": {
+    "warningTitle": "تحذير من تفاعل دوائي",
+    "interactionWith": "يتفاعل مع",
+    "viewLabel": "عرض معلومات الوصف",
+    "offlineNote": "اتصل بالإنترنت للحصول على معلومات الوصف الكاملة",
+    "dataSource": "المصدر: WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "موانع استخدام",
+      "major": "خطير",
+      "moderate": "متوسط",
+      "minor": "بسيط"
+    }
   }
 }

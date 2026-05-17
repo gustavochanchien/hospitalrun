@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "Pasien diperlukan",
     "nameRequired": "Nama obat diperlukan"
+  },
+  "drugInteraction": {
+    "warningTitle": "Peringatan Interaksi Obat",
+    "interactionWith": "berinteraksi dengan",
+    "viewLabel": "Lihat informasi peresepan",
+    "offlineNote": "Hubungkan ke internet untuk informasi peresepan lengkap",
+    "dataSource": "Sumber: WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "Kontraindikasi",
+      "major": "Mayor",
+      "moderate": "Sedang",
+      "minor": "Minor"
+    }
   }
 }

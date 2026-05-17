@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "Пациент обязателен",
     "nameRequired": "Название лекарства обязательно"
+  },
+  "drugInteraction": {
+    "warningTitle": "Предупреждение о лекарственном взаимодействии",
+    "interactionWith": "взаимодействует с",
+    "viewLabel": "Просмотр информации о назначении",
+    "offlineNote": "Подключитесь к интернету для получения полной информации о назначении",
+    "dataSource": "Источник: WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "Противопоказано",
+      "major": "Тяжёлое",
+      "moderate": "Умеренное",
+      "minor": "Незначительное"
+    }
   }
 }

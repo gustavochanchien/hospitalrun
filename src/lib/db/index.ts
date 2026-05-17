@@ -25,6 +25,7 @@ import type {
   InventoryItem,
   InventoryTransaction,
   SyncQueueEntry,
+  CodeSystem,
 } from './schema'
 
 export class HospitalRunDB extends Dexie {
@@ -53,6 +54,7 @@ export class HospitalRunDB extends Dexie {
   inventoryItems!: Dexie.Table<InventoryItem, string>
   inventoryTransactions!: Dexie.Table<InventoryTransaction, string>
   syncQueue!: Dexie.Table<SyncQueueEntry, number>
+  codeSystems!: Dexie.Table<CodeSystem, string>
 
   constructor() {
     super('hospitalrun')
@@ -137,6 +139,11 @@ export class HospitalRunDB extends Dexie {
     // v7: per-org editable roles.
     this.version(7).stores({
       orgRoles: 'id, orgId, roleKey, [orgId+roleKey], isBuiltin, _synced',
+    })
+
+    // v8: local-only code system reference data (ICD-10, SNOMED). Never synced to Supabase.
+    this.version(8).stores({
+      codeSystems: 'id, system, code, [system+code]',
     })
   }
 }

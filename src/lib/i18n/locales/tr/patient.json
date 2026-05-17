@@ -446,5 +446,12 @@
       "next": "Sonraki",
       "pageOf": "Sayfa {{current}} / {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "ICD-10 kodlarında ara…",
+    "snomedPlaceholder": "SNOMED kodlarında ara…",
+    "noResults": "Kod bulunamadı",
+    "useAsIs": "\"{{code}}\" olduğu gibi kullan",
+    "loading": "Kod listesi yükleniyor…"
   }
 }

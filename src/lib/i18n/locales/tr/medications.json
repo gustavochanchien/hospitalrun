@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "Hasta zorunludur",
     "nameRequired": "İlaç adı zorunludur"
+  },
+  "drugInteraction": {
+    "warningTitle": "İlaç Etkileşimi Uyarısı",
+    "interactionWith": "ile etkileşime girer",
+    "viewLabel": "Reçete bilgilerini görüntüle",
+    "offlineNote": "Tam reçete bilgileri için internete bağlanın",
+    "dataSource": "Kaynak: WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "Kontrendike",
+      "major": "Majör",
+      "moderate": "Orta",
+      "minor": "Minör"
+    }
   }
 }

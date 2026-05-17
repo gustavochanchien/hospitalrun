@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "Le patient est obligatoire",
     "nameRequired": "Le nom du médicament est obligatoire"
+  },
+  "drugInteraction": {
+    "warningTitle": "Avertissement d'interaction médicamenteuse",
+    "interactionWith": "interagit avec",
+    "viewLabel": "Voir les informations de prescription",
+    "offlineNote": "Connectez-vous à internet pour obtenir les informations complètes de prescription",
+    "dataSource": "Source : WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "Contre-indiqué",
+      "major": "Majeur",
+      "moderate": "Modéré",
+      "minor": "Mineur"
+    }
   }
 }

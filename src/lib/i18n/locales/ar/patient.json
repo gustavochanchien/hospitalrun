@@ -446,5 +446,12 @@
       "next": "التالي",
       "pageOf": "صفحة {{current}} من {{total}}"
     }
+  },
+  "codePicker": {
+    "icd10Placeholder": "ابحث في رموز ICD-10…",
+    "snomedPlaceholder": "ابحث في رموز SNOMED…",
+    "noResults": "لم يتم العثور على رموز",
+    "useAsIs": "استخدم \"{{code}}\" كما هو",
+    "loading": "جارٍ تحميل قائمة الرموز…"
   }
 }

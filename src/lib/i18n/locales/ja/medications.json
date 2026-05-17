@@ -95,5 +95,18 @@
   "validation": {
     "patientRequired": "患者は必須です",
     "nameRequired": "薬剤名は必須です"
+  },
+  "drugInteraction": {
+    "warningTitle": "薬物相互作用の警告",
+    "interactionWith": "と相互作用します",
+    "viewLabel": "処方情報を表示",
+    "offlineNote": "完全な処方情報はインターネットに接続してください",
+    "dataSource": "出典: WHO Essential Medicines / DDInter 2.0",
+    "severity": {
+      "contraindicated": "禁忌",
+      "major": "重大",
+      "moderate": "中等度",
+      "minor": "軽微"
+    }
   }
 }
