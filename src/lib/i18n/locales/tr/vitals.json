@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Bu kayıt silinsin mi?",
     "description": "Vital bulgu kaydı kaldırılacak. İstediğiniz zaman yeniden girebilirsiniz."
+  },
+  "view": {
+    "label": "Görünüm",
+    "table": "Tablo",
+    "chart": "Grafik"
   }
 }

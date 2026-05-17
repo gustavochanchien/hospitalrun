@@ -73,7 +73,12 @@
     "labDeleted": "检查已删除",
     "resultRequired": "请在完成前输入结果。",
     "resultRequiredShort": "请输入结果。",
-    "noResultAvailable": "暂无结果。"
+    "noResultAvailable": "暂无结果。",
+    "numericValue": "数值（可选）",
+    "numericValuePlaceholder": "例如：5.4",
+    "unit": "单位（可选）",
+    "unitPlaceholder": "例如：mmol/L",
+    "historyTitle": "随时间变化的趋势"
   },
   "exportColumns": {
     "filename": "实验室",

@@ -112,6 +112,8 @@ create table labs (
   completed_at    timestamptz,
   canceled_at     timestamptz,
   result          text,
+  numeric_value   numeric,
+  unit            text,
   notes           text,
   deleted_at      timestamptz,
   created_at      timestamptz not null default now(),

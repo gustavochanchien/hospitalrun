@@ -73,7 +73,12 @@
     "labDeleted": "Esame eliminato",
     "resultRequired": "Inserire un risultato prima di completare.",
     "resultRequiredShort": "Inserire un risultato.",
-    "noResultAvailable": "Nessun risultato disponibile."
+    "noResultAvailable": "Nessun risultato disponibile.",
+    "numericValue": "Valore numerico (opzionale)",
+    "numericValuePlaceholder": "es. 5,4",
+    "unit": "Unità (opzionale)",
+    "unitPlaceholder": "es. mmol/L",
+    "historyTitle": "Andamento nel tempo"
   },
   "exportColumns": {
     "filename": "Laboratori",

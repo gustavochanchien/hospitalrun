@@ -1,0 +1,18 @@
+{
+  "title": "Tendencias",
+  "loading": "Cargando datos de tendencias…",
+  "noNumericData": "Aún no hay constantes vitales ni resultados de laboratorio numéricos. Registre mediciones para representar tendencias aquí.",
+  "pickPrompt": "Elige de 1 a 3 mediciones de arriba para representar.",
+  "emptyAfterFilter": "Sin datos en el rango de fechas seleccionado.",
+  "picker": {
+    "title": "Elegir mediciones",
+    "description": "Selecciona hasta {{max}} mediciones numéricas para representar a lo largo del tiempo."
+  },
+  "range": {
+    "from": "Desde",
+    "to": "Hasta"
+  },
+  "chart": {
+    "title": "Gráfico"
+  }
+}

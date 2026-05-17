@@ -1,0 +1,18 @@
+{
+  "title": "Eğilimler",
+  "loading": "Eğilim verileri yükleniyor…",
+  "noNumericData": "Henüz sayısal vital bulgu veya laboratuvar sonucu yok. Eğilimleri burada çizmek için ölçümler kaydedin.",
+  "pickPrompt": "Çizmek için yukarıdan 1 ile 3 arasında ölçüm seçin.",
+  "emptyAfterFilter": "Seçilen tarih aralığında veri yok.",
+  "picker": {
+    "title": "Ölçüm seçin",
+    "description": "Zaman içinde çizmek için en fazla {{max}} sayısal ölçüm seçin."
+  },
+  "range": {
+    "from": "Başlangıç",
+    "to": "Bitiş"
+  },
+  "chart": {
+    "title": "Grafik"
+  }
+}

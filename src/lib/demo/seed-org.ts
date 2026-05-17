@@ -262,6 +262,11 @@ export async function seedFakeData(
         completedAt: status === 'completed' ? new Date().toISOString() : null,
         canceledAt: status === 'canceled' ? new Date().toISOString() : null,
         result: status === 'completed' ? faker.lorem.sentence() : null,
+        numericValue:
+          status === 'completed'
+            ? Number(faker.number.float({ min: 1, max: 200, fractionDigits: 1 }).toFixed(1))
+            : null,
+        unit: status === 'completed' ? faker.helpers.arrayElement(['mg/dL', 'mmol/L', 'g/L', '%']) : null,
         notes: null,
         deletedAt: null,
         createdAt: '',

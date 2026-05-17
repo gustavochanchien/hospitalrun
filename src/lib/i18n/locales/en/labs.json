@@ -73,7 +73,12 @@
     "labDeleted": "Lab deleted",
     "resultRequired": "Please enter a result before completing.",
     "resultRequiredShort": "Please enter a result.",
-    "noResultAvailable": "No result available."
+    "noResultAvailable": "No result available.",
+    "numericValue": "Numeric value (optional)",
+    "numericValuePlaceholder": "e.g. 5.4",
+    "unit": "Unit (optional)",
+    "unitPlaceholder": "e.g. mmol/L",
+    "historyTitle": "Trend over time"
   },
   "exportColumns": {
     "filename": "Labs",

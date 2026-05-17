@@ -1,0 +1,18 @@
+{
+  "title": "Tendenze",
+  "loading": "Caricamento dati tendenze…",
+  "noNumericData": "Nessun parametro vitale o risultato di laboratorio numerico ancora disponibile. Registra misurazioni per tracciare le tendenze qui.",
+  "pickPrompt": "Scegli da 1 a 3 misurazioni sopra da rappresentare.",
+  "emptyAfterFilter": "Nessun dato nell'intervallo di date selezionato.",
+  "picker": {
+    "title": "Scegli le misurazioni",
+    "description": "Seleziona fino a {{max}} misurazioni numeriche da rappresentare nel tempo."
+  },
+  "range": {
+    "from": "Da",
+    "to": "A"
+  },
+  "chart": {
+    "title": "Grafico"
+  }
+}

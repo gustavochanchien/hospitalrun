@@ -74,7 +74,8 @@
     "carePlans": "Planes de atención",
     "history": "Historial",
     "billing": "Facturación",
-    "vitals": "Constantes vitales"
+    "vitals": "Constantes vitales",
+    "trends": "Tendencias"
   },
   "list": {
     "statusPlaceholder": "Estado",

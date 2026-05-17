@@ -74,7 +74,8 @@
     "carePlans": "Bakım planları",
     "history": "Geçmiş",
     "billing": "Faturalama",
-    "vitals": "Vital Bulgular"
+    "vitals": "Vital Bulgular",
+    "trends": "Eğilimler"
   },
   "list": {
     "statusPlaceholder": "Durum",

@@ -73,7 +73,12 @@
     "labDeleted": "検査を削除しました",
     "resultRequired": "完了前に結果を入力してください。",
     "resultRequiredShort": "結果を入力してください。",
-    "noResultAvailable": "結果はありません。"
+    "noResultAvailable": "結果はありません。",
+    "numericValue": "数値（任意）",
+    "numericValuePlaceholder": "例：5.4",
+    "unit": "単位（任意）",
+    "unitPlaceholder": "例：mmol/L",
+    "historyTitle": "時系列トレンド"
   },
   "exportColumns": {
     "filename": "検査",

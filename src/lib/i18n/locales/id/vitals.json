@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Hapus pembacaan ini?",
     "description": "Ini akan menghapus data tanda vital. Anda dapat mencatatnya kembali kapan saja."
+  },
+  "view": {
+    "label": "Tampilan",
+    "table": "Tabel",
+    "chart": "Grafik"
   }
 }

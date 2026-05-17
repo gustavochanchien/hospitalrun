@@ -285,19 +285,19 @@ New clinical table, surfaced as the 14th patient sub-tab. Gated by `vitals` feat
 
 ---
 
-## Stage 19 — Longitudinal graphical charting
+## Stage 19 — Longitudinal graphical charting ✅
 
 Multi-series trend plots over vitals (Stage 18) + labs. Gated by `trends` feature flag.
 
-- [ ] Schema additions: optional `numericValue: number | null` + `unit: string | null` on `labs`. Migration `00007_lab_numeric.sql` (additive — old free-text `result` stays).
-- [ ] [features.ts](src/lib/features.ts): add `'trends'`.
-- [ ] `<TrendChart series={...} />` shared component wrapping Recharts `LineChart` — multi-series, x-axis = date, y-axis = numeric value, color per series, units in tooltip.
-- [ ] New patient sub-tab `PatientTrends.tsx` — picker for 1–3 numeric series (any vital field, any lab with `numericValue`), x-axis date range filter. Gated.
-- [ ] Add "View as chart" toggle to `PatientVitals` for single-vital-over-time view (Stage 18 prerequisite).
-- [ ] Optional sparkline on existing `LabDetailPage` showing same `code` across visits.
-- [ ] No new permissions (reads existing data).
-- [ ] i18n: extend `vitals` namespace (or new `trends` namespace) for picker/empty-state labels; `i18n-translator` for the other 11 locales.
-- [ ] Tests: multi-series chart renders, empty-state when no numeric data, lab numericValue migration, gate.
+- [x] Schema additions: optional `numericValue: number | null` + `unit: string | null` on `labs`. Merged directly into [00001_initial_schema.sql](supabase/migrations/00001_initial_schema.sql) per pre-deploy policy (no new migration file). Both fields unindexed so no Dexie version bump. Column map updated in [columns.ts](src/lib/db/columns.ts).
+- [x] [features.ts](src/lib/features.ts): added `'trends'` to `FEATURES` and `FEATURE_METADATA`.
+- [x] [`<TrendChart series={...} />`](src/components/trend-chart.tsx) — Recharts `LineChart` wrapper, multi-series, time-scale x-axis, units in tooltip, supports `sparkline` mode (no axes/legend, compact). Exports `TREND_PALETTE` for shared colour selection.
+- [x] New patient sub-tab [PatientTrends.tsx](src/features/patients/sub-features/PatientTrends.tsx) — checkbox picker (capped at 3 series) over all numeric vital fields plus any lab `code`/`type` with a `numericValue`, plus `From`/`To` date-range inputs. Wired as the 15th tab in [PatientDetailPage.tsx](src/features/patients/PatientDetailPage.tsx), `<FeatureGate feature="trends">`-wrapped on the trigger and "All" section. Shared helpers in [trends/trend-data.ts](src/features/patients/sub-features/trends/trend-data.ts) (`buildSeriesOptions`, `buildSeriesFromSelection`, `VITAL_FIELD_KEYS`, `VITAL_FIELD_LABEL_KEY`, `VITAL_FIELD_UNIT`).
+- [x] "View as chart" toggle on [PatientVitals.tsx](src/features/patients/sub-features/PatientVitals.tsx) — Table/Chart buttons + metric `<Select>`; reuses the trend-data helpers and the shared `<TrendChart>`. Hidden until at least one numeric reading exists.
+- [x] Sparkline on [LabDetailPage.tsx](src/features/labs/LabDetailPage.tsx) — renders a "Trend over time" card with a multi-point `<TrendChart>` when there are ≥2 prior labs of the same `code` with a `numericValue`. Save flow (both inline + complete dialog) now also captures optional `numericValue` + `unit`.
+- [x] No new permissions (reads existing data; sub-tab visibility is controlled by the `trends` feature flag only).
+- [x] i18n: new `trends` namespace registered in [i18n/index.ts](src/lib/i18n/index.ts). English by hand; `i18n-translator` agent populated the other 11 locales — 44 file writes (11× new `trends.json` + 11× `patient.json` (`tabs.trends`) + 11× `features.json` (`trends` block) + 11× `vitals.json` (`view` block) + 11× `labs.json` (5 keys under `detail`)).
+- [x] Tests: 4 cases in [PatientTrends.test.tsx](src/features/patients/sub-features/PatientTrends.test.tsx) (empty state, pick vital → chart renders, 3-series cap disables a 4th, lab numericValue option appears) + 7 cases in [trends/trend-data.test.ts](src/features/patients/sub-features/trends/trend-data.test.ts) (vital-field filtering, lab grouping by code/type, no-numericValue exclusion, multi-series sort + distinct palette, empty selection, completedAt → requestedAt fallback). 536/537 tests pass (lone failure is the pre-existing `_auth.test.tsx` redirect flake).
 
 ---
 

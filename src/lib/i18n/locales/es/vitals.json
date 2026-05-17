@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "¿Eliminar este registro?",
     "description": "Se eliminará el registro de constantes vitales. Puede volver a registrarlo en cualquier momento."
+  },
+  "view": {
+    "label": "Vista",
+    "table": "Tabla",
+    "chart": "Gráfico"
   }
 }

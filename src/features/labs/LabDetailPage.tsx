@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { format, parseISO } from 'date-fns'
@@ -8,9 +8,12 @@ import i18n from 'i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
+import { TrendChart, TREND_PALETTE } from '@/components/trend-chart'
+import type { TrendSeries } from '@/components/trend-chart'
 import {
   Dialog,
   DialogContent,
@@ -38,6 +41,8 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
   const navigate = useNavigate()
   const orgId = useAuthStore((s) => s.orgId)
   const [resultText, setResultText] = useState('')
+  const [numericText, setNumericText] = useState('')
+  const [unitText, setUnitText] = useState('')
   const [completeDialogOpen, setCompleteDialogOpen] = useState(false)
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -47,6 +52,41 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
     () => (lab?.patientId ? db.patients.get(lab.patientId) : undefined),
     [lab?.patientId],
   )
+
+  const sparklineSeriesCode = lab?.code ?? null
+  const sparklinePatientId = lab?.patientId ?? null
+  const sparklineLabs = useLiveQuery(async () => {
+    if (!sparklinePatientId || !sparklineSeriesCode) return []
+    return db.labs
+      .where({ patientId: sparklinePatientId })
+      .filter(
+        (l) =>
+          !l._deleted &&
+          l.code === sparklineSeriesCode &&
+          typeof l.numericValue === 'number' &&
+          Number.isFinite(l.numericValue),
+      )
+      .toArray()
+  }, [sparklinePatientId, sparklineSeriesCode])
+
+  const sparklineSeries = useMemo<TrendSeries[]>(() => {
+    if (!lab || !sparklineLabs || sparklineLabs.length < 2) return []
+    const points = sparklineLabs
+      .map((l) => ({
+        at: l.completedAt ?? l.requestedAt,
+        value: l.numericValue as number,
+      }))
+      .sort((a, b) => a.at.localeCompare(b.at))
+    return [
+      {
+        key: 'lab',
+        name: lab.code ?? lab.type,
+        unit: lab.unit ?? null,
+        color: TREND_PALETTE[0],
+        points,
+      },
+    ]
+  }, [lab, sparklineLabs])
   useLogAccess({
     action: 'view',
     resourceType: 'lab',
@@ -86,6 +126,12 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
         ? 'secondary'
         : 'destructive'
 
+  function parseNumericInput(raw: string): number | null {
+    if (raw.trim() === '') return null
+    const n = Number(raw)
+    return Number.isFinite(n) ? n : null
+  }
+
   async function handleComplete() {
     if (!resultText.trim()) {
       toast.error(t('detail.resultRequired'))
@@ -100,12 +146,16 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
           status: 'completed' as const,
           completedAt: new Date().toISOString(),
           result: resultText.trim(),
+          numericValue: parseNumericInput(numericText),
+          unit: unitText.trim() || null,
         },
         'update',
       )
       toast.success(t('detail.labCompleted'))
       setCompleteDialogOpen(false)
       setResultText('')
+      setNumericText('')
+      setUnitText('')
     } finally {
       setIsSaving(false)
     }
@@ -143,11 +193,15 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
           status: 'completed' as const,
           completedAt: new Date().toISOString(),
           result: resultText.trim(),
+          numericValue: parseNumericInput(numericText),
+          unit: unitText.trim() || null,
         },
         'update',
       )
       toast.success(t('detail.resultSaved'))
       setResultText('')
+      setNumericText('')
+      setUnitText('')
     } finally {
       setIsSaving(false)
     }
@@ -224,7 +278,15 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
         </CardHeader>
         <CardContent>
           {lab.status === 'completed' && lab.result ? (
-            <p className="whitespace-pre-wrap">{lab.result}</p>
+            <div className="space-y-2">
+              {typeof lab.numericValue === 'number' && (
+                <p className="text-lg font-semibold">
+                  {lab.numericValue}
+                  {lab.unit ? ` ${lab.unit}` : ''}
+                </p>
+              )}
+              <p className="whitespace-pre-wrap">{lab.result}</p>
+            </div>
           ) : lab.status === 'requested' ? (
             <div className="space-y-3">
               <Label htmlFor="result-input">{t('detail.enterResult')}</Label>
@@ -234,6 +296,28 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
                 value={resultText}
                 onChange={(e) => setResultText(e.target.value)}
               />
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <Label htmlFor="result-numeric">{t('detail.numericValue')}</Label>
+                  <Input
+                    id="result-numeric"
+                    type="number"
+                    inputMode="decimal"
+                    placeholder={t('detail.numericValuePlaceholder')}
+                    value={numericText}
+                    onChange={(e) => setNumericText(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="result-unit">{t('detail.unit')}</Label>
+                  <Input
+                    id="result-unit"
+                    placeholder={t('detail.unitPlaceholder')}
+                    value={unitText}
+                    onChange={(e) => setUnitText(e.target.value)}
+                  />
+                </div>
+              </div>
               <Button
                 onClick={handleSaveResult}
                 disabled={isSaving || !resultText.trim()}
@@ -246,6 +330,17 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
           )}
         </CardContent>
       </Card>
+
+      {sparklineSeries.length > 0 && (
+        <Card data-testid="lab-history-sparkline">
+          <CardHeader>
+            <CardTitle>{t('detail.historyTitle')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <TrendChart series={sparklineSeries} />
+          </CardContent>
+        </Card>
+      )}
 
       {/* Actions */}
       <div className="flex flex-wrap gap-3" data-print-actions>
@@ -330,6 +425,28 @@ export function LabDetailPage({ labId }: LabDetailPageProps) {
               value={resultText}
               onChange={(e) => setResultText(e.target.value)}
             />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="space-y-1.5">
+                <Label htmlFor="complete-numeric">{t('detail.numericValue')}</Label>
+                <Input
+                  id="complete-numeric"
+                  type="number"
+                  inputMode="decimal"
+                  placeholder={t('detail.numericValuePlaceholder')}
+                  value={numericText}
+                  onChange={(e) => setNumericText(e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="complete-unit">{t('detail.unit')}</Label>
+                <Input
+                  id="complete-unit"
+                  placeholder={t('detail.unitPlaceholder')}
+                  value={unitText}
+                  onChange={(e) => setUnitText(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
           <DialogFooter>
             <Button

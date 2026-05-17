@@ -73,7 +73,12 @@
     "labDeleted": "تم حذف الفحص",
     "resultRequired": "الرجاء إدخال نتيجة قبل الإكمال.",
     "resultRequiredShort": "الرجاء إدخال نتيجة.",
-    "noResultAvailable": "لا توجد نتيجة متاحة."
+    "noResultAvailable": "لا توجد نتيجة متاحة.",
+    "numericValue": "القيمة الرقمية (اختياري)",
+    "numericValuePlaceholder": "مثال: 5.4",
+    "unit": "الوحدة (اختياري)",
+    "unitPlaceholder": "مثال: mmol/L",
+    "historyTitle": "الاتجاه عبر الزمن"
   },
   "exportColumns": {
     "filename": "المختبرات",

@@ -30,6 +30,7 @@ import { PatientCarePlans } from './sub-features/PatientCarePlans'
 import { PatientHistory } from './sub-features/PatientHistory'
 import { PatientBilling } from './sub-features/PatientBilling'
 import { PatientVitals } from './sub-features/PatientVitals'
+import { PatientTrends } from './sub-features/PatientTrends'
 import { FeatureGate } from '@/components/ui/feature-gate'
 import { Link } from '@tanstack/react-router'
 
@@ -50,6 +51,7 @@ const TAB_TO_RESOURCE: Record<string, AccessResourceType> = {
   goals: 'care_goal',
   plans: 'care_plan',
   vitals: 'vital',
+  trends: 'vital',
 }
 
 export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
@@ -327,6 +329,9 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
           <FeatureGate feature="vitals">
             <TabsTrigger value="vitals" className={tabTriggerClass}>{t('tabs.vitals')}</TabsTrigger>
           </FeatureGate>
+          <FeatureGate feature="trends">
+            <TabsTrigger value="trends" className={tabTriggerClass}>{t('tabs.trends')}</TabsTrigger>
+          </FeatureGate>
         </TabsList>
 
         <TabsContent value="all">
@@ -373,6 +378,9 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
         </TabsContent>
         <TabsContent value="vitals">
           <PatientVitals patientId={patientId} />
+        </TabsContent>
+        <TabsContent value="trends">
+          <PatientTrends patientId={patientId} />
         </TabsContent>
       </Tabs>
     </div>
@@ -427,6 +435,9 @@ function PatientAllView({ patientId }: PatientAllViewProps) {
       </FeatureGate>
       <FeatureGate feature="vitals">
         <section><PatientVitals patientId={patientId} /></section>
+      </FeatureGate>
+      <FeatureGate feature="trends">
+        <section><PatientTrends patientId={patientId} /></section>
       </FeatureGate>
     </div>
   )

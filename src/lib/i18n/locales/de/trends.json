@@ -1,0 +1,18 @@
+{
+  "title": "Trends",
+  "loading": "Trenddaten werden geladen…",
+  "noNumericData": "Noch keine numerischen Vitalzeichen oder Laborwerte vorhanden. Erfassen Sie Messwerte, um Trends hier darzustellen.",
+  "pickPrompt": "Wählen Sie 1 bis 3 Messwerte oben aus, um sie darzustellen.",
+  "emptyAfterFilter": "Keine Daten im ausgewählten Zeitraum.",
+  "picker": {
+    "title": "Messwerte auswählen",
+    "description": "Wählen Sie bis zu {{max}} numerische Messwerte aus, um sie über die Zeit darzustellen."
+  },
+  "range": {
+    "from": "Von",
+    "to": "Bis"
+  },
+  "chart": {
+    "title": "Diagramm"
+  }
+}

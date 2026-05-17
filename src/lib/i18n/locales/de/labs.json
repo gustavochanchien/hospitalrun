@@ -73,7 +73,12 @@
     "labDeleted": "Untersuchung gelöscht",
     "resultRequired": "Bitte Ergebnis vor dem Abschließen eingeben.",
     "resultRequiredShort": "Bitte Ergebnis eingeben.",
-    "noResultAvailable": "Kein Ergebnis verfügbar."
+    "noResultAvailable": "Kein Ergebnis verfügbar.",
+    "numericValue": "Numerischer Wert (optional)",
+    "numericValuePlaceholder": "z. B. 5,4",
+    "unit": "Einheit (optional)",
+    "unitPlaceholder": "z. B. mmol/L",
+    "historyTitle": "Verlauf über die Zeit"
   },
   "exportColumns": {
     "filename": "Labor",

@@ -74,7 +74,8 @@
     "carePlans": "护理计划",
     "history": "历史",
     "billing": "账单",
-    "vitals": "生命体征"
+    "vitals": "生命体征",
+    "trends": "趋势"
   },
   "list": {
     "statusPlaceholder": "状态",

@@ -79,6 +79,8 @@ const labColumns = {
   completedAt: 'completed_at',
   canceledAt: 'canceled_at',
   result: 'result',
+  numericValue: 'numeric_value',
+  unit: 'unit',
   notes: 'notes',
   deletedAt: 'deleted_at',
   createdAt: 'created_at',

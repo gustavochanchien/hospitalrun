@@ -73,7 +73,12 @@
     "labDeleted": "Tetkik silindi",
     "resultRequired": "Tamamlamadan önce lütfen bir sonuç girin.",
     "resultRequiredShort": "Lütfen bir sonuç girin.",
-    "noResultAvailable": "Sonuç mevcut değil."
+    "noResultAvailable": "Sonuç mevcut değil.",
+    "numericValue": "Sayısal değer (isteğe bağlı)",
+    "numericValuePlaceholder": "örn. 5,4",
+    "unit": "Birim (isteğe bağlı)",
+    "unitPlaceholder": "örn. mmol/L",
+    "historyTitle": "Zaman içindeki eğilim"
   },
   "exportColumns": {
     "filename": "Laboratuvar",

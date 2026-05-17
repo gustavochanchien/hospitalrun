@@ -73,7 +73,12 @@
     "labDeleted": "Examen supprimé",
     "resultRequired": "Veuillez saisir un résultat avant de terminer.",
     "resultRequiredShort": "Veuillez saisir un résultat.",
-    "noResultAvailable": "Aucun résultat disponible."
+    "noResultAvailable": "Aucun résultat disponible.",
+    "numericValue": "Valeur numérique (optionnel)",
+    "numericValuePlaceholder": "ex. 5,4",
+    "unit": "Unité (optionnel)",
+    "unitPlaceholder": "ex. mmol/L",
+    "historyTitle": "Tendance dans le temps"
   },
   "exportColumns": {
     "filename": "Laboratoires",

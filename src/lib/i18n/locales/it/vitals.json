@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Eliminare questa rilevazione?",
     "description": "Questa operazione rimuoverà la rilevazione dei parametri vitali. Puoi registrarla nuovamente in qualsiasi momento."
+  },
+  "view": {
+    "label": "Vista",
+    "table": "Tabella",
+    "chart": "Grafico"
   }
 }

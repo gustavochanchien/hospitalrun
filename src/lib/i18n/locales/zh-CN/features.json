@@ -20,6 +20,10 @@
     "label": "生命体征与生长曲线",
     "description": "记录患者生命体征（身高、体重、体温、血压等），并将儿科生长数据与WHO参考曲线进行比较。"
   },
+  "trends": {
+    "label": "纵向趋势图",
+    "description": "将患者测量数据（生命体征、检验数值结果）绘制为随时间变化的多系列折线图。"
+  },
   "toggle": {
     "enabled": "已启用 {{feature}}",
     "disabled": "已禁用 {{feature}}"

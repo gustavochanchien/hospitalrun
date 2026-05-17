@@ -64,5 +64,10 @@
   "confirmDelete": {
     "title": "删除此条记录？",
     "description": "这将删除该生命体征记录。您可以随时重新记录。"
+  },
+  "view": {
+    "label": "视图",
+    "table": "表格",
+    "chart": "图表"
   }
 }

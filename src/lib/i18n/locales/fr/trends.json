@@ -1,0 +1,18 @@
+{
+  "title": "Tendances",
+  "loading": "Chargement des données de tendances…",
+  "noNumericData": "Aucune constante vitale numérique ni résultat de laboratoire pour le moment. Enregistrez des mesures pour tracer des tendances ici.",
+  "pickPrompt": "Choisissez 1 à 3 mesures ci-dessus à représenter.",
+  "emptyAfterFilter": "Aucune donnée dans la plage de dates sélectionnée.",
+  "picker": {
+    "title": "Choisir les mesures",
+    "description": "Sélectionnez jusqu'à {{max}} mesures numériques à représenter dans le temps."
+  },
+  "range": {
+    "from": "De",
+    "to": "À"
+  },
+  "chart": {
+    "title": "Graphique"
+  }
+}

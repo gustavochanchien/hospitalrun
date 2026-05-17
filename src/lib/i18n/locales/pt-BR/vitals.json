@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Excluir esta leitura?",
     "description": "Isso removerá o registro de sinais vitais. Você pode registrá-lo novamente a qualquer momento."
+  },
+  "view": {
+    "label": "Visualização",
+    "table": "Tabela",
+    "chart": "Gráfico"
   }
 }

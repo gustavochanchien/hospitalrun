@@ -74,7 +74,8 @@
     "carePlans": "Pflegepläne",
     "history": "Verlauf",
     "billing": "Abrechnung",
-    "vitals": "Vitalzeichen"
+    "vitals": "Vitalzeichen",
+    "trends": "Trends"
   },
   "list": {
     "statusPlaceholder": "Status",

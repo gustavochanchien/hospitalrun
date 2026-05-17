@@ -73,7 +73,12 @@
     "labDeleted": "Pemeriksaan dihapus",
     "resultRequired": "Harap masukkan hasil sebelum menyelesaikan.",
     "resultRequiredShort": "Harap masukkan hasil.",
-    "noResultAvailable": "Tidak ada hasil tersedia."
+    "noResultAvailable": "Tidak ada hasil tersedia.",
+    "numericValue": "Nilai numerik (opsional)",
+    "numericValuePlaceholder": "mis. 5.4",
+    "unit": "Satuan (opsional)",
+    "unitPlaceholder": "mis. mmol/L",
+    "historyTitle": "Tren dari waktu ke waktu"
   },
   "exportColumns": {
     "filename": "Laboratorium",

@@ -1,0 +1,18 @@
+{
+  "title": "Tren",
+  "loading": "Memuat data tren…",
+  "noNumericData": "Belum ada tanda vital atau hasil laboratorium numerik. Catat pengukuran untuk menampilkan tren di sini.",
+  "pickPrompt": "Pilih 1 hingga 3 pengukuran di atas untuk ditampilkan.",
+  "emptyAfterFilter": "Tidak ada data dalam rentang tanggal yang dipilih.",
+  "picker": {
+    "title": "Pilih pengukuran",
+    "description": "Pilih hingga {{max}} pengukuran numerik untuk ditampilkan dari waktu ke waktu."
+  },
+  "range": {
+    "from": "Dari",
+    "to": "Hingga"
+  },
+  "chart": {
+    "title": "Grafik"
+  }
+}

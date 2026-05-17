@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Supprimer cette mesure ?",
     "description": "Cela supprimera la mesure des constantes vitales. Vous pouvez la ré-enregistrer à tout moment."
+  },
+  "view": {
+    "label": "Affichage",
+    "table": "Tableau",
+    "chart": "Graphique"
   }
 }

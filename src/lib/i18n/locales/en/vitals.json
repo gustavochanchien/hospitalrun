@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Delete this reading?",
     "description": "This will remove the vitals reading. You can re-record it at any time."
+  },
+  "view": {
+    "label": "View",
+    "table": "Table",
+    "chart": "Chart"
   }
 }

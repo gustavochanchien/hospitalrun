@@ -20,6 +20,10 @@
     "label": "Constantes vitales et courbes de croissance",
     "description": "Enregistrez les constantes vitales du patient (taille, poids, température, pression artérielle, etc.) et représentez la croissance pédiatrique par rapport aux courbes de référence de l'OMS."
   },
+  "trends": {
+    "label": "Graphiques de tendances longitudinales",
+    "description": "Représentez les mesures du patient (constantes vitales, résultats numériques de laboratoire) sous forme de graphiques en courbes multi-séries dans le temps."
+  },
   "toggle": {
     "enabled": "{{feature}} activée",
     "disabled": "{{feature}} désactivée"

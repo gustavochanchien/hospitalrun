@@ -65,6 +65,8 @@ const baseLab: Lab = {
   completedAt: '2026-01-02T11:00:00.000Z',
   canceledAt: null,
   result: 'Within normal limits.\n\nFollow-up in 3 months.',
+  numericValue: null,
+  unit: null,
   notes: 'Fasting',
   deletedAt: null,
   createdAt: '2026-01-01T10:00:00.000Z',

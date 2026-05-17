@@ -102,6 +102,8 @@ export interface Lab {
   completedAt: string | null
   canceledAt: string | null
   result: string | null
+  numericValue: number | null
+  unit: string | null
   notes: string | null
   deletedAt: string | null
   createdAt: string

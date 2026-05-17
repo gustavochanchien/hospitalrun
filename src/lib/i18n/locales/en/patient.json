@@ -74,7 +74,8 @@
     "carePlans": "Care Plans",
     "history": "History",
     "billing": "Billing",
-    "vitals": "Vitals"
+    "vitals": "Vitals",
+    "trends": "Trends"
   },
   "list": {
     "statusPlaceholder": "Status",

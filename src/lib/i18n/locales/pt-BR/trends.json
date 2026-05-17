@@ -1,0 +1,18 @@
+{
+  "title": "Tendências",
+  "loading": "Carregando dados de tendências…",
+  "noNumericData": "Nenhum sinal vital numérico ou resultado de laboratório ainda. Registre medições para traçar tendências aqui.",
+  "pickPrompt": "Escolha de 1 a 3 medições acima para traçar.",
+  "emptyAfterFilter": "Sem dados no intervalo de datas selecionado.",
+  "picker": {
+    "title": "Escolher medições",
+    "description": "Selecione até {{max}} medições numéricas para traçar ao longo do tempo."
+  },
+  "range": {
+    "from": "De",
+    "to": "Até"
+  },
+  "chart": {
+    "title": "Gráfico"
+  }
+}

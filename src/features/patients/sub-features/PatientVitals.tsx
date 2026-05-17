@@ -28,6 +28,23 @@ import {
 } from '@/components/ui/table'
 import type { Vital } from '@/lib/db/schema'
 import { GrowthChartCard } from './vitals/GrowthChartCard'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { TrendChart } from '@/components/trend-chart'
+import {
+  VITAL_FIELD_KEYS,
+  VITAL_FIELD_LABEL_KEY,
+  vitalSeriesOptionId,
+  buildSeriesFromSelection,
+  buildSeriesOptions,
+  type VitalFieldKey,
+} from './trends/trend-data'
 
 interface PatientVitalsProps {
   patientId: string
@@ -144,6 +161,8 @@ export function PatientVitals({ patientId }: PatientVitalsProps) {
   const [form, setForm] = useState<VitalsFormValues>({ ...EMPTY_FORM, recordedAt: nowLocalIso() })
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | null>(null)
+  const [view, setView] = useState<'table' | 'chart'>('table')
+  const [chartMetric, setChartMetric] = useState<VitalFieldKey>('heartRate')
 
   const patient = useLiveQuery(() => db.patients.get(patientId), [patientId])
   const vitals = useLiveQuery(
@@ -160,6 +179,32 @@ export function PatientVitals({ patientId }: PatientVitalsProps) {
     if (!vitals) return []
     return [...vitals].sort((a, b) => a.recordedAt.localeCompare(b.recordedAt))
   }, [vitals])
+
+  const chartFieldsAvailable = useMemo<VitalFieldKey[]>(() => {
+    if (!vitals) return []
+    return VITAL_FIELD_KEYS.filter((field) =>
+      vitals.some((v) => {
+        const raw = v[field]
+        return typeof raw === 'number' && Number.isFinite(raw)
+      }),
+    )
+  }, [vitals])
+
+  const activeChartField: VitalFieldKey | null = useMemo(() => {
+    if (chartFieldsAvailable.length === 0) return null
+    return chartFieldsAvailable.includes(chartMetric) ? chartMetric : chartFieldsAvailable[0]
+  }, [chartFieldsAvailable, chartMetric])
+
+  const chartSeries = useMemo(() => {
+    if (!activeChartField) return []
+    const options = buildSeriesOptions(ascendingVitals, [], (f) => t(VITAL_FIELD_LABEL_KEY[f]))
+    return buildSeriesFromSelection(
+      [vitalSeriesOptionId(activeChartField)],
+      ascendingVitals,
+      [],
+      options,
+    )
+  }, [activeChartField, ascendingVitals, t])
 
   if (!canRead) {
     return (
@@ -294,9 +339,60 @@ export function PatientVitals({ patientId }: PatientVitalsProps) {
 
       {patient && <GrowthChartCard patient={patient} vitals={ascendingVitals} />}
 
+      {vitals.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm text-muted-foreground">{t('view.label')}</span>
+          <Button
+            size="sm"
+            variant={view === 'table' ? 'default' : 'outline'}
+            onClick={() => setView('table')}
+          >
+            {t('view.table')}
+          </Button>
+          <Button
+            size="sm"
+            variant={view === 'chart' ? 'default' : 'outline'}
+            disabled={chartFieldsAvailable.length === 0}
+            onClick={() => setView('chart')}
+          >
+            {t('view.chart')}
+          </Button>
+          {view === 'chart' && activeChartField && (
+            <Select
+              value={activeChartField}
+              onValueChange={(v) => setChartMetric(v as VitalFieldKey)}
+            >
+              <SelectTrigger className="ml-auto w-[220px]" aria-label={t('view.chart')}>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {chartFieldsAvailable.map((field) => (
+                  <SelectItem key={field} value={field}>
+                    {t(VITAL_FIELD_LABEL_KEY[field])}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        </div>
+      )}
+
+      {vitals.length > 0 && view === 'chart' && chartSeries.length > 0 && (
+        <Card data-testid="vitals-chart-card">
+          <CardHeader>
+            <CardTitle className="text-base">
+              {activeChartField ? t(VITAL_FIELD_LABEL_KEY[activeChartField]) : t('view.chart')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <TrendChart series={chartSeries} />
+          </CardContent>
+        </Card>
+      )}
+
       {vitals.length === 0 ? (
         <p className="py-8 text-center text-sm text-muted-foreground">{t('noResults')}</p>
-      ) : (
+      ) : view === 'chart' ? null : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>

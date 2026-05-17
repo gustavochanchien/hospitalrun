@@ -20,6 +20,10 @@
     "label": "Vitals & growth charts",
     "description": "Record patient vital signs (height, weight, temperature, blood pressure, etc.) and plot pediatric growth against WHO reference curves."
   },
+  "trends": {
+    "label": "Longitudinal trend charts",
+    "description": "Plot patient measurements (vitals, lab numeric results) as multi-series line charts over time."
+  },
   "toggle": {
     "enabled": "Enabled {{feature}}",
     "disabled": "Disabled {{feature}}"

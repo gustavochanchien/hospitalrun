@@ -74,7 +74,8 @@
     "carePlans": "Piani di cura",
     "history": "Cronologia",
     "billing": "Fatturazione",
-    "vitals": "Parametri vitali"
+    "vitals": "Parametri vitali",
+    "trends": "Tendenze"
   },
   "list": {
     "statusPlaceholder": "Stato",

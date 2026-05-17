@@ -1,0 +1,18 @@
+{
+  "title": "趋势",
+  "loading": "正在加载趋势数据…",
+  "noNumericData": "暂无数值型生命体征或检验结果。记录测量值后，趋势图将显示在此处。",
+  "pickPrompt": "从上方选择 1 至 3 项指标进行绘图。",
+  "emptyAfterFilter": "所选日期范围内无数据。",
+  "picker": {
+    "title": "选择指标",
+    "description": "最多选择 {{max}} 项数值型指标以绘制随时间变化的趋势图。"
+  },
+  "range": {
+    "from": "从",
+    "to": "至"
+  },
+  "chart": {
+    "title": "图表"
+  }
+}

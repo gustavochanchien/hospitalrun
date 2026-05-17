@@ -20,6 +20,10 @@
     "label": "Vitalzeichen & Wachstumskurven",
     "description": "Erfassen Sie Vitalzeichen (Größe, Gewicht, Temperatur, Blutdruck usw.) und stellen Sie das Wachstum pädiatrischer Patienten im Vergleich zu WHO-Referenzkurven dar."
   },
+  "trends": {
+    "label": "Längsschnitt-Trenddiagramme",
+    "description": "Stellen Sie Patientenmesswerte (Vitalzeichen, numerische Laborergebnisse) als mehrzeilige Liniendiagramme über die Zeit dar."
+  },
   "toggle": {
     "enabled": "{{feature}} aktiviert",
     "disabled": "{{feature}} deaktiviert"

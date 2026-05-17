@@ -65,5 +65,10 @@
   "confirmDelete": {
     "title": "Diese Messung löschen?",
     "description": "Damit wird der Vitalzeichen-Eintrag entfernt. Sie können ihn jederzeit neu erfassen."
+  },
+  "view": {
+    "label": "Ansicht",
+    "table": "Tabelle",
+    "chart": "Diagramm"
   }
 }

@@ -74,7 +74,8 @@
     "carePlans": "Planos de cuidado",
     "history": "Histórico",
     "billing": "Faturamento",
-    "vitals": "Sinais vitais"
+    "vitals": "Sinais vitais",
+    "trends": "Tendências"
   },
   "list": {
     "statusPlaceholder": "Status",

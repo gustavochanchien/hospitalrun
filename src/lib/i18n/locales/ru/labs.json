@@ -73,7 +73,12 @@
     "labDeleted": "Исследование удалено",
     "resultRequired": "Пожалуйста, введите результат перед завершением.",
     "resultRequiredShort": "Пожалуйста, введите результат.",
-    "noResultAvailable": "Результат отсутствует."
+    "noResultAvailable": "Результат отсутствует.",
+    "numericValue": "Числовое значение (необязательно)",
+    "numericValuePlaceholder": "напр. 5,4",
+    "unit": "Единица измерения (необязательно)",
+    "unitPlaceholder": "напр. ммоль/л",
+    "historyTitle": "Динамика во времени"
   },
   "exportColumns": {
     "filename": "Лаборатории",

@@ -20,6 +20,10 @@
     "label": "Vital bulgular ve büyüme eğrileri",
     "description": "Hasta vital bulgularını (boy, ağırlık, ateş, kan basıncı vb.) kaydedin ve pediatrik büyümeyi WHO referans eğrileriyle karşılaştırın."
   },
+  "trends": {
+    "label": "Boylamsal eğilim grafikleri",
+    "description": "Hasta ölçümlerini (vital bulgular, laboratuvar sayısal sonuçları) zaman içinde çok serili çizgi grafikleri olarak gösterin."
+  },
   "toggle": {
     "enabled": "{{feature}} etkinleştirildi",
     "disabled": "{{feature}} devre dışı bırakıldı"

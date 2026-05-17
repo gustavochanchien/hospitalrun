@@ -1,0 +1,18 @@
+{
+  "title": "Trends",
+  "loading": "Loading trend data…",
+  "noNumericData": "No numeric vitals or lab results yet. Record measurements to plot trends here.",
+  "pickPrompt": "Choose 1 to 3 measurements above to plot.",
+  "emptyAfterFilter": "No data in the selected date range.",
+  "picker": {
+    "title": "Choose measurements",
+    "description": "Select up to {{max}} numeric measurements to plot over time."
+  },
+  "range": {
+    "from": "From",
+    "to": "To"
+  },
+  "chart": {
+    "title": "Chart"
+  }
+}

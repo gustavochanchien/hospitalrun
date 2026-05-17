@@ -74,7 +74,8 @@
     "carePlans": "Rencana perawatan",
     "history": "Riwayat",
     "billing": "Penagihan",
-    "vitals": "Tanda Vital"
+    "vitals": "Tanda Vital",
+    "trends": "Tren"
   },
   "list": {
     "statusPlaceholder": "Status",
