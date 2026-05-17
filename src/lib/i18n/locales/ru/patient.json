@@ -19,6 +19,13 @@
     "dateOfBirth": "Дата рождения",
     "sex": "Пол",
     "bloodType": "Группа крови",
+    "maritalStatus": "Семейное положение",
+    "educationLevel": "Уровень образования",
+    "nationalId": "Номер документа",
+    "nationalIdType": "Тип документа",
+    "numberOfChildren": "Количество детей",
+    "numberOfHouseholdMembers": "Членов домохозяйства",
+    "isHeadOfHousehold": "Глава домохозяйства",
     "occupation": "Профессия",
     "preferredLanguage": "Предпочитаемый язык",
     "phone": "Телефон",
@@ -35,6 +42,21 @@
     "male": "Мужской",
     "female": "Женский",
     "other": "Другой",
+    "unknown": "Неизвестно"
+  },
+  "maritalStatus": {
+    "single": "Не женат/не замужем",
+    "partnered": "В партнёрстве",
+    "married": "Женат/замужем",
+    "separated": "Раздельное проживание",
+    "divorced": "В разводе",
+    "widowed": "Вдовец/вдова"
+  },
+  "educationLevel": {
+    "none": "Без формального образования",
+    "primary": "Начальное",
+    "secondary": "Среднее",
+    "tertiary": "Высшее",
     "unknown": "Неизвестно"
   },
   "tabs": {
@@ -69,11 +91,20 @@
   "form": {
     "personalInfo": "Личная информация",
     "contactInfo": "Контактная информация",
+    "identificationInfo": "Удостоверение личности",
+    "backgroundInfo": "Биографические данные",
+    "householdInfo": "Домохозяйство",
     "other": "Другое",
     "dobUnknown": "Дата рождения неизвестна",
     "approxAgePlaceholder": "Приблизительный возраст в годах",
     "selectSex": "Выберите пол",
     "selectBloodType": "Выберите группу крови",
+    "selectMaritalStatus": "Выберите семейное положение",
+    "selectEducationLevel": "Выберите уровень образования",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Отметить пациента как главу домохозяйства",
     "saving": "Сохранение...",
     "givenNameRequired": "Имя *",
     "familyNameRequired": "Фамилия *",
@@ -89,7 +120,9 @@
     "dobLabel": "ДР: {{date}}",
     "bloodTypeLabel": "Группа крови: {{type}}",
     "language": "Язык",
-    "edit": "Редактировать"
+    "edit": "Редактировать",
+    "headOfHousehold": "Глава домохозяйства",
+    "lastUpdated": "Обновлено {{relative}}"
   },
   "status": {
     "active": "Активный",
@@ -363,7 +396,32 @@
         "relationship": "Отношение",
         "phone": "Телефон",
         "email": "Эл. почта",
-        "name": "Имя"
+        "name": "Имя",
+        "linkedPatient": "Связанный пациент (необязательно)",
+        "primaryContact": "Назначить основным контактом"
+      },
+      "placeholders": {
+        "selectPatient": "Поиск пациентов…",
+        "noPatients": "Пациенты не найдены",
+        "relationship": "супруг, родитель, ребёнок…"
+      },
+      "badges": {
+        "primary": "Основной",
+        "linked": "Связан"
+      },
+      "relationship": {
+        "spouse": "Супруг/Супруга",
+        "partner": "Партнёр",
+        "parent": "Родитель",
+        "child": "Ребёнок",
+        "sibling": "Брат/Сестра",
+        "guardian": "Опекун",
+        "grandparent": "Дедушка/Бабушка",
+        "grandchild": "Внук/Внучка",
+        "headOfHousehold": "Глава домохозяйства",
+        "friend": "Друг/Подруга",
+        "emergencyContact": "Экстренный контакт",
+        "other": "Другое"
       },
       "save": "Сохранить",
       "cancel": "Отмена"

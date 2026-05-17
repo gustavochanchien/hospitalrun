@@ -19,6 +19,13 @@
     "dateOfBirth": "Date de naissance",
     "sex": "Sexe",
     "bloodType": "Groupe sanguin",
+    "maritalStatus": "Situation familiale",
+    "educationLevel": "Niveau d'études",
+    "nationalId": "Numéro d'identité",
+    "nationalIdType": "Type d'identité",
+    "numberOfChildren": "Nombre d'enfants",
+    "numberOfHouseholdMembers": "Membres du foyer",
+    "isHeadOfHousehold": "Chef de ménage",
     "occupation": "Profession",
     "preferredLanguage": "Langue préférée",
     "phone": "Téléphone",
@@ -35,6 +42,21 @@
     "male": "Homme",
     "female": "Femme",
     "other": "Autre",
+    "unknown": "Inconnu"
+  },
+  "maritalStatus": {
+    "single": "Célibataire",
+    "partnered": "En couple",
+    "married": "Marié(e)",
+    "separated": "Séparé(e)",
+    "divorced": "Divorcé(e)",
+    "widowed": "Veuf/Veuve"
+  },
+  "educationLevel": {
+    "none": "Sans scolarité formelle",
+    "primary": "Primaire",
+    "secondary": "Secondaire",
+    "tertiary": "Supérieur",
     "unknown": "Inconnu"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "Informations personnelles",
     "contactInfo": "Coordonnées",
+    "identificationInfo": "Identification",
+    "backgroundInfo": "Parcours",
+    "householdInfo": "Foyer",
     "other": "Autre",
     "dobUnknown": "Date de naissance inconnue",
     "approxAgePlaceholder": "Âge approximatif en années",
     "selectSex": "Sélectionner le sexe",
     "selectBloodType": "Sélectionner le groupe sanguin",
+    "selectMaritalStatus": "Sélectionner la situation familiale",
+    "selectEducationLevel": "Sélectionner le niveau d'études",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Désigner ce patient comme chef de ménage",
     "saving": "Enregistrement...",
     "givenNameRequired": "Prénom *",
     "familyNameRequired": "Nom *",
@@ -87,7 +118,9 @@
     "dobLabel": "DDN : {{date}}",
     "bloodTypeLabel": "Groupe sanguin : {{type}}",
     "language": "Langue",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "headOfHousehold": "Chef de ménage",
+    "lastUpdated": "Mis à jour {{relative}}"
   },
   "status": {
     "active": "Actif",
@@ -361,7 +394,32 @@
         "relationship": "Relation",
         "phone": "Téléphone",
         "email": "E-mail",
-        "name": "Nom"
+        "name": "Nom",
+        "linkedPatient": "Patient lié (optionnel)",
+        "primaryContact": "Définir comme contact principal"
+      },
+      "placeholders": {
+        "selectPatient": "Rechercher des patients…",
+        "noPatients": "Aucun patient trouvé",
+        "relationship": "conjoint, parent, enfant…"
+      },
+      "badges": {
+        "primary": "Principal",
+        "linked": "Lié"
+      },
+      "relationship": {
+        "spouse": "Conjoint(e)",
+        "partner": "Partenaire",
+        "parent": "Parent",
+        "child": "Enfant",
+        "sibling": "Frère/Sœur",
+        "guardian": "Tuteur/Tutrice",
+        "grandparent": "Grand-parent",
+        "grandchild": "Petit-enfant",
+        "headOfHousehold": "Chef de ménage",
+        "friend": "Ami(e)",
+        "emergencyContact": "Contact d'urgence",
+        "other": "Autre"
       },
       "save": "Enregistrer",
       "cancel": "Annuler"

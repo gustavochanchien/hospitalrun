@@ -19,6 +19,13 @@
     "dateOfBirth": "出生日期",
     "sex": "性别",
     "bloodType": "血型",
+    "maritalStatus": "婚姻状况",
+    "educationLevel": "教育程度",
+    "nationalId": "证件号码",
+    "nationalIdType": "证件类型",
+    "numberOfChildren": "子女数量",
+    "numberOfHouseholdMembers": "家庭成员数",
+    "isHeadOfHousehold": "户主",
     "occupation": "职业",
     "preferredLanguage": "首选语言",
     "phone": "电话",
@@ -35,6 +42,21 @@
     "male": "男",
     "female": "女",
     "other": "其他",
+    "unknown": "未知"
+  },
+  "maritalStatus": {
+    "single": "未婚",
+    "partnered": "同居",
+    "married": "已婚",
+    "separated": "分居",
+    "divorced": "离婚",
+    "widowed": "丧偶"
+  },
+  "educationLevel": {
+    "none": "未受正规教育",
+    "primary": "小学",
+    "secondary": "中学",
+    "tertiary": "大学及以上",
     "unknown": "未知"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "个人信息",
     "contactInfo": "联系信息",
+    "identificationInfo": "证件信息",
+    "backgroundInfo": "背景信息",
+    "householdInfo": "家庭信息",
     "other": "其他",
     "dobUnknown": "出生日期未知",
     "approxAgePlaceholder": "大约年龄（岁）",
     "selectSex": "选择性别",
     "selectBloodType": "选择血型",
+    "selectMaritalStatus": "选择婚姻状况",
+    "selectEducationLevel": "选择教育程度",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "将此患者标记为户主",
     "saving": "保存中...",
     "givenNameRequired": "名 *",
     "familyNameRequired": "姓 *",
@@ -87,7 +118,9 @@
     "dobLabel": "出生日期：{{date}}",
     "bloodTypeLabel": "血型：{{type}}",
     "language": "语言",
-    "edit": "编辑"
+    "edit": "编辑",
+    "headOfHousehold": "户主",
+    "lastUpdated": "{{relative}}前更新"
   },
   "status": {
     "active": "活动",
@@ -361,7 +394,32 @@
         "relationship": "关系",
         "phone": "电话",
         "email": "电子邮件",
-        "name": "姓名"
+        "name": "姓名",
+        "linkedPatient": "关联患者（可选）",
+        "primaryContact": "设为主要联系人"
+      },
+      "placeholders": {
+        "selectPatient": "搜索患者…",
+        "noPatients": "未找到患者",
+        "relationship": "配偶、父母、子女…"
+      },
+      "badges": {
+        "primary": "主要",
+        "linked": "已关联"
+      },
+      "relationship": {
+        "spouse": "配偶",
+        "partner": "伴侣",
+        "parent": "父母",
+        "child": "子女",
+        "sibling": "兄弟姐妹",
+        "guardian": "监护人",
+        "grandparent": "祖父母",
+        "grandchild": "孙子女",
+        "headOfHousehold": "户主",
+        "friend": "朋友",
+        "emergencyContact": "紧急联系人",
+        "other": "其他"
       },
       "save": "保存",
       "cancel": "取消"

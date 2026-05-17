@@ -19,6 +19,13 @@
     "dateOfBirth": "Tanggal lahir",
     "sex": "Jenis kelamin",
     "bloodType": "Golongan darah",
+    "maritalStatus": "Status pernikahan",
+    "educationLevel": "Tingkat pendidikan",
+    "nationalId": "Nomor identitas",
+    "nationalIdType": "Jenis identitas",
+    "numberOfChildren": "Jumlah anak",
+    "numberOfHouseholdMembers": "Anggota rumah tangga",
+    "isHeadOfHousehold": "Kepala rumah tangga",
     "occupation": "Pekerjaan",
     "preferredLanguage": "Bahasa pilihan",
     "phone": "Telepon",
@@ -35,6 +42,21 @@
     "male": "Laki-laki",
     "female": "Perempuan",
     "other": "Lainnya",
+    "unknown": "Tidak diketahui"
+  },
+  "maritalStatus": {
+    "single": "Lajang",
+    "partnered": "Berpasangan",
+    "married": "Menikah",
+    "separated": "Pisah",
+    "divorced": "Bercerai",
+    "widowed": "Janda/Duda"
+  },
+  "educationLevel": {
+    "none": "Tidak berpendidikan formal",
+    "primary": "SD",
+    "secondary": "SMP/SMA",
+    "tertiary": "Perguruan tinggi",
     "unknown": "Tidak diketahui"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "Informasi pribadi",
     "contactInfo": "Informasi kontak",
+    "identificationInfo": "Identifikasi",
+    "backgroundInfo": "Latar belakang",
+    "householdInfo": "Rumah tangga",
     "other": "Lainnya",
     "dobUnknown": "Tanggal lahir tidak diketahui",
     "approxAgePlaceholder": "Perkiraan usia dalam tahun",
     "selectSex": "Pilih jenis kelamin",
     "selectBloodType": "Pilih golongan darah",
+    "selectMaritalStatus": "Pilih status pernikahan",
+    "selectEducationLevel": "Pilih tingkat pendidikan",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Tandai pasien ini sebagai kepala rumah tangga",
     "saving": "Menyimpan...",
     "givenNameRequired": "Nama depan *",
     "familyNameRequired": "Nama belakang *",
@@ -87,7 +118,9 @@
     "dobLabel": "Tgl lahir: {{date}}",
     "bloodTypeLabel": "Golongan darah: {{type}}",
     "language": "Bahasa",
-    "edit": "Ubah"
+    "edit": "Ubah",
+    "headOfHousehold": "Kepala rumah tangga",
+    "lastUpdated": "Diperbarui {{relative}}"
   },
   "status": {
     "active": "Aktif",
@@ -361,7 +394,32 @@
         "relationship": "Hubungan",
         "phone": "Telepon",
         "email": "Email",
-        "name": "Nama"
+        "name": "Nama",
+        "linkedPatient": "Pasien terkait (opsional)",
+        "primaryContact": "Tandai sebagai kontak utama"
+      },
+      "placeholders": {
+        "selectPatient": "Cari pasien…",
+        "noPatients": "Tidak ada pasien ditemukan",
+        "relationship": "suami/istri, orang tua, anak…"
+      },
+      "badges": {
+        "primary": "Utama",
+        "linked": "Terkait"
+      },
+      "relationship": {
+        "spouse": "Suami/Istri",
+        "partner": "Pasangan",
+        "parent": "Orang tua",
+        "child": "Anak",
+        "sibling": "Saudara",
+        "guardian": "Wali",
+        "grandparent": "Kakek/Nenek",
+        "grandchild": "Cucu",
+        "headOfHousehold": "Kepala rumah tangga",
+        "friend": "Teman",
+        "emergencyContact": "Kontak darurat",
+        "other": "Lainnya"
       },
       "save": "Simpan",
       "cancel": "Batal"

@@ -4,8 +4,13 @@ import { toast } from 'sonner'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { PatientDetailPage } from '@/features/patients/PatientDetailPage'
 import { PatientForm } from '@/features/patients/PatientForm'
+import {
+  diffPatientFields,
+  formToPatientFields,
+} from '@/features/patients/patient-payload'
 import { db } from '@/lib/db'
-import { dbPut } from '@/lib/db/write'
+import { dbPut, recordPatientHistory } from '@/lib/db/write'
+import { useAuthStore } from '@/features/auth/auth.store'
 import type { PatientFormValues } from '@/features/patients/patient.schema'
 
 interface PatientSearch {
@@ -50,6 +55,13 @@ function PatientDetailRoute() {
               dateOfBirth: patient.dateOfBirth ?? '',
               sex: patient.sex ?? undefined,
               bloodType: (patient.bloodType as import('@/features/patients/patient.schema').PatientFormValues['bloodType']) ?? undefined,
+              maritalStatus: patient.maritalStatus ?? null,
+              educationLevel: patient.educationLevel ?? null,
+              nationalId: patient.nationalId ?? '',
+              nationalIdType: patient.nationalIdType ?? '',
+              numberOfChildren: patient.numberOfChildren != null ? String(patient.numberOfChildren) : '',
+              numberOfHouseholdMembers: patient.numberOfHouseholdMembers != null ? String(patient.numberOfHouseholdMembers) : '',
+              isHeadOfHousehold: patient.isHeadOfHousehold ?? false,
               occupation: patient.occupation ?? '',
               preferredLanguage: patient.preferredLanguage ?? '',
               phone: patient.phone ?? '',
@@ -62,25 +74,21 @@ function PatientDetailRoute() {
               },
             }}
             onSubmit={async (data: PatientFormValues) => {
-              await dbPut(
-                'patients',
-                {
-                  ...patient,
-                  prefix: data.prefix || null,
-                  givenName: data.givenName,
-                  familyName: data.familyName,
-                  suffix: data.suffix || null,
-                  dateOfBirth: data.dateOfBirth || null,
-                  sex: data.sex ?? null,
-                  bloodType: data.bloodType || null,
-                  occupation: data.occupation || null,
-                  preferredLanguage: data.preferredLanguage || null,
-                  phone: data.phone || null,
-                  email: data.email || null,
-                  address: data.address ?? null,
-                },
-                'update',
-              )
+              const nextPatient = {
+                ...patient,
+                ...formToPatientFields(data),
+              }
+              const changes = diffPatientFields(patient, nextPatient)
+              await dbPut('patients', nextPatient, 'update')
+              if (changes.length > 0) {
+                const userId = useAuthStore.getState().user?.id ?? null
+                await recordPatientHistory({
+                  orgId: patient.orgId,
+                  patientId,
+                  changedBy: userId,
+                  changes,
+                })
+              }
               toast.success('Patient updated')
               await navigate({ search: { edit: undefined } })
             }}

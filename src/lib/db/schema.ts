@@ -29,6 +29,13 @@ export interface Patient {
   phone: string | null
   email: string | null
   address: Record<string, string> | null
+  maritalStatus: 'single' | 'partnered' | 'married' | 'separated' | 'divorced' | 'widowed' | null
+  educationLevel: 'none' | 'primary' | 'secondary' | 'tertiary' | 'unknown' | null
+  nationalId: string | null
+  nationalIdType: string | null
+  numberOfChildren: number | null
+  numberOfHouseholdMembers: number | null
+  isHeadOfHousehold: boolean
   isApproximateDateOfBirth: boolean | null
   status: 'active' | 'inactive' | 'deceased'
   deletedAt: string | null
@@ -239,6 +246,8 @@ export interface RelatedPerson {
   phone: string | null
   email: string | null
   address: Record<string, string> | null
+  linkedPatientId: string | null
+  isPrimaryContact: boolean
   deletedAt: string | null
   createdAt: string
   updatedAt: string

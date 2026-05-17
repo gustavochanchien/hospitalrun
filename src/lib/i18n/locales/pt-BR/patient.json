@@ -19,6 +19,13 @@
     "dateOfBirth": "Data de nascimento",
     "sex": "Sexo",
     "bloodType": "Tipo sanguíneo",
+    "maritalStatus": "Estado civil",
+    "educationLevel": "Nível de escolaridade",
+    "nationalId": "Número de identificação",
+    "nationalIdType": "Tipo de documento",
+    "numberOfChildren": "Número de filhos",
+    "numberOfHouseholdMembers": "Membros do domicílio",
+    "isHeadOfHousehold": "Chefe de família",
     "occupation": "Ocupação",
     "preferredLanguage": "Idioma preferido",
     "phone": "Telefone",
@@ -35,6 +42,21 @@
     "male": "Masculino",
     "female": "Feminino",
     "other": "Outro",
+    "unknown": "Desconhecido"
+  },
+  "maritalStatus": {
+    "single": "Solteiro/a",
+    "partnered": "União estável",
+    "married": "Casado/a",
+    "separated": "Separado/a",
+    "divorced": "Divorciado/a",
+    "widowed": "Viúvo/a"
+  },
+  "educationLevel": {
+    "none": "Sem escolaridade formal",
+    "primary": "Ensino fundamental",
+    "secondary": "Ensino médio",
+    "tertiary": "Ensino superior",
     "unknown": "Desconhecido"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "Informações pessoais",
     "contactInfo": "Informações de contato",
+    "identificationInfo": "Identificação",
+    "backgroundInfo": "Histórico",
+    "householdInfo": "Domicílio",
     "other": "Outros",
     "dobUnknown": "Data de nascimento desconhecida",
     "approxAgePlaceholder": "Idade aproximada em anos",
     "selectSex": "Selecionar sexo",
     "selectBloodType": "Selecionar tipo sanguíneo",
+    "selectMaritalStatus": "Selecionar estado civil",
+    "selectEducationLevel": "Selecionar nível de escolaridade",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Marcar este paciente como chefe de família",
     "saving": "Salvando...",
     "givenNameRequired": "Nome *",
     "familyNameRequired": "Sobrenome *",
@@ -87,7 +118,9 @@
     "dobLabel": "DN: {{date}}",
     "bloodTypeLabel": "Tipo sanguíneo: {{type}}",
     "language": "Idioma",
-    "edit": "Editar"
+    "edit": "Editar",
+    "headOfHousehold": "Chefe de família",
+    "lastUpdated": "Atualizado {{relative}}"
   },
   "status": {
     "active": "Ativo",
@@ -361,7 +394,32 @@
         "relationship": "Parentesco",
         "phone": "Telefone",
         "email": "E-mail",
-        "name": "Nome"
+        "name": "Nome",
+        "linkedPatient": "Paciente vinculado (opcional)",
+        "primaryContact": "Marcar como contato principal"
+      },
+      "placeholders": {
+        "selectPatient": "Buscar pacientes…",
+        "noPatients": "Nenhum paciente encontrado",
+        "relationship": "cônjuge, pai/mãe, filho/a…"
+      },
+      "badges": {
+        "primary": "Principal",
+        "linked": "Vinculado"
+      },
+      "relationship": {
+        "spouse": "Cônjuge",
+        "partner": "Parceiro/a",
+        "parent": "Pai/Mãe",
+        "child": "Filho/a",
+        "sibling": "Irmão/Irmã",
+        "guardian": "Tutor/a",
+        "grandparent": "Avô/Avó",
+        "grandchild": "Neto/a",
+        "headOfHousehold": "Chefe de família",
+        "friend": "Amigo/a",
+        "emergencyContact": "Contato de emergência",
+        "other": "Outro"
       },
       "save": "Salvar",
       "cancel": "Cancelar"

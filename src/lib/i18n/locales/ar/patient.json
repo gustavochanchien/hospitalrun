@@ -19,6 +19,13 @@
     "dateOfBirth": "تاريخ الميلاد",
     "sex": "الجنس",
     "bloodType": "فصيلة الدم",
+    "maritalStatus": "الحالة الاجتماعية",
+    "educationLevel": "المستوى التعليمي",
+    "nationalId": "رقم الهوية",
+    "nationalIdType": "نوع الهوية",
+    "numberOfChildren": "عدد الأطفال",
+    "numberOfHouseholdMembers": "أفراد الأسرة",
+    "isHeadOfHousehold": "ربّ الأسرة",
     "occupation": "المهنة",
     "preferredLanguage": "اللغة المفضلة",
     "phone": "الهاتف",
@@ -35,6 +42,21 @@
     "male": "ذكر",
     "female": "أنثى",
     "other": "آخر",
+    "unknown": "غير معروف"
+  },
+  "maritalStatus": {
+    "single": "أعزب",
+    "partnered": "مع شريك",
+    "married": "متزوج",
+    "separated": "منفصل",
+    "divorced": "مطلّق",
+    "widowed": "أرمل"
+  },
+  "educationLevel": {
+    "none": "بدون تعليم رسمي",
+    "primary": "ابتدائي",
+    "secondary": "ثانوي",
+    "tertiary": "جامعي",
     "unknown": "غير معروف"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "المعلومات الشخصية",
     "contactInfo": "معلومات الاتصال",
+    "identificationInfo": "الهوية",
+    "backgroundInfo": "الخلفية",
+    "householdInfo": "الأسرة",
     "other": "أخرى",
     "dobUnknown": "تاريخ الميلاد غير معروف",
     "approxAgePlaceholder": "العمر التقريبي بالسنوات",
     "selectSex": "اختر الجنس",
     "selectBloodType": "اختر فصيلة الدم",
+    "selectMaritalStatus": "اختر الحالة الاجتماعية",
+    "selectEducationLevel": "اختر المستوى التعليمي",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "تعيين هذا المريض كربّ أسرة",
     "saving": "جارٍ الحفظ...",
     "givenNameRequired": "الاسم الأول *",
     "familyNameRequired": "اسم العائلة *",
@@ -87,7 +118,9 @@
     "dobLabel": "الميلاد: {{date}}",
     "bloodTypeLabel": "فصيلة الدم: {{type}}",
     "language": "اللغة",
-    "edit": "تعديل"
+    "edit": "تعديل",
+    "headOfHousehold": "ربّ الأسرة",
+    "lastUpdated": "تم التحديث {{relative}}"
   },
   "status": {
     "active": "نشط",
@@ -361,7 +394,32 @@
         "relationship": "صلة القرابة",
         "phone": "الهاتف",
         "email": "البريد الإلكتروني",
-        "name": "الاسم"
+        "name": "الاسم",
+        "linkedPatient": "مريض مرتبط (اختياري)",
+        "primaryContact": "تعيين كجهة اتصال أساسية"
+      },
+      "placeholders": {
+        "selectPatient": "ابحث عن المرضى…",
+        "noPatients": "لم يُعثر على مرضى",
+        "relationship": "زوج، والد، طفل…"
+      },
+      "badges": {
+        "primary": "أساسي",
+        "linked": "مرتبط"
+      },
+      "relationship": {
+        "spouse": "زوج/زوجة",
+        "partner": "شريك",
+        "parent": "والد",
+        "child": "طفل",
+        "sibling": "أخ/أخت",
+        "guardian": "وليّ أمر",
+        "grandparent": "جدّ/جدّة",
+        "grandchild": "حفيد/حفيدة",
+        "headOfHousehold": "ربّ الأسرة",
+        "friend": "صديق",
+        "emergencyContact": "جهة اتصال طوارئ",
+        "other": "آخر"
       },
       "save": "حفظ",
       "cancel": "إلغاء"

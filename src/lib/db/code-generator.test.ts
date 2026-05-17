@@ -49,6 +49,8 @@ describe('generateCode', () => {
         prefix: null, suffix: null, dateOfBirth: null, sex: null,
         bloodType: null, occupation: null, preferredLanguage: null,
         phone: null, email: null, address: null, isApproximateDateOfBirth: null, status: 'active',
+        maritalStatus: null, educationLevel: null, nationalId: null, nationalIdType: null,
+        numberOfChildren: null, numberOfHouseholdMembers: null, isHeadOfHousehold: false,
       } as Patient)
 
       const code = await generateCode('P', orgId)
@@ -66,6 +68,8 @@ describe('generateCode', () => {
         prefix: null, suffix: null, dateOfBirth: null, sex: null,
         bloodType: null, occupation: null, preferredLanguage: null,
         phone: null, email: null, address: null, isApproximateDateOfBirth: null, status: 'active',
+        maritalStatus: null, educationLevel: null, nationalId: null, nationalIdType: null,
+        numberOfChildren: null, numberOfHouseholdMembers: null, isHeadOfHousehold: false,
       } as Patient)
 
       const code = await generateCode('P', orgId)
@@ -73,10 +77,14 @@ describe('generateCode', () => {
     })
 
     it('finds the highest code when multiple exist', async () => {
+      const stage16Defaults = {
+        maritalStatus: null, educationLevel: null, nationalId: null, nationalIdType: null,
+        numberOfChildren: null, numberOfHouseholdMembers: null, isHeadOfHousehold: false,
+      } as const
       const patients: Patient[] = [
-        { ...baseRecord(), id: crypto.randomUUID(), mrn: 'P-00003', givenName: 'A', familyName: 'B', prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null, sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null, email: null, address: null, status: 'active' },
-        { ...baseRecord(), id: crypto.randomUUID(), mrn: 'P-00010', givenName: 'C', familyName: 'D', prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null, sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null, email: null, address: null, status: 'active' },
-        { ...baseRecord(), id: crypto.randomUUID(), mrn: 'P-00007', givenName: 'E', familyName: 'F', prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null, sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null, email: null, address: null, status: 'active' },
+        { ...baseRecord(), ...stage16Defaults, id: crypto.randomUUID(), mrn: 'P-00003', givenName: 'A', familyName: 'B', prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null, sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null, email: null, address: null, status: 'active' },
+        { ...baseRecord(), ...stage16Defaults, id: crypto.randomUUID(), mrn: 'P-00010', givenName: 'C', familyName: 'D', prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null, sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null, email: null, address: null, status: 'active' },
+        { ...baseRecord(), ...stage16Defaults, id: crypto.randomUUID(), mrn: 'P-00007', givenName: 'E', familyName: 'F', prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null, sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null, email: null, address: null, status: 'active' },
       ]
       await db.patients.bulkPut(patients)
       const code = await generateCode('P', orgId)

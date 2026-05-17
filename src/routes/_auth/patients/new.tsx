@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { PatientForm } from '@/features/patients/PatientForm'
 import { DuplicatePatientDialog } from '@/features/patients/DuplicatePatientDialog'
+import { formToPatientFields } from '@/features/patients/patient-payload'
 import { dbPut } from '@/lib/db/write'
 import { generateCode } from '@/lib/db/code-generator'
 import { useAuthStore } from '@/features/auth/auth.store'
@@ -29,18 +30,7 @@ function NewPatientPage() {
         id,
         orgId,
         mrn,
-        prefix: data.prefix || null,
-        givenName: data.givenName,
-        familyName: data.familyName,
-        suffix: data.suffix || null,
-        dateOfBirth: data.dateOfBirth || null,
-        sex: data.sex ?? null,
-        bloodType: data.bloodType || null,
-        occupation: data.occupation || null,
-        preferredLanguage: data.preferredLanguage || null,
-        phone: data.phone || null,
-        email: data.email || null,
-        address: data.address ?? null,
+        ...formToPatientFields(data),
         status: 'active' as const,
         deletedAt: null,
         createdAt: '',

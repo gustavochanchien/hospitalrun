@@ -1,11 +1,31 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+
+vi.mock('@tanstack/react-router', () => ({
+  Link: ({ to, params, children, className }: {
+    to: string
+    params?: Record<string, string>
+    children: React.ReactNode
+    className?: string
+  }) => {
+    const href = Object.entries(params ?? {}).reduce(
+      (acc, [k, v]) => acc.replace(`$${k}`, v),
+      to,
+    )
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    )
+  },
+}))
+
 import { db } from '@/lib/db'
 import { dbPut } from '@/lib/db/write'
 import { useAuthStore } from '@/features/auth/auth.store'
 import { PatientRelatedPersons } from './PatientRelatedPersons'
-import type { RelatedPerson } from '@/lib/db/schema'
+import type { Patient, RelatedPerson } from '@/lib/db/schema'
 
 const orgId = 'org-rp'
 const patientId = 'patient-rp-1'
@@ -21,6 +41,43 @@ function makeRelatedPerson(overrides: Partial<RelatedPerson> = {}): RelatedPerso
     phone: null,
     email: null,
     address: null,
+    linkedPatientId: null,
+    isPrimaryContact: false,
+    deletedAt: null,
+    createdAt: '',
+    updatedAt: '',
+    _synced: false,
+    _deleted: false,
+    ...overrides,
+  }
+}
+
+function makePatient(overrides: Partial<Patient> = {}): Patient {
+  return {
+    id: crypto.randomUUID(),
+    orgId,
+    mrn: null,
+    prefix: null,
+    givenName: 'A',
+    familyName: 'B',
+    suffix: null,
+    dateOfBirth: null,
+    sex: null,
+    bloodType: null,
+    occupation: null,
+    preferredLanguage: null,
+    phone: null,
+    email: null,
+    address: null,
+    maritalStatus: null,
+    educationLevel: null,
+    nationalId: null,
+    nationalIdType: null,
+    numberOfChildren: null,
+    numberOfHouseholdMembers: null,
+    isHeadOfHousehold: false,
+    isApproximateDateOfBirth: null,
+    status: 'active',
     deletedAt: null,
     createdAt: '',
     updatedAt: '',
@@ -31,8 +88,9 @@ function makeRelatedPerson(overrides: Partial<RelatedPerson> = {}): RelatedPerso
 }
 
 beforeEach(async () => {
-  await db.transaction('rw', db.relatedPersons, db.syncQueue, async () => {
+  await db.transaction('rw', db.relatedPersons, db.patients, db.syncQueue, async () => {
     await db.relatedPersons.clear()
+    await db.patients.clear()
     await db.syncQueue.clear()
   })
   useAuthStore.setState({
@@ -127,5 +185,110 @@ describe('PatientRelatedPersons', () => {
 
     const stored = await db.relatedPersons.get('rp-del')
     expect(stored?._deleted).toBe(true)
+  })
+
+  it('renders a router link when linked to another patient', async () => {
+    await dbPut(
+      'relatedPersons',
+      makeRelatedPerson({
+        id: 'rp-linked',
+        givenName: 'Linked',
+        familyName: 'Person',
+        linkedPatientId: 'other-patient',
+      }),
+      'insert',
+    )
+
+    render(<PatientRelatedPersons patientId={patientId} />)
+    const link = await screen.findByRole('link', { name: /linked person/i })
+    expect(link).toHaveAttribute('href', '/patients/other-patient')
+  })
+
+  it('renders plain text when not linked', async () => {
+    await dbPut(
+      'relatedPersons',
+      makeRelatedPerson({
+        id: 'rp-plain',
+        givenName: 'Plain',
+        familyName: 'Contact',
+        linkedPatientId: null,
+      }),
+      'insert',
+    )
+
+    render(<PatientRelatedPersons patientId={patientId} />)
+    await waitFor(() => {
+      expect(screen.getByText('Plain Contact')).toBeInTheDocument()
+    })
+    expect(screen.queryByRole('link', { name: /plain contact/i })).not.toBeInTheDocument()
+  })
+
+  it('displays a Primary badge for the primary contact', async () => {
+    await dbPut(
+      'relatedPersons',
+      makeRelatedPerson({
+        id: 'rp-primary',
+        givenName: 'Top',
+        familyName: 'Contact',
+        isPrimaryContact: true,
+      }),
+      'insert',
+    )
+
+    render(<PatientRelatedPersons patientId={patientId} />)
+    expect(await screen.findByText(/^primary$/i)).toBeInTheDocument()
+  })
+
+  it('demotes any existing primary contact when a new one is saved as primary', async () => {
+    await dbPut(
+      'relatedPersons',
+      makeRelatedPerson({
+        id: 'rp-old-primary',
+        givenName: 'Old',
+        familyName: 'Primary',
+        isPrimaryContact: true,
+      }),
+      'insert',
+    )
+
+    const user = userEvent.setup()
+    render(<PatientRelatedPersons patientId={patientId} />)
+    await screen.findByText('Old Primary')
+
+    await user.click(await screen.findByRole('button', { name: /new related person/i }))
+    const dialog = await screen.findByRole('dialog')
+    await user.type(within(dialog).getByLabelText(/first name/i), 'New')
+    await user.type(within(dialog).getByLabelText(/last name/i), 'Primary')
+    await user.click(within(dialog).getByLabelText(/mark as primary contact/i))
+    await user.click(within(dialog).getByRole('button', { name: /^save$/i }))
+
+    await waitFor(async () => {
+      const updated = await db.relatedPersons.get('rp-old-primary')
+      expect(updated?.isPrimaryContact).toBe(false)
+    })
+
+    const newPrimary = (await db.relatedPersons.toArray()).find(
+      (r) => r.givenName === 'New' && r.familyName === 'Primary',
+    )
+    expect(newPrimary?.isPrimaryContact).toBe(true)
+  })
+
+  it('does not list the current patient in the link picker', async () => {
+    await dbPut('patients', makePatient({ id: patientId, givenName: 'Self', familyName: 'Patient' }), 'insert')
+    await dbPut('patients', makePatient({ id: 'other-1', givenName: 'Other', familyName: 'One' }), 'insert')
+
+    const user = userEvent.setup()
+    render(<PatientRelatedPersons patientId={patientId} />)
+
+    await user.click(await screen.findByRole('button', { name: /new related person/i }))
+    const dialog = await screen.findByRole('dialog')
+    await user.click(within(dialog).getByLabelText(/linked patient/i))
+
+    // The picker popover shows in the document; both Self and Other are in Dexie
+    // but only "Other One" should appear.
+    await waitFor(() => {
+      expect(screen.getByText('Other One')).toBeInTheDocument()
+    })
+    expect(screen.queryByText('Self Patient')).not.toBeInTheDocument()
   })
 })

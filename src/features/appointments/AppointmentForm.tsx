@@ -1,7 +1,5 @@
-import { useState, useMemo, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,12 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import { db } from '@/lib/db'
+import { PatientPicker } from '@/components/patient-picker'
 import type { Appointment } from '@/lib/db/schema'
 import {
   APPOINTMENT_TYPES,
@@ -69,106 +62,24 @@ export function AppointmentForm({
     },
   })
 
-  const [patientSearch, setPatientSearch] = useState('')
-  const [patientDisplayName, setPatientDisplayName] = useState('')
-  const [popoverOpen, setPopoverOpen] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-
   const selectedPatientId = watch('patientId')
-
-  const allPatients = useLiveQuery(
-    () => db.patients.filter((p) => !p._deleted).toArray(),
-    [],
-  )
-
-  // Set initial display name when editing an existing appointment
-  const initialPatient = useLiveQuery(
-    () => {
-      const id = defaultValues?.patientId
-      if (!id) return undefined
-      return db.patients.get(id)
-    },
-    [defaultValues?.patientId],
-  )
-
-  if (initialPatient && !patientDisplayName && selectedPatientId) {
-    setPatientDisplayName(
-      `${initialPatient.givenName} ${initialPatient.familyName}`,
-    )
-  }
-
-  const filteredPatients = useMemo(() => {
-    if (!allPatients) return []
-    if (!patientSearch) return allPatients.slice(0, 10)
-    const lower = patientSearch.toLowerCase()
-    return allPatients
-      .filter((p) => {
-        const name = `${p.givenName} ${p.familyName}`.toLowerCase()
-        return name.includes(lower)
-      })
-      .slice(0, 10)
-  }, [allPatients, patientSearch])
 
   return (
     <form onSubmit={handleSubmit((data) => onSubmit(data as AppointmentFormValues))} className="max-w-2xl space-y-6">
       {/* Patient Picker */}
       <div className="space-y-2">
-        <Label>{t('fields.patient')} *</Label>
+        <Label htmlFor="appointment-patient">{t('fields.patient')} *</Label>
         <input type="hidden" {...register('patientId')} />
-        <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full justify-start font-normal"
-              onClick={() => setPopoverOpen(true)}
-            >
-              {patientDisplayName || t('form.selectPatient')}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-80 p-0" align="start">
-            <div className="p-2">
-              <Input
-                ref={inputRef}
-                placeholder={t('form.searchPatients')}
-                value={patientSearch}
-                onChange={(e) => setPatientSearch(e.target.value)}
-                autoFocus
-              />
-            </div>
-            <div className="max-h-60 overflow-y-auto">
-              {filteredPatients.length === 0 ? (
-                <p className="px-3 py-4 text-center text-sm text-muted-foreground">
-                  {t('form.noPatients')}
-                </p>
-              ) : (
-                filteredPatients.map((p) => {
-                  const name = `${p.givenName} ${p.familyName}`
-                  return (
-                    <button
-                      key={p.id}
-                      type="button"
-                      className="flex w-full items-center gap-2 px-3 py-2 text-sm hover:bg-accent"
-                      onClick={() => {
-                        setValue('patientId', p.id, { shouldValidate: true })
-                        setPatientDisplayName(name)
-                        setPatientSearch('')
-                        setPopoverOpen(false)
-                      }}
-                    >
-                      <span className="font-medium">{name}</span>
-                      {p.mrn && (
-                        <span className="text-muted-foreground">
-                          MRN: {p.mrn}
-                        </span>
-                      )}
-                    </button>
-                  )
-                })
-              )}
-            </div>
-          </PopoverContent>
-        </Popover>
+        <PatientPicker
+          id="appointment-patient"
+          value={selectedPatientId}
+          onChange={(p) =>
+            setValue('patientId', p?.id ?? '', { shouldValidate: true })
+          }
+          placeholder={t('form.selectPatient')}
+          searchPlaceholder={t('form.searchPatients')}
+          noResultsLabel={t('form.noPatients')}
+        />
         {errors.patientId?.message && (
           <p className="text-sm text-destructive">
             {t(errors.patientId.message as 'validation.patientRequired')}

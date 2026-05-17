@@ -19,6 +19,13 @@
     "dateOfBirth": "Date of Birth",
     "sex": "Sex",
     "bloodType": "Blood Type",
+    "maritalStatus": "Marital Status",
+    "educationLevel": "Education Level",
+    "nationalId": "ID Number",
+    "nationalIdType": "ID Type",
+    "numberOfChildren": "Number of Children",
+    "numberOfHouseholdMembers": "Household Members",
+    "isHeadOfHousehold": "Head of household",
     "occupation": "Occupation",
     "preferredLanguage": "Preferred Language",
     "phone": "Phone",
@@ -35,6 +42,21 @@
     "male": "Male",
     "female": "Female",
     "other": "Other",
+    "unknown": "Unknown"
+  },
+  "maritalStatus": {
+    "single": "Single",
+    "partnered": "Partnered",
+    "married": "Married",
+    "separated": "Separated",
+    "divorced": "Divorced",
+    "widowed": "Widowed"
+  },
+  "educationLevel": {
+    "none": "No formal education",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "tertiary": "Tertiary",
     "unknown": "Unknown"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "Personal Information",
     "contactInfo": "Contact Information",
+    "identificationInfo": "Identification",
+    "backgroundInfo": "Background",
+    "householdInfo": "Household",
     "other": "Other",
     "dobUnknown": "Date of birth unknown",
     "approxAgePlaceholder": "Approximate age in years",
     "selectSex": "Select sex",
     "selectBloodType": "Select blood type",
+    "selectMaritalStatus": "Select marital status",
+    "selectEducationLevel": "Select education level",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Mark this patient as the head of their household",
     "saving": "Saving...",
     "givenNameRequired": "First Name *",
     "familyNameRequired": "Last Name *",
@@ -87,7 +118,9 @@
     "dobLabel": "DOB: {{date}}",
     "bloodTypeLabel": "Blood Type: {{type}}",
     "language": "Language",
-    "edit": "Edit"
+    "edit": "Edit",
+    "headOfHousehold": "Head of household",
+    "lastUpdated": "Updated {{relative}}"
   },
   "status": {
     "active": "Active",
@@ -360,7 +393,32 @@
         "relationship": "Relationship",
         "phone": "Phone",
         "email": "Email",
-        "name": "Name"
+        "name": "Name",
+        "linkedPatient": "Linked patient (optional)",
+        "primaryContact": "Mark as primary contact"
+      },
+      "placeholders": {
+        "selectPatient": "Search patients…",
+        "noPatients": "No patients found",
+        "relationship": "spouse, parent, child…"
+      },
+      "badges": {
+        "primary": "Primary",
+        "linked": "Linked"
+      },
+      "relationship": {
+        "spouse": "Spouse",
+        "partner": "Partner",
+        "parent": "Parent",
+        "child": "Child",
+        "sibling": "Sibling",
+        "guardian": "Guardian",
+        "grandparent": "Grandparent",
+        "grandchild": "Grandchild",
+        "headOfHousehold": "Head of household",
+        "friend": "Friend",
+        "emergencyContact": "Emergency contact",
+        "other": "Other"
       },
       "save": "Save",
       "cancel": "Cancel"

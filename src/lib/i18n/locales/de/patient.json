@@ -19,6 +19,13 @@
     "dateOfBirth": "Geburtsdatum",
     "sex": "Geschlecht",
     "bloodType": "Blutgruppe",
+    "maritalStatus": "Familienstand",
+    "educationLevel": "Bildungsstand",
+    "nationalId": "Ausweisnummer",
+    "nationalIdType": "Ausweisart",
+    "numberOfChildren": "Anzahl der Kinder",
+    "numberOfHouseholdMembers": "Haushaltsmitglieder",
+    "isHeadOfHousehold": "Haushaltsvorstand",
     "occupation": "Beruf",
     "preferredLanguage": "Bevorzugte Sprache",
     "phone": "Telefon",
@@ -35,6 +42,21 @@
     "male": "Männlich",
     "female": "Weiblich",
     "other": "Andere",
+    "unknown": "Unbekannt"
+  },
+  "maritalStatus": {
+    "single": "Ledig",
+    "partnered": "In Partnerschaft",
+    "married": "Verheiratet",
+    "separated": "Getrennt",
+    "divorced": "Geschieden",
+    "widowed": "Verwitwet"
+  },
+  "educationLevel": {
+    "none": "Kein formaler Bildungsabschluss",
+    "primary": "Grundschule",
+    "secondary": "Weiterführende Schule",
+    "tertiary": "Hochschule",
     "unknown": "Unbekannt"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "Persönliche Informationen",
     "contactInfo": "Kontaktinformationen",
+    "identificationInfo": "Ausweisdaten",
+    "backgroundInfo": "Hintergrund",
+    "householdInfo": "Haushalt",
     "other": "Sonstiges",
     "dobUnknown": "Geburtsdatum unbekannt",
     "approxAgePlaceholder": "Ungefähres Alter in Jahren",
     "selectSex": "Geschlecht auswählen",
     "selectBloodType": "Blutgruppe auswählen",
+    "selectMaritalStatus": "Familienstand auswählen",
+    "selectEducationLevel": "Bildungsstand auswählen",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Diesen Patienten als Haushaltsvorstand markieren",
     "saving": "Wird gespeichert...",
     "givenNameRequired": "Vorname *",
     "familyNameRequired": "Nachname *",
@@ -87,7 +118,9 @@
     "dobLabel": "Geb.: {{date}}",
     "bloodTypeLabel": "Blutgruppe: {{type}}",
     "language": "Sprache",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "headOfHousehold": "Haushaltsvorstand",
+    "lastUpdated": "Aktualisiert {{relative}}"
   },
   "status": {
     "active": "Aktiv",
@@ -361,7 +394,32 @@
         "relationship": "Beziehung",
         "phone": "Telefon",
         "email": "E-Mail",
-        "name": "Name"
+        "name": "Name",
+        "linkedPatient": "Verknüpfter Patient (optional)",
+        "primaryContact": "Als primäre Kontaktperson markieren"
+      },
+      "placeholders": {
+        "selectPatient": "Patienten suchen…",
+        "noPatients": "Keine Patienten gefunden",
+        "relationship": "Ehepartner, Elternteil, Kind…"
+      },
+      "badges": {
+        "primary": "Primär",
+        "linked": "Verknüpft"
+      },
+      "relationship": {
+        "spouse": "Ehepartner/in",
+        "partner": "Partner/in",
+        "parent": "Elternteil",
+        "child": "Kind",
+        "sibling": "Geschwister",
+        "guardian": "Vormund",
+        "grandparent": "Großelternteil",
+        "grandchild": "Enkelkind",
+        "headOfHousehold": "Haushaltsvorstand",
+        "friend": "Freund/in",
+        "emergencyContact": "Notfallkontakt",
+        "other": "Andere"
       },
       "save": "Speichern",
       "cancel": "Abbrechen"

@@ -50,7 +50,7 @@ export async function recordPatientHistory(params: {
 /**
  * Compute the field-level diff between two records, returning only changed fields.
  */
-export function diffFields<T extends Record<string, unknown>>(
+export function diffFields<T extends object>(
   previous: Partial<T> | null | undefined,
   next: T,
   fields: readonly (keyof T)[],

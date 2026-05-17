@@ -16,7 +16,10 @@ describe('PatientForm', () => {
       id: '1', orgId: 'o1', givenName: 'Jane', familyName: 'Doe',
       mrn: null, prefix: null, suffix: null, dateOfBirth: null, isApproximateDateOfBirth: null,
       sex: null, bloodType: null, occupation: null, preferredLanguage: null, phone: null,
-      email: null, address: null, status: 'active' as const,
+      email: null, address: null,
+      maritalStatus: null, educationLevel: null, nationalId: null, nationalIdType: null,
+      numberOfChildren: null, numberOfHouseholdMembers: null, isHeadOfHousehold: false,
+      status: 'active' as const,
       deletedAt: null, createdAt: '', updatedAt: '', _synced: false, _deleted: false,
     }
     render(
@@ -94,5 +97,32 @@ describe('PatientForm', () => {
     expect(screen.getByDisplayValue('Bob')).toBeInTheDocument()
     expect(screen.getByDisplayValue('Jones')).toBeInTheDocument()
     expect(screen.getByDisplayValue('bob@example.com')).toBeInTheDocument()
+  })
+
+  it('submits the new demographic fields', async () => {
+    const user = userEvent.setup()
+    const onSubmit = vi.fn().mockResolvedValue(undefined)
+    render(<PatientForm onSubmit={onSubmit} />)
+
+    await user.type(screen.getByLabelText(/first name/i), 'Sam')
+    await user.type(screen.getByLabelText(/last name/i), 'Lee')
+    await user.type(screen.getByLabelText(/id number/i), 'NID-99')
+    await user.type(screen.getByLabelText(/number of children/i), '3')
+    await user.type(screen.getByLabelText(/household members/i), '5')
+    await user.click(screen.getByLabelText(/mark this patient as the head/i))
+
+    await user.click(screen.getByRole('button', { name: /create patient/i }))
+
+    await waitFor(() => {
+      expect(onSubmit).toHaveBeenCalledOnce()
+    })
+    expect(onSubmit.mock.calls[0][0]).toMatchObject({
+      givenName: 'Sam',
+      familyName: 'Lee',
+      nationalId: 'NID-99',
+      numberOfChildren: '3',
+      numberOfHouseholdMembers: '5',
+      isHeadOfHousehold: true,
+    })
   })
 })

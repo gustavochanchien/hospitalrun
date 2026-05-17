@@ -1,8 +1,8 @@
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
 import i18n from 'i18next'
-import { format, parseISO } from 'date-fns'
+import { format, formatDistanceToNow, parseISO } from 'date-fns'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -54,6 +54,23 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
   const { t } = useTranslation('patient')
   const orgId = useAuthStore((s) => s.orgId)
   const patient = useLiveQuery(() => db.patients.get(patientId), [patientId])
+  const history = useLiveQuery(
+    () =>
+      db.patientHistory
+        .where('patientId')
+        .equals(patientId)
+        .reverse()
+        .sortBy('changedAt'),
+    [patientId],
+  )
+  const lastUpdatedByField = useMemo(() => {
+    const map: Record<string, string> = {}
+    if (!history) return map
+    for (const entry of history) {
+      if (!map[entry.fieldName]) map[entry.fieldName] = entry.changedAt
+    }
+    return map
+  }, [history])
   useLogAccess({
     action: 'view',
     resourceType: 'patient',
@@ -133,6 +150,11 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
               {patient.bloodType && (
                 <span>{t('detail.bloodTypeLabel', { type: patient.bloodType })}</span>
               )}
+              {patient.maritalStatus && (
+                <span>
+                  {t(`maritalStatus.${patient.maritalStatus}` as 'maritalStatus.single' | 'maritalStatus.partnered' | 'maritalStatus.married' | 'maritalStatus.separated' | 'maritalStatus.divorced' | 'maritalStatus.widowed')}
+                </span>
+              )}
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -147,6 +169,9 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
             >
               {statusKey ? t(statusKey) : patient.status}
             </Badge>
+            {patient.isHeadOfHousehold && (
+              <Badge variant="secondary">{t('detail.headOfHousehold')}</Badge>
+            )}
             <span data-print-actions className="flex flex-wrap items-center gap-2">
               <PdfExportButton
                 filename={`patient-${patient.familyName.toLowerCase()}-summary`}
@@ -220,36 +245,59 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 text-sm sm:grid-cols-3">
-            <div>
-              <p className="font-medium text-muted-foreground">{t('fields.phone')}</p>
-              <p>{patient.phone ?? '—'}</p>
-            </div>
-            <div>
-              <p className="font-medium text-muted-foreground">{t('fields.email')}</p>
-              <p>{patient.email ?? '—'}</p>
-            </div>
-            <div>
-              <p className="font-medium text-muted-foreground">{t('fields.occupation')}</p>
-              <p>{patient.occupation ?? '—'}</p>
-            </div>
-            <div>
-              <p className="font-medium text-muted-foreground">{t('detail.language')}</p>
-              <p>{patient.preferredLanguage ?? '—'}</p>
-            </div>
+            <FieldRow label={t('fields.phone')} value={patient.phone} updatedAt={lastUpdatedByField.phone} />
+            <FieldRow label={t('fields.email')} value={patient.email} updatedAt={lastUpdatedByField.email} />
+            <FieldRow label={t('fields.occupation')} value={patient.occupation} updatedAt={lastUpdatedByField.occupation} />
+            <FieldRow label={t('detail.language')} value={patient.preferredLanguage} updatedAt={lastUpdatedByField.preferredLanguage} />
+            {patient.educationLevel && (
+              <FieldRow
+                label={t('fields.educationLevel')}
+                value={t(`educationLevel.${patient.educationLevel}` as 'educationLevel.none' | 'educationLevel.primary' | 'educationLevel.secondary' | 'educationLevel.tertiary' | 'educationLevel.unknown')}
+                updatedAt={lastUpdatedByField.educationLevel}
+               
+              />
+            )}
+            {patient.nationalId && (
+              <FieldRow
+                label={t('fields.nationalId')}
+                value={patient.nationalIdType ? `${patient.nationalIdType}: ${patient.nationalId}` : patient.nationalId}
+                updatedAt={lastUpdatedByField.nationalId ?? lastUpdatedByField.nationalIdType}
+               
+              />
+            )}
+            {patient.numberOfChildren != null && (
+              <FieldRow
+                label={t('fields.numberOfChildren')}
+                value={String(patient.numberOfChildren)}
+                updatedAt={lastUpdatedByField.numberOfChildren}
+               
+              />
+            )}
+            {patient.numberOfHouseholdMembers != null && (
+              <FieldRow
+                label={t('fields.numberOfHouseholdMembers')}
+                value={String(patient.numberOfHouseholdMembers)}
+                updatedAt={lastUpdatedByField.numberOfHouseholdMembers}
+               
+              />
+            )}
             {patient.address && (
-              <div className="sm:col-span-2">
-                <p className="font-medium text-muted-foreground">{t('fields.address')}</p>
-                <p>
-                  {[
+              <FieldRow
+                label={t('fields.address')}
+                value={
+                  [
                     patient.address.street,
                     patient.address.city,
                     patient.address.state,
                     patient.address.zip,
                   ]
                     .filter(Boolean)
-                    .join(', ') || '—'}
-                </p>
-              </div>
+                    .join(', ') || null
+                }
+                updatedAt={lastUpdatedByField.address}
+               
+                className="sm:col-span-2"
+              />
             )}
           </div>
         </CardContent>
@@ -319,6 +367,30 @@ export function PatientDetailPage({ patientId }: PatientDetailPageProps) {
           <PatientBilling patientId={patientId} />
         </TabsContent>
       </Tabs>
+    </div>
+  )
+}
+
+interface FieldRowProps {
+  label: string
+  value: string | null | undefined
+  updatedAt: string | undefined
+  className?: string
+}
+
+function FieldRow({ label, value, updatedAt, className }: FieldRowProps) {
+  const { t } = useTranslation('patient')
+  return (
+    <div className={className}>
+      <p className="font-medium text-muted-foreground">{label}</p>
+      <p>{value || '—'}</p>
+      {updatedAt && (
+        <p className="mt-0.5 text-xs text-muted-foreground/70">
+          {t('detail.lastUpdated', {
+            relative: formatDistanceToNow(parseISO(updatedAt), { addSuffix: true }),
+          })}
+        </p>
+      )}
     </div>
   )
 }

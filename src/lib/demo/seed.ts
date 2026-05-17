@@ -105,6 +105,13 @@ export async function seedDemoData(patientCount = 25): Promise<void> {
         state: faker.location.state({ abbreviated: true }),
         zip: faker.location.zipCode(),
       },
+      maritalStatus: faker.helpers.arrayElement(['single', 'married', 'partnered', 'widowed', null] as const),
+      educationLevel: faker.helpers.arrayElement(['primary', 'secondary', 'tertiary', 'unknown', null] as const),
+      nationalId: null,
+      nationalIdType: null,
+      numberOfChildren: faker.helpers.arrayElement([0, 1, 2, 3, null]),
+      numberOfHouseholdMembers: faker.helpers.arrayElement([1, 2, 3, 4, 5, null]),
+      isHeadOfHousehold: faker.datatype.boolean(0.3),
       isApproximateDateOfBirth: false,
       status: faker.helpers.weightedArrayElement([
         { value: 'active', weight: 8 },

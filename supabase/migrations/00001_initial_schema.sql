@@ -43,6 +43,13 @@ create table patients (
   phone                         text,
   email                         text,
   address                       jsonb,
+  marital_status                text check (marital_status in ('single', 'partnered', 'married', 'separated', 'divorced', 'widowed')),
+  education_level               text check (education_level in ('none', 'primary', 'secondary', 'tertiary', 'unknown')),
+  national_id                   text,
+  national_id_type              text,
+  number_of_children            integer check (number_of_children >= 0),
+  number_of_household_members   integer check (number_of_household_members >= 0),
+  is_head_of_household          boolean not null default false,
   status                        text not null default 'active' check (status in ('active', 'inactive', 'deceased')),
   deleted_at                    timestamptz,
   created_at                    timestamptz not null default now(),
@@ -237,13 +244,16 @@ create table related_persons (
   relationship    text,
   phone           text,
   email           text,
-  address         jsonb,
-  deleted_at      timestamptz,
-  created_at      timestamptz not null default now(),
-  updated_at      timestamptz not null default now()
+  address             jsonb,
+  linked_patient_id   uuid references patients on delete set null,
+  is_primary_contact  boolean not null default false,
+  deleted_at          timestamptz,
+  created_at          timestamptz not null default now(),
+  updated_at          timestamptz not null default now()
 );
 
 create index idx_related_persons_org_patient on related_persons (org_id, patient_id);
+create index idx_related_persons_linked_patient on related_persons (org_id, linked_patient_id) where linked_patient_id is not null;
 
 create table care_goals (
   id                  uuid primary key default gen_random_uuid(),

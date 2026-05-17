@@ -19,6 +19,13 @@
     "dateOfBirth": "Doğum tarihi",
     "sex": "Cinsiyet",
     "bloodType": "Kan grubu",
+    "maritalStatus": "Medeni durum",
+    "educationLevel": "Eğitim düzeyi",
+    "nationalId": "Kimlik numarası",
+    "nationalIdType": "Kimlik türü",
+    "numberOfChildren": "Çocuk sayısı",
+    "numberOfHouseholdMembers": "Hane üyeleri",
+    "isHeadOfHousehold": "Hane reisi",
     "occupation": "Meslek",
     "preferredLanguage": "Tercih edilen dil",
     "phone": "Telefon",
@@ -35,6 +42,21 @@
     "male": "Erkek",
     "female": "Kadın",
     "other": "Diğer",
+    "unknown": "Bilinmiyor"
+  },
+  "maritalStatus": {
+    "single": "Bekar",
+    "partnered": "Birlikte yaşıyor",
+    "married": "Evli",
+    "separated": "Ayrı yaşıyor",
+    "divorced": "Boşanmış",
+    "widowed": "Dul"
+  },
+  "educationLevel": {
+    "none": "Resmi eğitim yok",
+    "primary": "İlkokul",
+    "secondary": "Ortaokul/Lise",
+    "tertiary": "Üniversite",
     "unknown": "Bilinmiyor"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "Kişisel bilgiler",
     "contactInfo": "İletişim bilgileri",
+    "identificationInfo": "Kimlik bilgileri",
+    "backgroundInfo": "Geçmiş bilgiler",
+    "householdInfo": "Hane bilgileri",
     "other": "Diğer",
     "dobUnknown": "Doğum tarihi bilinmiyor",
     "approxAgePlaceholder": "Yaklaşık yaş (yıl)",
     "selectSex": "Cinsiyet seçin",
     "selectBloodType": "Kan grubu seçin",
+    "selectMaritalStatus": "Medeni durum seçin",
+    "selectEducationLevel": "Eğitim düzeyi seçin",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "Bu hastayı hane reisi olarak işaretle",
     "saving": "Kaydediliyor...",
     "givenNameRequired": "Ad *",
     "familyNameRequired": "Soyad *",
@@ -87,7 +118,9 @@
     "dobLabel": "DT: {{date}}",
     "bloodTypeLabel": "Kan grubu: {{type}}",
     "language": "Dil",
-    "edit": "Düzenle"
+    "edit": "Düzenle",
+    "headOfHousehold": "Hane reisi",
+    "lastUpdated": "{{relative}} güncellendi"
   },
   "status": {
     "active": "Aktif",
@@ -361,7 +394,32 @@
         "relationship": "Yakınlık",
         "phone": "Telefon",
         "email": "E-posta",
-        "name": "Ad"
+        "name": "Ad",
+        "linkedPatient": "Bağlı hasta (isteğe bağlı)",
+        "primaryContact": "Birincil kişi olarak işaretle"
+      },
+      "placeholders": {
+        "selectPatient": "Hasta ara…",
+        "noPatients": "Hasta bulunamadı",
+        "relationship": "eş, ebeveyn, çocuk…"
+      },
+      "badges": {
+        "primary": "Birincil",
+        "linked": "Bağlı"
+      },
+      "relationship": {
+        "spouse": "Eş",
+        "partner": "Partner",
+        "parent": "Ebeveyn",
+        "child": "Çocuk",
+        "sibling": "Kardeş",
+        "guardian": "Vasi",
+        "grandparent": "Büyükebeveyn",
+        "grandchild": "Torun",
+        "headOfHousehold": "Hane reisi",
+        "friend": "Arkadaş",
+        "emergencyContact": "Acil iletişim",
+        "other": "Diğer"
       },
       "save": "Kaydet",
       "cancel": "İptal"

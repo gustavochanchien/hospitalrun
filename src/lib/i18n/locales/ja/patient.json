@@ -19,6 +19,13 @@
     "dateOfBirth": "生年月日",
     "sex": "性別",
     "bloodType": "血液型",
+    "maritalStatus": "婚姻状況",
+    "educationLevel": "学歴",
+    "nationalId": "身分証番号",
+    "nationalIdType": "身分証種別",
+    "numberOfChildren": "子供の人数",
+    "numberOfHouseholdMembers": "世帯人数",
+    "isHeadOfHousehold": "世帯主",
     "occupation": "職業",
     "preferredLanguage": "優先言語",
     "phone": "電話",
@@ -35,6 +42,21 @@
     "male": "男性",
     "female": "女性",
     "other": "その他",
+    "unknown": "不明"
+  },
+  "maritalStatus": {
+    "single": "未婚",
+    "partnered": "パートナーあり",
+    "married": "既婚",
+    "separated": "別居",
+    "divorced": "離婚",
+    "widowed": "配偶者と死別"
+  },
+  "educationLevel": {
+    "none": "正規教育なし",
+    "primary": "小学校",
+    "secondary": "中学・高校",
+    "tertiary": "大学・大学院",
     "unknown": "不明"
   },
   "tabs": {
@@ -67,11 +89,20 @@
   "form": {
     "personalInfo": "個人情報",
     "contactInfo": "連絡先情報",
+    "identificationInfo": "身分証明",
+    "backgroundInfo": "背景情報",
+    "householdInfo": "世帯情報",
     "other": "その他",
     "dobUnknown": "生年月日不明",
     "approxAgePlaceholder": "おおよその年齢（歳）",
     "selectSex": "性別を選択",
     "selectBloodType": "血液型を選択",
+    "selectMaritalStatus": "婚姻状況を選択",
+    "selectEducationLevel": "学歴を選択",
+    "idTypePlaceholder": "national_id, voter_id, refugee_card…",
+    "numberOfChildrenPlaceholder": "0",
+    "numberOfHouseholdMembersPlaceholder": "0",
+    "isHeadOfHouseholdHelp": "この患者を世帯主として設定する",
     "saving": "保存中...",
     "givenNameRequired": "名 *",
     "familyNameRequired": "姓 *",
@@ -87,7 +118,9 @@
     "dobLabel": "生年月日: {{date}}",
     "bloodTypeLabel": "血液型: {{type}}",
     "language": "言語",
-    "edit": "編集"
+    "edit": "編集",
+    "headOfHousehold": "世帯主",
+    "lastUpdated": "{{relative}}に更新"
   },
   "status": {
     "active": "有効",
@@ -361,7 +394,32 @@
         "relationship": "関係",
         "phone": "電話",
         "email": "メール",
-        "name": "氏名"
+        "name": "氏名",
+        "linkedPatient": "関連患者（任意）",
+        "primaryContact": "主要連絡先として設定"
+      },
+      "placeholders": {
+        "selectPatient": "患者を検索…",
+        "noPatients": "患者が見つかりません",
+        "relationship": "配偶者、親、子供…"
+      },
+      "badges": {
+        "primary": "主要",
+        "linked": "関連"
+      },
+      "relationship": {
+        "spouse": "配偶者",
+        "partner": "パートナー",
+        "parent": "親",
+        "child": "子供",
+        "sibling": "兄弟姉妹",
+        "guardian": "保護者",
+        "grandparent": "祖父母",
+        "grandchild": "孫",
+        "headOfHousehold": "世帯主",
+        "friend": "友人",
+        "emergencyContact": "緊急連絡先",
+        "other": "その他"
       },
       "save": "保存",
       "cancel": "キャンセル"

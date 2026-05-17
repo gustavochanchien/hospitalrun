@@ -14,7 +14,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { BLOOD_TYPES, patientFormSchema, type PatientFormValues } from './patient.schema'
+import {
+  BLOOD_TYPES,
+  EDUCATION_LEVELS,
+  MARITAL_STATUSES,
+  patientFormSchema,
+  type PatientFormValues,
+} from './patient.schema'
 import type { Patient } from '@/lib/db/schema'
 
 interface PatientFormProps {
@@ -22,6 +28,14 @@ interface PatientFormProps {
   onSubmit: (data: PatientFormValues) => Promise<void>
   patient?: Patient
 }
+
+const NATIONAL_ID_TYPE_SUGGESTIONS = [
+  'national_id',
+  'voter_id',
+  'refugee_card',
+  'passport',
+  'community_card',
+]
 
 export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormProps) {
   const { t } = useTranslation('patient')
@@ -41,6 +55,13 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
       dateOfBirth: '',
       isApproximateDateOfBirth: false,
       bloodType: undefined,
+      maritalStatus: null,
+      educationLevel: null,
+      nationalId: '',
+      nationalIdType: '',
+      numberOfChildren: '',
+      numberOfHouseholdMembers: '',
+      isHeadOfHousehold: false,
       occupation: '',
       preferredLanguage: '',
       phone: '',
@@ -52,7 +73,10 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
 
   const sex = watch('sex')
   const bloodType = watch('bloodType')
+  const maritalStatus = watch('maritalStatus')
+  const educationLevel = watch('educationLevel')
   const isApproxDob = watch('isApproximateDateOfBirth')
+  const isHeadOfHousehold = watch('isHeadOfHousehold')
   const [approxAge, setApproxAge] = useState('')
 
   function handleApproxAgeChange(value: string) {
@@ -74,7 +98,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl space-y-6">
-      {/* Name Fields */}
+      {/* Personal Info */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">{t('form.personalInfo')}</h3>
         <div className="grid gap-4 sm:grid-cols-4">
@@ -114,7 +138,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
           </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-2">
             <Label htmlFor="dateOfBirth">{t('fields.dateOfBirth')}</Label>
             {isApproxDob ? (
@@ -171,6 +195,30 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
             </Select>
           </div>
           <div className="space-y-2">
+            <Label htmlFor="maritalStatus">{t('fields.maritalStatus')}</Label>
+            <Select
+              value={maritalStatus ?? ''}
+              onValueChange={(v) =>
+                setValue(
+                  'maritalStatus',
+                  v as (typeof MARITAL_STATUSES)[number],
+                  { shouldValidate: true },
+                )
+              }
+            >
+              <SelectTrigger id="maritalStatus">
+                <SelectValue placeholder={t('form.selectMaritalStatus')} />
+              </SelectTrigger>
+              <SelectContent>
+                {MARITAL_STATUSES.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    {t(`maritalStatus.${s}` as `maritalStatus.${(typeof MARITAL_STATUSES)[number]}`)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="bloodType">{t('fields.bloodType')}</Label>
             <Select
               value={bloodType ?? ''}
@@ -197,7 +245,7 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
         </div>
       </div>
 
-      {/* Contact Fields */}
+      {/* Contact */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">{t('form.contactInfo')}</h3>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -263,10 +311,38 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
         </div>
       </div>
 
-      {/* Other Fields */}
+      {/* Identification */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">{t('form.other')}</h3>
+        <h3 className="text-lg font-semibold">{t('form.identificationInfo')}</h3>
         <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="nationalId">{t('fields.nationalId')}</Label>
+            <Input id="nationalId" {...register('nationalId')} />
+            {errors.nationalId && (
+              <p className="text-sm text-destructive">{errors.nationalId.message}</p>
+            )}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="nationalIdType">{t('fields.nationalIdType')}</Label>
+            <Input
+              id="nationalIdType"
+              list="national-id-types"
+              placeholder={t('form.idTypePlaceholder')}
+              {...register('nationalIdType')}
+            />
+            <datalist id="national-id-types">
+              {NATIONAL_ID_TYPE_SUGGESTIONS.map((s) => (
+                <option key={s} value={s} />
+              ))}
+            </datalist>
+          </div>
+        </div>
+      </div>
+
+      {/* Background */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">{t('form.backgroundInfo')}</h3>
+        <div className="grid gap-4 sm:grid-cols-3">
           <div className="space-y-2">
             <Label htmlFor="occupation">{t('fields.occupation')}</Label>
             <Input
@@ -283,6 +359,77 @@ export function PatientForm({ defaultValues, onSubmit, patient }: PatientFormPro
               {...register('preferredLanguage')}
             />
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="educationLevel">{t('fields.educationLevel')}</Label>
+            <Select
+              value={educationLevel ?? ''}
+              onValueChange={(v) =>
+                setValue(
+                  'educationLevel',
+                  v as (typeof EDUCATION_LEVELS)[number],
+                  { shouldValidate: true },
+                )
+              }
+            >
+              <SelectTrigger id="educationLevel">
+                <SelectValue placeholder={t('form.selectEducationLevel')} />
+              </SelectTrigger>
+              <SelectContent>
+                {EDUCATION_LEVELS.map((e) => (
+                  <SelectItem key={e} value={e}>
+                    {t(`educationLevel.${e}` as `educationLevel.${(typeof EDUCATION_LEVELS)[number]}`)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </div>
+
+      {/* Household */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">{t('form.householdInfo')}</h3>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="numberOfChildren">{t('fields.numberOfChildren')}</Label>
+            <Input
+              id="numberOfChildren"
+              type="number"
+              min="0"
+              max="50"
+              placeholder={t('form.numberOfChildrenPlaceholder')}
+              {...register('numberOfChildren')}
+            />
+            {errors.numberOfChildren && (
+              <p className="text-sm text-destructive">{errors.numberOfChildren.message}</p>
+            )}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="numberOfHouseholdMembers">{t('fields.numberOfHouseholdMembers')}</Label>
+            <Input
+              id="numberOfHouseholdMembers"
+              type="number"
+              min="0"
+              max="50"
+              placeholder={t('form.numberOfHouseholdMembersPlaceholder')}
+              {...register('numberOfHouseholdMembers')}
+            />
+            {errors.numberOfHouseholdMembers && (
+              <p className="text-sm text-destructive">{errors.numberOfHouseholdMembers.message}</p>
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="isHeadOfHousehold"
+            checked={isHeadOfHousehold ?? false}
+            onCheckedChange={(checked) =>
+              setValue('isHeadOfHousehold', checked === true, { shouldValidate: true })
+            }
+          />
+          <Label htmlFor="isHeadOfHousehold" className="text-sm font-normal cursor-pointer">
+            {t('form.isHeadOfHouseholdHelp')}
+          </Label>
         </div>
       </div>
 
