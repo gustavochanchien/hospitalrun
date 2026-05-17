@@ -194,22 +194,21 @@ Reusable PDF stack via `@react-pdf/renderer` (lazy-loaded). Gated by `pdf-export
 
 ---
 
-## Stage 14 — Billing & Invoicing
+## Stage 14 — Billing & Invoicing ✅
 
-Patient-scoped invoices with line items and payment tracking. Gated by `billing` feature flag. Invoice PDF reuses Stage 13.
+Patient-scoped invoices with line items and payment tracking. Gated by `billing` feature flag. Invoice PDF reuses Stage 13. Landed in commit `2ed775c`; the staged migration was later squashed into `00001_initial_schema.sql` by `bff2fc8` per the pre-deploy strategy (so the originally-planned `00003_billing.sql` was never created).
 
-**Agents:** `supabase-dexie-table-wiring` for all 4 tables, then `feature-slice-scaffolder` for routes/sidebar/permissions/settings card/patient tab/English i18n stub, then `pdf-document-author` for `InvoicePdf`, then `i18n-translator` for the other 11 locales. Implement form/list internals + `generateInvoiceNumber()` by hand.
-
-- [ ] Supabase migration `00003_billing.sql` + Dexie/sync wiring for `charge_items`, `invoices`, `invoice_line_items`, `payments` — `supabase-dexie-table-wiring`.
-- [ ] [permissions.ts](src/lib/permissions.ts): new `read:billing | write:billing | void:invoice | record:payment | manage:charge_items`; updated role maps — handled by `feature-slice-scaffolder`.
-- [ ] Routes under [src/routes/_auth/billing/](src/routes/_auth/billing/): `index.tsx` (list), `$invoiceId.tsx`, `new.tsx`. All gated — `feature-slice-scaffolder` scaffolds; fill internals after.
-- [ ] Components: `InvoiceList`, `InvoiceForm`, `InvoiceDetailPage`, `PaymentDialog` (hand-written), `InvoicePdf` (`pdf-document-author`).
-- [ ] Patient sub-feature: `PatientBilling.tsx` tab (gated) — scaffolded by `feature-slice-scaffolder`.
-- [ ] Catalog: [ChargeItemsCard.tsx](src/features/settings/ChargeItemsCard.tsx) — admin CRUD, gated. Card stub from `feature-slice-scaffolder`; CRUD by hand.
-- [ ] Sidebar entry `{ key: 'billing', feature: 'billing', icon: Receipt }` — `feature-slice-scaffolder`.
-- [ ] [code-generator.ts](src/lib/db/code-generator.ts) gains `generateInvoiceNumber()` — by hand.
-- [ ] i18n: add `'billing'` namespace; English by hand, `i18n-translator` for the other 11 locales. Currency via `Intl.NumberFormat`.
-- [ ] Tests: schema/Zod, forms, list filters, payment dialog status flip, PDF, permission guard, feature gate, patient tab visibility.
+- [x] Tables `charge_items` ([00001_initial_schema.sql:488](supabase/migrations/00001_initial_schema.sql#L488)), `invoices` (status CHECK in draft/issued/partial/paid/void, [:506](supabase/migrations/00001_initial_schema.sql#L506)), `invoice_line_items` ([:534](supabase/migrations/00001_initial_schema.sql#L534)), `payments` (method CHECK in cash/card/bank-transfer/insurance/other, [:552](supabase/migrations/00001_initial_schema.sql#L552)) — all with `org_id` cascade + `deleted_at` soft-delete, `updated_at` triggers at [:658-661](supabase/migrations/00001_initial_schema.sql#L658-L661), RLS via `public.org_id()` at [:1337-1406](supabase/migrations/00001_initial_schema.sql#L1337-L1406). **Not yet applied to any DB — run `supabase db push` when ready.**
+- [x] Dexie v4 wiring in [src/lib/db/index.ts:111-117](src/lib/db/index.ts#L111-L117); types in [src/lib/db/schema.ts:478-548](src/lib/db/schema.ts#L478-L548); column maps in [src/lib/db/columns.ts:314-376](src/lib/db/columns.ts#L314-L376) and registered in `columnMap` at [:448-451](src/lib/db/columns.ts#L448-L451); all four tables added to `syncableTables` in [src/lib/sync/hydrate.ts:27-30](src/lib/sync/hydrate.ts#L27-L30) and reachable via realtime.
+- [x] [permissions.ts:33-37](src/lib/permissions.ts#L33-L37): `read:billing | write:billing | void:invoice | record:payment | manage:charge_items`; role maps updated at lines 105, 127, 141 (clinical roles get read/write/record:payment; admin gets all five).
+- [x] Routes [src/routes/_auth/billing/](src/routes/_auth/billing/): `index.tsx`, `$invoiceId.tsx`, `new.tsx` — all wrapped in `<FeatureGate feature="billing">`.
+- [x] Components in [src/features/billing/](src/features/billing/): [InvoiceListPage.tsx](src/features/billing/InvoiceListPage.tsx), [InvoiceForm.tsx](src/features/billing/InvoiceForm.tsx), [InvoiceDetailPage.tsx](src/features/billing/InvoiceDetailPage.tsx), [PaymentDialog.tsx](src/features/billing/PaymentDialog.tsx) (status auto-flips draft→issued→partial→paid on amount paid), [invoice.schema.ts](src/features/billing/invoice.schema.ts) Zod, [invoice-totals.ts](src/features/billing/invoice-totals.ts) (subtotal/tax/discount math), and [pdf/InvoicePdf.tsx](src/features/billing/pdf/InvoicePdf.tsx) on the shared Stage 13 PDF infra.
+- [x] Patient sub-feature: [PatientBilling.tsx](src/features/patients/sub-features/PatientBilling.tsx) — `<FeatureGate feature="billing">`-wrapped invoice table; tab trigger at [PatientDetailPage.tsx:329](src/features/patients/PatientDetailPage.tsx#L329) and content at [:381](src/features/patients/PatientDetailPage.tsx#L381).
+- [x] Catalog: [ChargeItemsCard.tsx](src/features/settings/ChargeItemsCard.tsx) — admin CRUD with `<PermissionGuard permission="manage:charge_items">`, gated; mounted in [SettingsPage.tsx:63](src/features/settings/SettingsPage.tsx#L63).
+- [x] Sidebar entry `{ key: 'billing', to: '/billing', icon: Receipt, feature: 'billing' as const }` at [AppSidebar.tsx:77](src/components/layout/AppSidebar.tsx#L77).
+- [x] `generateInvoiceNumber(orgId)` at [code-generator.ts:51](src/lib/db/code-generator.ts#L51) — scans all invoices (including soft-deleted) for the org, increments past the max `INV-NNNNN` suffix so reused numbers can't collide.
+- [x] `billing` i18n namespace registered in [src/lib/i18n/index.ts:17](src/lib/i18n/index.ts#L17); English authored, the other 11 locales (`ar`, `de`, `es`, `fr`, `id`, `it`, `ja`, `pt-BR`, `ru`, `tr`, `zh-CN`) filled by `i18n-translator`. Currency formatted via `Intl.NumberFormat`.
+- [x] Tests: [invoice.schema.test.ts](src/features/billing/invoice.schema.test.ts), [invoice-totals.test.ts](src/features/billing/invoice-totals.test.ts), [PaymentDialog.test.tsx](src/features/billing/PaymentDialog.test.tsx) (status flip), [billing.test.tsx](src/routes/_auth/billing/billing.test.tsx) (FeatureGate). All 5 PLAN-listed categories covered. `npx vitest run src/features/billing src/routes/_auth/billing`: **28/28 passing**.
 
 ---
 
