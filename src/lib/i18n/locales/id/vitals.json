@@ -1,0 +1,69 @@
+{
+  "title": "Tanda Vital",
+  "subtitle": "Tanda vital dan pengukuran pertumbuhan yang tercatat",
+  "newAction": "Catat tanda vital",
+  "noResults": "Belum ada tanda vital yang dicatat.",
+  "loading": "Memuat tanda vital…",
+  "save": "Simpan",
+  "cancel": "Batal",
+  "delete": "Hapus",
+  "permissionDenied": "Anda tidak memiliki izin untuk melihat tanda vital pasien ini.",
+  "permissionWriteDenied": "Anda tidak memiliki izin untuk mencatat tanda vital.",
+  "fields": {
+    "recordedAt": "Dicatat pada",
+    "height": "Tinggi badan",
+    "weight": "Berat badan",
+    "temperature": "Suhu",
+    "heartRate": "Detak jantung",
+    "respiratoryRate": "Laju pernapasan",
+    "bloodPressure": "Tekanan darah",
+    "systolic": "Sistolik",
+    "diastolic": "Diastolik",
+    "oxygenSat": "Saturasi oksigen",
+    "painScale": "Nyeri (0–10)",
+    "headCircumference": "Lingkar kepala",
+    "notes": "Catatan"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Masukkan setidaknya satu pengukuran.",
+    "invalidNumber": "Harus berupa angka.",
+    "outOfRange": "Nilai berada di luar rentang yang diharapkan.",
+    "missingRecordedAt": "Tanggal dan waktu wajib diisi.",
+    "bloodPressurePartial": "Masukkan sistolik dan diastolik, atau biarkan keduanya kosong.",
+    "diastolicAboveSystolic": "Diastolik harus lebih rendah dari sistolik."
+  },
+  "growth": {
+    "title": "Grafik pertumbuhan",
+    "description": "Pengukuran pasien yang ditampilkan di atas persentil referensi WHO.",
+    "metric": {
+      "weight": "Berat badan",
+      "height": "Tinggi badan",
+      "headCircumference": "Lingkar kepala"
+    },
+    "ageMonths": "Usia (bulan)",
+    "ageYears": "Usia (tahun)",
+    "patientSeries": "Pasien",
+    "percentile": "P{{value}}",
+    "notApplicable": "Grafik pertumbuhan ditampilkan untuk pasien di bawah 19 tahun dengan jenis kelamin yang tercatat.",
+    "noMeasurements": "Catat tinggi atau berat badan untuk menampilkan pasien pada kurva pertumbuhan.",
+    "loading": "Memuat data referensi WHO…"
+  },
+  "summary": {
+    "count_one": "{{count}} pembacaan",
+    "count_other": "{{count}} pembacaan",
+    "latest": "Terbaru: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Hapus pembacaan ini?",
+    "description": "Ini akan menghapus data tanda vital. Anda dapat mencatatnya kembali kapan saja."
+  }
+}

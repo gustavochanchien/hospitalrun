@@ -1,0 +1,69 @@
+{
+  "title": "Parametri vitali",
+  "subtitle": "Parametri vitali e misurazioni della crescita registrati",
+  "newAction": "Registra parametri",
+  "noResults": "Nessun parametro vitale registrato.",
+  "loading": "Caricamento parametri vitali…",
+  "save": "Salva",
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "permissionDenied": "Non hai il permesso di visualizzare i parametri vitali di questo paziente.",
+  "permissionWriteDenied": "Non hai il permesso di registrare parametri vitali.",
+  "fields": {
+    "recordedAt": "Registrato il",
+    "height": "Altezza",
+    "weight": "Peso",
+    "temperature": "Temperatura",
+    "heartRate": "Frequenza cardiaca",
+    "respiratoryRate": "Frequenza respiratoria",
+    "bloodPressure": "Pressione arteriosa",
+    "systolic": "Sistolica",
+    "diastolic": "Diastolica",
+    "oxygenSat": "Saturazione dell'ossigeno",
+    "painScale": "Dolore (0–10)",
+    "headCircumference": "Circonferenza cranica",
+    "notes": "Note"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Inserisci almeno una misurazione.",
+    "invalidNumber": "Deve essere un numero.",
+    "outOfRange": "Il valore è fuori dall'intervallo atteso.",
+    "missingRecordedAt": "Data e ora sono obbligatorie.",
+    "bloodPressurePartial": "Inserisci sia la sistolica che la diastolica, oppure lascia entrambe vuote.",
+    "diastolicAboveSystolic": "La diastolica deve essere inferiore alla sistolica."
+  },
+  "growth": {
+    "title": "Curva di crescita",
+    "description": "Misurazioni del paziente sovrapposte ai percentili di riferimento dell'OMS.",
+    "metric": {
+      "weight": "Peso",
+      "height": "Altezza",
+      "headCircumference": "Circonferenza cranica"
+    },
+    "ageMonths": "Età (mesi)",
+    "ageYears": "Età (anni)",
+    "patientSeries": "Paziente",
+    "percentile": "P{{value}}",
+    "notApplicable": "Le curve di crescita vengono mostrate per pazienti di età inferiore a 19 anni con sesso registrato.",
+    "noMeasurements": "Registra altezza o peso per posizionare il paziente sulla curva di crescita.",
+    "loading": "Caricamento dati di riferimento OMS…"
+  },
+  "summary": {
+    "count_one": "{{count}} rilevazione",
+    "count_other": "{{count}} rilevazioni",
+    "latest": "Ultima: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Eliminare questa rilevazione?",
+    "description": "Questa operazione rimuoverà la rilevazione dei parametri vitali. Puoi registrarla nuovamente in qualsiasi momento."
+  }
+}

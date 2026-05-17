@@ -16,6 +16,10 @@
     "label": "Gestion des stocks",
     "description": "Suivez les stocks de consommables et de médicaments, enregistrez les réceptions et les dispensations et recevez des alertes de stock bas."
   },
+  "vitals": {
+    "label": "Constantes vitales et courbes de croissance",
+    "description": "Enregistrez les constantes vitales du patient (taille, poids, température, pression artérielle, etc.) et représentez la croissance pédiatrique par rapport aux courbes de référence de l'OMS."
+  },
   "toggle": {
     "enabled": "{{feature}} activée",
     "disabled": "{{feature}} désactivée"

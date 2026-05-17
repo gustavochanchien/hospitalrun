@@ -16,6 +16,10 @@
     "label": "Manajemen inventaris",
     "description": "Lacak stok untuk barang habis pakai dan obat-obatan, catat penerimaan dan distribusi, dan dapatkan peringatan stok rendah."
   },
+  "vitals": {
+    "label": "Tanda vital & kurva pertumbuhan",
+    "description": "Catat tanda vital pasien (tinggi, berat, suhu, tekanan darah, dll.) dan tampilkan pertumbuhan pediatri berdasarkan kurva referensi WHO."
+  },
   "toggle": {
     "enabled": "{{feature}} diaktifkan",
     "disabled": "{{feature}} dinonaktifkan"

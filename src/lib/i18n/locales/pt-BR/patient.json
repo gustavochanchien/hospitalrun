@@ -73,7 +73,8 @@
     "careGoals": "Metas de cuidado",
     "carePlans": "Planos de cuidado",
     "history": "Histórico",
-    "billing": "Faturamento"
+    "billing": "Faturamento",
+    "vitals": "Sinais vitais"
   },
   "list": {
     "statusPlaceholder": "Status",

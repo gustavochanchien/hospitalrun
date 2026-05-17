@@ -1,0 +1,69 @@
+{
+  "title": "Vital Bulgular",
+  "subtitle": "Kaydedilen vital bulgular ve büyüme ölçümleri",
+  "newAction": "Vital kaydet",
+  "noResults": "Henüz vital bulgu kaydedilmedi.",
+  "loading": "Vital bulgular yükleniyor…",
+  "save": "Kaydet",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "permissionDenied": "Bu hastanın vital bulgularını görüntüleme izniniz yok.",
+  "permissionWriteDenied": "Vital bulgu kaydetme izniniz yok.",
+  "fields": {
+    "recordedAt": "Kayıt tarihi",
+    "height": "Boy",
+    "weight": "Ağırlık",
+    "temperature": "Vücut ısısı",
+    "heartRate": "Kalp atış hızı",
+    "respiratoryRate": "Solunum hızı",
+    "bloodPressure": "Kan basıncı",
+    "systolic": "Sistolik",
+    "diastolic": "Diyastolik",
+    "oxygenSat": "Oksijen saturasyonu",
+    "painScale": "Ağrı (0–10)",
+    "headCircumference": "Baş çevresi",
+    "notes": "Notlar"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "En az bir ölçüm değeri girin.",
+    "invalidNumber": "Sayısal bir değer olmalıdır.",
+    "outOfRange": "Değer beklenen aralığın dışında.",
+    "missingRecordedAt": "Tarih ve saat gereklidir.",
+    "bloodPressurePartial": "Hem sistolik hem de diyastolik değeri girin ya da ikisini de boş bırakın.",
+    "diastolicAboveSystolic": "Diyastolik basınç, sistolikten düşük olmalıdır."
+  },
+  "growth": {
+    "title": "Büyüme eğrisi",
+    "description": "Hasta ölçümleri, WHO referans persentilleri üzerinde gösterilmektedir.",
+    "metric": {
+      "weight": "Ağırlık",
+      "height": "Boy",
+      "headCircumference": "Baş çevresi"
+    },
+    "ageMonths": "Yaş (ay)",
+    "ageYears": "Yaş (yıl)",
+    "patientSeries": "Hasta",
+    "percentile": "P{{value}}",
+    "notApplicable": "Büyüme eğrileri, cinsiyet kaydı bulunan 19 yaş altı hastalar için gösterilir.",
+    "noMeasurements": "Hastayı büyüme eğrisinde görmek için boy veya ağırlık kaydedin.",
+    "loading": "WHO referans verileri yükleniyor…"
+  },
+  "summary": {
+    "count_one": "{{count}} ölçüm",
+    "count_other": "{{count}} ölçüm",
+    "latest": "Son: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Bu kayıt silinsin mi?",
+    "description": "Vital bulgu kaydı kaldırılacak. İstediğiniz zaman yeniden girebilirsiniz."
+  }
+}

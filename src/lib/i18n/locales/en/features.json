@@ -16,6 +16,10 @@
     "label": "Inventory management",
     "description": "Track stock for consumables and medications, record receipts and dispenses, and get low-stock alerts."
   },
+  "vitals": {
+    "label": "Vitals & growth charts",
+    "description": "Record patient vital signs (height, weight, temperature, blood pressure, etc.) and plot pediatric growth against WHO reference curves."
+  },
   "toggle": {
     "enabled": "Enabled {{feature}}",
     "disabled": "Disabled {{feature}}"

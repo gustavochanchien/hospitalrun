@@ -1,0 +1,69 @@
+{
+  "title": "Vitals",
+  "subtitle": "Recorded vital signs and growth measurements",
+  "newAction": "Record vitals",
+  "noResults": "No vitals recorded yet.",
+  "loading": "Loading vitals…",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "permissionDenied": "You do not have permission to view vitals for this patient.",
+  "permissionWriteDenied": "You do not have permission to record vitals.",
+  "fields": {
+    "recordedAt": "Recorded at",
+    "height": "Height",
+    "weight": "Weight",
+    "temperature": "Temperature",
+    "heartRate": "Heart rate",
+    "respiratoryRate": "Respiratory rate",
+    "bloodPressure": "Blood pressure",
+    "systolic": "Systolic",
+    "diastolic": "Diastolic",
+    "oxygenSat": "Oxygen saturation",
+    "painScale": "Pain (0–10)",
+    "headCircumference": "Head circumference",
+    "notes": "Notes"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Enter at least one measurement.",
+    "invalidNumber": "Must be a number.",
+    "outOfRange": "Value is outside the expected range.",
+    "missingRecordedAt": "Date and time are required.",
+    "bloodPressurePartial": "Enter both systolic and diastolic, or leave both blank.",
+    "diastolicAboveSystolic": "Diastolic must be lower than systolic."
+  },
+  "growth": {
+    "title": "Growth chart",
+    "description": "Patient measurements overlaid on WHO reference percentiles.",
+    "metric": {
+      "weight": "Weight",
+      "height": "Height",
+      "headCircumference": "Head circumference"
+    },
+    "ageMonths": "Age (months)",
+    "ageYears": "Age (years)",
+    "patientSeries": "Patient",
+    "percentile": "P{{value}}",
+    "notApplicable": "Growth charts are shown for patients under 19 years old with sex recorded.",
+    "noMeasurements": "Record height or weight to plot this patient on the growth curve.",
+    "loading": "Loading WHO reference data…"
+  },
+  "summary": {
+    "count_one": "{{count}} reading",
+    "count_other": "{{count}} readings",
+    "latest": "Latest: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Delete this reading?",
+    "description": "This will remove the vitals reading. You can re-record it at any time."
+  }
+}

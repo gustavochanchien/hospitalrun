@@ -73,7 +73,8 @@
     "careGoals": "Bakım hedefleri",
     "carePlans": "Bakım planları",
     "history": "Geçmiş",
-    "billing": "Faturalama"
+    "billing": "Faturalama",
+    "vitals": "Vital Bulgular"
   },
   "list": {
     "statusPlaceholder": "Durum",

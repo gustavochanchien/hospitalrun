@@ -1,0 +1,68 @@
+{
+  "title": "生命体征",
+  "subtitle": "已记录的生命体征和生长测量值",
+  "newAction": "记录生命体征",
+  "noResults": "暂未记录生命体征。",
+  "loading": "正在加载生命体征…",
+  "save": "保存",
+  "cancel": "取消",
+  "delete": "删除",
+  "permissionDenied": "您没有权限查看该患者的生命体征。",
+  "permissionWriteDenied": "您没有权限记录生命体征。",
+  "fields": {
+    "recordedAt": "记录时间",
+    "height": "身高",
+    "weight": "体重",
+    "temperature": "体温",
+    "heartRate": "心率",
+    "respiratoryRate": "呼吸频率",
+    "bloodPressure": "血压",
+    "systolic": "收缩压",
+    "diastolic": "舒张压",
+    "oxygenSat": "血氧饱和度",
+    "painScale": "疼痛（0–10）",
+    "headCircumference": "头围",
+    "notes": "备注"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "请至少输入一项测量值。",
+    "invalidNumber": "必须为数字。",
+    "outOfRange": "数值超出预期范围。",
+    "missingRecordedAt": "日期和时间为必填项。",
+    "bloodPressurePartial": "请同时输入收缩压和舒张压，或将两者都留空。",
+    "diastolicAboveSystolic": "舒张压必须低于收缩压。"
+  },
+  "growth": {
+    "title": "生长曲线",
+    "description": "患者测量值叠加在WHO参考百分位数上。",
+    "metric": {
+      "weight": "体重",
+      "height": "身高",
+      "headCircumference": "头围"
+    },
+    "ageMonths": "年龄（月）",
+    "ageYears": "年龄（岁）",
+    "patientSeries": "患者",
+    "percentile": "P{{value}}",
+    "notApplicable": "生长曲线适用于已记录性别且年龄不足19岁的患者。",
+    "noMeasurements": "记录身高或体重后，患者将显示在生长曲线上。",
+    "loading": "正在加载WHO参考数据…"
+  },
+  "summary": {
+    "count_other": "{{count}} 条记录",
+    "latest": "最新：{{date}}"
+  },
+  "confirmDelete": {
+    "title": "删除此条记录？",
+    "description": "这将删除该生命体征记录。您可以随时重新记录。"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Constantes vitales",
+  "subtitle": "Constantes vitales y mediciones de crecimiento registradas",
+  "newAction": "Registrar constantes",
+  "noResults": "Aún no se han registrado constantes vitales.",
+  "loading": "Cargando constantes vitales…",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "permissionDenied": "No tiene permiso para ver las constantes vitales de este paciente.",
+  "permissionWriteDenied": "No tiene permiso para registrar constantes vitales.",
+  "fields": {
+    "recordedAt": "Registrado el",
+    "height": "Talla",
+    "weight": "Peso",
+    "temperature": "Temperatura",
+    "heartRate": "Frecuencia cardíaca",
+    "respiratoryRate": "Frecuencia respiratoria",
+    "bloodPressure": "Tensión arterial",
+    "systolic": "Sistólica",
+    "diastolic": "Diastólica",
+    "oxygenSat": "Saturación de oxígeno",
+    "painScale": "Dolor (0–10)",
+    "headCircumference": "Perímetro cefálico",
+    "notes": "Notas"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Introduzca al menos una medición.",
+    "invalidNumber": "Debe ser un número.",
+    "outOfRange": "El valor está fuera del rango esperado.",
+    "missingRecordedAt": "La fecha y la hora son obligatorias.",
+    "bloodPressurePartial": "Introduzca la sistólica y la diastólica, o deje ambas en blanco.",
+    "diastolicAboveSystolic": "La diastólica debe ser inferior a la sistólica."
+  },
+  "growth": {
+    "title": "Curva de crecimiento",
+    "description": "Mediciones del paciente superpuestas sobre los percentiles de referencia de la OMS.",
+    "metric": {
+      "weight": "Peso",
+      "height": "Talla",
+      "headCircumference": "Perímetro cefálico"
+    },
+    "ageMonths": "Edad (meses)",
+    "ageYears": "Edad (años)",
+    "patientSeries": "Paciente",
+    "percentile": "P{{value}}",
+    "notApplicable": "Las curvas de crecimiento se muestran para pacientes menores de 19 años con sexo registrado.",
+    "noMeasurements": "Registre la talla o el peso para situar al paciente en la curva de crecimiento.",
+    "loading": "Cargando datos de referencia de la OMS…"
+  },
+  "summary": {
+    "count_one": "{{count}} registro",
+    "count_other": "{{count}} registros",
+    "latest": "Último: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar este registro?",
+    "description": "Se eliminará el registro de constantes vitales. Puede volver a registrarlo en cualquier momento."
+  }
+}

@@ -15,6 +15,7 @@ const syncableTables: SyncableTable[] = [
   'imaging',
   'diagnoses',
   'allergies',
+  'vitals',
   'notes',
   'relatedPersons',
   'careGoals',

@@ -73,7 +73,8 @@
     "careGoals": "Pflegeziele",
     "carePlans": "Pflegepläne",
     "history": "Verlauf",
-    "billing": "Abrechnung"
+    "billing": "Abrechnung",
+    "vitals": "Vitalzeichen"
   },
   "list": {
     "statusPlaceholder": "Status",

@@ -73,7 +73,8 @@
     "careGoals": "Obiettivi di cura",
     "carePlans": "Piani di cura",
     "history": "Cronologia",
-    "billing": "Fatturazione"
+    "billing": "Fatturazione",
+    "vitals": "Parametri vitali"
   },
   "list": {
     "statusPlaceholder": "Stato",

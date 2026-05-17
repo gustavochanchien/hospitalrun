@@ -73,7 +73,8 @@
     "careGoals": "ケア目標",
     "carePlans": "ケアプラン",
     "history": "履歴",
-    "billing": "請求"
+    "billing": "請求",
+    "vitals": "バイタルサイン"
   },
   "list": {
     "statusPlaceholder": "状態",

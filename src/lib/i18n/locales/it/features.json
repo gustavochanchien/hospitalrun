@@ -16,6 +16,10 @@
     "label": "Gestione magazzino",
     "description": "Tieni traccia delle scorte di consumabili e farmaci, registra entrate e dispensazioni e ricevi avvisi di scorta bassa."
   },
+  "vitals": {
+    "label": "Parametri vitali e curve di crescita",
+    "description": "Registra i parametri vitali del paziente (altezza, peso, temperatura, pressione arteriosa, ecc.) e rappresenta la crescita pediatrica rispetto alle curve di riferimento dell'OMS."
+  },
   "toggle": {
     "enabled": "{{feature}} attivata",
     "disabled": "{{feature}} disattivata"

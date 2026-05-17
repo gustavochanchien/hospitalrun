@@ -1,0 +1,69 @@
+{
+  "title": "Constantes vitales",
+  "subtitle": "Constantes vitales et mesures de croissance enregistrées",
+  "newAction": "Enregistrer les constantes",
+  "noResults": "Aucune constante vitale enregistrée.",
+  "loading": "Chargement des constantes vitales…",
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "permissionDenied": "Vous n'avez pas la permission de consulter les constantes vitales de ce patient.",
+  "permissionWriteDenied": "Vous n'avez pas la permission d'enregistrer des constantes vitales.",
+  "fields": {
+    "recordedAt": "Enregistré le",
+    "height": "Taille",
+    "weight": "Poids",
+    "temperature": "Température",
+    "heartRate": "Fréquence cardiaque",
+    "respiratoryRate": "Fréquence respiratoire",
+    "bloodPressure": "Pression artérielle",
+    "systolic": "Systolique",
+    "diastolic": "Diastolique",
+    "oxygenSat": "Saturation en oxygène",
+    "painScale": "Douleur (0–10)",
+    "headCircumference": "Périmètre crânien",
+    "notes": "Notes"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Saisissez au moins une mesure.",
+    "invalidNumber": "Doit être un nombre.",
+    "outOfRange": "La valeur est en dehors de la plage attendue.",
+    "missingRecordedAt": "La date et l'heure sont obligatoires.",
+    "bloodPressurePartial": "Saisissez à la fois la systolique et la diastolique, ou laissez les deux vides.",
+    "diastolicAboveSystolic": "La diastolique doit être inférieure à la systolique."
+  },
+  "growth": {
+    "title": "Courbe de croissance",
+    "description": "Mesures du patient superposées aux percentiles de référence de l'OMS.",
+    "metric": {
+      "weight": "Poids",
+      "height": "Taille",
+      "headCircumference": "Périmètre crânien"
+    },
+    "ageMonths": "Âge (mois)",
+    "ageYears": "Âge (ans)",
+    "patientSeries": "Patient",
+    "percentile": "P{{value}}",
+    "notApplicable": "Les courbes de croissance sont affichées pour les patients de moins de 19 ans avec le sexe renseigné.",
+    "noMeasurements": "Enregistrez la taille ou le poids pour positionner le patient sur la courbe de croissance.",
+    "loading": "Chargement des données de référence OMS…"
+  },
+  "summary": {
+    "count_one": "{{count}} mesure",
+    "count_other": "{{count}} mesures",
+    "latest": "Dernière : {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Supprimer cette mesure ?",
+    "description": "Cela supprimera la mesure des constantes vitales. Vous pouvez la ré-enregistrer à tout moment."
+  }
+}

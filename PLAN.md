@@ -268,20 +268,20 @@ Replace free-text `diagnoses.icdCode` with a coded-value picker. No new server t
 
 ---
 
-## Stage 18 — Vitals + growth charts
+## Stage 18 — Vitals + growth charts ✅
 
 New clinical table, surfaced as the 14th patient sub-tab. Gated by `vitals` feature flag.
 
 **Agents:** `supabase-dexie-table-wiring` for `vitals`; `feature-slice-scaffolder` is over-kill (no top-level route) — wire the sub-tab and feature flag by hand; `i18n-translator` for 11 non-English locales.
 
-- [ ] Supabase migration `00006_vitals.sql` + Dexie + columns + hydrate — `supabase-dexie-table-wiring`. Fields: `patientId`, `visitId`, `recordedAt`, `recordedBy`, `heightCm`, `weightKg`, `temperatureC`, `heartRate`, `respiratoryRate`, `systolic`, `diastolic`, `oxygenSat`, `painScale`, `headCircumferenceCm`, `notes`.
-- [ ] Add `vitals` to `PHI_TABLES` in [schema.ts:579](src/lib/db/schema.ts#L579) and `PHI_TABLE_TO_RESOURCE` in `src/lib/db/access-log.ts` (resource type `'vital'`).
-- [ ] [features.ts](src/lib/features.ts): add `'vitals'` to `FEATURES` and `FEATURE_METADATA`.
-- [ ] [permissions.ts](src/lib/permissions.ts): `read:vitals`, `write:vitals`. Update built-in role defaults (doctor/nurse get write; user/check_in get read).
-- [ ] New patient sub-tab `PatientVitals.tsx` (14th tab) wired into [PatientDetailPage.tsx](src/features/patients/PatientDetailPage.tsx). Table of readings + "Record vitals" dialog. Tab wrapped in `<FeatureGate feature="vitals">`.
-- [ ] Growth chart card inside the sub-tab — Recharts `LineChart` (pattern from [IncidentVisualizePage.tsx](src/features/incidents/IncidentVisualizePage.tsx)) overlaying weight/height/head-circumference vs WHO percentile curves. Bundled reference: `public/growth-charts/who-{0-2,2-5,5-19}-{boys,girls}.json`. Only renders for patients < 19 with `sex` set.
-- [ ] i18n: new `vitals` namespace registered in [i18n/index.ts](src/lib/i18n/index.ts). English by hand, `i18n-translator` for the other 11 locales.
-- [ ] Tests: form validation (numeric ranges), save round-trip, chart renders for pediatric patient with sex set, hides chart for adult, feature gate, permission guard.
+- [x] Supabase schema merged into [00001_initial_schema.sql](supabase/migrations/00001_initial_schema.sql) (pre-deploy policy: no new migration files). Fields: `patientId`, `visitId`, `recordedAt`, `recordedBy`, `heightCm`, `weightKg`, `temperatureC`, `heartRate`, `respiratoryRate`, `systolic`, `diastolic`, `oxygenSat`, `painScale`, `headCircumferenceCm`, `notes`. Dexie v9 (`vitals` store), `vitalColumns` in [columns.ts](src/lib/db/columns.ts), hydrate list updated.
+- [x] Added `vitals` to `PHI_TABLES` and `'vital'` to `ACCESS_RESOURCE_TYPES` + `PHI_TABLE_TO_RESOURCE`.
+- [x] [features.ts](src/lib/features.ts): added `'vitals'` to `FEATURES` and `FEATURE_METADATA`.
+- [x] [permissions.ts](src/lib/permissions.ts): added `read:vitals` + `write:vitals`. Doctor/Nurse/Admin get write; Viewer/Check-In/Pharmacist get read; mirrored in SQL `bootstrap_current_user` seed.
+- [x] New patient sub-tab [PatientVitals.tsx](src/features/patients/sub-features/PatientVitals.tsx) wired into [PatientDetailPage.tsx](src/features/patients/PatientDetailPage.tsx) as the 14th tab. Tab + "All" section wrapped in `<FeatureGate feature="vitals">`. Form is dialog-based with per-field numeric inputs, server-side JS validation (out-of-range, partial BP, diastolic >= systolic), `noValidate` on the form so JS validation owns errors.
+- [x] Growth chart card at [vitals/GrowthChartCard.tsx](src/features/patients/sub-features/vitals/GrowthChartCard.tsx) — Recharts `LineChart` overlaying P3/P15/P50/P85/P97 reference curves + patient series. Bundled reference data at `public/growth-charts/who-{0-2,2-5,5-19}-{boys,girls}.json` (smoothed approximation of WHO Child Growth Standards — see `_notice` field; production swap requires only data updates, no code changes). Renders only for patients ≤ 19 with `sex` ∈ {male, female}.
+- [x] i18n: new `vitals` namespace registered in [i18n/index.ts](src/lib/i18n/index.ts). English by hand; `i18n-translator` agent populated the other 11 locales (also added `patient.tabs.vitals` and a `features.vitals` section).
+- [x] Tests: 8 cases in [PatientVitals.test.tsx](src/features/patients/sub-features/PatientVitals.test.tsx) (empty state, empty-submit rejection, save round-trip, partial-BP rejection, out-of-range oxygen rejection, growth chart hidden for adult, growth chart shown for pediatric, permission guard) + 10 cases in [vitals/growth-data.test.ts](src/features/patients/sub-features/vitals/growth-data.test.ts) (age-range selection, age computation, reference + patient series merge, interpolation, missing-metric guard).
 
 ---
 

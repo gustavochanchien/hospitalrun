@@ -1,0 +1,68 @@
+{
+  "title": "バイタルサイン",
+  "subtitle": "記録されたバイタルサインおよび成長測定値",
+  "newAction": "バイタルを記録",
+  "noResults": "バイタルサインはまだ記録されていません。",
+  "loading": "バイタルサインを読み込み中…",
+  "save": "保存",
+  "cancel": "キャンセル",
+  "delete": "削除",
+  "permissionDenied": "この患者のバイタルサインを閲覧する権限がありません。",
+  "permissionWriteDenied": "バイタルサインを記録する権限がありません。",
+  "fields": {
+    "recordedAt": "記録日時",
+    "height": "身長",
+    "weight": "体重",
+    "temperature": "体温",
+    "heartRate": "心拍数",
+    "respiratoryRate": "呼吸数",
+    "bloodPressure": "血圧",
+    "systolic": "収縮期",
+    "diastolic": "拡張期",
+    "oxygenSat": "酸素飽和度",
+    "painScale": "疼痛スケール（0–10）",
+    "headCircumference": "頭囲",
+    "notes": "メモ"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "少なくとも1つの測定値を入力してください。",
+    "invalidNumber": "数値を入力してください。",
+    "outOfRange": "値が想定範囲外です。",
+    "missingRecordedAt": "日付と時刻は必須です。",
+    "bloodPressurePartial": "収縮期と拡張期の両方を入力するか、どちらも空白にしてください。",
+    "diastolicAboveSystolic": "拡張期血圧は収縮期血圧より低くなければなりません。"
+  },
+  "growth": {
+    "title": "成長曲線",
+    "description": "WHO参照パーセンタイルに重ねた患者の測定値。",
+    "metric": {
+      "weight": "体重",
+      "height": "身長",
+      "headCircumference": "頭囲"
+    },
+    "ageMonths": "月齢（月）",
+    "ageYears": "年齢（歳）",
+    "patientSeries": "患者",
+    "percentile": "P{{value}}",
+    "notApplicable": "成長曲線は性別が記録された19歳未満の患者に表示されます。",
+    "noMeasurements": "身長または体重を記録すると、成長曲線に患者がプロットされます。",
+    "loading": "WHO参照データを読み込み中…"
+  },
+  "summary": {
+    "count_other": "{{count}} 件の測定値",
+    "latest": "最新：{{date}}"
+  },
+  "confirmDelete": {
+    "title": "この測定値を削除しますか？",
+    "description": "バイタルサインの記録が削除されます。いつでも再記録できます。"
+  }
+}

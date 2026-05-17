@@ -222,6 +222,31 @@ export interface Allergy {
   _deleted: boolean
 }
 
+export interface Vital {
+  id: string
+  orgId: string
+  patientId: string
+  visitId: string | null
+  recordedAt: string
+  recordedBy: string | null
+  heightCm: number | null
+  weightKg: number | null
+  temperatureC: number | null
+  heartRate: number | null
+  respiratoryRate: number | null
+  systolic: number | null
+  diastolic: number | null
+  oxygenSat: number | null
+  painScale: number | null
+  headCircumferenceCm: number | null
+  notes: string | null
+  deletedAt: string | null
+  createdAt: string
+  updatedAt: string
+  _synced: boolean
+  _deleted: boolean
+}
+
 export interface Note {
   id: string
   orgId: string
@@ -350,6 +375,7 @@ export const ACCESS_RESOURCE_TYPES = [
   'incident',
   'diagnosis',
   'allergy',
+  'vital',
   'note',
   'related_person',
   'care_goal',
@@ -560,6 +586,7 @@ export type TableMap = {
   imaging: Imaging
   diagnoses: Diagnosis
   allergies: Allergy
+  vitals: Vital
   notes: Note
   relatedPersons: RelatedPerson
   careGoals: CareGoal
@@ -603,6 +630,7 @@ export const PHI_TABLES = [
   'incidents',
   'diagnoses',
   'allergies',
+  'vitals',
   'notes',
   'relatedPersons',
   'careGoals',

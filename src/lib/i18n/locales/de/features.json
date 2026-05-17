@@ -16,6 +16,10 @@
     "label": "Bestandsverwaltung",
     "description": "Verfolgen Sie Bestände für Verbrauchsmaterialien und Medikamente, erfassen Sie Eingänge und Abgaben und erhalten Sie Warnungen bei niedrigem Bestand."
   },
+  "vitals": {
+    "label": "Vitalzeichen & Wachstumskurven",
+    "description": "Erfassen Sie Vitalzeichen (Größe, Gewicht, Temperatur, Blutdruck usw.) und stellen Sie das Wachstum pädiatrischer Patienten im Vergleich zu WHO-Referenzkurven dar."
+  },
   "toggle": {
     "enabled": "{{feature}} aktiviert",
     "disabled": "{{feature}} deaktiviert"

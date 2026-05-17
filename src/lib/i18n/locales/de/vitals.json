@@ -1,0 +1,69 @@
+{
+  "title": "Vitalzeichen",
+  "subtitle": "Erfasste Vitalzeichen und Wachstumsmessungen",
+  "newAction": "Vitalzeichen erfassen",
+  "noResults": "Noch keine Vitalzeichen erfasst.",
+  "loading": "Vitalzeichen werden geladen…",
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "permissionDenied": "Sie haben keine Berechtigung, Vitalzeichen dieses Patienten anzuzeigen.",
+  "permissionWriteDenied": "Sie haben keine Berechtigung, Vitalzeichen zu erfassen.",
+  "fields": {
+    "recordedAt": "Erfasst am",
+    "height": "Körpergröße",
+    "weight": "Körpergewicht",
+    "temperature": "Körpertemperatur",
+    "heartRate": "Herzfrequenz",
+    "respiratoryRate": "Atemfrequenz",
+    "bloodPressure": "Blutdruck",
+    "systolic": "Systolisch",
+    "diastolic": "Diastolisch",
+    "oxygenSat": "Sauerstoffsättigung",
+    "painScale": "Schmerz (0–10)",
+    "headCircumference": "Kopfumfang",
+    "notes": "Notizen"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Geben Sie mindestens einen Messwert ein.",
+    "invalidNumber": "Muss eine Zahl sein.",
+    "outOfRange": "Wert liegt außerhalb des erwarteten Bereichs.",
+    "missingRecordedAt": "Datum und Uhrzeit sind erforderlich.",
+    "bloodPressurePartial": "Geben Sie sowohl den systolischen als auch den diastolischen Wert ein, oder lassen Sie beide leer.",
+    "diastolicAboveSystolic": "Der diastolische Wert muss niedriger als der systolische sein."
+  },
+  "growth": {
+    "title": "Wachstumskurve",
+    "description": "Patientenmessungen überlagert mit WHO-Referenzperzentilen.",
+    "metric": {
+      "weight": "Gewicht",
+      "height": "Größe",
+      "headCircumference": "Kopfumfang"
+    },
+    "ageMonths": "Alter (Monate)",
+    "ageYears": "Alter (Jahre)",
+    "patientSeries": "Patient",
+    "percentile": "P{{value}}",
+    "notApplicable": "Wachstumskurven werden für Patienten unter 19 Jahren mit eingetragenem Geschlecht angezeigt.",
+    "noMeasurements": "Erfassen Sie Größe oder Gewicht, um den Patienten auf der Wachstumskurve darzustellen.",
+    "loading": "WHO-Referenzdaten werden geladen…"
+  },
+  "summary": {
+    "count_one": "{{count}} Messung",
+    "count_other": "{{count}} Messungen",
+    "latest": "Aktuell: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Diese Messung löschen?",
+    "description": "Damit wird der Vitalzeichen-Eintrag entfernt. Sie können ihn jederzeit neu erfassen."
+  }
+}

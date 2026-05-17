@@ -73,7 +73,8 @@
     "careGoals": "Care Goals",
     "carePlans": "Care Plans",
     "history": "History",
-    "billing": "Billing"
+    "billing": "Billing",
+    "vitals": "Vitals"
   },
   "list": {
     "statusPlaceholder": "Status",

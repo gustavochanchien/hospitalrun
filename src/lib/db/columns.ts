@@ -171,6 +171,29 @@ const allergyColumns = {
   updatedAt: 'updated_at',
 } as const
 
+const vitalColumns = {
+  id: 'id',
+  orgId: 'org_id',
+  patientId: 'patient_id',
+  visitId: 'visit_id',
+  recordedAt: 'recorded_at',
+  recordedBy: 'recorded_by',
+  heightCm: 'height_cm',
+  weightKg: 'weight_kg',
+  temperatureC: 'temperature_c',
+  heartRate: 'heart_rate',
+  respiratoryRate: 'respiratory_rate',
+  systolic: 'systolic',
+  diastolic: 'diastolic',
+  oxygenSat: 'oxygen_sat',
+  painScale: 'pain_scale',
+  headCircumferenceCm: 'head_circumference_cm',
+  notes: 'notes',
+  deletedAt: 'deleted_at',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+} as const
+
 const noteColumns = {
   id: 'id',
   orgId: 'org_id',
@@ -390,6 +413,7 @@ export const columnMap: Record<SyncableTable, Record<string, string>> = {
   imaging: imagingColumns,
   diagnoses: diagnosisColumns,
   allergies: allergyColumns,
+  vitals: vitalColumns,
   notes: noteColumns,
   relatedPersons: relatedPersonColumns,
   careGoals: careGoalColumns,
@@ -417,6 +441,7 @@ export const supabaseTableName: Record<SyncableTable, string> = {
   imaging: 'imaging',
   diagnoses: 'diagnoses',
   allergies: 'allergies',
+  vitals: 'vitals',
   notes: 'notes',
   relatedPersons: 'related_persons',
   careGoals: 'care_goals',

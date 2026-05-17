@@ -220,6 +220,36 @@ create table allergies (
 
 create index idx_allergies_org_patient on allergies (org_id, patient_id);
 
+-- Vitals — discrete clinical readings recorded against a patient (optionally
+-- linked to a visit). Numeric columns are all `numeric` to keep small decimals
+-- like 36.7 °C or 12.3 kg exact; bounds are intentionally permissive (real-world
+-- pediatric/geriatric readings push past textbook ranges).
+create table vitals (
+  id                    uuid primary key default gen_random_uuid(),
+  org_id                uuid not null references organizations on delete cascade,
+  patient_id            uuid not null references patients on delete cascade,
+  visit_id              uuid references visits on delete set null,
+  recorded_at           timestamptz not null,
+  recorded_by           uuid references profiles,
+  height_cm             numeric(5,1),
+  weight_kg             numeric(5,2),
+  temperature_c         numeric(4,1),
+  heart_rate            integer,
+  respiratory_rate      integer,
+  systolic              integer,
+  diastolic             integer,
+  oxygen_sat            integer check (oxygen_sat is null or (oxygen_sat between 0 and 100)),
+  pain_scale            integer check (pain_scale is null or (pain_scale between 0 and 10)),
+  head_circumference_cm numeric(4,1),
+  notes                 text,
+  deleted_at            timestamptz,
+  created_at            timestamptz not null default now(),
+  updated_at            timestamptz not null default now()
+);
+
+create index idx_vitals_org_patient on vitals (org_id, patient_id);
+create index idx_vitals_patient_recorded_at on vitals (patient_id, recorded_at desc);
+
 create table notes (
   id              uuid primary key default gen_random_uuid(),
   org_id          uuid not null references organizations on delete cascade,
@@ -590,6 +620,7 @@ create trigger trg_incidents_updated_at           before update on incidents    
 create trigger trg_imaging_updated_at             before update on imaging             for each row execute function update_updated_at();
 create trigger trg_diagnoses_updated_at           before update on diagnoses           for each row execute function update_updated_at();
 create trigger trg_allergies_updated_at           before update on allergies           for each row execute function update_updated_at();
+create trigger trg_vitals_updated_at              before update on vitals              for each row execute function update_updated_at();
 create trigger trg_notes_updated_at               before update on notes               for each row execute function update_updated_at();
 create trigger trg_related_persons_updated_at     before update on related_persons     for each row execute function update_updated_at();
 create trigger trg_care_goals_updated_at          before update on care_goals          for each row execute function update_updated_at();
@@ -841,6 +872,7 @@ begin
       'write:visit','read:visit','write:note','write:related_person','read:settings','write:settings',
       'read:billing','write:billing','void:invoice','record:payment','manage:charge_items',
       'read:inventory','write:inventory','adjust:stock','receive:stock',
+      'read:vitals','write:vitals',
       'read:audit_log','export:audit_log','manage:roles'
     ], true, true),
     (new_org_id, 'doctor', 'Doctor', array[
@@ -851,7 +883,8 @@ begin
       'read:incident_widgets','write:care_plan','read:care_plan','write:care_goal','read:care_goal',
       'write:visit','read:visit','write:note','write:related_person',
       'read:billing','write:billing','record:payment',
-      'read:inventory','write:inventory','receive:stock'
+      'read:inventory','write:inventory','receive:stock',
+      'read:vitals','write:vitals'
     ], true, false),
     (new_org_id, 'nurse', 'Nurse', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
@@ -861,15 +894,17 @@ begin
       'read:incident_widgets','write:care_plan','read:care_plan','write:care_goal','read:care_goal',
       'write:visit','read:visit','write:note','write:related_person',
       'read:billing','write:billing','record:payment',
-      'read:inventory','write:inventory','receive:stock'
+      'read:inventory','write:inventory','receive:stock',
+      'read:vitals','write:vitals'
     ], true, false),
     (new_org_id, 'user', 'Viewer', array[
       'read:patients','read:appointments','read:labs','read:medications','read:imaging',
-      'read:incidents','read:care_plan','read:care_goal','read:visit','read:billing','read:inventory'
+      'read:incidents','read:care_plan','read:care_goal','read:visit','read:billing','read:inventory',
+      'read:vitals'
     ], true, false),
     (new_org_id, 'check_in_desk', 'Check-In Desk', array[
       'read:patients','write:patients','read:appointments','write:appointments','delete:appointment',
-      'write:related_person','read:visit','read:billing'
+      'write:related_person','read:visit','read:billing','read:vitals'
     ], true, false),
     (new_org_id, 'pharmacist', 'Pharmacist', array[
       'read:patients','read:medications','write:medications','complete:medication','cancel:medication',
@@ -909,6 +944,7 @@ grant select, insert, update, delete on
   imaging,
   diagnoses,
   allergies,
+  vitals,
   notes,
   related_persons,
   care_goals,
@@ -962,6 +998,7 @@ alter table incidents           enable row level security;
 alter table imaging             enable row level security;
 alter table diagnoses           enable row level security;
 alter table allergies           enable row level security;
+alter table vitals              enable row level security;
 alter table notes               enable row level security;
 alter table related_persons     enable row level security;
 alter table care_goals          enable row level security;
@@ -1053,6 +1090,10 @@ create policy "Org isolation update" on diagnoses       for update using (org_id
 create policy "Org isolation select" on allergies       for select using (org_id = public.org_id());
 create policy "Org isolation insert" on allergies       for insert with check (org_id = public.org_id());
 create policy "Org isolation update" on allergies       for update using (org_id = public.org_id());
+
+create policy "Org isolation select" on vitals          for select using (org_id = public.org_id());
+create policy "Org isolation insert" on vitals          for insert with check (org_id = public.org_id());
+create policy "Org isolation update" on vitals          for update using (org_id = public.org_id());
 
 create policy "Org isolation select" on notes           for select using (org_id = public.org_id());
 create policy "Org isolation insert" on notes           for insert with check (org_id = public.org_id());

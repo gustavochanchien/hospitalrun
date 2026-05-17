@@ -16,6 +16,10 @@
     "label": "Stok yönetimi",
     "description": "Sarf malzemeleri ve ilaçlar için stoğu takip edin, girişleri ve çıkışları kaydedin, düşük stok uyarıları alın."
   },
+  "vitals": {
+    "label": "Vital bulgular ve büyüme eğrileri",
+    "description": "Hasta vital bulgularını (boy, ağırlık, ateş, kan basıncı vb.) kaydedin ve pediatrik büyümeyi WHO referans eğrileriyle karşılaştırın."
+  },
   "toggle": {
     "enabled": "{{feature}} etkinleştirildi",
     "disabled": "{{feature}} devre dışı bırakıldı"

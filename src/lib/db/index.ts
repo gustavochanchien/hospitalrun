@@ -9,6 +9,7 @@ import type {
   Imaging,
   Diagnosis,
   Allergy,
+  Vital,
   Note,
   RelatedPerson,
   CareGoal,
@@ -38,6 +39,7 @@ export class HospitalRunDB extends Dexie {
   imaging!: Dexie.Table<Imaging, string>
   diagnoses!: Dexie.Table<Diagnosis, string>
   allergies!: Dexie.Table<Allergy, string>
+  vitals!: Dexie.Table<Vital, string>
   notes!: Dexie.Table<Note, string>
   relatedPersons!: Dexie.Table<RelatedPerson, string>
   careGoals!: Dexie.Table<CareGoal, string>
@@ -144,6 +146,11 @@ export class HospitalRunDB extends Dexie {
     // v8: local-only code system reference data (ICD-10, SNOMED). Never synced to Supabase.
     this.version(8).stores({
       codeSystems: 'id, system, code, [system+code]',
+    })
+
+    // v9: vitals (per-patient clinical readings, optionally per-visit).
+    this.version(9).stores({
+      vitals: 'id, orgId, patientId, visitId, recordedAt, [patientId+recordedAt], _synced',
     })
   }
 }

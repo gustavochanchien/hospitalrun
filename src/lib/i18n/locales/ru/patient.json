@@ -73,7 +73,8 @@
     "careGoals": "Цели лечения",
     "carePlans": "Планы лечения",
     "history": "История",
-    "billing": "Биллинг"
+    "billing": "Биллинг",
+    "vitals": "Показатели жизнедеятельности"
   },
   "list": {
     "statusPlaceholder": "Статус",

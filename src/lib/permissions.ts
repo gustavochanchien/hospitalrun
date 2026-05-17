@@ -39,6 +39,8 @@ export const PERMISSIONS = [
   'write:inventory',
   'adjust:stock',
   'receive:stock',
+  'read:vitals',
+  'write:vitals',
   'read:audit_log',
   'export:audit_log',
   'manage:roles',
@@ -104,6 +106,8 @@ const CLINICAL_PERMISSIONS: Permission[] = [
   'read:inventory',
   'write:inventory',
   'receive:stock',
+  'read:vitals',
+  'write:vitals',
 ]
 
 const READ_PERMISSIONS: Permission[] = [
@@ -118,6 +122,7 @@ const READ_PERMISSIONS: Permission[] = [
   'read:visit',
   'read:billing',
   'read:inventory',
+  'read:vitals',
 ]
 
 const CHECK_IN_DESK_PERMISSIONS: Permission[] = [
@@ -129,6 +134,7 @@ const CHECK_IN_DESK_PERMISSIONS: Permission[] = [
   'write:related_person',
   'read:visit',
   'read:billing',
+  'read:vitals',
 ]
 
 const PHARMACIST_PERMISSIONS: Permission[] = [

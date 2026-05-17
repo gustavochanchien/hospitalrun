@@ -73,7 +73,8 @@
     "careGoals": "Tujuan perawatan",
     "carePlans": "Rencana perawatan",
     "history": "Riwayat",
-    "billing": "Penagihan"
+    "billing": "Penagihan",
+    "vitals": "Tanda Vital"
   },
   "list": {
     "statusPlaceholder": "Status",

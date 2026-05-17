@@ -1,0 +1,69 @@
+{
+  "title": "Sinais vitais",
+  "subtitle": "Sinais vitais e medições de crescimento registrados",
+  "newAction": "Registrar sinais vitais",
+  "noResults": "Nenhum sinal vital registrado ainda.",
+  "loading": "Carregando sinais vitais…",
+  "save": "Salvar",
+  "cancel": "Cancelar",
+  "delete": "Excluir",
+  "permissionDenied": "Você não tem permissão para visualizar os sinais vitais deste paciente.",
+  "permissionWriteDenied": "Você não tem permissão para registrar sinais vitais.",
+  "fields": {
+    "recordedAt": "Registrado em",
+    "height": "Altura",
+    "weight": "Peso",
+    "temperature": "Temperatura",
+    "heartRate": "Frequência cardíaca",
+    "respiratoryRate": "Frequência respiratória",
+    "bloodPressure": "Pressão arterial",
+    "systolic": "Sistólica",
+    "diastolic": "Diastólica",
+    "oxygenSat": "Saturação de oxigênio",
+    "painScale": "Dor (0–10)",
+    "headCircumference": "Perímetro cefálico",
+    "notes": "Observações"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "Informe pelo menos uma medição.",
+    "invalidNumber": "Deve ser um número.",
+    "outOfRange": "O valor está fora do intervalo esperado.",
+    "missingRecordedAt": "Data e hora são obrigatórias.",
+    "bloodPressurePartial": "Informe a sistólica e a diastólica, ou deixe ambas em branco.",
+    "diastolicAboveSystolic": "A diastólica deve ser menor que a sistólica."
+  },
+  "growth": {
+    "title": "Curva de crescimento",
+    "description": "Medições do paciente sobrepostas aos percentis de referência da OMS.",
+    "metric": {
+      "weight": "Peso",
+      "height": "Altura",
+      "headCircumference": "Perímetro cefálico"
+    },
+    "ageMonths": "Idade (meses)",
+    "ageYears": "Idade (anos)",
+    "patientSeries": "Paciente",
+    "percentile": "P{{value}}",
+    "notApplicable": "As curvas de crescimento são exibidas para pacientes com menos de 19 anos com sexo registrado.",
+    "noMeasurements": "Registre altura ou peso para plotar o paciente na curva de crescimento.",
+    "loading": "Carregando dados de referência da OMS…"
+  },
+  "summary": {
+    "count_one": "{{count}} leitura",
+    "count_other": "{{count}} leituras",
+    "latest": "Última: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "Excluir esta leitura?",
+    "description": "Isso removerá o registro de sinais vitais. Você pode registrá-lo novamente a qualquer momento."
+  }
+}

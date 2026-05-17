@@ -73,7 +73,8 @@
     "careGoals": "Objectifs de soins",
     "carePlans": "Plans de soins",
     "history": "Historique",
-    "billing": "Facturation"
+    "billing": "Facturation",
+    "vitals": "Constantes vitales"
   },
   "list": {
     "statusPlaceholder": "Statut",

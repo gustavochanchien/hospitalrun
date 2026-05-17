@@ -73,7 +73,8 @@
     "careGoals": "أهداف الرعاية",
     "carePlans": "خطط الرعاية",
     "history": "السجل",
-    "billing": "الفوترة"
+    "billing": "الفوترة",
+    "vitals": "العلامات الحيوية"
   },
   "list": {
     "statusPlaceholder": "الحالة",

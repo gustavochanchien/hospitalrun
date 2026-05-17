@@ -16,6 +16,10 @@
     "label": "Gestión de inventario",
     "description": "Controle las existencias de consumibles y medicamentos, registre recepciones y dispensaciones y reciba alertas de bajo stock."
   },
+  "vitals": {
+    "label": "Constantes vitales y curvas de crecimiento",
+    "description": "Registre las constantes vitales del paciente (talla, peso, temperatura, tensión arterial, etc.) y represente el crecimiento pediátrico frente a las curvas de referencia de la OMS."
+  },
   "toggle": {
     "enabled": "{{feature}} activada",
     "disabled": "{{feature}} desactivada"

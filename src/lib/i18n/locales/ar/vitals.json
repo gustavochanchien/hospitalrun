@@ -1,0 +1,73 @@
+{
+  "title": "العلامات الحيوية",
+  "subtitle": "العلامات الحيوية والقياسات المسجّلة",
+  "newAction": "تسجيل العلامات الحيوية",
+  "noResults": "لم يتم تسجيل أي علامات حيوية بعد.",
+  "loading": "جارٍ تحميل العلامات الحيوية…",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "permissionDenied": "ليس لديك صلاحية لعرض العلامات الحيوية لهذا المريض.",
+  "permissionWriteDenied": "ليس لديك صلاحية لتسجيل العلامات الحيوية.",
+  "fields": {
+    "recordedAt": "وقت التسجيل",
+    "height": "الطول",
+    "weight": "الوزن",
+    "temperature": "درجة الحرارة",
+    "heartRate": "معدل ضربات القلب",
+    "respiratoryRate": "معدل التنفس",
+    "bloodPressure": "ضغط الدم",
+    "systolic": "الانقباضي",
+    "diastolic": "الانبساطي",
+    "oxygenSat": "تشبع الأكسجين",
+    "painScale": "مقياس الألم (0–10)",
+    "headCircumference": "محيط الرأس",
+    "notes": "ملاحظات"
+  },
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "celsius": "°C",
+    "bpm": "bpm",
+    "rpm": "/min",
+    "mmHg": "mmHg",
+    "percent": "%"
+  },
+  "errors": {
+    "atLeastOneValue": "أدخل قياساً واحداً على الأقل.",
+    "invalidNumber": "يجب أن تكون قيمة رقمية.",
+    "outOfRange": "القيمة خارج النطاق المتوقع.",
+    "missingRecordedAt": "التاريخ والوقت مطلوبان.",
+    "bloodPressurePartial": "أدخل كلاً من الضغط الانقباضي والانبساطي، أو اتركهما فارغَين.",
+    "diastolicAboveSystolic": "يجب أن يكون الضغط الانبساطي أقل من الانقباضي."
+  },
+  "growth": {
+    "title": "منحنى النمو",
+    "description": "قياسات المريض مُراكَبة على مئينيّات مرجع منظمة الصحة العالمية.",
+    "metric": {
+      "weight": "الوزن",
+      "height": "الطول",
+      "headCircumference": "محيط الرأس"
+    },
+    "ageMonths": "العمر (بالأشهر)",
+    "ageYears": "العمر (بالسنوات)",
+    "patientSeries": "المريض",
+    "percentile": "P{{value}}",
+    "notApplicable": "تُعرض منحنيات النمو للمرضى الذين تقل أعمارهم عن 19 عاماً مع تسجيل الجنس.",
+    "noMeasurements": "سجّل الطول أو الوزن لرسم المريض على منحنى النمو.",
+    "loading": "جارٍ تحميل بيانات منظمة الصحة العالمية المرجعية…"
+  },
+  "summary": {
+    "count_zero": "لا قراءات",
+    "count_one": "قراءة واحدة",
+    "count_two": "قراءتان",
+    "count_few": "{{count}} قراءات",
+    "count_many": "{{count}} قراءة",
+    "count_other": "{{count}} قراءة",
+    "latest": "الأحدث: {{date}}"
+  },
+  "confirmDelete": {
+    "title": "حذف هذه القراءة؟",
+    "description": "سيؤدي هذا إلى إزالة قراءة العلامات الحيوية. يمكنك إعادة تسجيلها في أي وقت."
+  }
+}
