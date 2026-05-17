@@ -14,6 +14,21 @@ Per-stage agent guidance is inline below where it applies.
 
 ---
 
+## Browser smoke-test backlog
+
+Things that landed under unit tests / type-checks but were never exercised in a real browser (no live Supabase project yet, no user session run-through). Check off as confirmed in `npm run dev` against a real Supabase. New stages should append here whenever they ship without an in-browser run.
+
+- [ ] **Stage 21 — Patient documents** (commit `9ee43e8`):
+  - Upload a JPEG → preview renders as `<img>`.
+  - Upload a PDF → preview renders in `<iframe>`.
+  - Upload an `.xlsx` (or any non-image, non-PDF) → preview shows the "Download" link and the signed URL opens in a new tab.
+  - Delete a document → row disappears from the list **and** the file is gone from the `patient-documents` bucket in the Supabase dashboard.
+  - Toggle `config.json` to `local-hub` mode → upload button is hidden, existing rows still listable, the "Document uploads are disabled in local-hub mode" notice appears.
+  - Sign in as a non-clinical role with no `read:documents` → the "Documents" tab does not render.
+  - `npm run build && npm run preview` → PWA build succeeds and the new sub-feature bundle is precached.
+
+---
+
 ## Stage 1 — Global UX Foundations ✅
 
 - [x] Network status banner (offline detection)
@@ -315,21 +330,26 @@ Dedicated table separate from medications. Gated by `immunizations` feature flag
 
 ---
 
-## Stage 21 — Generic patient document repository
+## Stage 21 — Generic patient document repository ✅
 
-Parallels imaging for arbitrary documents (consents, scans, faxes). Gated by `documents` feature flag.
+Parallels imaging for arbitrary documents (consents, referrals, scans, faxes). Gated by `documents` feature flag. Landed in commit `9ee43e8` (2026-05-17). Per the pre-deploy migration strategy the schema was merged into `00001_initial_schema.sql` instead of a new `00009_*.sql` file.
 
-**Agents:** `supabase-dexie-table-wiring` for `patient_documents` (Storage bucket + RLS is custom — flag it in the invocation); sub-tab + storage helper by hand; `i18n-translator` for 11 locales.
+- [x] Schema in [supabase/migrations/00001_initial_schema.sql](supabase/migrations/00001_initial_schema.sql) — `patient_documents` table + RLS via `public.org_id()`, plus new private Storage bucket `patient-documents` with 4 `storage.objects` policies (SELECT/INSERT/UPDATE/DELETE) mirroring the `imaging` bucket policies. Fields: `patientId`, `visitId`, `category` (`consent | referral | scan | other` — Postgres CHECK + TS union), `title`, `description`, `storagePath`, `mimeType`, `sizeBytes`, `uploadedBy`, `uploadedAt`.
+- [x] `patientDocuments` added to `PHI_TABLES` + `PHI_TABLE_TO_RESOURCE` (`'document'`). Dexie bumped to **v11** with `[patientId+uploadedAt]` compound index.
+- [x] [features.ts](src/lib/features.ts): added `'documents'` + `FEATURE_METADATA`.
+- [x] [permissions.ts](src/lib/permissions.ts): `read:documents`, `write:documents`, `delete:document` (singular — matches `delete:appointment` convention). Mirrored into the SQL `bootstrap_current_user` seed for admin/doctor/nurse/viewer.
+- [x] New [src/lib/supabase/documents.ts](src/lib/supabase/documents.ts) — `uploadPatientDocumentFile`, `getPatientDocumentSignedUrl`, `removePatientDocumentFile`. Line-for-line mirror of [src/lib/supabase/storage.ts](src/lib/supabase/storage.ts) with bucket `'patient-documents'`.
+- [x] **Local-hub mode** — upload button hidden when `isHubLocalMode()` returns true (import from `@/lib/supabase/client`, same pattern as [TeamCard.tsx](src/features/settings/TeamCard.tsx)); inline notice shown to clinicians explaining why. Existing rows remain listable.
+- [x] New patient sub-tab [PatientDocuments.tsx](src/features/patients/sub-features/PatientDocuments.tsx) — upload dialog (file + title + category dropdown + description), preview by mime (`image/*` → `<img>`, `application/pdf` → `<iframe>`, others → "Download" link to signed URL), soft-delete that also removes the Storage object. Wired as the 17th tab in [PatientDetailPage.tsx](src/features/patients/PatientDetailPage.tsx), FeatureGate-wrapped on trigger AND "All" section.
+- [x] i18n: new `documents` namespace registered in [src/lib/i18n/index.ts](src/lib/i18n/index.ts). English by hand; `i18n-translator` agent populated the other 11 locales — 33 file writes (11× new `documents.json` + 11× `patient.json` (`tabs.documents`) + 11× `features.json` (`documents` block)).
+- [x] Tests: 7 cases in [PatientDocuments.test.tsx](src/features/patients/sub-features/PatientDocuments.test.tsx) — empty state, file-required validation, round-trip upload, local-hub upload-hide, signed-URL preview fetch, delete-removes-storage, and read-permission gate. Full suite **552/552** passing post-Stage-21 (`_auth.test.tsx` historic flake didn't trip this run).
 
-- [ ] Supabase migration `00009_patient_documents.sql` — table + RLS via `public.org_id()`, plus new Storage bucket `patient-documents` with org-prefix policies mirroring the `imaging` bucket policies in `00001_initial_schema.sql`. Fields: `patientId`, `visitId`, `category` (`consent | referral | scan | other`), `title`, `description`, `storagePath`, `mimeType`, `sizeBytes`, `uploadedBy`, `uploadedAt`.
-- [ ] Add `patientDocuments` to `PHI_TABLES` + `PHI_TABLE_TO_RESOURCE`.
-- [ ] [features.ts](src/lib/features.ts): add `'documents'`.
-- [ ] [permissions.ts](src/lib/permissions.ts): `read:documents`, `write:documents`, `delete:document`.
-- [ ] New `src/lib/supabase/documents.ts` — `uploadDocumentFile`, `getDocumentSignedUrl`, `removeDocumentFile`. Mirror of [src/lib/supabase/storage.ts](src/lib/supabase/storage.ts).
-- [ ] **Local-hub mode** — hide the upload button when `isHubLocalMode()` returns true (CloudBackupCard pattern). Listing existing documents still works if rows hydrated previously.
-- [ ] New patient sub-tab `PatientDocuments.tsx` (gated) — upload, list, preview by mime type (PDF + image inline; others "Download"), category dropdown, delete with confirmation.
-- [ ] i18n: new `documents` namespace; English by hand, `i18n-translator` for the rest.
-- [ ] Tests: upload, list, signed-URL fetch (mock), local-hub graceful degrade, delete confirmation, gate.
+**Stage 21 contract notes for downstream consumers:**
+
+- **Storage bucket name** is `patient-documents` (kebab-case) but the Dexie/Supabase table is `patientDocuments`/`patient_documents` (camel/snake). Don't conflate the two.
+- **Soft-delete + Storage cleanup** is not transactional: `removePatientDocumentFile()` errors are swallowed (RLS may already have deleted the file) before `dbDelete()` flips `_deleted=true`. If the network drops between the two, the Dexie row is soft-deleted but the bucket object lingers. Out-of-scope for v1.
+- **Categories are locked** to `consent | referral | scan | other` via Postgres CHECK + TS union. To add a new category, update both sides + i18n in lockstep.
+- **PreviewDialog** uses a child `PreviewBody key={doc.id}` pattern to side-step the React 19 `react-hooks/set-state-in-effect` rule — the key remount on doc change naturally resets URL/loading state without synchronous setState calls. Copy this layout if you need a similar URL-fetching dialog elsewhere.
 
 ---
 
